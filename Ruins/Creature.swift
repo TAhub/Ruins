@@ -13,6 +13,10 @@ let miscMultiplier:Int = 10
 
 class Creature
 {
+	//MARK: position
+	var x:Int
+	var y:Int
+	
 	//MARK: identity
 	var enemyType:String
 	var good:Bool
@@ -96,7 +100,6 @@ class Creature
 	
 	//MARK: variable stats
 	var health:Int
-	var movePoints:Int
 	var encumberance:Int
 	{
 		//TODO: tally up total weight of items
@@ -104,8 +107,12 @@ class Creature
 	}
 	
 	//MARK: initializers
-	init(enemyType:String, level:Int)
+	init(enemyType:String, level:Int, x:Int, y:Int)
 	{
+		//set position
+		self.x = x
+		self.y = y
+		
 		//set stats
 		str = DataStore.getInt("EnemyTypes", enemyType, "strength")!
 		dex = DataStore.getInt("EnemyTypes", enemyType, "dexterity")!
@@ -125,7 +132,6 @@ class Creature
 		
 		//initialize variables
 		health = 0
-		movePoints = 0
 		
 		//fill up health (this has to happen after every variable is initialized)
 		health = maxHealth

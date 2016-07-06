@@ -21,31 +21,80 @@ enum GamePhase:Int
 
 class Animation
 {
-	//TODO: this should contain enough data to do the following things
-	//	ONE: move a creature over a given path
-	//	TWO: have one creature do a specific attack anim on another (including damage numbers over both afterwards)
-	//TODO: whenever there is an animation, the top UI should update
+	var damageNumbers = [(Creature, String)]()
+	var movePath:[(Int, Int)]?
+	var attackTarget:(Int, Int)?
+	var attackType:String?
+}
+
+protocol GameDelegate
+{
+	func playAnimation(anim:Animation)
+	func inputDesired()
 }
 
 class Game
 {
 	var phaseOn:GamePhase = .Start
 	var creatureOn:Int = -1
+	var delegate:GameDelegate?
+	var creatures = [Creature]()
+	var movePoints:Int = 0
+	var targetX:Int = 0
+	var targetY:Int = 0
 	
 	func executePhase()
 	{
 		var anim:Animation?
 		
-		//TODO: execute the current phase
+		//execute the current phase
+		switch(phaseOn)
+		{
+		case .Move:
+			//TODO: move for real, instead of sliding direcly there
+			
+			//make the move animation
+			anim = Animation()
+			anim!.movePath = [(activeCreature.x, activeCreature.y), (targetX, targetY)]
+			
+			//actually move there
+			movePoints -= abs(activeCreature.x - targetX) + abs(activeCreature.y - targetY)
+			activeCreature.x = targetX
+			activeCreature.y = targetY
+			
+		case .DoAction: break
+		case .PoisonDamage: break
+		case .EndTurn: break
+		default: break
+		}
 		
 		if let anim = anim
 		{
-			//TODO: run the anim, and then call toNextPhase() once it's over
+			delegate?.playAnimation(anim)
 		}
 		else
 		{
 			toNextPhase()
 		}
+	}
+	
+	func skipAction()
+	{
+		phaseOn = .EndTurn
+		executePhase()
+	}
+	
+	func makeMove(x x:Int, y:Int)
+	{
+		phaseOn = .Move
+		targetX = x
+		targetY = y
+		executePhase()
+	}
+	
+	var activeCreature:Creature
+	{
+		return creatures[creatureOn]
 	}
 	
 	func toNextPhase()
@@ -55,7 +104,17 @@ class Game
 		{
 		case .Start: phaseOn = .PoisonDamage; nextCreature = true
 		case .PoisonDamage: phaseOn = .MakeDecision
-		case .MakeDecision: break //TODO: this phase is manually left, via AI decision or player input
+		case .MakeDecision:
+			if (false)
+			{
+				//TODO: if the active person is an AI, run their AI script
+			}
+			else
+			{
+				delegate?.inputDesired()
+			}
+			
+			return
 		case .Move: phaseOn = .MakeDecision
 		case .DoAction: phaseOn = .EndTurn
 		case .EndTurn: phaseOn = .PoisonDamage; nextCreature = true
@@ -63,7 +122,10 @@ class Game
 		
 		if nextCreature
 		{
-			//TODO: go to the next creature in order
+			creatureOn = (creatureOn + 1) % creatures.count
+			movePoints = activeCreature.maxMovePoints
 		}
+		
+		executePhase()
 	}
 }

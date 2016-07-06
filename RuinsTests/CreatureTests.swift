@@ -17,7 +17,7 @@ class CreatureTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
 		
-		creature = Creature(enemyType: "test creature", level: 1)
+		creature = Creature(enemyType: "test creature", level: 1, x: 0, y: 0)
     }
 	
 	func testLoadCreatureFromPlist()

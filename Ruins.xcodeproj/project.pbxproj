@@ -27,6 +27,7 @@
 		E4F147E91D2D99A000F4C579 /* DataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147E81D2D99A000F4C579 /* DataStoreTests.swift */; };
 		E4F147EB1D2D99EC00F4C579 /* CreatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147EA1D2D99EC00F4C579 /* CreatureTests.swift */; };
 		E4F147ED1D2D9DEF00F4C579 /* WeaponTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147EC1D2D9DEF00F4C579 /* WeaponTests.swift */; };
+		E4F147EF1D2DA72A00F4C579 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147EE1D2DA72A00F4C579 /* GameTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		E4F147E81D2D99A000F4C579 /* DataStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStoreTests.swift; sourceTree = "<group>"; };
 		E4F147EA1D2D99EC00F4C579 /* CreatureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureTests.swift; sourceTree = "<group>"; };
 		E4F147EC1D2D9DEF00F4C579 /* WeaponTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponTests.swift; sourceTree = "<group>"; };
+		E4F147EE1D2DA72A00F4C579 /* GameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 		E4F147C01D2D712700F4C579 /* RuinsTests */ = {
 			isa = PBXGroup;
 			children = (
+				E4F147EE1D2DA72A00F4C579 /* GameTests.swift */,
 				E4F147EC1D2D9DEF00F4C579 /* WeaponTests.swift */,
 				E4F147EA1D2D99EC00F4C579 /* CreatureTests.swift */,
 				E4F147E81D2D99A000F4C579 /* DataStoreTests.swift */,
@@ -295,6 +298,7 @@
 				E4F147EB1D2D99EC00F4C579 /* CreatureTests.swift in Sources */,
 				E4F147E91D2D99A000F4C579 /* DataStoreTests.swift in Sources */,
 				E4F147ED1D2D9DEF00F4C579 /* WeaponTests.swift in Sources */,
+				E4F147EF1D2DA72A00F4C579 /* GameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
