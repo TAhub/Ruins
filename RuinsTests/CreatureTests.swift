@@ -33,8 +33,59 @@ class CreatureTests: XCTestCase {
 		normalLoadAsserts()
 	}
 	
-	//TODO: other tests to make:
-	//	test posion (AKA to see if it does the right amount of damage)
+	func testPoison()
+	{
+		//poisonTick should do nothing if you aren't poisoned
+		XCTAssertNil(creature.poisonTick())
+		XCTAssertEqual(creature.health, 200)
+		
+		creature.poison = 100
+		
+		//make sure the poison does the right damage
+		XCTAssertEqual(creature.poisonTick() ?? 999, 10)
+		XCTAssertEqual(creature.health, 190)
+		
+		//run it again to make sure it keys off your max health and not current health
+		XCTAssertEqual(creature.poisonTick() ?? 999, 10)
+		XCTAssertEqual(creature.health, 180)
+		
+		//run it again to make sure that poison can't reduce you below 1 health
+		creature.health = 10
+		XCTAssertEqual(creature.poisonTick() ?? 999, 9)
+		XCTAssertEqual(creature.health, 1)
+		
+		//and run it once more to show that poisonTick does nothing if you are at 1 health
+		XCTAssertNil(creature.poisonTick())
+	}
+	
+	func testEndTurn()
+	{
+		creature.poison = 3
+		creature.stun = 7
+		creature.shake = 1
+		
+		creature.endTurn()
+		
+		XCTAssertEqual(creature.poison, 2)
+		XCTAssertEqual(creature.stun, 6)
+		XCTAssertEqual(creature.shake, 0)
+		
+		creature.endTurn()
+		creature.endTurn()
+		
+		XCTAssertEqual(creature.poison, 0)
+		XCTAssertEqual(creature.stun, 4)
+		XCTAssertEqual(creature.shake, 0)
+		
+		creature.endTurn()
+		creature.endTurn()
+		creature.endTurn()
+		creature.endTurn()
+		
+		XCTAssertEqual(creature.poison, 0)
+		XCTAssertEqual(creature.stun, 0)
+		XCTAssertEqual(creature.shake, 0)
+	}
 	
 	//MARK: attack tests
 	
@@ -62,7 +113,7 @@ class CreatureTests: XCTestCase {
 	}
 	
 	//TODO: other attack tests to make:
-	//	test weaknesses (ranged, AKA +15% damage)
+	//	test weaknesses (ranged, AKA +30% damage)
 	//	test weaknesses (melee, AKA ignore melee resistance)
 	//	test status effects (I guess for this one you'd want to just attack like 50 times in a row to see if they get infected)
 	//	test crits (set the attacker's DEX to like 9999999 to ensure a crit)

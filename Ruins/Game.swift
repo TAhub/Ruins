@@ -75,8 +75,14 @@ class Game
 			{
 				anim!.damageNumbers.append((activeCreature, "\(damages.myDamage)"))
 			}
-		case .PoisonDamage: break
-		case .EndTurn: break
+		case .PoisonDamage:
+			if let damage = activeCreature.poisonTick()
+			{
+				anim = Animation()
+				anim!.damageNumbers.append((activeCreature, "\(damage)"))
+			}
+		case .EndTurn:
+			activeCreature.endTurn()
 		default: break
 		}
 		
@@ -123,7 +129,7 @@ class Game
 		switch(phaseOn)
 		{
 		case .Start: phaseOn = .PoisonDamage; nextCreature = true
-		case .PoisonDamage: phaseOn = .MakeDecision
+		case .PoisonDamage: phaseOn = (activeCreature.stun > 0) ? GamePhase.EndTurn : GamePhase.MakeDecision
 		case .MakeDecision:
 			if (false)
 			{

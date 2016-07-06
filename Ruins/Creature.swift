@@ -10,7 +10,8 @@ import Foundation
 
 let damMultiplier:Int = 8
 let miscMultiplier:Int = 10
-let weakDamMult:Int = 15
+let weakDamMult:Int = 30
+let poisonDam:Int = 5
 
 class Creature
 {
@@ -213,11 +214,29 @@ class Creature
 	
 	//TODO: operations
 	
+	func poisonTick() -> Int?
+	{
+		if poison > 0 && health > 1
+		{
+			let poisonDamage = min(maxHealth * poisonDam / 100, health - 1)
+			health -= poisonDamage
+			return poisonDamage
+		}
+		return nil
+	}
+	
+	func endTurn()
+	{
+		poison = max(poison - 1, 0)
+		stun = max(stun - 1, 0)
+		shake = max(shake - 1, 0)
+	}
+	
 	func attack(target:Creature) -> (myDamage:Int, theirDamage:Int)
 	{
 		//calculate how much damage people are taking
-		var myDamage = 0
-		var theirDamage = 0
+		let myDamage:Int
+		let theirDamage:Int
 		
 		//TODO: are they weak to your weapon?
 		var isWeak = false
@@ -249,6 +268,7 @@ class Creature
 		
 		//now, the wDamage is the damage you do to them
 		theirDamage = wDamage
+		myDamage = 0
 		
 		//TODO: if the weapon is vampiric, give yourself some health (negative damage) too
 		
