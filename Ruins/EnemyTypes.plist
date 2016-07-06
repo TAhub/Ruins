@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   EnemyTypes.plist
+   Ruins
+
+   Created by Theodore Abshire on 7/6/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<key>sample enemy type</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>str</key> <integer>10</integer>
+		<key>dex</key> <integer>10</integer>
+		<key>cun</key> <integer>10</integer>
+		<key>wis</key> <integer>10</integer>
+		<key>end</key> <integer>10</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>sword</string>
+		<key>weapon material</key> <string>steel</string>
+		<key>armor</key> <string>heavy armor</string>
+		<!-- MARK: special powers -->
+		<key>ignore terrain cost</key> <true/>
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>undead</string>
+		<key>appearance group</key> <string>zombie</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>1</integer>
+		<key>keywords</key>
+		<array>
+			<string>poison</string>
+			<string>stun</string>
+			<string>shake</string>
+		</array>
+	</dict>
+</dict>
+</plist>

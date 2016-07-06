@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Weapons.plist
+   Ruins
+
+   Created by Theodore Abshire on 7/6/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<key>sample weapon</key>
+	<dict>
+		<key>damage</key> <integer>100</integer>
+		<key>accuracy</key> <integer>100</integer>
+		<key>hit damage multiplier</key> <integer>100</integer>
+		<key>weight</key> <integer>100</integer>
+		<key>range</key> <integer>1</integer>
+		<key>subtypes</key>
+		<array>
+			<dict>
+				<key>name</key> <string>knife</string>
+				<key>level</key> <integer>1</integer>
+				<key>damage multiplier</key> <integer>100</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- real weapons -->
+	<key>sword</key>
+	<dict>
+		<key>damage</key> <integer>38</integer>
+		<key>accuracy</key> <integer>20</integer>
+		<key>hit damage multiplier</key> <integer>150</integer>
+		<key>weight</key> <integer>35</integer>
+		<key>range</key> <integer>1</integer>
+		<key>subtypes</key>
+		<array>
+			<dict>
+				<key>name</key> <string>knife</string>
+				<key>level</key> <integer>0</integer>
+				<key>damage multiplier</key> <integer>85</integer>
+				<key>weight multiplier</key> <integer>65</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>shortsword</string>
+				<key>level</key> <integer>8</integer>
+				<key>damage multiplier</key> <integer>125</integer>
+				<key>weight multiplier</key> <integer>90</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>scimitar</string>
+				<key>level</key> <integer>16</integer>
+				<key>damage multiplier</key> <integer>170</integer>
+				<key>weight multiplier</key> <integer>115</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>longsword</string>
+				<key>level</key> <integer>24</integer>
+				<key>damage multiplier</key> <integer>190</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>sabre</string>
+				<key>level</key> <integer>32</integer>
+				<key>damage multiplier</key> <integer>240</integer>
+				<key>weight multiplier</key> <integer>125</integer>
+			</dict>
+		</array>
+	</dict>
+	<key>axe</key>
+	<dict>
+		<key>damage</key> <integer>32</integer>
+		<key>accuracy</key> <integer>20</integer>
+		<key>hit damage multiplier</key> <integer>200</integer>
+		<key>weight</key> <integer>32</integer>
+		<key>range</key> <integer>1</integer>
+		<key>subtypes</key>
+		<array>
+			<dict>
+				<key>name</key> <string>hatchet</string>
+				<key>level</key> <integer>5</integer>
+				<key>damage multiplier</key> <integer>105</integer>
+				<key>weight multiplier</key> <integer>75</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>shepherd's axe</string>
+				<key>level</key> <integer>15</integer>
+				<key>damage multiplier</key> <integer>155</integer>
+				<key>weight multiplier</key> <integer>90</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>bearded axe</string>
+				<key>level</key> <integer>25</integer>
+				<key>damage multiplier</key> <integer>200</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>battle axe</string>
+				<key>level</key> <integer>35</integer>
+				<key>damage multiplier</key> <integer>255</integer>
+				<key>weight multiplier</key> <integer>125</integer>
+			</dict>
+		</array>
+	</dict>
+	<key>hammer</key>
+	<dict>
+		<key>damage</key> <integer>40</integer>
+		<key>accuracy</key> <integer>14</integer>
+		<key>hit damage multiplier</key> <integer>140</integer>
+		<key>weight</key> <integer>45</integer>
+		<key>range</key> <integer>1</integer>
+		<key>subtypes</key>
+		<array>
+			<dict>
+				<key>name</key> <string>mallet</string> <!-- NOTE: mallets should use wood rather than metal -->
+				<key>level</key> <integer>0</integer>
+				<key>damage multiplier</key> <integer>90</integer>
+				<key>weight multiplier</key> <integer>75</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>hammer</string>
+				<key>level</key> <integer>8</integer>
+				<key>damage multiplier</key> <integer>125</integer>
+				<key>weight multiplier</key> <integer>90</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>sledgehammer</string>
+				<key>level</key> <integer>16</integer>
+				<key>damage multiplier</key> <integer>160</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>warhammer</string>
+				<key>level</key> <integer>24</integer>
+				<key>damage multiplier</key> <integer>190</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>maul</string>
+				<key>level</key> <integer>32</integer>
+				<key>damage multiplier</key> <integer>230</integer>
+				<key>weight multiplier</key> <integer>115</integer>
+			</dict>
+		</array>
+	</dict>
+	<key>rifle</key>
+	<dict>
+		<key>damage</key> <integer>52</integer>
+		<key>accuracy</key> <integer>30</integer>
+		<key>hit damage multiplier</key> <integer>250</integer>
+		<key>weight</key> <integer>33</integer>
+		<key>range</key> <integer>4</integer>
+		<key>subtypes</key>
+		<array>
+			<dict>
+				<key>name</key> <string>musket</string>
+				<key>level</key> <integer>5</integer>
+				<key>damage multiplier</key> <integer>120</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>flintlock rifle</string>
+				<key>level</key> <integer>15</integer>
+				<key>damage multiplier</key> <integer>160</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>needle gun</string>
+				<key>level</key> <integer>25</integer>
+				<key>damage multiplier</key> <integer>200</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>lever-action</string>
+				<key>level</key> <integer>35</integer>
+				<key>damage multiplier</key> <integer>240</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+		</array>
+	</dict>
+	<key>pistol</key>
+	<dict>
+		<key>damage</key> <integer>48</integer>
+		<key>accuracy</key> <integer>40</integer>
+		<key>hit damage multiplier</key> <integer>225</integer>
+		<key>weight</key> <integer>20</integer>
+		<key>range</key> <integer>3</integer>
+		<key>subtypes</key>
+		<array>
+			<dict>
+				<key>name</key> <string>hand cannon</string>
+				<key>level</key> <integer>5</integer>
+				<key>damage multiplier</key> <integer>120</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>flintlock pistol</string>
+				<key>level</key> <integer>15</integer>
+				<key>damage multiplier</key> <integer>160</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>cartridge pistol</string>
+				<key>level</key> <integer>25</integer>
+				<key>damage multiplier</key> <integer>200</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>revolver</string>
+				<key>level</key> <integer>35</integer>
+				<key>damage multiplier</key> <integer>240</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+		</array>
+	</dict>
+	<key>wand</key>
+	<dict>
+		<key>damage</key> <integer>42</integer>
+		<key>accuracy</key> <integer>30</integer>
+		<key>hit damage multiplier</key> <integer>300</integer>
+		<key>weight</key> <integer>18</integer>
+		<key>range</key> <integer>3</integer>
+		<key>subtypes</key>
+		<array>
+			<dict>
+				<key>name</key> <string>branch</string>
+				<key>level</key> <integer>0</integer>
+				<key>damage multiplier</key> <integer>100</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>baton</string>
+				<key>level</key> <integer>8</integer>
+				<key>damage multiplier</key> <integer>130</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>wand</string>
+				<key>level</key> <integer>16</integer>
+				<key>damage multiplier</key> <integer>160</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>rod</string> <!-- NOTE: rods should use metal rather than wood -->
+				<key>level</key> <integer>24</integer>
+				<key>damage multiplier</key> <integer>190</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>staff</string>
+				<key>level</key> <integer>32</integer>
+				<key>damage multiplier</key> <integer>220</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- enemy-only weapons -->
+	<key>bash</key>
+	<dict>
+		<key>damage</key> <integer>37</integer>
+		<key>accuracy</key> <integer>16</integer>
+		<key>hit damage multiplier</key> <integer>150</integer>
+		<key>weight</key> <integer>0</integer>
+		<key>range</key> <integer>1</integer>
+	</dict>
+</dict>
+</plist>

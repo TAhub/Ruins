@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Materials.plist
+   Ruins
+
+   Created by Theodore Abshire on 7/6/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<key>sample material</key>
+	<dict>
+		<key>damage multiplier</key> <integer>100</integer>
+		<key>weight multiplier</key> <integer>100</integer>
+		<key>status inflicted</key> <string>stun</string>
+		<key>strong vs</key> <string>mortal</string>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<!-- real materials -->
+	
+	<key>silver</key>
+	<dict>
+		<key>damage multiplier</key> <integer>90</integer>
+		<key>weight multiplier</key> <integer>100</integer>
+		<key>strong vs</key> <string>undead</string>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<key>elm</key>
+	<dict>
+		<key>damage multiplier</key> <integer>90</integer>
+		<key>weight multiplier</key> <integer>90</integer>
+		<key>strong vs</key> <string>undead</string>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<key>iron</key>
+	<dict>
+		<key>damage multiplier</key> <integer>100</integer>
+		<key>weight multiplier</key> <integer>110</integer>
+		<key>strong vs</key> <string>fairy</string>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<key>applewood</key>
+	<dict>
+		<key>damage multiplier</key> <integer>100</integer>
+		<key>weight multiplier</key> <integer>105</integer>
+		<key>strong vs</key> <string>fairy</string>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<key>gold</key>
+	<dict>
+		<key>damage multiplier</key> <integer>90</integer>
+		<key>weight multiplier</key> <integer>125</integer>
+		<key>strong vs</key> <string>monster</string>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<key>birch</key>
+	<dict>
+		<key>damage multiplier</key> <integer>95</integer>
+		<key>weight multiplier</key> <integer>100</integer>
+		<key>strong vs</key> <string>monster</string>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<key>steel</key>
+	<dict>
+		<key>damage multiplier</key> <integer>110</integer>
+		<key>weight multiplier</key> <integer>125</integer>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<key>oak</key>
+	<dict>
+		<key>damage multiplier</key> <integer>110</integer>
+		<key>weight multiplier</key> <integer>125</integer>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<key>titanium</key>
+	<dict>
+		<key>damage multiplier</key> <integer>90</integer>
+		<key>weight multiplier</key> <integer>70</integer>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<key>cedar</key>
+	<dict>
+		<key>damage multiplier</key> <integer>90</integer>
+		<key>weight multiplier</key> <integer>70</integer>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<key>mercury</key>
+	<dict>
+		<key>damage multiplier</key> <integer>85</integer>
+		<key>weight multiplier</key> <integer>120</integer>
+		<key>status inflicted</key> <string>poison</string>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<key>lead</key>
+	<dict>
+		<key>damage multiplier</key> <integer>100</integer>
+		<key>weight multiplier</key> <integer>200</integer>
+		<key>status inflicted</key> <string>stun</string>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<key>rosewood</key>
+	<dict>
+		<key>damage multiplier</key> <integer>85</integer>
+		<key>weight multiplier</key> <integer>120</integer>
+		<key>status inflicted</key> <string>shake</string>
+		<key>color</key> <string>silver</string>
+	</dict>
+</dict>
+</plist>

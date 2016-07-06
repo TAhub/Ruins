@@ -13,6 +13,16 @@
 		E4F147B41D2D712700F4C579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F147B31D2D712700F4C579 /* Assets.xcassets */; };
 		E4F147B71D2D712700F4C579 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F147B51D2D712700F4C579 /* LaunchScreen.storyboard */; };
 		E4F147C21D2D712700F4C579 /* RuinsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147C11D2D712700F4C579 /* RuinsTests.swift */; };
+		E4F147D11D2D719C00F4C579 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147D01D2D719C00F4C579 /* Game.swift */; };
+		E4F147D31D2D73F400F4C579 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147D21D2D73F400F4C579 /* Creature.swift */; };
+		E4F147D51D2D765800F4C579 /* RacialGroups.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147D41D2D765800F4C579 /* RacialGroups.plist */; };
+		E4F147D71D2D766200F4C579 /* AppearanceGroups.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147D61D2D766200F4C579 /* AppearanceGroups.plist */; };
+		E4F147D91D2D766B00F4C579 /* EnemyTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147D81D2D766B00F4C579 /* EnemyTypes.plist */; };
+		E4F147DB1D2D767000F4C579 /* Weapons.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147DA1D2D767000F4C579 /* Weapons.plist */; };
+		E4F147DD1D2D767800F4C579 /* Materials.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147DC1D2D767800F4C579 /* Materials.plist */; };
+		E4F147DF1D2D767F00F4C579 /* Armors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147DE1D2D767F00F4C579 /* Armors.plist */; };
+		E4F147E11D2D768700F4C579 /* Lists.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147E01D2D768700F4C579 /* Lists.plist */; };
+		E4F147E31D2D85F400F4C579 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147E21D2D85F400F4C579 /* Weapon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +46,16 @@
 		E4F147BD1D2D712700F4C579 /* RuinsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RuinsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F147C11D2D712700F4C579 /* RuinsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuinsTests.swift; sourceTree = "<group>"; };
 		E4F147C31D2D712700F4C579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4F147D01D2D719C00F4C579 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		E4F147D21D2D73F400F4C579 /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
+		E4F147D41D2D765800F4C579 /* RacialGroups.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RacialGroups.plist; sourceTree = "<group>"; };
+		E4F147D61D2D766200F4C579 /* AppearanceGroups.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppearanceGroups.plist; sourceTree = "<group>"; };
+		E4F147D81D2D766B00F4C579 /* EnemyTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnemyTypes.plist; sourceTree = "<group>"; };
+		E4F147DA1D2D767000F4C579 /* Weapons.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Weapons.plist; sourceTree = "<group>"; };
+		E4F147DC1D2D767800F4C579 /* Materials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Materials.plist; sourceTree = "<group>"; };
+		E4F147DE1D2D767F00F4C579 /* Armors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Armors.plist; sourceTree = "<group>"; };
+		E4F147E01D2D768700F4C579 /* Lists.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lists.plist; sourceTree = "<group>"; };
+		E4F147E21D2D85F400F4C579 /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +97,10 @@
 		E4F147AB1D2D712700F4C579 /* Ruins */ = {
 			isa = PBXGroup;
 			children = (
-				E4F147AC1D2D712700F4C579 /* AppDelegate.swift */,
-				E4F147AE1D2D712700F4C579 /* ViewController.swift */,
-				E4F147B01D2D712700F4C579 /* Main.storyboard */,
-				E4F147B31D2D712700F4C579 /* Assets.xcassets */,
-				E4F147B51D2D712700F4C579 /* LaunchScreen.storyboard */,
-				E4F147B81D2D712700F4C579 /* Info.plist */,
+				E4F147CC1D2D716C00F4C579 /* Model */,
+				E4F147CE1D2D717400F4C579 /* Controller */,
+				E4F147CD1D2D717100F4C579 /* View */,
+				E4F147CF1D2D717C00F4C579 /* Supporting Files */,
 			);
 			path = Ruins;
 			sourceTree = "<group>";
@@ -94,6 +112,50 @@
 				E4F147C31D2D712700F4C579 /* Info.plist */,
 			);
 			path = RuinsTests;
+			sourceTree = "<group>";
+		};
+		E4F147CC1D2D716C00F4C579 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E4F147D01D2D719C00F4C579 /* Game.swift */,
+				E4F147D21D2D73F400F4C579 /* Creature.swift */,
+				E4F147E21D2D85F400F4C579 /* Weapon.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E4F147CD1D2D717100F4C579 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E4F147B01D2D712700F4C579 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E4F147CE1D2D717400F4C579 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E4F147AE1D2D712700F4C579 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		E4F147CF1D2D717C00F4C579 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E4F147D41D2D765800F4C579 /* RacialGroups.plist */,
+				E4F147D61D2D766200F4C579 /* AppearanceGroups.plist */,
+				E4F147D81D2D766B00F4C579 /* EnemyTypes.plist */,
+				E4F147DA1D2D767000F4C579 /* Weapons.plist */,
+				E4F147DC1D2D767800F4C579 /* Materials.plist */,
+				E4F147DE1D2D767F00F4C579 /* Armors.plist */,
+				E4F147E01D2D768700F4C579 /* Lists.plist */,
+				E4F147B31D2D712700F4C579 /* Assets.xcassets */,
+				E4F147AC1D2D712700F4C579 /* AppDelegate.swift */,
+				E4F147B51D2D712700F4C579 /* LaunchScreen.storyboard */,
+				E4F147B81D2D712700F4C579 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,7 +239,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4F147D51D2D765800F4C579 /* RacialGroups.plist in Resources */,
+				E4F147DF1D2D767F00F4C579 /* Armors.plist in Resources */,
+				E4F147D71D2D766200F4C579 /* AppearanceGroups.plist in Resources */,
+				E4F147DB1D2D767000F4C579 /* Weapons.plist in Resources */,
+				E4F147DD1D2D767800F4C579 /* Materials.plist in Resources */,
 				E4F147B71D2D712700F4C579 /* LaunchScreen.storyboard in Resources */,
+				E4F147E11D2D768700F4C579 /* Lists.plist in Resources */,
+				E4F147D91D2D766B00F4C579 /* EnemyTypes.plist in Resources */,
 				E4F147B41D2D712700F4C579 /* Assets.xcassets in Resources */,
 				E4F147B21D2D712700F4C579 /* Main.storyboard in Resources */,
 			);
@@ -197,7 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4F147E31D2D85F400F4C579 /* Weapon.swift in Sources */,
+				E4F147D31D2D73F400F4C579 /* Creature.swift in Sources */,
 				E4F147AF1D2D712700F4C579 /* ViewController.swift in Sources */,
+				E4F147D11D2D719C00F4C579 /* Game.swift in Sources */,
 				E4F147AD1D2D712700F4C579 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
