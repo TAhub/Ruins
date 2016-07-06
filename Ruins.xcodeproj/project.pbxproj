@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E4F147AD1D2D712700F4C579 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147AC1D2D712700F4C579 /* AppDelegate.swift */; };
-		E4F147AF1D2D712700F4C579 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147AE1D2D712700F4C579 /* ViewController.swift */; };
 		E4F147B21D2D712700F4C579 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F147B01D2D712700F4C579 /* Main.storyboard */; };
 		E4F147B41D2D712700F4C579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F147B31D2D712700F4C579 /* Assets.xcassets */; };
 		E4F147B71D2D712700F4C579 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F147B51D2D712700F4C579 /* LaunchScreen.storyboard */; };
@@ -28,6 +27,7 @@
 		E4F147EB1D2D99EC00F4C579 /* CreatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147EA1D2D99EC00F4C579 /* CreatureTests.swift */; };
 		E4F147ED1D2D9DEF00F4C579 /* WeaponTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147EC1D2D9DEF00F4C579 /* WeaponTests.swift */; };
 		E4F147EF1D2DA72A00F4C579 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147EE1D2DA72A00F4C579 /* GameTests.swift */; };
+		E4F147F11D2DB2BB00F4C579 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147F01D2DB2BB00F4C579 /* GameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +43,6 @@
 /* Begin PBXFileReference section */
 		E4F147A91D2D712700F4C579 /* Ruins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ruins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F147AC1D2D712700F4C579 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E4F147AE1D2D712700F4C579 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E4F147B11D2D712700F4C579 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E4F147B31D2D712700F4C579 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4F147B61D2D712700F4C579 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		E4F147EA1D2D99EC00F4C579 /* CreatureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureTests.swift; sourceTree = "<group>"; };
 		E4F147EC1D2D9DEF00F4C579 /* WeaponTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponTests.swift; sourceTree = "<group>"; };
 		E4F147EE1D2DA72A00F4C579 /* GameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
+		E4F147F01D2DB2BB00F4C579 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +149,7 @@
 		E4F147CE1D2D717400F4C579 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E4F147AE1D2D712700F4C579 /* ViewController.swift */,
+				E4F147F01D2DB2BB00F4C579 /* GameViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -285,8 +285,8 @@
 				E4F147E31D2D85F400F4C579 /* Weapon.swift in Sources */,
 				E4F147E71D2D998F00F4C579 /* DataStore.swift in Sources */,
 				E4F147D31D2D73F400F4C579 /* Creature.swift in Sources */,
-				E4F147AF1D2D712700F4C579 /* ViewController.swift in Sources */,
 				E4F147D11D2D719C00F4C579 /* Game.swift in Sources */,
+				E4F147F11D2DB2BB00F4C579 /* GameViewController.swift in Sources */,
 				E4F147AD1D2D712700F4C579 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
