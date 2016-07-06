@@ -15,7 +15,7 @@ enum GamePhase:Int
 	case PoisonDamage
 	case MakeDecision
 	case Move
-	case DoAction
+	case Attack
 	case EndTurn
 }
 
@@ -62,7 +62,19 @@ class Game
 			activeCreature.x = targetX
 			activeCreature.y = targetY
 			
-		case .DoAction: break
+		case .Attack:
+			//TODO: get the target based on targetX and targetY
+			let target = creatures[1]
+			let damages = activeCreature.attack(target)
+			
+			anim = Animation()
+			anim!.attackTarget = (targetX, targetY)
+			anim!.attackType = "whatever" //TODO: this value isn't used yet
+			anim!.damageNumbers.append((target, "\(damages.theirDamage)"))
+			if damages.myDamage > 0
+			{
+				anim!.damageNumbers.append((activeCreature, "\(damages.myDamage)"))
+			}
 		case .PoisonDamage: break
 		case .EndTurn: break
 		default: break
@@ -81,6 +93,14 @@ class Game
 	func skipAction()
 	{
 		phaseOn = .EndTurn
+		executePhase()
+	}
+	
+	func attack(x x:Int, y:Int)
+	{
+		phaseOn = .Attack
+		targetX = x
+		targetY = y
 		executePhase()
 	}
 	
@@ -116,7 +136,7 @@ class Game
 			
 			return
 		case .Move: phaseOn = .MakeDecision
-		case .DoAction: phaseOn = .EndTurn
+		case .Attack: phaseOn = .EndTurn
 		case .EndTurn: phaseOn = .PoisonDamage; nextCreature = true
 		}
 		

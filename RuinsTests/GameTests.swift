@@ -16,6 +16,7 @@ class GameTests: XCTestCase, GameDelegate {
 	var playAnimationCalled = 0
 	var firstCharacter:Creature!
 	var secondCharacter:Creature!
+	var lastAnimation:Animation?
 	
     override func setUp() {
         super.setUp()
@@ -58,6 +59,16 @@ class GameTests: XCTestCase, GameDelegate {
 		XCTAssertEqual(firstCharacter.x, 1)
 		XCTAssertEqual(firstCharacter.y, 2)
 		
+		//also check to make sure the animation has a reasonable path
+		//man, comparing arrays of tuples is really annoying
+		let animPath = (lastAnimation ?? Animation()).movePath ?? [(Int, Int)]()
+		let desiredPath = [(1, 1), (1, 2)]
+		XCTAssertEqual(animPath.count, desiredPath.count)
+		for i in 0..<desiredPath.count
+		{
+			XCTAssertTrue(animPath[i] ?? (0, 0) == desiredPath[i])
+		}
+		
 		//now signal that you have completed the animation, which should move you back to MakeDecision and ask for more input
 		game.toNextPhase()
 		
@@ -81,6 +92,37 @@ class GameTests: XCTestCase, GameDelegate {
 		XCTAssertEqual(firstCharacter.y, 2)
 	}
 	
+	func testAttacking()
+	{
+		game.executePhase()
+		
+		game.attack(x: 2, y: 1)
+		
+		XCTAssertEqual(inputDesiredCalled, 1)
+		XCTAssertEqual(playAnimationCalled, 1)
+		XCTAssertEqual(game.phaseOn, GamePhase.Attack)
+		XCTAssertEqual(game.creatureOn, 0)
+		XCTAssertLessThan(secondCharacter.health, 200)
+		
+		//make sure the animation has the right stuff inside it too
+		let lA = lastAnimation ?? Animation()
+		XCTAssertGreaterThan(lA.damageNumbers.count, 0)
+		XCTAssertTrue(lA.attackTarget ?? (0, 0) == (2, 1))
+		XCTAssertNotNil(lA.attackType)
+		XCTAssertNil(lA.movePath)
+		
+		//and once you resume, it should go to the next guy
+		game.toNextPhase()
+		
+		XCTAssertEqual(game.creatureOn, 1)
+		XCTAssertEqual(game.phaseOn, GamePhase.MakeDecision)
+	}
+	
+	//TODO: other tests to make:
+	//	test posion (AKA to see if it fires an anim)
+	//	test stun (AKA to see if it skips straight to the next guy)
+	//	test to see if statuses do in fact tick down every End phase
+	
 	//MARK: delegate methods
 	
 	func inputDesired()
@@ -90,5 +132,6 @@ class GameTests: XCTestCase, GameDelegate {
 	func playAnimation(anim: Animation)
 	{
 		playAnimationCalled += 1
+		lastAnimation = anim
 	}
 }

@@ -31,7 +31,7 @@
 	<dict>
 		<key>damage</key> <integer>100</integer>
 		<key>accuracy</key> <integer>100</integer>
-		<key>hit damage multiplier</key> <integer>100</integer>
+		<key>hit damage multiplier</key> <integer>200</integer>
 		<key>weight</key> <integer>100</integer>
 		<key>range</key> <integer>100</integer>
 	</dict>
@@ -40,7 +40,7 @@
 	<dict>
 		<key>damage</key> <integer>100</integer>
 		<key>accuracy</key> <integer>100</integer>
-		<key>hit damage multiplier</key> <integer>100</integer>
+		<key>hit damage multiplier</key> <integer>200</integer>
 		<key>weight</key> <integer>100</integer>
 		<key>range</key> <integer>100</integer>
 		<key>subtypes</key>
@@ -58,6 +58,15 @@
 				<key>weight multiplier</key> <integer>200</integer>
 			</dict>
 		</array>
+	</dict>
+	
+	<key>test melee weapon</key>
+	<dict>
+		<key>damage</key> <integer>100</integer>
+		<key>accuracy</key> <integer>100</integer>
+		<key>hit damage multiplier</key> <integer>200</integer>
+		<key>weight</key> <integer>100</integer>
+		<key>range</key> <integer>1</integer>
 	</dict>
 	
 	<!-- real weapons -->

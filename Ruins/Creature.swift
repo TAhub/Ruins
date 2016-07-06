@@ -10,6 +10,7 @@ import Foundation
 
 let damMultiplier:Int = 8
 let miscMultiplier:Int = 10
+let weakDamMult:Int = 15
 
 class Creature
 {
@@ -99,11 +100,16 @@ class Creature
 	var weapon:Weapon
 	
 	//MARK: variable stats
+	var shake:Int
+	var poison:Int
+	var stun:Int
 	var health:Int
 	var encumberance:Int
 	{
-		//TODO: tally up total weight of items
-		return 0
+		var wei = weapon.weight
+		//TODO: account for armor weight too
+		//TODO: tally up inventory weight I guess
+		return wei
 	}
 	
 	//MARK: initializers
@@ -132,6 +138,9 @@ class Creature
 		
 		//initialize variables
 		health = 0
+		shake = 0
+		stun = 0
+		poison = 0
 		
 		//fill up health (this has to happen after every variable is initialized)
 		health = maxHealth
@@ -160,6 +169,9 @@ class Creature
 		
 		//load variables
 		health = Creature.intFromD(d, name: "health")
+		shake = Creature.intFromD(d, name: "shake")
+		poison = Creature.intFromD(d, name: "poison")
+		stun = Creature.intFromD(d, name: "stun")
 	}
 	
 	private static func intFromD(d:NSDictionary, name:String) -> Int
@@ -192,8 +204,60 @@ class Creature
 		
 		//save variables
 		d["health"] = health
+		d["shake"] = shake
+		d["poison"] = poison
+		d["stun"] = stun
 		
 		return d
+	}
+	
+	//TODO: operations
+	
+	func attack(target:Creature) -> (myDamage:Int, theirDamage:Int)
+	{
+		//calculate how much damage people are taking
+		var myDamage = 0
+		var theirDamage = 0
+		
+		//TODO: are they weak to your weapon?
+		var isWeak = false
+		
+		//first, how much damage does your weapon do?
+		var wDamage = weapon.damage
+		if weapon.range == 1
+		{
+			wDamage = wDamage * (100 + damMultiplier * (meleePow - (isWeak ? 0 : target.meleeRes))) / 100
+		}
+		else if isWeak
+		{
+			wDamage = wDamage * (100 + weakDamMult) / 100
+		}
+		
+		//next, find out if it's a hit or a graze
+		if shake == 0
+		{
+			var hitChance = weapon.accuracy
+			hitChance = hitChance * (100 + miscMultiplier * (accuracy - target.dodge)) / 100
+			
+			if Int(arc4random_uniform(100)) < hitChance
+			{
+				//it was a hit!
+				//apply the hit damage bonus
+				wDamage = wDamage * weapon.hitDamageMultiplier / 100
+			}
+		}
+		
+		//now, the wDamage is the damage you do to them
+		theirDamage = wDamage
+		
+		//TODO: if the weapon is vampiric, give yourself some health (negative damage) too
+		
+		
+		//actually apply the damage
+		health = min(max(health - myDamage, 0), maxHealth)
+		target.health = min(max(target.health - theirDamage, 0), maxHealth)
+		
+		return (myDamage:myDamage, theirDamage:theirDamage)
 	}
 }
 

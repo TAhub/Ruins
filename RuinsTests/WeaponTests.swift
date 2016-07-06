@@ -79,7 +79,7 @@ class WeaponTests: XCTestCase {
 	{
 		XCTAssertEqual(weapon.damage, 100)
 		XCTAssertEqual(weapon.accuracy, 100)
-		XCTAssertEqual(weapon.hitDamageMultiplier, 100)
+		XCTAssertEqual(weapon.hitDamageMultiplier, 200)
 		XCTAssertEqual(weapon.weight, 100)
 		XCTAssertEqual(weapon.range, 100)
 		XCTAssertEqual(weapon.name, "neutral test weapon")

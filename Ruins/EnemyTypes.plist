@@ -45,7 +45,7 @@
 		<key>wisdom</key> <integer>10</integer>
 		<key>endurance</key> <integer>10</integer>
 		<!-- MARK: equipment -->
-		<key>weapon</key> <string>bash</string>
+		<key>weapon</key> <string>test subtype weapon</string>
 		<key>weapon material</key> <string>neutral</string>
 		<!-- MARK: special powers -->
 		<!-- MARK: identity -->
