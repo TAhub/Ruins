@@ -16,15 +16,16 @@ class Creature
 	//MARK: identity
 	var enemyType:String
 	var good:Bool
+	var level:Int
 	
 	//MARK: derived identity
 	var racialGroup:String
 	{
-		return "undead"
+		return DataStore.getString("EnemyTypes", enemyType, "racial group")!
 	}
 	var appearanceGroup:String
 	{
-		return "zombie"
+		return DataStore.getString("EnemyTypes", enemyType, "appearance group")!
 	}
 	
 	//MARK: base stats
@@ -61,7 +62,7 @@ class Creature
 	}
 	var trapPow:Int
 	{
-		return cun
+		return 2 * cun
 	}
 	var trapRes:Int
 	{
@@ -90,6 +91,9 @@ class Creature
 		return 4
 	}
 	
+	//MARK: equipment
+	var weapon:Weapon
+	
 	//MARK: variable stats
 	var health:Int
 	var movePoints:Int
@@ -100,17 +104,23 @@ class Creature
 	}
 	
 	//MARK: initializers
-	init()
+	init(enemyType:String, level:Int)
 	{
 		//set stats
-		str = 10
-		dex = 10
-		cun = 10
-		wis = 10
-		end = 10
+		str = DataStore.getInt("EnemyTypes", enemyType, "strength")!
+		dex = DataStore.getInt("EnemyTypes", enemyType, "dexterity")!
+		cun = DataStore.getInt("EnemyTypes", enemyType, "cunning")!
+		wis = DataStore.getInt("EnemyTypes", enemyType, "wisdom")!
+		end = DataStore.getInt("EnemyTypes", enemyType, "endurance")!
+		self.level = level
+		
+		//set equipment
+		let weaponType = DataStore.getString("EnemyTypes", enemyType, "weapon")!
+		let weaponMaterial = DataStore.getString("EnemyTypes", enemyType, "weapon material")!
+		self.weapon = Weapon(type: weaponType, material: weaponMaterial, level: level)
 		
 		//set identity
-		enemyType = "shambler"
+		self.enemyType = enemyType
 		good = false
 		
 		//initialize variables

@@ -12,11 +12,11 @@
 	<key>sample enemy type</key>
 	<dict>
 		<!-- MARK: stats -->
-		<key>str</key> <integer>10</integer>
-		<key>dex</key> <integer>10</integer>
-		<key>cun</key> <integer>10</integer>
-		<key>wis</key> <integer>10</integer>
-		<key>end</key> <integer>10</integer>
+		<key>strength</key> <integer>10</integer>
+		<key>dexterity</key> <integer>10</integer>
+		<key>cunning</key> <integer>10</integer>
+		<key>wisdom</key> <integer>10</integer>
+		<key>endurance</key> <integer>10</integer>
 		<!-- MARK: equipment -->
 		<key>weapon</key> <string>sword</string>
 		<key>weapon material</key> <string>steel</string>
@@ -33,6 +33,28 @@
 			<string>poison</string>
 			<string>stun</string>
 			<string>shake</string>
+		</array>
+	</dict>
+	
+	<key>test creature</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>strength</key> <integer>10</integer>
+		<key>dexterity</key> <integer>10</integer>
+		<key>cunning</key> <integer>10</integer>
+		<key>wisdom</key> <integer>10</integer>
+		<key>endurance</key> <integer>10</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>bash</string>
+		<key>weapon material</key> <string>neutral</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>mortal</string>
+		<key>appearance group</key> <string>human</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>1</integer>
+		<key>keywords</key>
+		<array>
 		</array>
 	</dict>
 </dict>

@@ -19,10 +19,23 @@ class Weapon
 		self.type = type
 		self.material = material
 		
-		if false
+		if let subtypes = Weapon.subtypesFor(type)
 		{
-			//TODO: if its a weapon with no discrete subtypes, pick the subtype with the level closest to the desired level
-			subtype = 0
+			//if its a weapon with no discrete subtypes, pick the subtype with the level closest to the desired level
+			var closestSub:Int = 0
+			var closestSubLevelDistance:Int = 999999
+			for i in 0..<subtypes.count
+			{
+				let sub = subtypes[i]
+				let subLevel = Int((sub["level"] as! NSNumber).intValue)
+				let levelDistance = abs(level - subLevel)
+				if levelDistance < closestSubLevelDistance
+				{
+					closestSubLevelDistance = levelDistance
+					closestSub = i
+				}
+			}
+			subtype = closestSub
 		}
 		else
 		{
@@ -31,33 +44,69 @@ class Weapon
 		}
 	}
 	
+	private static func subtypesFor(type:String) -> [NSDictionary]?
+	{
+		return DataStore.getArray("Weapons", type, "subtypes") as? [NSDictionary]
+	}
+	
 	//MARK: derived variables
 	var damage:Int
 	{
-		//TODO: take into account:
-		//	type
-		//	subtype (if it's a weapon with no discrete subtypes, auto-scale damage to 100 * (50 / 13 * subtype)
-		//	material
-		return 100
+		var dam = DataStore.getInt("Weapons", type, "damage")!
+		
+		if let subtypes = Weapon.subtypesFor(type)
+		{
+			let subtype = subtypes[self.subtype] as! [String : NSObject]
+			let dmult = Int((subtype["damage multiplier"] as! NSNumber).intValue)
+			dam = dam * dmult / 100
+		}
+		else
+		{
+			dam = dam * (100 + (50 * subtype / 13)) / 100
+		}
+		dam = dam * DataStore.getInt("Materials", material, "damage multiplier")! / 100
+		
+		return dam
 	}
 	var weight:Int
 	{
-		//TODO: take into account:
-		//	type
-		//	subtype (but only if it's a weapon with discrete subtypes
-		//	material
-		return 100
+		var wei = DataStore.getInt("Weapons", type, "weight")!
+		
+		if let subtypes = Weapon.subtypesFor(type)
+		{
+			let subtype = subtypes[self.subtype] as! [String : NSObject]
+			let wmult = Int((subtype["weight multiplier"] as! NSNumber).intValue)
+			wei = wei * wmult / 100
+		}
+		
+		wei = wei * DataStore.getInt("Materials", material, "weight multiplier")! / 100
+		
+		return wei
 	}
 	var hitDamageMultiplier:Int
 	{
-		return 100
+		return DataStore.getInt("Weapons", type, "hit damage multiplier")!
 	}
 	var accuracy:Int
 	{
-		return 100
+		return DataStore.getInt("Weapons", type, "accuracy")!
 	}
 	var range:Int
 	{
-		return 1
+		return DataStore.getInt("Weapons", type, "range")!
+	}
+	var name:String
+	{
+		var nm:String
+		if let subtypes = Weapon.subtypesFor(type)
+		{
+			let subtype = subtypes[self.subtype] as! [String : NSObject]
+			nm = subtype["name"] as! String
+		}
+		else
+		{
+			nm = type
+		}
+		return "\(material) \(nm)"
 	}
 }

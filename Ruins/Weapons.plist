@@ -27,6 +27,39 @@
 		</array>
 	</dict>
 	
+	<key>test weapon</key>
+	<dict>
+		<key>damage</key> <integer>100</integer>
+		<key>accuracy</key> <integer>100</integer>
+		<key>hit damage multiplier</key> <integer>100</integer>
+		<key>weight</key> <integer>100</integer>
+		<key>range</key> <integer>100</integer>
+	</dict>
+	
+	<key>test subtype weapon</key>
+	<dict>
+		<key>damage</key> <integer>100</integer>
+		<key>accuracy</key> <integer>100</integer>
+		<key>hit damage multiplier</key> <integer>100</integer>
+		<key>weight</key> <integer>100</integer>
+		<key>range</key> <integer>100</integer>
+		<key>subtypes</key>
+		<array>
+			<dict>
+				<key>name</key> <string>first subtype</string>
+				<key>level</key> <integer>0</integer>
+				<key>damage multiplier</key> <integer>100</integer>
+				<key>weight multiplier</key> <integer>100</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>second subtype</string>
+				<key>level</key> <integer>100</integer>
+				<key>damage multiplier</key> <integer>200</integer>
+				<key>weight multiplier</key> <integer>200</integer>
+			</dict>
+		</array>
+	</dict>
+	
 	<!-- real weapons -->
 	<key>sword</key>
 	<dict>

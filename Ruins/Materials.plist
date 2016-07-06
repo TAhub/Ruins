@@ -18,6 +18,12 @@
 		<key>color</key> <string>silver</string>
 	</dict>
 	
+	<key>double material</key>
+	<dict>
+		<key>damage multiplier</key> <integer>200</integer>
+		<key>weight multiplier</key> <integer>200</integer>
+	</dict>
+	
 	<!-- real materials -->
 	
 	<key>silver</key>
@@ -117,6 +123,14 @@
 		<key>damage multiplier</key> <integer>85</integer>
 		<key>weight multiplier</key> <integer>120</integer>
 		<key>status inflicted</key> <string>shake</string>
+		<key>color</key> <string>silver</string>
+	</dict>
+	
+	<!-- enemy-only materials -->
+	<key>neutral</key>
+	<dict>
+		<key>damage multiplier</key> <integer>100</integer>
+		<key>weight multiplier</key> <integer>100</integer>
 		<key>color</key> <string>silver</string>
 	</dict>
 </dict>
