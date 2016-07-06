@@ -96,6 +96,9 @@ class GameTests: XCTestCase, GameDelegate {
 	{
 		game.executePhase()
 		
+		//apply shake to make sure that the other person won't die
+		firstCharacter.shake = 10
+		
 		game.attack(x: 2, y: 1)
 		
 		XCTAssertEqual(inputDesiredCalled, 1)
@@ -166,6 +169,16 @@ class GameTests: XCTestCase, GameDelegate {
 		XCTAssertEqual(firstCharacter.poison, 9)
 		XCTAssertEqual(firstCharacter.stun, 8)
 		XCTAssertEqual(firstCharacter.shake, 7)
+	}
+	
+	func testSkipDead()
+	{
+		secondCharacter.health = 0
+		
+		game.executePhase()
+		game.skipAction()
+		
+		XCTAssertEqual(game.creatureOn, 0)
 	}
 	
 	//MARK: delegate methods

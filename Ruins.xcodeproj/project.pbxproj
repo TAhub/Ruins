@@ -28,6 +28,8 @@
 		E4F147ED1D2D9DEF00F4C579 /* WeaponTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147EC1D2D9DEF00F4C579 /* WeaponTests.swift */; };
 		E4F147EF1D2DA72A00F4C579 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147EE1D2DA72A00F4C579 /* GameTests.swift */; };
 		E4F147F11D2DB2BB00F4C579 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147F01D2DB2BB00F4C579 /* GameViewController.swift */; };
+		E4F147F31D2DCEE500F4C579 /* AIs.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147F21D2DCEE500F4C579 /* AIs.plist */; };
+		E4F147F51D2DD10900F4C579 /* AITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147F41D2DD10900F4C579 /* AITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		E4F147EC1D2D9DEF00F4C579 /* WeaponTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeaponTests.swift; sourceTree = "<group>"; };
 		E4F147EE1D2DA72A00F4C579 /* GameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		E4F147F01D2DB2BB00F4C579 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		E4F147F21D2DCEE500F4C579 /* AIs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AIs.plist; sourceTree = "<group>"; };
+		E4F147F41D2DD10900F4C579 /* AITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				E4F147EE1D2DA72A00F4C579 /* GameTests.swift */,
+				E4F147F41D2DD10900F4C579 /* AITests.swift */,
 				E4F147EC1D2D9DEF00F4C579 /* WeaponTests.swift */,
 				E4F147EA1D2D99EC00F4C579 /* CreatureTests.swift */,
 				E4F147E81D2D99A000F4C579 /* DataStoreTests.swift */,
@@ -157,6 +162,7 @@
 		E4F147CF1D2D717C00F4C579 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4F147F21D2DCEE500F4C579 /* AIs.plist */,
 				E4F147E41D2D998100F4C579 /* Tests.plist */,
 				E4F147D41D2D765800F4C579 /* RacialGroups.plist */,
 				E4F147D61D2D766200F4C579 /* AppearanceGroups.plist */,
@@ -258,6 +264,7 @@
 				E4F147E51D2D998100F4C579 /* Tests.plist in Resources */,
 				E4F147DF1D2D767F00F4C579 /* Armors.plist in Resources */,
 				E4F147D71D2D766200F4C579 /* AppearanceGroups.plist in Resources */,
+				E4F147F31D2DCEE500F4C579 /* AIs.plist in Resources */,
 				E4F147DB1D2D767000F4C579 /* Weapons.plist in Resources */,
 				E4F147DD1D2D767800F4C579 /* Materials.plist in Resources */,
 				E4F147B71D2D712700F4C579 /* LaunchScreen.storyboard in Resources */,
@@ -297,6 +304,7 @@
 			files = (
 				E4F147EB1D2D99EC00F4C579 /* CreatureTests.swift in Sources */,
 				E4F147E91D2D99A000F4C579 /* DataStoreTests.swift in Sources */,
+				E4F147F51D2DD10900F4C579 /* AITests.swift in Sources */,
 				E4F147ED1D2D9DEF00F4C579 /* WeaponTests.swift in Sources */,
 				E4F147EF1D2DA72A00F4C579 /* GameTests.swift in Sources */,
 			);
@@ -480,6 +488,7 @@
 				E4F147C81D2D712700F4C579 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4F147C91D2D712700F4C579 /* Build configuration list for PBXNativeTarget "RuinsTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +497,7 @@
 				E4F147CB1D2D712700F4C579 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -33,6 +33,10 @@ class Creature
 	{
 		return DataStore.getString("EnemyTypes", enemyType, "appearance group")!
 	}
+	var AI:String?
+	{
+		return DataStore.getString("EnemyTypes", enemyType, "AI")
+	}
 	
 	//MARK: base stats
 	var str:Int
@@ -278,6 +282,29 @@ class Creature
 		target.health = min(max(target.health - theirDamage, 0), maxHealth)
 		
 		return (myDamage:myDamage, theirDamage:theirDamage)
+	}
+	
+	func AIAction(game:Game) -> Bool
+	{
+		if let AI = AI
+		{
+			//TODO: pathfinding
+			//	use A* over a wide-ish area (like at least a screen in radius)
+			//	keep track of both weight and movepoints remaining
+			//	weigh every tile using the AI values
+			//		(movepoint cost of tile) * (weight per move point)
+			//		if there is a world-placed trap, +(world trap weight)
+			//		if there is a player-placed trap, +(player trap weight)
+			//	your goal is to get to a tile you can use your weapon from
+			//	so if you actually find one that you can walk into in one turn? stop the search and go there asap
+			
+			
+			//TODO: for now, just attack position (2, 1)
+			game.attack(x: 2, y: 1)
+			
+			return true
+		}
+		return false
 	}
 }
 

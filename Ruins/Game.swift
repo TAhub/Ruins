@@ -131,25 +131,23 @@ class Game
 		case .Start: phaseOn = .PoisonDamage; nextCreature = true
 		case .PoisonDamage: phaseOn = (activeCreature.stun > 0) ? GamePhase.EndTurn : GamePhase.MakeDecision
 		case .MakeDecision:
-			if (false)
-			{
-				//TODO: if the active person is an AI, run their AI script
-			}
-			else
+			if !activeCreature.AIAction(self)
 			{
 				delegate?.inputDesired()
 			}
-			
 			return
 		case .Move: phaseOn = .MakeDecision
 		case .Attack: phaseOn = .EndTurn
 		case .EndTurn: phaseOn = .PoisonDamage; nextCreature = true
 		}
 		
-		if nextCreature
+		while (nextCreature)
 		{
 			creatureOn = (creatureOn + 1) % creatures.count
 			movePoints = activeCreature.maxMovePoints
+			nextCreature = activeCreature.health == 0
+			
+			//TODO: check for the game being over, to prevent any kind of infinite loops where everyone died
 		}
 		
 		executePhase()

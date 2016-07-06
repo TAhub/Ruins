@@ -115,7 +115,7 @@ class CreatureTests: XCTestCase {
 	func testWeakness()
 	{
 		let target = Creature(enemyType: "test creature", level: 1, x: 0, y: 0)
-		let invalidTarget = Creature(enemyType: "test undead creature", level: 1, x: 0, y: 0)
+		let invalidTarget = Creature(enemyType: "test pzombie", level: 1, x: 0, y: 0)
 		
 		//ensure they always graze
 		creature.shake = 10
@@ -158,6 +158,7 @@ class CreatureTests: XCTestCase {
 	{
 		XCTAssertEqual(creature.racialGroup, "mortal")
 		XCTAssertEqual(creature.appearanceGroup, "human")
+		XCTAssertNil(creature.AI)
 		XCTAssertEqual(creature.str, 10)
 		XCTAssertEqual(creature.dex, 10)
 		XCTAssertEqual(creature.cun, 10)

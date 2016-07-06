@@ -26,6 +26,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>undead</string>
 		<key>appearance group</key> <string>zombie</string>
+		<key>AI</key> <string>sample AI</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>1</integer>
 		<key>keywords</key>
@@ -58,7 +59,7 @@
 		</array>
 	</dict>
 	
-	<key>test undead creature</key>
+	<key>test pzombie</key>
 	<dict>
 		<!-- MARK: stats -->
 		<key>strength</key> <integer>10</integer>
@@ -73,6 +74,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>undead</string>
 		<key>appearance group</key> <string>zombie</string>
+		<key>AI</key> <string>sample AI</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>1</integer>
 		<key>keywords</key>
