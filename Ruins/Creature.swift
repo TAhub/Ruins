@@ -136,4 +136,71 @@ class Creature
 		//fill up health (this has to happen after every variable is initialized)
 		health = maxHealth
 	}
+	
+	init(saveDict d:NSDictionary)
+	{
+		//load position
+		x = Creature.intFromD(d, name: "x")
+		y = Creature.intFromD(d, name: "y")
+		
+		//load stats
+		str = Creature.intFromD(d, name: "str")
+		dex = Creature.intFromD(d, name: "dex")
+		cun = Creature.intFromD(d, name: "cun")
+		wis = Creature.intFromD(d, name: "wis")
+		end = Creature.intFromD(d, name: "end")
+		level = Creature.intFromD(d, name: "level")
+		
+		//load equipment
+		weapon = Weapon(saveDict: d["weapon"] as! NSDictionary)
+		
+		//load identity
+		enemyType = d["enemyType"] as! String
+		good = Creature.intFromD(d, name: "good") == 1
+		
+		//load variables
+		health = Creature.intFromD(d, name: "health")
+	}
+	
+	private static func intFromD(d:NSDictionary, name:String) -> Int
+	{
+		return Int((d[name] as! NSNumber).intValue)
+	}
+	
+	var saveDict:NSDictionary
+	{
+		var d = [NSString : NSObject]()
+		
+		//save position
+		d["x"] = x
+		d["y"] = y
+		
+		//save stats
+		d["str"] = str
+		d["dex"] = dex
+		d["cun"] = cun
+		d["wis"] = wis
+		d["end"] = end
+		d["level"] = level
+		
+		//save equipment
+		d["weapon"] = weapon.saveDict
+		
+		//save identity
+		d["enemyType"] = enemyType
+		d["good"] = good ? 1 : 0
+		
+		//save variables
+		d["health"] = health
+		
+		return d
+	}
+}
+
+//TODO: move this elsewhere
+postfix operator ++ {}
+
+postfix func ++(inout x: Int) -> Int {
+	x += 1
+	return (x - 1)
 }

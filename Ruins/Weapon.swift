@@ -44,6 +44,24 @@ class Weapon
 		}
 	}
 	
+	init(saveDict d:NSDictionary)
+	{
+		self.type = d["type"] as! String
+		self.material = d["material"] as! String
+		self.subtype = Int((d["subtype"] as! NSNumber).intValue)
+	}
+	
+	var saveDict:NSDictionary
+	{
+		var d = [NSString : NSObject]()
+		
+		d["type"] = type
+		d["material"] = material
+		d["subtype"] = subtype
+		
+		return d
+	}
+	
 	private static func subtypesFor(type:String) -> [NSDictionary]?
 	{
 		return DataStore.getArray("Weapons", type, "subtypes") as? [NSDictionary]

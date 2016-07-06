@@ -22,12 +22,14 @@ class WeaponTests: XCTestCase {
 	func testLoadWeaponFromPlist()
 	{
 		//test to make sure all of the loaded statistics, and calculated statistics, are as expected
-		XCTAssertEqual(weapon.damage, 100)
-		XCTAssertEqual(weapon.accuracy, 100)
-		XCTAssertEqual(weapon.hitDamageMultiplier, 100)
-		XCTAssertEqual(weapon.weight, 100)
-		XCTAssertEqual(weapon.range, 100)
-		XCTAssertEqual(weapon.name, "neutral test weapon")
+		normalLoadAsserts()
+	}
+	
+	func testLoadWeaponFromSaveDict()
+	{
+		let saveDict = weapon.saveDict
+		weapon = Weapon(saveDict: saveDict)
+		normalLoadAsserts()
 	}
 	
 	func testNoSubtypeDamageByLevel()
@@ -70,5 +72,16 @@ class WeaponTests: XCTestCase {
 	{
 		XCTAssertEqual(Weapon(type: "test subtype weapon", material: "neutral", level: 0).weight, 100)
 		XCTAssertEqual(Weapon(type: "test subtype weapon", material: "neutral", level: 100).weight, 200)
+	}
+	
+	//MARK: helper functions
+	func normalLoadAsserts()
+	{
+		XCTAssertEqual(weapon.damage, 100)
+		XCTAssertEqual(weapon.accuracy, 100)
+		XCTAssertEqual(weapon.hitDamageMultiplier, 100)
+		XCTAssertEqual(weapon.weight, 100)
+		XCTAssertEqual(weapon.range, 100)
+		XCTAssertEqual(weapon.name, "neutral test weapon")
 	}
 }

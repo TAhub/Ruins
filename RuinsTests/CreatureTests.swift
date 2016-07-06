@@ -23,6 +23,19 @@ class CreatureTests: XCTestCase {
 	func testLoadCreatureFromPlist()
 	{
 		//test to make sure all of the loaded statistics, and calculated statistics, are as expected
+		normalLoadAsserts()
+	}
+	
+	func testLoadCreatureFromSaveDict()
+	{
+		let saveDict = creature.saveDict
+		creature = Creature(saveDict:saveDict)
+		normalLoadAsserts()
+	}
+	
+	//MARK: helpers
+	func normalLoadAsserts()
+	{
 		XCTAssertEqual(creature.racialGroup, "mortal")
 		XCTAssertEqual(creature.appearanceGroup, "human")
 		XCTAssertEqual(creature.str, 10)
