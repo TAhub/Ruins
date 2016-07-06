@@ -238,8 +238,8 @@ class Creature
 		let myDamage:Int
 		let theirDamage:Int
 		
-		//TODO: are they weak to your weapon?
-		var isWeak = false
+		//are they weak to your weapon?
+		let isWeak = (weapon.strongVS ?? "") == target.racialGroup
 		
 		//first, how much damage does your weapon do?
 		var wDamage = weapon.damage

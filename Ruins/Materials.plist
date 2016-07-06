@@ -18,6 +18,13 @@
 		<key>color</key> <string>silver</string>
 	</dict>
 	
+	<key>mortal killing material</key>
+	<dict>
+		<key>damage multiplier</key> <integer>100</integer>
+		<key>weight multiplier</key> <integer>100</integer>
+		<key>strong vs</key> <string>mortal</string>
+	</dict>
+	
 	<key>double material</key>
 	<dict>
 		<key>damage multiplier</key> <integer>200</integer>

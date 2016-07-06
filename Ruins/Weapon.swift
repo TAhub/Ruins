@@ -113,6 +113,10 @@ class Weapon
 	{
 		return DataStore.getInt("Weapons", type, "range")!
 	}
+	var strongVS:String?
+	{
+		return DataStore.getString("Materials", material, "strong vs")
+	}
 	var name:String
 	{
 		var nm:String

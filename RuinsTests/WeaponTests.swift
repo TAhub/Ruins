@@ -83,5 +83,6 @@ class WeaponTests: XCTestCase {
 		XCTAssertEqual(weapon.weight, 100)
 		XCTAssertEqual(weapon.range, 100)
 		XCTAssertEqual(weapon.name, "neutral test weapon")
+		XCTAssertNil(weapon.strongVS)
 	}
 }

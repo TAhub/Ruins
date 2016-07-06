@@ -112,11 +112,45 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(target.health, 20)
 	}
 	
+	func testWeakness()
+	{
+		let target = Creature(enemyType: "test creature", level: 1, x: 0, y: 0)
+		let invalidTarget = Creature(enemyType: "test undead creature", level: 1, x: 0, y: 0)
+		
+		//ensure they always graze
+		creature.shake = 10
+		
+		//test ranged weakness
+		creature.weapon = Weapon(type: "test weapon", material: "mortal killing material", level: 0)
+		XCTAssertEqual(creature.weapon.strongVS ?? "", "mortal")
+		let damages = creature.attack(target)
+		let oDamages = creature.attack(invalidTarget)
+		XCTAssertEqual(damages.theirDamage, 130) //it gets +30% damage from ranged weakness
+		XCTAssertEqual(oDamages.theirDamage, 100)
+		
+		//test melee weakness
+		creature.weapon = Weapon(type: "test melee weapon", material: "mortal killing material", level: 0)
+		let mDamages = creature.attack(target)
+		let oMDamages = creature.attack(invalidTarget)
+		XCTAssertEqual(mDamages.theirDamage, 260) //it ignores the -80 from their melee res from melee weakness
+		XCTAssertEqual(oMDamages.theirDamage, 180)
+	}
+	
+	func testCrit()
+	{
+		let target = Creature(enemyType: "test creature", level: 1, x: 0, y: 0)
+		
+		//set the attacker's DEX super-high to ensure a 100% critrate
+		creature.dex = 999999
+		XCTAssertEqual(creature.attack(target).theirDamage, 200)
+		
+		//apply shake to ensure that it won't crit, despite the critrate
+		creature.shake = 10
+		XCTAssertEqual(creature.attack(target).theirDamage, 100)
+	}
+	
 	//TODO: other attack tests to make:
-	//	test weaknesses (ranged, AKA +30% damage)
-	//	test weaknesses (melee, AKA ignore melee resistance)
 	//	test status effects (I guess for this one you'd want to just attack like 50 times in a row to see if they get infected)
-	//	test crits (set the attacker's DEX to like 9999999 to ensure a crit)
 	//	test healing weapons
 	
 	//MARK: helpers
