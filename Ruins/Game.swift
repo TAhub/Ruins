@@ -88,10 +88,6 @@ class Game
 				{
 					path.append((onX, onY))
 					
-					if map.pathResultAt(x: onX, y: onY) == nil
-					{
-						//TODO: do pathfinding generation
-					}
 					let result = map.pathResultAt(x: onX, y: onY)!
 					onX = result.backX
 					onY = result.backY

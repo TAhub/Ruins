@@ -11,9 +11,28 @@
 <dict>
 	<key>sample AI</key>
 	<dict>
+		<!-- movement AI weights -->
 		<key>weight per move point</key> <integer>1</integer>
 		<key>world trap weight</key> <integer>1</integer>
 		<key>player trap weight</key> <integer>4</integer>
+		<!-- tile fitness -->
+		<key>fitness gain for being in range</key> <integer>1000</integer>
+		<key>fitness gain for not having to move</key> <integer>1000</integer>
+		<key>fitness gain for trap</key> <integer>-1000</integer>
+		<key>fitness gain per tile to player</key> <integer>-10</integer>
+		<key>fitness gain per tile to player when badly injured</key> <integer>300</integer>
+		<key>random fitness gain</key> <integer>10</integer>
 	</dict>
+	
+	<!-- NOTES -->
+	<!-- raise "fitness gain per tile to player when badly injured" to make them like to flee when hurt -->
+	<!--	this should be at least greater than (fitness gain for being in range) / (their movement points) if you want them to actually flee, I think -->
+	<!-- if random fitness is very high, they might not actually want to approach you much -->
+	
+	<!-- AI ideas -->
+	<!-- drunkard: high random, ignores traps, barely attracted to player -->
+	<!-- thief: medium random, strongly avoids traps, very high flee -->
+	<!-- berserker: low random, ignores traps, high approach priority, no flee -->
+	<!-- big guy: low random, likes to stand in place, low flee, low approach -->
 </dict>
 </plist>
