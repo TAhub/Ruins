@@ -15,7 +15,7 @@ class CreatureRepresentation:Representation
 	init(creature:Creature, superview:UIView)
 	{
 		self.creature = creature
-		let view = UIView(frame: CGRectMake(40 * CGFloat(creature.x), 40 * CGFloat(creature.y), 40, 40))
+		let view = UIView(frame: CGRectMake(tileSize * CGFloat(creature.x), tileSize * CGFloat(creature.y), tileSize, tileSize))
 		view.backgroundColor = UIColor.blackColor()
 		super.init(view: view, superview: superview)
 		

@@ -17,7 +17,7 @@ class GameViewController: UIViewController, GameDelegate {
 	var animating:Bool = false
 	var shouldUIUpdate:Bool = false
 	
-	@IBOutlet weak var gameArea: UIView!
+	@IBOutlet weak var gameArea: TileDisplayView!
 	
 	@IBOutlet weak var healthBarAuraView: UIView!
 	@IBOutlet weak var healthBarContainerView: UIView!
@@ -40,6 +40,9 @@ class GameViewController: UIViewController, GameDelegate {
 		game.addEnemy(Creature(enemyType: "fairy player", level: 1, x: 4, y: 7))
 		game.addEnemy(Creature(enemyType: "zombie player", level: 1, x: 6, y: 7))
 		game.addEnemy(Creature(enemyType: "skeleton player", level: 1, x: 8, y: 5))
+		
+		//make the tiles
+		gameArea.initializeAtCameraPoint(CGPointZero, map: game.map)
 		
 		for creature in game.creatures
 		{

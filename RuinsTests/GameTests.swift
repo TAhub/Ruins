@@ -242,6 +242,39 @@ class GameTests: XCTestCase, GameDelegate {
 		XCTAssertEqual(uiUpdateCalled, 4)
 	}
 	
+	//MARK: map tests
+	func testCreaturesAppearInTiles()
+	{
+		XCTAssertTrue((game.map.tileAt(x: 1, y: 1).creature ?? secondCharacter) === firstCharacter)
+		XCTAssertTrue((game.map.tileAt(x: 2, y: 1).creature ?? firstCharacter) === secondCharacter)
+	}
+	
+	func testMovingUpdatesTiles()
+	{
+		game.executePhase()
+		
+		XCTAssertTrue((game.map.tileAt(x: 1, y: 1).creature ?? secondCharacter) === firstCharacter)
+		
+		game.makeMove(x: 1, y: 2)
+		
+		XCTAssertNil(game.map.tileAt(x: 1, y: 1).creature)
+		XCTAssertTrue((game.map.tileAt(x: 1, y: 2).creature ?? secondCharacter) === firstCharacter)
+	}
+	
+	func testKillingEnemyWithAttackUpdatesTiles()
+	{
+		//TODO: remember to make similar tests for other forms of death (death due to special attacks, death due to traps, etc)
+		
+		game.executePhase()
+		
+		//ensure a crit, so it will be a one-hit kill
+		firstCharacter.dex = 99999
+		
+		game.attack(x: 2, y: 1)
+		
+		XCTAssertNil(game.map.tileAt(x: 2, y: 1).creature)
+	}
+	
 	//MARK: delegate methods
 	
 	func inputDesired()

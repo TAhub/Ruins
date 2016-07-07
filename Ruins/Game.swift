@@ -44,11 +44,12 @@ class Game
 	var movePoints:Int = 0
 	var targetX:Int = 0
 	var targetY:Int = 0
+	var map = Map(width: 30, height: 30)
 	
 	func addEnemy(creature:Creature)
 	{
 		creatures.append(creature)
-		//TODO: add to the grid and whatnot
+		map.tileAt(x: creature.x, y: creature.y).creature = creature
 	}
 	
 	func addPlayer(creature:Creature)
@@ -72,6 +73,8 @@ class Game
 			anim!.movePath = [(activeCreature.x, activeCreature.y), (targetX, targetY)]
 			
 			//actually move there
+			map.tileAt(x: activeCreature.x, y: activeCreature.y).creature = nil
+			map.tileAt(x: targetX, y: targetY).creature = activeCreature
 			movePoints -= abs(activeCreature.x - targetX) + abs(activeCreature.y - targetY)
 			activeCreature.x = targetX
 			activeCreature.y = targetY
@@ -106,6 +109,11 @@ class Game
 			if target === player || activeCreature === player
 			{
 				delegate?.uiUpdate()
+			}
+			
+			if target.health == 0
+			{
+				map.tileAt(x: target.x, y: target.y).creature = nil
 			}
 			
 		case .PoisonDamage:
