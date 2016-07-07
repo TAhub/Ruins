@@ -34,6 +34,10 @@
 			<string>poison</string>
 			<string>stun</string>
 			<string>shake</string>
+			<string>criminal</string>
+			<string>wildlife</string>
+			<string>military</string>
+			<string>tomb dweller</string>
 		</array>
 	</dict>
 	
@@ -81,5 +85,56 @@
 		<array>
 		</array>
 	</dict>
+	
+	<!-- real enemies -->
+	
+	
+	<!-- humans -->
+	<!-- IN GENERAL: lots of axe, sword, pistol, or rifle-using enemies; balanced stats
+			bandit (low-level, axe, medium armor)
+			outlaw (medium-level, pistol)
+			royal soldier (high-level, rifle, medium armor) -->
+	
+	<!-- animals -->
+	<!-- IN GENERAL: most of them use bash attacks; tend to have high END
+			rat (low-low-level, shakiness-inflicting bash, weak but plentiful)
+			mutt (low-medium level, bash)
+			bear (medium-high-level, stun-inflicting bash) -->
+	
+	<!-- boogeymen -->
+	<!-- IN GENERAL: most of them have bash, but some use weapons instead; tend to have high STR
+			bag man (low-level, stun-inflicting bash)
+			boggart (medium-level, shakiness-inflicting bash)
+			executioner (high-level, hammer, heavy armor) -->
+	
+	<!-- cryptids -->
+	<!-- IN GENERAL: most of them use bash attacks; tend to have high STR
+			chupacabra (low-level, bash that heals a little bit of health for the chupa)
+			hoop snake (medium-level, poison-inflicting bash, lots of move points)
+			swamp monster (high-level, poison-inflicting bash) -->
+	
+	<!-- fairies -->
+	<!-- IN GENERAL: lots of wand or bash-using enemies; tend to have high CUN
+			brownie (low-level, shakiness-inflicting bash, dumb-looking clothes)
+			pixie (medium-level, poison-inflicting wand, ignore terrain cost due to flying)
+			fairy musketeer (high-level, rifle, medium armor) -->
+	
+	<!-- elves -->
+	<!-- IN GENERAL: lots of pistol or sword-using enemies; tend to have high WIS
+			scout (low-medium level, sword, special attack but lowish WIS for an elf)
+			mage (medium-high level, birch wand, special attack)
+			elflord (very high level, silver sword, special attack, heavy armor) -->
+	
+	<!-- skeletons -->
+	<!-- IN GENERAL: lots of rifle or axe-using enemies; tend to have high DEX
+			crumbling bones (low-level, iron sword)
+			skeleton soldier (medium-level, shakiness-inflicting rifle)
+			draug (high-level, axe, medium armor) -->
+	
+	<!-- zombies -->
+	<!-- IN GENERAL: most of them use bash attacks; tend to have high END
+			shambler (low-level, plentiful)
+			ghoul (medium-level, poison bash)
+			mummy (high-level, elm wand, special attack) -->
 </dict>
 </plist>

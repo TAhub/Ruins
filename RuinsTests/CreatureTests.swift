@@ -149,6 +149,22 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(creature.attack(target).theirDamage, 100)
 	}
 	
+	func testStatus()
+	{
+		let target = Creature(enemyType: "test creature", level: 1, x: 0, y: 0)
+		
+		//TODO: note that this test is testing a random function, so there's a small chance it will fail for no apparent reason
+		//specifically, a chance equal to (0.8 ^ 100)
+		
+		creature.weapon = Weapon(type: "test weapon", material: "mercury", level: 0)
+		for _ in 0..<100
+		{
+			creature.attack(target)
+		}
+		
+		XCTAssertGreaterThan(target.poison, 0)
+	}
+	
 	//TODO: other attack tests to make:
 	//	test status effects (I guess for this one you'd want to just attack like 50 times in a row to see if they get infected)
 	//	test healing weapons

@@ -12,6 +12,10 @@ let damMultiplier:Int = 8
 let miscMultiplier:Int = 10
 let weakDamMult:Int = 30
 let poisonDam:Int = 5
+let weaponStatusChance:Int = 20
+let weaponPoisonLength:Int = 5
+let weaponStunLength:Int = 1
+let weaponShakeLength:Int = 2
 
 class Creature
 {
@@ -272,10 +276,22 @@ class Creature
 		
 		//now, the wDamage is the damage you do to them
 		theirDamage = wDamage
-		myDamage = 0
+		myDamage = 0 //TODO: if the weapon is vampiric, give yourself some health (negative damage) too
 		
-		//TODO: if the weapon is vampiric, give yourself some health (negative damage) too
-		
+		//apply status effects
+		if let status = weapon.statusInflicted
+		{
+			if Int(arc4random_uniform(100)) <= weaponStatusChance
+			{
+				switch(status)
+				{
+				case "stun": target.stun += weaponStunLength
+				case "shake": target.shake += weaponShakeLength
+				case "poison": target.poison += weaponPoisonLength
+				default: break
+				}
+			}
+		}
 		
 		//actually apply the damage
 		health = min(max(health - myDamage, 0), maxHealth)

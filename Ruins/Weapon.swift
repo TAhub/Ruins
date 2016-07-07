@@ -117,6 +117,10 @@ class Weapon
 	{
 		return DataStore.getString("Materials", material, "strong vs")
 	}
+	var statusInflicted:String?
+	{
+		return DataStore.getString("Materials", material, "status inflicted")
+	}
 	var name:String
 	{
 		var nm:String
