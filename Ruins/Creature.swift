@@ -316,16 +316,40 @@ class Creature
 	{
 		if let AI = AI
 		{
-			//TODO: pathfinding, again
-			//djikstra's might be more appropriate than A*
-			//since I don't have a single obvious goal
-			//instead, just look at every tile I can visit
-			//	use the current tile weighting to find paths around
-			//	this should weight traps differently based on who placed them, so that AIs can be tricked into walking over player traps
-			//and then figure out which one I want to be in
-			//	make a new set of tile weighting for that
-			//	prioritizing not being in a trap (this shouldn't care who placed the trap), and being able to attack
+			//if you can move, check to see if you want to
+			if game.movePoints > 0
+			{
+				//figure out where you can move to
+				game.map.pathfinding(self, movePoints: game.movePoints)
+				
+				//now examine each tile
+				var bestTileFitness = -1
+				var bestTile = (x, y)
+				let tilesAccessable = game.map.tilesAccessable
+				for tile in tilesAccessable
+				{
+					//TODO: get fitness for that tile
+					//prioritize not being in a trap (this shouldn't care who placed the trap), and being able to attack
+					let fitness = 10 + ((tile.0 == x && tile.1 == y) ? 10 : 0)
+					
+					
+					if fitness > bestTileFitness
+					{
+						bestTileFitness = fitness
+						bestTile = tile
+					}
+				}
+				
+				//if the tile you want to be in isn't the one you are in, move
+				if bestTile.0 != x || bestTile.1 != y
+				{
+					game.movePoints = 0
+					game.makeMove(x: bestTile.0, y: bestTile.1)
+					return true
+				}
+			}
 			
+			//if you didn't decide to move, or you did and this has now asked you for your AI action, take an action
 			
 			//TODO: for now, just attack position (2, 1)
 			game.attack(x: 2, y: 1)

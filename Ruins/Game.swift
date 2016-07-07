@@ -73,14 +73,65 @@ class Game
 			//TODO: check for problems on the way over the path
 			//IE if you walk over a trap, stop the path right there, add a "hurt by trap" anim to the animation, and a damage number
 			
+			//construct the path backwards
+			var path = [(Int, Int)]()
+			if abs(targetX - activeCreature.x) + abs(targetY - activeCreature.y) == 1
+			{
+				//just make a quick auto-constructed backwards path, no need to actually do pathfinding
+				path.append((targetX, targetY))
+			}
+			else
+			{
+				var onX = targetX
+				var onY = targetY
+				repeat
+				{
+					path.append((onX, onY))
+					
+					if map.pathResultAt(x: onX, y: onY) == nil
+					{
+						//TODO: do pathfinding generation
+					}
+					let result = map.pathResultAt(x: onX, y: onY)!
+					onX = result.backX
+					onY = result.backY
+				}
+				while onX != activeCreature.x || onY != activeCreature.y
+			}
+			
+			
 			//make the move animation
 			anim = Animation()
-			anim!.movePath = [(activeCreature.x, activeCreature.y), (targetX, targetY)]
+			anim!.movePath = [(Int, Int)]()
+			
+			//now follow the backwards path forwards
+			for step in path.reverse()
+			{
+				anim!.movePath!.append(step)
+				movePoints -= map.tileAt(x: step.0, y: step.1).entryCost
+				
+				print("  PATH MOVING TO (\(step.0), \(step.1))")
+				
+				if false //TODO: if you stepped onto a trap
+				{
+					//TODO: add the trap attack anim to the animation
+					//TODO: deal damage to the person who stepped on the trap
+					//TODO: add damage numbers too
+					//TODO: keep in mind that traps CAN kill
+					
+					
+					//and immediately stop moving here
+					targetX = step.0
+					targetY = step.1
+					movePoints = 0
+					break
+				}
+			}
+			
 			
 			//actually move there
 			map.tileAt(x: activeCreature.x, y: activeCreature.y).creature = nil
 			map.tileAt(x: targetX, y: targetY).creature = activeCreature
-			movePoints -= abs(activeCreature.x - targetX) + abs(activeCreature.y - targetY)
 			activeCreature.x = targetX
 			activeCreature.y = targetY
 			

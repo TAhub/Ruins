@@ -64,7 +64,7 @@ class GameTests: XCTestCase, GameDelegate {
 		//also check to make sure the animation has a reasonable path
 		//man, comparing arrays of tuples is really annoying
 		let animPath = (lastAnimation ?? Animation()).movePath ?? [(Int, Int)]()
-		let desiredPath = [(1, 1), (1, 2)]
+		let desiredPath = [(1, 2)]
 		XCTAssertEqual(animPath.count, desiredPath.count)
 		for i in 0..<desiredPath.count
 		{

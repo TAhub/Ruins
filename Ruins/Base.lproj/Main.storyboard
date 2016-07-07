@@ -53,12 +53,20 @@
                                             </mask>
                                         </variation>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EfO-Ch-e7g">
+                                        <rect key="frame" x="0.0" y="36" width="320" height="36"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.010267665139986448" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="EfO-Ch-e7g" secondAttribute="bottom" id="4Gp-oj-CNc"/>
+                                    <constraint firstItem="EfO-Ch-e7g" firstAttribute="width" secondItem="JRn-kD-KBM" secondAttribute="width" id="T4b-nh-3Xi"/>
+                                    <constraint firstItem="EfO-Ch-e7g" firstAttribute="top" secondItem="Sew-n6-y2a" secondAttribute="bottom" id="Vaa-LA-4Yu"/>
                                     <constraint firstItem="Sew-n6-y2a" firstAttribute="width" secondItem="JRn-kD-KBM" secondAttribute="width" multiplier="0.95" id="WVq-p3-sN1"/>
                                     <constraint firstItem="Sew-n6-y2a" firstAttribute="height" secondItem="JRn-kD-KBM" secondAttribute="height" multiplier="0.5" id="Ys2-Av-VUC"/>
                                     <constraint firstItem="Sew-n6-y2a" firstAttribute="centerX" secondItem="JRn-kD-KBM" secondAttribute="centerX" id="j4s-2Q-nZO"/>
+                                    <constraint firstItem="EfO-Ch-e7g" firstAttribute="centerX" secondItem="JRn-kD-KBM" secondAttribute="centerX" id="kIo-vq-j2S"/>
                                     <constraint firstItem="Sew-n6-y2a" firstAttribute="top" secondItem="JRn-kD-KBM" secondAttribute="top" id="rAW-ut-8aY"/>
                                 </constraints>
                             </view>
@@ -133,6 +141,7 @@
                         <outlet property="gameArea" destination="NPZ-1v-IWo" id="9ro-Rg-87a"/>
                         <outlet property="healthBarAuraView" destination="Sew-n6-y2a" id="vn2-g4-cdg"/>
                         <outlet property="healthBarContainerView" destination="863-10-eD8" id="k4F-Ku-ZAL"/>
+                        <outlet property="secondaryBarArea" destination="EfO-Ch-e7g" id="tEY-pU-ETS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfE-p8-ePe" userLabel="First Responder" sceneMemberID="firstResponder"/>

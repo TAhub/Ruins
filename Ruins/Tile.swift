@@ -12,6 +12,7 @@ class Tile
 {
 	var creature:Creature?
 	let solid:Bool
+	let entryCost:Int = 1
 	
 	init(solid:Bool)
 	{

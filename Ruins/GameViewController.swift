@@ -24,6 +24,8 @@ class GameViewController: UIViewController, GameDelegate {
 	
 	@IBOutlet weak var healthBarAuraView: UIView!
 	@IBOutlet weak var healthBarContainerView: UIView!
+	@IBOutlet weak var secondaryBarArea: UIView!
+	
 	
 	
 	override func viewDidLoad()
@@ -84,7 +86,7 @@ class GameViewController: UIViewController, GameDelegate {
 		
 		print("Tapped at (\(x), \(y))")
 		
-		if input
+		if input && game.movePoints > 0
 		{
 			let xDif = x - game.activeCreature.x
 			let yDif = y - game.activeCreature.y
@@ -129,7 +131,6 @@ class GameViewController: UIViewController, GameDelegate {
 		print("  Attempting to move to (\(x), \(y))")
 		if game.map.tileAt(x: x, y: y).walkable
 		{
-			//TODO: also check to see if you have enough move points
 			game.makeMove(x: x, y: y)
 			return true
 		}
@@ -314,7 +315,16 @@ class GameViewController: UIViewController, GameDelegate {
 		bar.backgroundColor = UIColor.redColor()
 		healthBarContainerView.addSubview(bar)
 		
-		//TODO: draw movement points number
+		for subview in secondaryBarArea.subviews
+		{
+			subview.removeFromSuperview()
+		}
+		
+		//draw movement points number
+		let label = UILabel()
+		label.text = "\(game.movePoints)/\(game.activeCreature.maxMovePoints) MP"
+		label.sizeToFit()
+		secondaryBarArea.addSubview(label)
 		
 		//TODO: draw status effect icons
 	}

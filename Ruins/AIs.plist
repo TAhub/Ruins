@@ -9,7 +9,7 @@
 -->
 <plist version="1.0">
 <dict>
-	<key>sample ai</key>
+	<key>sample AI</key>
 	<dict>
 		<key>weight per move point</key> <integer>1</integer>
 		<key>world trap weight</key> <integer>1</integer>
