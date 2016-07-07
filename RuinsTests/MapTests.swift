@@ -28,4 +28,12 @@ class MapTests: XCTestCase {
 		XCTAssertTrue(map.tileAt(x: 9, y: 9).solid)
 		XCTAssertFalse(map.tileAt(x: 1, y: 1).solid)
 	}
+	
+	func testWalkable()
+	{
+		XCTAssertFalse(map.tileAt(x: 0, y: 0).walkable)
+		XCTAssertTrue(map.tileAt(x: 1, y: 1).walkable)
+		map.tileAt(x: 1, y: 1).creature = Creature(enemyType: "test creature", level: 1, x: 1, y: 1)
+		XCTAssertFalse(map.tileAt(x: 1, y: 1).walkable)
+	}
 }

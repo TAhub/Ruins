@@ -66,7 +66,12 @@ class Game
 		switch(phaseOn)
 		{
 		case .Move:
-			//TODO: move for real, instead of sliding direcly there
+			//TODO: to get the path,
+			//if it's a single tile of movement, you just make the path like I am now
+			//otherwise, I should save the last pathfinding result and use the stored path from that
+			
+			//TODO: check for problems on the way over the path
+			//IE if you walk over a trap, stop the path right there, add a "hurt by trap" anim to the animation, and a damage number
 			
 			//make the move animation
 			anim = Animation()

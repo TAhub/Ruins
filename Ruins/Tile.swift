@@ -17,4 +17,9 @@ class Tile
 	{
 		self.solid = solid
 	}
+	
+	var walkable:Bool
+	{
+		return !solid && creature == nil
+	}
 }

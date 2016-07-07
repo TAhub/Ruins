@@ -12,16 +12,24 @@ class CreatureRepresentation:Representation
 {
 	let creature:Creature
 	
-	init(creature:Creature, superview:UIView)
+	init(creature:Creature, superview:UIView, atCameraPoint:CGPoint)
 	{
 		self.creature = creature
-		let view = UIView(frame: CGRectMake(tileSize * CGFloat(creature.x), tileSize * CGFloat(creature.y), tileSize, tileSize))
+		let view = UIView(frame: CGRectMake(0, 0, tileSize, tileSize))
 		view.backgroundColor = UIColor.blackColor()
 		super.init(view: view, superview: superview)
 		
 		updateAppearance()
-		updatePosition()
-		updateVisibility()
+		updatePosition(atCameraPoint)
+		updateVisibility(atCameraPoint)
+	}
+	
+	override func updatePosition(toCameraPoint:CGPoint)
+	{
+		view.center = CGPoint(x: (0.5 + CGFloat(creature.x)) * tileSize - toCameraPoint.x, y: (0.5 + CGFloat(creature.y)) * tileSize - toCameraPoint.y)
+		
+		//TODO: if this new position isn't visible, also change your alpha to 0 so you'll fade out nicely
+		//and the inverse too
 	}
 	
 	override func updateAppearance()

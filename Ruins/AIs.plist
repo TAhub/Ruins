@@ -11,9 +11,9 @@
 <dict>
 	<key>sample ai</key>
 	<dict>
-		<key>weight per move point</key> <integer>1000</integer>
-		<key>world trap weight</key> <integer>1000</integer>
-		<key>player trap weight</key> <integer>4000</integer>
+		<key>weight per move point</key> <integer>1</integer>
+		<key>world trap weight</key> <integer>1</integer>
+		<key>player trap weight</key> <integer>4</integer>
 	</dict>
 </dict>
 </plist>

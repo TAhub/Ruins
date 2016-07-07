@@ -39,8 +39,37 @@ class TileDisplayView: UIView {
 		}
 	}
 	
-	//TODO: function for moving the camera to a new point
-	//TODO: function for culling un-used tiles
+	func adjustTilesForCameraPoint(cameraPoint:CGPoint)
+	{
+		operateOnCameraPoint(cameraPoint)
+		{ (x, y) in
+			if let tile = self.tiles[self.map.width * y + x]
+			{
+				tile.frame = self.tileRectFor(x: x, y: y, atCameraPoint: cameraPoint)
+			}
+		}
+	}
+	
+	func cullTilesForCameraPoint(cameraPoint:CGPoint)
+	{
+		var newTiles = [Int : UIView]()
+		operateOnCameraPoint(cameraPoint)
+		{ (x, y) in
+			let i = y * self.map.width + x
+			newTiles[i] = self.tiles[i]
+		}
+		
+		//remove the view of old tiles
+		for (_, entry) in self.tiles.enumerate()
+		{
+			if newTiles[entry.0] == nil
+			{
+				entry.1.removeFromSuperview()
+			}
+		}
+		
+		tiles = newTiles
+	}
 	
 	private func operateOnCameraPoint(cameraPoint:CGPoint, operation:(Int, Int)->())
 	{
@@ -50,9 +79,9 @@ class TileDisplayView: UIView {
 		let endXRaw = Int(ceil((cameraPoint.x + frame.width) / tileSize))
 		let endYRaw = Int(ceil((cameraPoint.y + frame.height) / tileSize))
 		
-		for y in max(startYRaw, 0)...min(endYRaw, map.height)
+		for y in max(startYRaw - 1, 0)...min(endYRaw + 1, map.height - 1)
 		{
-			for x in max(startXRaw, 0)...min(endXRaw, map.width)
+			for x in max(startXRaw - 1, 0)...min(endXRaw + 1, map.width - 1)
 			{
 				operation(x, y)
 			}

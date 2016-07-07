@@ -316,15 +316,15 @@ class Creature
 	{
 		if let AI = AI
 		{
-			//TODO: pathfinding
-			//	use A* over a wide-ish area (like at least a screen in radius)
-			//	keep track of both weight and movepoints remaining
-			//	weigh every tile using the AI values
-			//		(movepoint cost of tile) * (weight per move point)
-			//		if there is a world-placed trap, +(world trap weight)
-			//		if there is a player-placed trap, +(player trap weight)
-			//	your goal is to get to a tile you can use your weapon from
-			//	so if you actually find one that you can walk into in one turn? stop the search and go there asap
+			//TODO: pathfinding, again
+			//djikstra's might be more appropriate than A*
+			//since I don't have a single obvious goal
+			//instead, just look at every tile I can visit
+			//	use the current tile weighting to find paths around
+			//	this should weight traps differently based on who placed them, so that AIs can be tricked into walking over player traps
+			//and then figure out which one I want to be in
+			//	make a new set of tile weighting for that
+			//	prioritizing not being in a trap (this shouldn't care who placed the trap), and being able to attack
 			
 			
 			//TODO: for now, just attack position (2, 1)

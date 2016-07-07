@@ -16,8 +16,11 @@ class GameViewController: UIViewController, GameDelegate {
 	
 	var animating:Bool = false
 	var shouldUIUpdate:Bool = false
+	var cameraPoint = CGPoint(x: 0, y: 0)
 	
 	@IBOutlet weak var gameArea: TileDisplayView!
+	@IBOutlet weak var creatureLayer: UIView!
+	
 	
 	@IBOutlet weak var healthBarAuraView: UIView!
 	@IBOutlet weak var healthBarContainerView: UIView!
@@ -42,11 +45,11 @@ class GameViewController: UIViewController, GameDelegate {
 		game.addEnemy(Creature(enemyType: "skeleton player", level: 1, x: 8, y: 5))
 		
 		//make the tiles
-		gameArea.initializeAtCameraPoint(CGPointZero, map: game.map)
+		gameArea.initializeAtCameraPoint(cameraPoint, map: game.map)
 		
 		for creature in game.creatures
 		{
-			representations.append(CreatureRepresentation(creature: creature, superview: gameArea))
+			representations.append(CreatureRepresentation(creature: creature, superview: creatureLayer, atCameraPoint: cameraPoint))
 		}
 		
 		//TODO: all sprite tiles and such should auto-scale so that differently-sized iphones all have the same screen size
@@ -56,6 +59,11 @@ class GameViewController: UIViewController, GameDelegate {
 	
 		//start the game loop with executePhase()
 		game.executePhase()
+		
+		
+		//add a gesture recognizer for the game area
+		let tappy = UITapGestureRecognizer(target: self, action: #selector(gameAreaPressed))
+		creatureLayer.addGestureRecognizer(tappy)
 	}
 	
 	override func viewDidAppear(animated: Bool)
@@ -66,6 +74,67 @@ class GameViewController: UIViewController, GameDelegate {
 	}
 	
 	//MARK: actions
+	
+	func gameAreaPressed(sender:UITapGestureRecognizer)
+	{
+		//find out the exact x and y coordinates of the tap
+		let coordinates = sender.locationInView(gameArea)
+		let x = Int(floor((coordinates.x + cameraPoint.x) / tileSize))
+		let y = Int(floor((coordinates.y + cameraPoint.y) / tileSize))
+		
+		print("Tapped at (\(x), \(y))")
+		
+		if input
+		{
+			let xDif = x - game.activeCreature.x
+			let yDif = y - game.activeCreature.y
+			
+			if xDif != 0 || yDif != 0
+			{
+				//you probably want to move somewhere
+				let xDis = abs(xDif)
+				let yDis = abs(yDif)
+				let xM = xDif > 0 ? 1 : -1
+				let yM = yDif > 0 ? 1 : -1
+				if xDis >= yDis * 2
+				{
+					tryMove(x: xM, y: 0)
+				}
+				else if yDis >= xDis * 2
+				{
+					tryMove(x: 0, y: yM)
+				}
+				else
+				{
+					if xDis > yDis
+					{
+						if (!tryMove(x: xM, y: 0))
+						{
+							tryMove(x: 0, y: yM)
+						}
+					}
+					else if (!tryMove(x: 0, y: yM))
+					{
+						tryMove(x: xM, y: 0)
+					}
+				}
+			}
+		}
+	}
+	
+	private func tryMove(x xChange:Int, y yChange:Int)->Bool
+	{
+		let x = game.activeCreature.x + xChange
+		let y = game.activeCreature.y + yChange
+		print("  Attempting to move to (\(x), \(y))")
+		if game.map.tileAt(x: x, y: y).walkable
+		{
+			//TODO: also check to see if you have enough move points
+			game.makeMove(x: x, y: y)
+			return true
+		}
+		return false
+	}
 
 	@IBAction func attackButtonPressed()
 	{
@@ -111,7 +180,78 @@ class GameViewController: UIViewController, GameDelegate {
 	func playAnimation(anim: Animation)
 	{
 		animating = true
-		playAttackAnimations(anim)
+		playMoveAnimations(anim)
+	}
+	private func playMoveAnimations(anim:Animation)
+	{
+		//this comes before attacks because if you walk over a trap, it's move -> attack -> damage
+		if let movePath = anim.movePath
+		{
+			//TODO: animate the move down that path
+			//move the camera by updating the positions of all representations BUT the moving person
+			//afterwards, update representation visibility (also, update the moving person's representation position afterwards too)
+			//then call playAttackAnimations
+			
+			let updateCamera = game.activeCreature === game.player
+			
+			if updateCamera
+			{
+				gameArea.makeTilesForCameraPoint(cameraPoint)
+			}
+			
+			UIView.animateWithDuration(0.25, animations:
+			{
+				let active = self.game.activeCreature
+				
+				//update the moving creature's position step by step
+				let realX = active.x
+				let realY = active.y
+				active.x = movePath.first!.0
+				active.y = movePath.first!.1
+				
+				if updateCamera
+				{
+					let newX = min(max(CGFloat(active.x) * tileSize - self.gameArea.frame.width / 2, 0), CGFloat(self.game.map.width) * tileSize - self.gameArea.frame.width)
+					let newY = min(max(CGFloat(active.y) * tileSize - self.gameArea.frame.height / 2, 0), CGFloat(self.game.map.height) * tileSize - self.gameArea.frame.height)
+					self.cameraPoint = CGPoint(x: newX, y: newY)
+					
+					self.gameArea.adjustTilesForCameraPoint(self.cameraPoint)
+				}
+				
+				for rep in self.representations
+				{
+					rep.updatePosition(self.cameraPoint)
+				}
+				
+				active.x = realX
+				active.y = realY
+			})
+			{ (completed) in
+				if movePath.count == 1
+				{
+					//the move is over, so clean up visibility and go on
+					for rep in self.representations
+					{
+						rep.updateVisibility(self.cameraPoint)
+					}
+					
+					self.gameArea.cullTilesForCameraPoint(self.cameraPoint)
+					
+					self.playAttackAnimations(anim)
+				}
+				else
+				{
+					//pop that one move off of the array and go to the next stage of the movement
+					//TODO: it'd be ideal if moves were a queue I guess, but it probably doesn't matter much
+					anim.movePath!.removeFirst()
+					self.playMoveAnimations(anim)
+				}
+			}
+		}
+		else
+		{
+			playAttackAnimations(anim)
+		}
 	}
 	private func playAttackAnimations(anim:Animation)
 	{
@@ -119,21 +259,8 @@ class GameViewController: UIViewController, GameDelegate {
 		{
 			//TODO: play the attack animation
 			//afterwards, update representation appearance
-			//then call playMoveAnimations
-		}
-		else
-		{
-			playMoveAnimations(anim)
-		}
-	}
-	private func playMoveAnimations(anim:Animation)
-	{
-		if let movePath = anim.movePath
-		{
-			//TODO: animate the move down that path
-			//move the camera by updating the positions of all representations BUT the moving person
-			//afterwards, update representation visibility (also, update the moving person's representation position afterwards too)
 			//then call playDamageNumberAnimations
+			playDamageNumberAnimations(anim)
 		}
 		else
 		{
@@ -147,6 +274,7 @@ class GameViewController: UIViewController, GameDelegate {
 			//TODO: create, move, and destroy the damage numbers
 			//afterwards, update representation appearance
 			//then call animChainOver
+			animChainOver()
 		}
 		else
 		{

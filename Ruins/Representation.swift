@@ -24,12 +24,12 @@ class Representation
 		//TODO: update the appearance of the view, if necessary
 	}
 	
-	func updatePosition()
+	func updatePosition(toCameraPoint:CGPoint)
 	{
 		//TODO: update the position of the view (for use in UIView animates during movement)
 	}
 	
-	func updateVisibility()
+	func updateVisibility(atCameraPoint:CGPoint)
 	{
 		//TODO: set view to hidden if it's not visible, or not hidden if its visible
 		//to be used AFTER UIView animates during movement
