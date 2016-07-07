@@ -14,6 +14,9 @@ class GameViewController: UIViewController, GameDelegate {
 	var input:Bool = false
 	var representations = [Representation]()
 	
+	var animating:Bool = false
+	var shouldUIUpdate:Bool = false
+	
 	@IBOutlet weak var gameArea: UIView!
 	
 	@IBOutlet weak var healthBarAuraView: UIView!
@@ -44,6 +47,9 @@ class GameViewController: UIViewController, GameDelegate {
 		}
 		
 		//TODO: all sprite tiles and such should auto-scale so that differently-sized iphones all have the same screen size
+		
+		//TODO: for tiles I probably want a lower-effort system than representations
+		//since I have to do a lot of "all representation" operations
 	
 		//start the game loop with executePhase()
 		game.executePhase()
@@ -101,22 +107,69 @@ class GameViewController: UIViewController, GameDelegate {
 	}
 	func playAnimation(anim: Animation)
 	{
-		//TODO: play the desired series of animations
-		//in the following order (if multiple are present)
-		//	move (this should also move the camera at the same time, if necessary)
-		//	attack anim
-		//	damage numbers
-		
-		//TODO: remember to update the appearance of representations while doing this
-		
-		//TODO: after doing all the animations, run these things
+		animating = true
+		playAttackAnimations(anim)
+	}
+	private func playAttackAnimations(anim:Animation)
+	{
+		if let target = anim.attackTarget, let type = anim.attackType
+		{
+			//TODO: play the attack animation
+			//afterwards, update representation appearance
+			//then call playMoveAnimations
+		}
+		else
+		{
+			playMoveAnimations(anim)
+		}
+	}
+	private func playMoveAnimations(anim:Animation)
+	{
+		if let movePath = anim.movePath
+		{
+			//TODO: animate the move down that path
+			//move the camera by updating the positions of all representations BUT the moving person
+			//afterwards, update representation visibility (also, update the moving person's representation position afterwards too)
+			//then call playDamageNumberAnimations
+		}
+		else
+		{
+			playDamageNumberAnimations(anim)
+		}
+	}
+	private func playDamageNumberAnimations(anim: Animation)
+	{
+		if anim.damageNumbers.count > 0
+		{
+			//TODO: create, move, and destroy the damage numbers
+			//afterwards, update representation appearance
+			//then call animChainOver
+		}
+		else
+		{
+			animChainOver()
+		}
+	}
+	private func animChainOver()
+	{
+		animating = false
+		if shouldUIUpdate
+		{
+			uiUpdate()
+		}
 		pruneRepresentations()
 		game.toNextPhase()
 	}
+	
 	func uiUpdate()
 	{
-		//TODO: if you're animating, set a "UI update flag" that will call this again once the animation is done
-		//otherwise, update the UI
+		//if you're animating, delay this until the animation finishes
+		if animating
+		{
+			shouldUIUpdate = true
+			return
+		}
+		shouldUIUpdate = false
 		
 		//TODO: switch healthBarAuraView's background color opacity between 0 and 1 depending on if the player has aura
 		
