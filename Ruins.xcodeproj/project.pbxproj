@@ -30,6 +30,8 @@
 		E4F147F11D2DB2BB00F4C579 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147F01D2DB2BB00F4C579 /* GameViewController.swift */; };
 		E4F147F31D2DCEE500F4C579 /* AIs.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147F21D2DCEE500F4C579 /* AIs.plist */; };
 		E4F147F51D2DD10900F4C579 /* AITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147F41D2DD10900F4C579 /* AITests.swift */; };
+		E4F147F71D2DD54B00F4C579 /* CreatureRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147F61D2DD54B00F4C579 /* CreatureRepresentation.swift */; };
+		E4F147F91D2DD63A00F4C579 /* Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147F81D2DD63A00F4C579 /* Representation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		E4F147F01D2DB2BB00F4C579 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E4F147F21D2DCEE500F4C579 /* AIs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AIs.plist; sourceTree = "<group>"; };
 		E4F147F41D2DD10900F4C579 /* AITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AITests.swift; sourceTree = "<group>"; };
+		E4F147F61D2DD54B00F4C579 /* CreatureRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureRepresentation.swift; sourceTree = "<group>"; };
+		E4F147F81D2DD63A00F4C579 /* Representation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Representation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				E4F147F01D2DB2BB00F4C579 /* GameViewController.swift */,
+				E4F147F81D2DD63A00F4C579 /* Representation.swift */,
+				E4F147F61D2DD54B00F4C579 /* CreatureRepresentation.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -291,8 +297,10 @@
 			files = (
 				E4F147E31D2D85F400F4C579 /* Weapon.swift in Sources */,
 				E4F147E71D2D998F00F4C579 /* DataStore.swift in Sources */,
+				E4F147F91D2DD63A00F4C579 /* Representation.swift in Sources */,
 				E4F147D31D2D73F400F4C579 /* Creature.swift in Sources */,
 				E4F147D11D2D719C00F4C579 /* Game.swift in Sources */,
+				E4F147F71D2DD54B00F4C579 /* CreatureRepresentation.swift in Sources */,
 				E4F147F11D2DB2BB00F4C579 /* GameViewController.swift in Sources */,
 				E4F147AD1D2D712700F4C579 /* AppDelegate.swift in Sources */,
 			);

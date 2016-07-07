@@ -88,6 +88,9 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="gameArea" destination="NPZ-1v-IWo" id="9ro-Rg-87a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfE-p8-ePe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

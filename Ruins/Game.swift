@@ -144,10 +144,15 @@ class Game
 		while (nextCreature)
 		{
 			creatureOn = (creatureOn + 1) % creatures.count
+			if creatureOn == 0
+			{
+				//cull the creature list
+				creatures = creatures.filter() { $0.health > 0 }
+			}
 			movePoints = activeCreature.maxMovePoints
 			nextCreature = activeCreature.health == 0
 			
-			//TODO: check for the game being over, to prevent any kind of infinite loops where everyone died
+			//TODO: if the player is dead, notify game over
 		}
 		
 		executePhase()

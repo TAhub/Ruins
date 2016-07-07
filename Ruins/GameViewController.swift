@@ -12,6 +12,10 @@ class GameViewController: UIViewController, GameDelegate {
 	
 	var game:Game!
 	var input:Bool = false
+	var representations = [Representation]()
+	
+	@IBOutlet weak var gameArea: UIView!
+	
 	
 	override func viewDidLoad()
 	{
@@ -21,6 +25,12 @@ class GameViewController: UIViewController, GameDelegate {
 		game.delegate = self
 		
 		game.creatures.append(Creature(enemyType: "test creature", level: 1, x: 1, y: 1))
+		game.creatures.append(Creature(enemyType: "test pzombie", level: 1, x: 5, y: 5))
+		
+		for creature in game.creatures
+		{
+			representations.append(CreatureRepresentation(creature: creature, superview: gameArea))
+		}
 	}
 	
 	override func viewDidAppear(animated: Bool)
@@ -82,7 +92,15 @@ class GameViewController: UIViewController, GameDelegate {
 		//	attack anim
 		//	damage numbers
 		
-		//TODO: after doing all the animations, run toNextPhase()
+		//TODO: after doing all the animations, run these things
+		pruneRepresentations()
 		game.toNextPhase()
+	}
+	
+	//MARK: helper methods
+	
+	func pruneRepresentations()
+	{
+		representations = representations.filter() { !$0.dead }
 	}
 }

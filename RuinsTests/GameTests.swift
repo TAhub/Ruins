@@ -181,6 +181,18 @@ class GameTests: XCTestCase, GameDelegate {
 		XCTAssertEqual(game.creatureOn, 0)
 	}
 	
+	func testDeadCulledWhenLooping()
+	{
+		game.executePhase()
+		firstCharacter.health = 0
+		game.skipAction()
+		game.skipAction()
+		
+		XCTAssertEqual(game.creatureOn, 0)
+		XCTAssertEqual(game.creatures.count, 1)
+		XCTAssertTrue(game.creatures[0] === secondCharacter)
+	}
+	
 	//MARK: delegate methods
 	
 	func inputDesired()
