@@ -14,6 +14,7 @@ class GameTests: XCTestCase, GameDelegate {
 	var game:Game!
 	var inputDesiredCalled = 0
 	var playAnimationCalled = 0
+	var uiUpdateCalled = 0
 	var firstCharacter:Creature!
 	var secondCharacter:Creature!
 	var lastAnimation:Animation?
@@ -25,11 +26,12 @@ class GameTests: XCTestCase, GameDelegate {
 		game.delegate = self
 		inputDesiredCalled = 0
 		playAnimationCalled = 0
+		uiUpdateCalled = 0
 		
 		firstCharacter = Creature(enemyType: "test creature", level: 1, x: 1, y: 1)
-		game.creatures.append(firstCharacter)
+		game.addPlayer(firstCharacter)
 		secondCharacter = Creature(enemyType: "test creature", level: 1, x: 2, y: 1)
-		game.creatures.append(secondCharacter)
+		game.addEnemy(secondCharacter)
     }
 	
 	func testStageProgression()
@@ -193,6 +195,53 @@ class GameTests: XCTestCase, GameDelegate {
 		XCTAssertTrue(game.creatures[0] === secondCharacter)
 	}
 	
+	func testUIUpdate()
+	{
+		let thirdCharacter = Creature(enemyType: "test creature", level: 1, x: 2, y: 2)
+		game.addEnemy(thirdCharacter)
+		
+		//make sure nobody dies from a crit
+		firstCharacter.shake = 10
+		secondCharacter.shake = 10
+		thirdCharacter.shake = 10
+		
+		game.executePhase()
+		XCTAssertEqual(uiUpdateCalled, 0)
+		
+		//the UI should update when the player attacks
+		XCTAssertEqual(game.creatureOn, 0)
+		game.attack(x: 2, y: 1)
+		game.toNextPhase()
+		XCTAssertEqual(uiUpdateCalled, 1)
+		
+		//the UI should update when the player is attacked
+		XCTAssertEqual(game.creatureOn, 1)
+		game.attack(x: 1, y: 1)
+		game.toNextPhase()
+		XCTAssertEqual(uiUpdateCalled, 2)
+		
+		//the UI shouldn't update when an attack happens that doesn't involve the player
+		XCTAssertEqual(game.creatureOn, 2)
+		game.attack(x: 2, y: 1)
+		XCTAssertEqual(uiUpdateCalled, 2)
+		
+		//the UI should update when there's a poison tick
+		firstCharacter.poison = 1
+		game.toNextPhase()
+		XCTAssertEqual(uiUpdateCalled, 3)
+		
+		//the UI should update if the player moves
+		XCTAssertEqual(game.creatureOn, 0)
+		game.makeMove(x: 1, y: 2)
+		XCTAssertEqual(uiUpdateCalled, 4)
+		
+		//...but when other people move, who cares?
+		game.skipAction()
+		XCTAssertTrue(game.activeCreature === thirdCharacter) //secndCharacter should be dead now
+		game.makeMove(x: 2, y: 3)
+		XCTAssertEqual(uiUpdateCalled, 4)
+	}
+	
 	//MARK: delegate methods
 	
 	func inputDesired()
@@ -203,5 +252,9 @@ class GameTests: XCTestCase, GameDelegate {
 	{
 		playAnimationCalled += 1
 		lastAnimation = anim
+	}
+	func uiUpdate()
+	{
+		uiUpdateCalled += 1
 	}
 }

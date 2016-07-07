@@ -31,10 +31,12 @@ protocol GameDelegate
 {
 	func playAnimation(anim:Animation)
 	func inputDesired()
+	func uiUpdate()
 }
 
 class Game
 {
+	var player:Creature!
 	var phaseOn:GamePhase = .Start
 	var creatureOn:Int = -1
 	var delegate:GameDelegate?
@@ -42,6 +44,18 @@ class Game
 	var movePoints:Int = 0
 	var targetX:Int = 0
 	var targetY:Int = 0
+	
+	func addEnemy(creature:Creature)
+	{
+		creatures.append(creature)
+		//TODO: add to the grid and whatnot
+	}
+	
+	func addPlayer(creature:Creature)
+	{
+		self.player = creature
+		addEnemy(creature)
+	}
 	
 	func executePhase()
 	{
@@ -62,9 +76,22 @@ class Game
 			activeCreature.x = targetX
 			activeCreature.y = targetY
 			
+			if activeCreature === player
+			{
+				delegate?.uiUpdate()
+			}
+			
 		case .Attack:
-			//TODO: get the target based on targetX and targetY
-			let target = creatures[1]
+			//TODO: get the target based on the grid, rather than by going through the creature list
+			var target:Creature!
+			for creature in creatures
+			{
+				if creature.x == targetX && creature.y == targetY
+				{
+					target = creature
+					break
+				}
+			}
 			let damages = activeCreature.attack(target)
 			
 			anim = Animation()
@@ -75,11 +102,22 @@ class Game
 			{
 				anim!.damageNumbers.append((activeCreature, "\(damages.myDamage)"))
 			}
+			
+			if target === player || activeCreature === player
+			{
+				delegate?.uiUpdate()
+			}
+			
 		case .PoisonDamage:
 			if let damage = activeCreature.poisonTick()
 			{
 				anim = Animation()
 				anim!.damageNumbers.append((activeCreature, "\(damage)"))
+				
+				if activeCreature === player
+				{
+					delegate?.uiUpdate()
+				}
 			}
 		case .EndTurn:
 			activeCreature.endTurn()

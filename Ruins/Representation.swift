@@ -19,6 +19,11 @@ class Representation
 		superview.addSubview(view)
 	}
 	
+	func updateAppearance()
+	{
+		//TODO: update the appearance of the view, if necessary
+	}
+	
 	func updatePosition()
 	{
 		//TODO: update the position of the view (for use in UIView animates during movement)

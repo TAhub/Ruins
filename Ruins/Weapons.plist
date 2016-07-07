@@ -192,7 +192,7 @@
 		<key>damage</key> <integer>52</integer>
 		<key>accuracy</key> <integer>30</integer>
 		<key>hit damage multiplier</key> <integer>250</integer>
-		<key>weight</key> <integer>33</integer>
+		<key>weight</key> <integer>38</integer>
 		<key>range</key> <integer>4</integer>
 		<key>subtypes</key>
 		<array>
@@ -232,7 +232,7 @@
 		<key>subtypes</key>
 		<array>
 			<dict>
-				<key>name</key> <string>hand cannon</string>
+				<key>name</key> <string>hand cannon</string> <!-- NOTE: hand cannons should use metal rather than wood -->
 				<key>level</key> <integer>5</integer>
 				<key>damage multiplier</key> <integer>120</integer>
 				<key>weight multiplier</key> <integer>100</integer>
@@ -250,7 +250,7 @@
 				<key>weight multiplier</key> <integer>100</integer>
 			</dict>
 			<dict>
-				<key>name</key> <string>revolver</string>
+				<key>name</key> <string>revolver</string> <!-- NOTE: revolvers should use metal rather than wood -->
 				<key>level</key> <integer>35</integer>
 				<key>damage multiplier</key> <integer>240</integer>
 				<key>weight multiplier</key> <integer>100</integer>

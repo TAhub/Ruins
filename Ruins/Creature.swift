@@ -10,7 +10,7 @@ import Foundation
 
 let damMultiplier:Int = 8
 let miscMultiplier:Int = 10
-let weakDamMult:Int = 30
+let weakDamMult:Int = 40
 let poisonDam:Int = 5
 let weaponStatusChance:Int = 20
 let weaponPoisonLength:Int = 5
@@ -281,7 +281,7 @@ class Creature
 		//apply status effects
 		if let status = weapon.statusInflicted
 		{
-			if Int(arc4random_uniform(100)) <= weaponStatusChance
+			if Int(arc4random_uniform(100)) <= weaponStatusChance && !DataStore.getBool("RacialGroups", target.racialGroup, "\(status) immunity")
 			{
 				switch(status)
 				{

@@ -24,8 +24,12 @@ class GameViewController: UIViewController, GameDelegate {
 		game = Game()
 		game.delegate = self
 		
-		game.creatures.append(Creature(enemyType: "test creature", level: 1, x: 1, y: 1))
-		game.creatures.append(Creature(enemyType: "test pzombie", level: 1, x: 5, y: 5))
+		game.addPlayer(Creature(enemyType: "human player", level: 1, x: 1, y: 1))
+		game.addEnemy(Creature(enemyType: "elf player", level: 1, x: 4, y: 5))
+		game.addEnemy(Creature(enemyType: "bogeyman player", level: 1, x: 6, y: 5))
+		game.addEnemy(Creature(enemyType: "fairy player", level: 1, x: 4, y: 7))
+		game.addEnemy(Creature(enemyType: "zombie player", level: 1, x: 6, y: 7))
+		game.addEnemy(Creature(enemyType: "skeleton player", level: 1, x: 8, y: 5))
 		
 		for creature in game.creatures
 		{
@@ -92,9 +96,16 @@ class GameViewController: UIViewController, GameDelegate {
 		//	attack anim
 		//	damage numbers
 		
+		//TODO: remember to update the appearance of representations while doing this
+		
 		//TODO: after doing all the animations, run these things
 		pruneRepresentations()
 		game.toNextPhase()
+	}
+	func uiUpdate()
+	{
+		//TODO: if you're animating, set a "UI update flag" that will call this again once the animation is done
+		//otherwise, update the UI
 	}
 	
 	//MARK: helper methods

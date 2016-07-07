@@ -86,6 +86,147 @@
 		</array>
 	</dict>
 	
+	<!-- starting player options -->
+	
+	<key>human player</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>strength</key> <integer>10</integer>
+		<key>dexterity</key> <integer>10</integer>
+		<key>cunning</key> <integer>10</integer>
+		<key>wisdom</key> <integer>10</integer>
+		<key>endurance</key> <integer>10</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>sword</string>
+		<key>weapon material</key> <string>steel</string>
+		<key>armor</key> <string>clothing</string>
+		<!-- MARK: special powers -->
+		<key>ignore terrain cost</key> <true/>
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>mortal</string>
+		<key>appearance group</key> <string>human</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>1</integer>
+		<key>keywords</key>
+		<array>
+		</array>
+	</dict>
+	<key>fairy player</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>strength</key> <integer>8</integer>
+		<key>dexterity</key> <integer>11</integer>
+		<key>cunning</key> <integer>12</integer>
+		<key>wisdom</key> <integer>10</integer>
+		<key>endurance</key> <integer>9</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>sword</string>
+		<key>weapon material</key> <string>steel</string>
+		<key>armor</key> <string>clothing</string>
+		<!-- MARK: special powers -->
+		<key>ignore terrain cost</key> <true/>
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>fairy</string>
+		<key>appearance group</key> <string>fairy</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>1</integer>
+		<key>keywords</key>
+		<array>
+		</array>
+	</dict>
+	<key>elf player</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>strength</key> <integer>10</integer>
+		<key>dexterity</key> <integer>11</integer>
+		<key>cunning</key> <integer>8</integer>
+		<key>wisdom</key> <integer>12</integer>
+		<key>endurance</key> <integer>9</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>sword</string>
+		<key>weapon material</key> <string>steel</string>
+		<key>armor</key> <string>clothing</string>
+		<!-- MARK: special powers -->
+		<key>ignore terrain cost</key> <true/>
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>fairy</string>
+		<key>appearance group</key> <string>elf</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>1</integer>
+		<key>keywords</key>
+		<array>
+		</array>
+	</dict>
+	<key>bogeyman player</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>strength</key> <integer>12</integer>
+		<key>dexterity</key> <integer>8</integer>
+		<key>cunning</key> <integer>10</integer>
+		<key>wisdom</key> <integer>10</integer>
+		<key>endurance</key> <integer>10</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>sword</string>
+		<key>weapon material</key> <string>steel</string>
+		<key>armor</key> <string>clothing</string>
+		<!-- MARK: special powers -->
+		<key>ignore terrain cost</key> <true/>
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>monster</string>
+		<key>appearance group</key> <string>bogeyman</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>1</integer>
+		<key>keywords</key>
+		<array>
+		</array>
+	</dict>
+	<key>skeleton player</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>strength</key> <integer>11</integer>
+		<key>dexterity</key> <integer>12</integer>
+		<key>cunning</key> <integer>9</integer>
+		<key>wisdom</key> <integer>10</integer>
+		<key>endurance</key> <integer>8</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>sword</string>
+		<key>weapon material</key> <string>steel</string>
+		<key>armor</key> <string>clothing</string>
+		<!-- MARK: special powers -->
+		<key>ignore terrain cost</key> <true/>
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>undead</string>
+		<key>appearance group</key> <string>skeleton</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>1</integer>
+		<key>keywords</key>
+		<array>
+		</array>
+	</dict>
+	<key>zombie player</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>strength</key> <integer>11</integer>
+		<key>dexterity</key> <integer>10</integer>
+		<key>cunning</key> <integer>9</integer>
+		<key>wisdom</key> <integer>8</integer>
+		<key>endurance</key> <integer>12</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>sword</string>
+		<key>weapon material</key> <string>steel</string>
+		<key>armor</key> <string>clothing</string>
+		<!-- MARK: special powers -->
+		<key>ignore terrain cost</key> <true/>
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>undead</string>
+		<key>appearance group</key> <string>zombie</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>1</integer>
+		<key>keywords</key>
+		<array>
+		</array>
+	</dict>
+	
 	<!-- real enemies -->
 	
 	
@@ -101,7 +242,7 @@
 			mutt (low-medium level, bash)
 			bear (medium-high-level, stun-inflicting bash) -->
 	
-	<!-- boogeymen -->
+	<!-- bogeymen -->
 	<!-- IN GENERAL: most of them have bash, but some use weapons instead; tend to have high STR
 			bag man (low-level, stun-inflicting bash)
 			boggart (medium-level, shakiness-inflicting bash)

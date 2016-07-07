@@ -125,7 +125,7 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(creature.weapon.strongVS ?? "", "mortal")
 		let damages = creature.attack(target)
 		let oDamages = creature.attack(invalidTarget)
-		XCTAssertEqual(damages.theirDamage, 130) //it gets +30% damage from ranged weakness
+		XCTAssertEqual(damages.theirDamage, 140) //it gets +40% damage from ranged weakness
 		XCTAssertEqual(oDamages.theirDamage, 100)
 		
 		//test melee weakness
@@ -165,8 +165,22 @@ class CreatureTests: XCTestCase {
 		XCTAssertGreaterThan(target.poison, 0)
 	}
 	
+	func testStatusImmunity()
+	{
+		let target = Creature(enemyType: "test pzombie", level: 1, x: 0, y: 0)
+		
+		//TODO: again, this is random; there is a tiny tiny chance of a false positive
+		
+		creature.weapon = Weapon(type: "test weapon", material: "mercury", level: 0)
+		for _ in 0..<100
+		{
+			creature.attack(target)
+		}
+		
+		XCTAssertEqual(target.poison, 0)
+	}
+	
 	//TODO: other attack tests to make:
-	//	test status effects (I guess for this one you'd want to just attack like 50 times in a row to see if they get infected)
 	//	test healing weapons
 	
 	//MARK: helpers
