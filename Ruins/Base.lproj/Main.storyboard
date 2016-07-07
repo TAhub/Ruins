@@ -24,7 +24,39 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JRn-kD-KBM">
                                 <rect key="frame" x="0.0" y="28" width="320" height="72"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sew-n6-y2a">
+                                        <rect key="frame" x="8" y="0.0" width="304" height="36"/>
+                                        <subviews>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="863-10-eD8">
+                                                <rect key="frame" x="20" y="4" width="264" height="28"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="863-10-eD8" firstAttribute="leading" secondItem="Sew-n6-y2a" secondAttribute="leading" constant="20" symbolic="YES" id="5pj-57-TsA"/>
+                                            <constraint firstItem="863-10-eD8" firstAttribute="top" secondItem="Sew-n6-y2a" secondAttribute="top" constant="20" symbolic="YES" id="Cdw-Sc-hmV"/>
+                                            <constraint firstAttribute="trailing" secondItem="863-10-eD8" secondAttribute="trailing" constant="20" symbolic="YES" id="QnE-qc-ANV"/>
+                                            <constraint firstItem="863-10-eD8" firstAttribute="centerY" secondItem="Sew-n6-y2a" secondAttribute="centerY" id="mGX-V6-ojc"/>
+                                            <constraint firstItem="863-10-eD8" firstAttribute="height" secondItem="Sew-n6-y2a" secondAttribute="height" multiplier="0.8" id="tGO-on-pkS"/>
+                                            <constraint firstAttribute="bottom" secondItem="863-10-eD8" secondAttribute="bottom" constant="20" symbolic="YES" id="tyI-cS-q1d"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Cdw-Sc-hmV"/>
+                                                <exclude reference="tyI-cS-q1d"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.010267665139986448" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Sew-n6-y2a" firstAttribute="width" secondItem="JRn-kD-KBM" secondAttribute="width" multiplier="0.95" id="WVq-p3-sN1"/>
+                                    <constraint firstItem="Sew-n6-y2a" firstAttribute="height" secondItem="JRn-kD-KBM" secondAttribute="height" multiplier="0.5" id="Ys2-Av-VUC"/>
+                                    <constraint firstItem="Sew-n6-y2a" firstAttribute="centerX" secondItem="JRn-kD-KBM" secondAttribute="centerX" id="j4s-2Q-nZO"/>
+                                    <constraint firstItem="Sew-n6-y2a" firstAttribute="top" secondItem="JRn-kD-KBM" secondAttribute="top" id="rAW-ut-8aY"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkm-YG-z1J">
                                 <rect key="frame" x="0.0" y="436" width="320" height="36"/>
@@ -90,6 +122,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="gameArea" destination="NPZ-1v-IWo" id="9ro-Rg-87a"/>
+                        <outlet property="healthBarAuraView" destination="Sew-n6-y2a" id="vn2-g4-cdg"/>
+                        <outlet property="healthBarContainerView" destination="863-10-eD8" id="k4F-Ku-ZAL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfE-p8-ePe" userLabel="First Responder" sceneMemberID="firstResponder"/>

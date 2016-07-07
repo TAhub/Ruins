@@ -27,7 +27,8 @@ class CreatureRepresentation:Representation
 	override func updateAppearance()
 	{
 		//TODO: only update this if you have changed armor appearance, weapon appearance
-		//or some other factor (tint?)
+		//or some other factor (tint from status effects? eh)
+		
 		
 		for subview in view.subviews
 		{

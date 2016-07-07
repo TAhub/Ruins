@@ -16,10 +16,17 @@ class GameViewController: UIViewController, GameDelegate {
 	
 	@IBOutlet weak var gameArea: UIView!
 	
+	@IBOutlet weak var healthBarAuraView: UIView!
+	@IBOutlet weak var healthBarContainerView: UIView!
+	
 	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
+		
+		//format some views
+		healthBarAuraView.layer.cornerRadius = 10
+		healthBarContainerView.layer.cornerRadius = 10
 		
 		game = Game()
 		game.delegate = self
@@ -35,14 +42,18 @@ class GameViewController: UIViewController, GameDelegate {
 		{
 			representations.append(CreatureRepresentation(creature: creature, superview: gameArea))
 		}
+		
+		//TODO: all sprite tiles and such should auto-scale so that differently-sized iphones all have the same screen size
+	
+		//start the game loop with executePhase()
+		game.executePhase()
 	}
 	
 	override func viewDidAppear(animated: Bool)
 	{
 		super.viewDidAppear(animated)
 		
-		//start the game loop with executePhase()
-		game.executePhase()
+		uiUpdate()
 	}
 	
 	//MARK: actions
@@ -106,6 +117,22 @@ class GameViewController: UIViewController, GameDelegate {
 	{
 		//TODO: if you're animating, set a "UI update flag" that will call this again once the animation is done
 		//otherwise, update the UI
+		
+		//TODO: switch healthBarAuraView's background color opacity between 0 and 1 depending on if the player has aura
+		
+		//update the health bar
+		for subview in healthBarContainerView.subviews
+		{
+			subview.removeFromSuperview()
+		}
+		let percentage = CGFloat(game.player.health) / CGFloat(game.player.maxHealth)
+		let bar = UIView(frame: CGRectMake(0, 0, healthBarContainerView.frame.width * percentage, healthBarContainerView.frame.height))
+		bar.backgroundColor = UIColor.redColor()
+		healthBarContainerView.addSubview(bar)
+		
+		//TODO: draw movement points number
+		
+		//TODO: draw status effect icons
 	}
 	
 	//MARK: helper methods
