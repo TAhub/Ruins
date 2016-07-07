@@ -14,14 +14,19 @@
 		<key>subtypes</key>
 		<array>
 			<dict>
+				<!-- identity -->
 				<key>name</key> <string>shirt</string>
 				<key>level</key> <integer>1</integer>
+				<!-- stats -->
 				<key>weight</key> <integer>50</integer>
-				<key>melee resistance</key> <integer>0</integer>
-				<key>dodge</key> <integer>0</integer>
-				<key>max health bonus</key> <integer>0</integer>
-				<key>trap resistance</key> <integer>0</integer>
-				<key>special resistance</key> <integer>0</integer>
+				<key>melee resistance</key> <integer>1</integer>
+				<key>dodge</key> <integer>2</integer>
+				<key>max health bonus</key> <integer>3</integer>
+				<key>trap resistance</key> <integer>4</integer>
+				<key>special resistance</key> <integer>5</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>outfit</string>
+				<key>color</key> <string>OUTFIT COLOR</string>
 			</dict>
 		</array>
 	</dict>
@@ -32,36 +37,56 @@
 		<key>subtypes</key>
 		<array>
 			<dict>
+				<!-- identity -->
 				<key>name</key> <string>old breastplate</string>
 				<key>level</key> <integer>4</integer>
+				<!-- stats -->
 				<key>weight</key> <integer>50</integer>
 				<key>melee resistance</key> <integer>5</integer>
 				<key>dodge</key> <integer>-2</integer>
 				<key>max health bonus</key> <integer>2</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>outfit</string>
+				<key>color</key> <string>OUTFIT COLOR</string>
 			</dict>
 			<dict>
+				<!-- identity -->
 				<key>name</key> <string>breastplate</string>
 				<key>level</key> <integer>14</integer>
+				<!-- stats -->
 				<key>weight</key> <integer>50</integer>
 				<key>melee resistance</key> <integer>10</integer>
 				<key>dodge</key> <integer>-2</integer>
 				<key>max health bonus</key> <integer>2</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>outfit</string>
+				<key>color</key> <string>OUTFIT COLOR</string>
 			</dict>
 			<dict>
+				<!-- identity -->
 				<key>name</key> <string>half plate</string>
 				<key>level</key> <integer>24</integer>
+				<!-- stats -->
 				<key>weight</key> <integer>70</integer>
 				<key>melee resistance</key> <integer>15</integer>
 				<key>dodge</key> <integer>-4</integer>
 				<key>max health bonus</key> <integer>4</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>outfit</string>
+				<key>color</key> <string>OUTFIT COLOR</string>
 			</dict>
 			<dict>
+				<!-- identity -->
 				<key>name</key> <string>full plate</string>
 				<key>level</key> <integer>34</integer>
+				<!-- stats -->
 				<key>weight</key> <integer>100</integer>
 				<key>melee resistance</key> <integer>20</integer>
 				<key>dodge</key> <integer>-5</integer>
 				<key>max health bonus</key> <integer>5</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>outfit</string>
+				<key>color</key> <string>OUTFIT COLOR</string>
 			</dict>
 		</array>
 	</dict>
@@ -71,30 +96,50 @@
 		<key>subtypes</key>
 		<array>
 			<dict>
+				<!-- identity -->
 				<key>name</key> <string>leather armor</string>
 				<key>level</key> <integer>0</integer>
+				<!-- stats -->
 				<key>weight</key> <integer>30</integer>
 				<key>melee resistance</key> <integer>3</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>outfit</string>
+				<key>color</key> <string>OUTFIT COLOR</string>
 			</dict>
 			<dict>
+				<!-- identity -->
 				<key>name</key> <string>reinforced leather</string>
 				<key>level</key> <integer>10</integer>
+				<!-- stats -->
 				<key>weight</key> <integer>35</integer>
 				<key>melee resistance</key> <integer>8</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>outfit</string>
+				<key>color</key> <string>OUTFIT COLOR</string>
 			</dict>
 			<dict>
+				<!-- identity -->
 				<key>name</key> <string>chain shirt</string>
 				<key>level</key> <integer>20</integer>
+				<!-- stats -->
 				<key>weight</key> <integer>40</integer>
 				<key>melee resistance</key> <integer>11</integer>
 				<key>max health bonus</key> <integer>2</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>outfit</string>
+				<key>color</key> <string>OUTFIT COLOR</string>
 			</dict>
 			<dict>
+				<!-- identity -->
 				<key>name</key> <string>chainmail</string>
 				<key>level</key> <integer>30</integer>
+				<!-- stats -->
 				<key>weight</key> <integer>45</integer>
 				<key>melee resistance</key> <integer>15</integer>
 				<key>max health bonus</key> <integer>3</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>outfit</string>
+				<key>color</key> <string>OUTFIT COLOR</string>
 			</dict>
 		</array>
 	</dict>
@@ -104,30 +149,50 @@
 		<key>subtypes</key>
 		<array>
 			<dict>
+				<!-- identity -->
 				<key>name</key> <string>peasant outfit</string>
 				<key>level</key> <integer>0</integer>
+				<!-- stats -->
 				<key>weight</key> <integer>10</integer>
 				<key>dodge</key> <integer>3</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>outfit</string>
+				<key>color</key> <string>OUTFIT COLOR</string>
 			</dict>
 			<dict>
+				<!-- identity -->
 				<key>name</key> <string>work outfit</string>
 				<key>level</key> <integer>10</integer>
+				<!-- stats -->
 				<key>weight</key> <integer>10</integer>
 				<key>dodge</key> <integer>8</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>outfit</string>
+				<key>color</key> <string>OUTFIT COLOR</string>
 			</dict>
 			<dict>
+				<!-- identity -->
 				<key>name</key> <string>comfortable outfit</string>
 				<key>level</key> <integer>20</integer>
+				<!-- stats -->
 				<key>weight</key> <integer>10</integer>
 				<key>dodge</key> <integer>11</integer>
 				<key>max health bonus</key> <integer>2</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>outfit</string>
+				<key>color</key> <string>OUTFIT COLOR</string>
 			</dict>
 			<dict>
+				<!-- identity -->
 				<key>name</key> <string>fine outfit</string>
 				<key>level</key> <integer>30</integer>
+				<!-- stats -->
 				<key>weight</key> <integer>10</integer>
 				<key>dodge</key> <integer>14</integer>
 				<key>max health bonus</key> <integer>4</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>outfit</string>
+				<key>color</key> <string>OUTFIT COLOR</string>
 			</dict>
 		</array>
 	</dict>

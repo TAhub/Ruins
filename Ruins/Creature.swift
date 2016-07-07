@@ -56,7 +56,7 @@ class Creature
 	}
 	var meleeRes:Int
 	{
-		return end
+		return end + (armor?.meleeResistance ?? 0)
 	}
 	var encumberanceBonus:Int
 	{
@@ -68,11 +68,11 @@ class Creature
 	}
 	var dodge:Int
 	{
-		return dex
+		return dex + (armor?.dodge ?? 0)
 	}
 	var maxHealthBonus:Int
 	{
-		return end
+		return end + (armor?.maxHealthBonus ?? 0)
 	}
 	var trapPow:Int
 	{
@@ -80,7 +80,7 @@ class Creature
 	}
 	var trapRes:Int
 	{
-		return cun + end
+		return cun + end + (armor?.trapResistance ?? 0)
 	}
 	var specialPow:Int
 	{
@@ -88,7 +88,7 @@ class Creature
 	}
 	var specialRes:Int
 	{
-		return wis
+		return wis + (armor?.specialResistance ?? 0)
 	}
 	
 	//MARK: secondary derived stats
@@ -107,6 +107,7 @@ class Creature
 	
 	//MARK: equipment
 	var weapon:Weapon
+	var armor:Armor?
 	
 	//MARK: variable stats
 	var shake:Int
@@ -115,8 +116,7 @@ class Creature
 	var health:Int
 	var encumberance:Int
 	{
-		var wei = weapon.weight
-		//TODO: account for armor weight too
+		var wei = weapon.weight + (armor?.weight ?? 0)
 		//TODO: tally up inventory weight I guess
 		return wei
 	}
@@ -140,6 +140,10 @@ class Creature
 		let weaponType = DataStore.getString("EnemyTypes", enemyType, "weapon")!
 		let weaponMaterial = DataStore.getString("EnemyTypes", enemyType, "weapon material")!
 		self.weapon = Weapon(type: weaponType, material: weaponMaterial, level: level)
+		if let armorType = DataStore.getString("EnemyTypes", enemyType, "armor")
+		{
+			self.armor = Armor(type: armorType, level: level)
+		}
 		
 		//set identity
 		self.enemyType = enemyType
@@ -171,6 +175,10 @@ class Creature
 		
 		//load equipment
 		weapon = Weapon(saveDict: d["weapon"] as! NSDictionary)
+		if let armorDict = d["armor"] as? NSDictionary
+		{
+			armor = Armor(saveDict: armorDict)
+		}
 		
 		//load identity
 		enemyType = d["enemyType"] as! String
@@ -206,6 +214,10 @@ class Creature
 		
 		//save equipment
 		d["weapon"] = weapon.saveDict
+		if let armor = armor
+		{
+			d["armor"] = armor.saveDict
+		}
 		
 		//save identity
 		d["enemyType"] = enemyType

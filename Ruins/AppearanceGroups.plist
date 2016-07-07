@@ -144,7 +144,7 @@
 		<array>
 			<dict>
 				<key>sprite name</key> <string>skeleton</string>
-				<key>armor suffix</key> <string>human</string>
+				<key>armor suffix</key> <string>human_m</string>
 			</dict>
 			<!-- TODO: glowing eyes -->
 		</array>

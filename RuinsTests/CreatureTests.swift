@@ -33,6 +33,16 @@ class CreatureTests: XCTestCase {
 		normalLoadAsserts()
 	}
 	
+	func testGetStatsFromArmor()
+	{
+		creature.armor = Armor(type: "sample armor", level: 0)
+		XCTAssertEqual(creature.maxHealthBonus, 13)
+		XCTAssertEqual(creature.dodge, 12)
+		XCTAssertEqual(creature.meleeRes, 11)
+		XCTAssertEqual(creature.trapRes, 24)
+		XCTAssertEqual(creature.specialRes, 15)
+	}
+	
 	func testPoison()
 	{
 		//poisonTick should do nothing if you aren't poisoned
@@ -186,6 +196,7 @@ class CreatureTests: XCTestCase {
 	//MARK: helpers
 	func normalLoadAsserts()
 	{
+		//note that sample armor gives the guy a few stat bonuses
 		XCTAssertEqual(creature.racialGroup, "mortal")
 		XCTAssertEqual(creature.appearanceGroup, "human")
 		XCTAssertNil(creature.AI)
@@ -208,9 +219,10 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(creature.health, 200)
 		XCTAssertEqual(creature.maxEncumberance, 200)
 		XCTAssertEqual(creature.maxMovePoints, 4)
-		XCTAssertEqual(creature.encumberance, 100) //the test guy should be carrying his 100-weight weapon and nothing else
+		XCTAssertEqual(creature.encumberance, 100) //the test guy should be carrying his 100-weight weapon, and nothing else
 		XCTAssertEqual(creature.weapon.type, "test subtype weapon")
 		XCTAssertEqual(creature.weapon.material, "neutral")
 		XCTAssertEqual(creature.weapon.subtype, 0)
+		XCTAssertNil(creature.armor)
 	}
 }

@@ -237,7 +237,7 @@ class GameTests: XCTestCase, GameDelegate {
 		
 		//...but when other people move, who cares?
 		game.skipAction()
-		XCTAssertTrue(game.activeCreature === thirdCharacter) //secndCharacter should be dead now
+		XCTAssertTrue(game.activeCreature === thirdCharacter) 
 		game.makeMove(x: 2, y: 3)
 		XCTAssertEqual(uiUpdateCalled, 4)
 	}
