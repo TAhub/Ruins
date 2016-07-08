@@ -15,6 +15,7 @@ class GameTests: XCTestCase, GameDelegate {
 	var inputDesiredCalled = 0
 	var playAnimationCalled = 0
 	var uiUpdateCalled = 0
+	var gameOverCalled = 0
 	var firstCharacter:Creature!
 	var secondCharacter:Creature!
 	var lastAnimation:Animation?
@@ -27,6 +28,7 @@ class GameTests: XCTestCase, GameDelegate {
 		inputDesiredCalled = 0
 		playAnimationCalled = 0
 		uiUpdateCalled = 0
+		gameOverCalled = 0
 		
 		firstCharacter = Creature(enemyType: "test creature", level: 1, x: 1, y: 1)
 		game.addPlayer(firstCharacter)
@@ -242,6 +244,21 @@ class GameTests: XCTestCase, GameDelegate {
 		XCTAssertEqual(uiUpdateCalled, 4)
 	}
 	
+	func testGameOver()
+	{
+		XCTAssertEqual(gameOverCalled, 0)
+		
+		game.executePhase()
+		
+		//kill the player
+		firstCharacter.health = 0
+		
+		//and skip turn to get to someone else, to recognize the game over
+		game.skipAction()
+		
+		XCTAssertEqual(gameOverCalled, 1)
+	}
+	
 	//MARK: map tests
 	func testCreaturesAppearInTiles()
 	{
@@ -289,5 +306,9 @@ class GameTests: XCTestCase, GameDelegate {
 	func uiUpdate()
 	{
 		uiUpdateCalled += 1
+	}
+	func gameOver()
+	{
+		gameOverCalled += 1
 	}
 }

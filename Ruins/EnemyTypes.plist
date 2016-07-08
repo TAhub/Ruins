@@ -191,7 +191,7 @@
 		<!-- MARK: equipment -->
 		<key>weapon</key> <string>sword</string>
 		<key>weapon material</key> <string>steel</string>
-		<key>armor</key> <string>clothing</string>
+		<!-- <key>armor</key> <string>clothing</string> -->
 		<!-- MARK: special powers -->
 		<key>ignore terrain cost</key> <true/>
 		<!-- MARK: identity -->

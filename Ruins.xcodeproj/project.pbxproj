@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E44E86611D3052C500028307 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E44E86601D3052C500028307 /* Colors.plist */; };
+		E44E86631D3061EA00028307 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44E86621D3061EA00028307 /* ImageExtensions.swift */; };
 		E4F147AD1D2D712700F4C579 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147AC1D2D712700F4C579 /* AppDelegate.swift */; };
 		E4F147B21D2D712700F4C579 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F147B01D2D712700F4C579 /* Main.storyboard */; };
 		E4F147B41D2D712700F4C579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F147B31D2D712700F4C579 /* Assets.xcassets */; };
@@ -51,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E44E86601D3052C500028307 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
+		E44E86621D3061EA00028307 /* ImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		E4F147A91D2D712700F4C579 /* Ruins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ruins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F147AC1D2D712700F4C579 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4F147B11D2D712700F4C579 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				E4F147F01D2DB2BB00F4C579 /* GameViewController.swift */,
 				E4F147F81D2DD63A00F4C579 /* Representation.swift */,
 				E4F147F61D2DD54B00F4C579 /* CreatureRepresentation.swift */,
+				E44E86621D3061EA00028307 /* ImageExtensions.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 		E4F147CF1D2D717C00F4C579 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E44E86601D3052C500028307 /* Colors.plist */,
 				E4F147F21D2DCEE500F4C579 /* AIs.plist */,
 				E4F147E41D2D998100F4C579 /* Tests.plist */,
 				E4F147D41D2D765800F4C579 /* RacialGroups.plist */,
@@ -285,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4F147D51D2D765800F4C579 /* RacialGroups.plist in Resources */,
+				E44E86611D3052C500028307 /* Colors.plist in Resources */,
 				E4F147E51D2D998100F4C579 /* Tests.plist in Resources */,
 				E4F147DF1D2D767F00F4C579 /* Armors.plist in Resources */,
 				E4F147D71D2D766200F4C579 /* AppearanceGroups.plist in Resources */,
@@ -322,6 +329,7 @@
 				E4F147F71D2DD54B00F4C579 /* CreatureRepresentation.swift in Sources */,
 				E4F34F1E1D2EEC93001FEC40 /* Map.swift in Sources */,
 				E4F34F1C1D2EEC88001FEC40 /* Tile.swift in Sources */,
+				E44E86631D3061EA00028307 /* ImageExtensions.swift in Sources */,
 				E4F147F11D2DB2BB00F4C579 /* GameViewController.swift in Sources */,
 				E4F147AD1D2D712700F4C579 /* AppDelegate.swift in Sources */,
 				E4F34F221D2EF04A001FEC40 /* TileDisplayView.swift in Sources */,

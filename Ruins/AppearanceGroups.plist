@@ -40,15 +40,32 @@
 				<key>has gender</key> <true/>
 				<key>armor suffix</key> <string>human</string>
 			</dict>
-			<!-- TODO: human hair -->
-			<!-- TODO: normal eyes -->
+			<dict>
+				<key>sprite name</key> <string>human_hair</string>
+				<key>has gender</key> <true/>
+				<key>variants</key> <integer>1</integer>
+			</dict>
+			<dict>
+				<key>sprite name</key> <string>human_eye</string>
+				<key>has gender</key> <true/>
+			</dict>
 		</array>
 		<key>colorations</key>
 		<array>
 			<array>
-				<string>BODY COLOR</string>
-				<string>HAIR COLOR</string>
-				<string>EYE COLOR</string>
+				<string>skin dark</string>
+				<string>human hair black</string>
+				<string>fairy hair yellow</string>
+			</array>
+			<array>
+				<string>skin swarthy</string>
+				<string>human hair brown</string>
+				<string>fairy hair blue</string>
+			</array>
+			<array>
+				<string>skin light</string>
+				<string>human hair blonde</string>
+				<string>fairy hair green</string>
 			</array>
 		</array>
 	</dict>
@@ -57,22 +74,43 @@
 		<key>has gender</key> <true/>
 		<key>layers</key>
 		<array>
-			<!-- TODO: wings -->
+			<dict>
+				<key>sprite name</key> <string>fairy_wing</string>
+				<key>variants</key> <integer>2</integer>
+			</dict>
 			<dict>
 				<key>sprite name</key> <string>fairy</string>
 				<key>has gender</key> <true/>
 				<key>armor suffix</key> <string>fairy</string>
 			</dict>
-			<!-- TODO: fairy hair -->
-			<!-- TODO: normal eyes -->
+			<dict>
+				<key>sprite name</key> <string>fairy_hair</string>
+				<key>has gender</key> <true/>
+				<key>variants</key> <integer>1</integer>
+			</dict>
+			<dict>
+				<key>sprite name</key> <string>fairy_eye</string>
+			</dict>
 		</array>
 		<key>colorations</key>
 		<array>
 			<array>
-				<string>WING COLOR (should be complement of hair color)</string>
-				<string>BODY COLOR</string>
-				<string>HAIR COLOR</string>
-				<string>EYE COLOR (should be same as wing color)</string>
+				<string>fairy hair green</string>
+				<string>skin dark</string>
+				<string>fairy hair red</string>
+				<string>fairy hair green</string>
+			</array>
+			<array>
+				<string>fairy hair yellow</string>
+				<string>skin swarthy</string>
+				<string>fairy hair blue</string>
+				<string>fairy hair yellow</string>
+			</array>
+			<array>
+				<string>fairy hair red</string>
+				<string>skin light</string>
+				<string>fairy hair green</string>
+				<string>fairy hair red</string>
 			</array>
 		</array>
 	</dict>
@@ -86,15 +124,26 @@
 				<key>has gender</key> <true/>
 				<key>armor suffix</key> <string>elf</string>
 			</dict>
-			<!-- TODO: elf hair -->
-			<!-- TODO: normal eyes -->
+			<dict>
+				<key>sprite name</key> <string>elf_hair</string>
+				<key>has gender</key> <true/>
+				<key>variants</key> <integer>1</integer>
+			</dict>
+			<dict>
+				<key>sprite name</key> <string>elf_eye</string>
+			</dict>
 		</array>
 		<key>colorations</key>
 		<array>
 			<array>
-				<string>BODY COLOR</string>
-				<string>HAIR COLOR</string>
-				<string>EYE COLOR</string>
+				<string>skin light</string>
+				<string>fairy hair yellow</string>
+				<string>fairy hair blue</string>
+			</array>
+			<array>
+				<string>skin swarthy</string>
+				<string>fairy hair red</string>
+				<string>fairy hair green</string>
 			</array>
 		</array>
 	</dict>
@@ -108,13 +157,27 @@
 				<key>has gender</key> <true/>
 				<key>armor suffix</key> <string>human</string>
 			</dict>
-			<!-- TODO: shitty zombie hair -->
+			<dict>
+				<key>sprite name</key> <string>zombie_hair</string>
+				<key>has gender</key> <true/>
+				<key>variants</key> <integer>1</integer>
+			</dict>
+			<dict>
+				<key>sprite name</key> <string>human_eye</string>
+				<key>has gender</key> <true/>
+			</dict>
 		</array>
 		<key>colorations</key>
 		<array>
 			<array>
-				<string>ROTTEN BODY COLOR</string>
-				<string>HAIR COLOR</string>
+				<string>zombie skin green</string>
+				<string>human hair brown</string>
+				<string>black</string>
+			</array>
+			<array>
+				<string>zombie skin pale</string>
+				<string>human hair black</string>
+				<string>black</string>
 			</array>
 		</array>
 	</dict>
@@ -128,13 +191,19 @@
 				<key>has gender</key> <true/>
 				<key>armor suffix</key> <string>bogeyman</string>
 			</dict>
-			<!-- TODO: glowing eyes -->
+			<dict>
+				<key>sprite name</key> <string>bogeyman_eye</string>
+			</dict>
 		</array>
 		<key>colorations</key>
 		<array>
 			<array>
-				<string>SPOOKY BODY COLOR</string>
-				<string>GLOWING EYE COLOR</string>
+				<string>bogeyman skin dark</string>
+				<string>red</string>
+			</array>
+			<array>
+				<string>bogeyman skin light</string>
+				<string>blue</string>
 			</array>
 		</array>
 	</dict>
@@ -146,13 +215,23 @@
 				<key>sprite name</key> <string>skeleton</string>
 				<key>armor suffix</key> <string>human_m</string>
 			</dict>
-			<!-- TODO: glowing eyes -->
+			<dict>
+				<key>sprite name</key> <string>human_eye_m</string>
+			</dict>
 		</array>
 		<key>colorations</key>
 		<array>
 			<array>
-				<string>BONE COLOR</string>
-				<string>GLOWING EYE COLOR</string>
+				<string>bone</string>
+				<string>red</string>
+			</array>
+			<array>
+				<string>bone</string>
+				<string>green</string>
+			</array>
+			<array>
+				<string>bone</string>
+				<string>blue</string>
 			</array>
 		</array>
 	</dict>

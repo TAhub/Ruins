@@ -46,8 +46,8 @@
 				<key>dodge</key> <integer>-2</integer>
 				<key>max health bonus</key> <integer>2</integer>
 				<!-- appearance -->
-				<key>sprite name</key> <string>outfit</string>
-				<key>color</key> <string>OUTFIT COLOR</string>
+				<key>sprite name</key> <string>heavy_one</string>
+				<key>color</key> <string>iron</string>
 			</dict>
 			<dict>
 				<!-- identity -->
@@ -59,8 +59,8 @@
 				<key>dodge</key> <integer>-2</integer>
 				<key>max health bonus</key> <integer>2</integer>
 				<!-- appearance -->
-				<key>sprite name</key> <string>outfit</string>
-				<key>color</key> <string>OUTFIT COLOR</string>
+				<key>sprite name</key> <string>heavy_one</string>
+				<key>color</key> <string>steel</string>
 			</dict>
 			<dict>
 				<!-- identity -->
@@ -72,8 +72,8 @@
 				<key>dodge</key> <integer>-4</integer>
 				<key>max health bonus</key> <integer>4</integer>
 				<!-- appearance -->
-				<key>sprite name</key> <string>outfit</string>
-				<key>color</key> <string>OUTFIT COLOR</string>
+				<key>sprite name</key> <string>heavy_two</string>
+				<key>color</key> <string>steel</string>
 			</dict>
 			<dict>
 				<!-- identity -->
@@ -85,8 +85,8 @@
 				<key>dodge</key> <integer>-5</integer>
 				<key>max health bonus</key> <integer>5</integer>
 				<!-- appearance -->
-				<key>sprite name</key> <string>outfit</string>
-				<key>color</key> <string>OUTFIT COLOR</string>
+				<key>sprite name</key> <string>heavy_three</string>
+				<key>color</key> <string>steel</string>
 			</dict>
 		</array>
 	</dict>
@@ -103,8 +103,8 @@
 				<key>weight</key> <integer>30</integer>
 				<key>melee resistance</key> <integer>3</integer>
 				<!-- appearance -->
-				<key>sprite name</key> <string>outfit</string>
-				<key>color</key> <string>OUTFIT COLOR</string>
+				<key>sprite name</key> <string>light_one</string>
+				<key>color</key> <string>leather</string>
 			</dict>
 			<dict>
 				<!-- identity -->
@@ -114,8 +114,8 @@
 				<key>weight</key> <integer>35</integer>
 				<key>melee resistance</key> <integer>8</integer>
 				<!-- appearance -->
-				<key>sprite name</key> <string>outfit</string>
-				<key>color</key> <string>OUTFIT COLOR</string>
+				<key>sprite name</key> <string>light_two</string>
+				<key>color</key> <string>leather</string>
 			</dict>
 			<dict>
 				<!-- identity -->
@@ -126,8 +126,8 @@
 				<key>melee resistance</key> <integer>11</integer>
 				<key>max health bonus</key> <integer>2</integer>
 				<!-- appearance -->
-				<key>sprite name</key> <string>outfit</string>
-				<key>color</key> <string>OUTFIT COLOR</string>
+				<key>sprite name</key> <string>light_one</string>
+				<key>color</key> <string>steel</string>
 			</dict>
 			<dict>
 				<!-- identity -->
@@ -138,8 +138,8 @@
 				<key>melee resistance</key> <integer>15</integer>
 				<key>max health bonus</key> <integer>3</integer>
 				<!-- appearance -->
-				<key>sprite name</key> <string>outfit</string>
-				<key>color</key> <string>OUTFIT COLOR</string>
+				<key>sprite name</key> <string>light_two</string>
+				<key>color</key> <string>steel</string>
 			</dict>
 		</array>
 	</dict>
@@ -157,7 +157,7 @@
 				<key>dodge</key> <integer>3</integer>
 				<!-- appearance -->
 				<key>sprite name</key> <string>outfit</string>
-				<key>color</key> <string>OUTFIT COLOR</string>
+				<key>color</key> <string>leather</string>
 			</dict>
 			<dict>
 				<!-- identity -->
@@ -168,7 +168,7 @@
 				<key>dodge</key> <integer>8</integer>
 				<!-- appearance -->
 				<key>sprite name</key> <string>outfit</string>
-				<key>color</key> <string>OUTFIT COLOR</string>
+				<key>color</key> <string>cloth</string>
 			</dict>
 			<dict>
 				<!-- identity -->
@@ -180,7 +180,7 @@
 				<key>max health bonus</key> <integer>2</integer>
 				<!-- appearance -->
 				<key>sprite name</key> <string>outfit</string>
-				<key>color</key> <string>OUTFIT COLOR</string>
+				<key>color</key> <string>wool</string>
 			</dict>
 			<dict>
 				<!-- identity -->
@@ -192,7 +192,7 @@
 				<key>max health bonus</key> <integer>4</integer>
 				<!-- appearance -->
 				<key>sprite name</key> <string>outfit</string>
-				<key>color</key> <string>OUTFIT COLOR</string>
+				<key>color</key> <string>white</string>
 			</dict>
 		</array>
 	</dict>

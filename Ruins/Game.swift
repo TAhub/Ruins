@@ -32,6 +32,7 @@ protocol GameDelegate
 	func playAnimation(anim:Animation)
 	func inputDesired()
 	func uiUpdate()
+	func gameOver()
 }
 
 class Game
@@ -250,7 +251,11 @@ class Game
 			movePoints = activeCreature.maxMovePoints
 			nextCreature = activeCreature.health == 0
 			
-			//TODO: if the player is dead, notify game over
+			if player.health == 0
+			{
+				delegate?.gameOver()
+				return
+			}
 		}
 		
 		executePhase()

@@ -22,6 +22,9 @@
 		<array>
 			<string>Hola</string>
 		</array>
+		<key>Color</key> <string>red</string>
+		<key>Other Color</key> <string>blue</string>
+		<key>Real Color That Isn't In The Color List</key> <string>dennis</string>
 	</dict>
 	
 	<key>Entry Two</key>

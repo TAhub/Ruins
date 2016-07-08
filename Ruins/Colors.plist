@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Colors.plist
+   Ruins
+
+   Created by Theodore Abshire on 7/8/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<!-- pure colors -->
+	<key>red</key> <string>FF0000</string>
+	<key>green</key> <string>00FF00</string>
+	<key>blue</key> <string>0000FF</string>
+	<key>white</key> <string>FFFFFF</string>
+	<key>black</key> <string>111111</string>
+	
+	<!-- body colors -->
+	<key>skin light</key> <string>F9DBBD</string>
+	<key>skin swarthy</key> <string>D8B896</string>
+	<key>skin dark</key> <string>542C10</string>
+	<key>bogeyman skin light</key> <string>443333</string>
+	<key>bogeyman skin dark</key> <string>332222</string>
+	<key>zombie skin green</key> <string>C8E896</string>
+	<key>zombie skin pale</key> <string>E8F0E0</string>
+	<key>fairy hair green</key> <string>99FF99</string>
+	<key>fairy hair red</key> <string>FF9999</string>
+	<key>fairy hair blue</key> <string>9999FF</string>
+	<key>fairy hair yellow</key> <string>FFFF99</string>
+	<key>human hair blonde</key> <string>A56B46</string>
+	<key>human hair brown</key> <string>504444</string>
+	<key>human hair black</key> <string>2C222C</string>
+	
+	<!-- material colors -->
+	<key>bone</key> <string>E3DAC9</string>
+	<key>wool</key> <string>DEDEDE</string>
+	<key>cloth</key> <string>E5E5C0</string>
+	<key>iron</key> <string>444B4D</string>
+	<key>silver</key> <string>C0C0C0</string>
+	<key>gold</key> <string>FFDD00</string>
+	<key>lead</key> <string>6D6A65</string>
+	<key>titanium</key> <string>B6AFA9</string>
+	<key>mercury</key> <string>E2E2E2</string>
+	<key>steel</key> <string>BBCCDD</string>
+	<key>leather</key> <string>997755</string>
+</dict>
+</plist>

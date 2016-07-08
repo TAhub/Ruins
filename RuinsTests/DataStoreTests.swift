@@ -32,6 +32,14 @@ class DataStoreTests: XCTestCase {
 		XCTAssertEqual(DataStore.getString("Tests", "Entry One", "Other String") ?? "", "Hi")
 	}
 	
+	func testGetColor()
+	{
+		XCTAssertEqual(DataStore.getColor("Tests", "Entry One", "Color") ?? UIColor.blackColor(), UIColor.redColor())
+		XCTAssertEqual(DataStore.getColor("Tests", "Entry One", "Other Color") ?? UIColor.blackColor(), UIColor.blueColor())
+		XCTAssertEqual(DataStore.getColorByName("red") ?? UIColor.blackColor(), UIColor.redColor())
+		XCTAssertEqual(DataStore.getColorByName("blue") ?? UIColor.blackColor(), UIColor.blueColor())
+	}
+	
 	func testGetBool()
 	{
 		XCTAssertTrue(DataStore.getBool("Tests", "Entry One", "True"))
@@ -49,6 +57,8 @@ class DataStoreTests: XCTestCase {
 		XCTAssertNil(DataStore.getFloat("Tests", "Entry One", "Nonexistant Float"))
 		XCTAssertNil(DataStore.getString("Tests", "Entry One", "Nonexistant String"))
 		XCTAssertNil(DataStore.getArray("Tests", "Entry One", "Nonexistant Array"))
+		XCTAssertNil(DataStore.getColor("Tests", "Entry One", "Nonexistant Color"))
+		XCTAssertNil(DataStore.getColor("Tests", "Entry One", "Real Color That Isn't In The Color List"))
 	}
 
 	func testMultipleEntries()

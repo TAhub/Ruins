@@ -39,12 +39,30 @@ class GameViewController: UIViewController, GameDelegate {
 		game = Game()
 		game.delegate = self
 		
-		game.addPlayer(Creature(enemyType: "human player", level: 1, x: 1, y: 1))
-		game.addEnemy(Creature(enemyType: "elf player", level: 1, x: 4, y: 5))
-		game.addEnemy(Creature(enemyType: "bogeyman player", level: 1, x: 6, y: 5))
-		game.addEnemy(Creature(enemyType: "fairy player", level: 1, x: 4, y: 7))
-		game.addEnemy(Creature(enemyType: "zombie player", level: 1, x: 6, y: 7))
-		game.addEnemy(Creature(enemyType: "skeleton player", level: 1, x: 8, y: 5))
+		game.addPlayer(Creature(enemyType: "human player", level: 1, x: 1, y: 5))
+		game.addEnemy(Creature(enemyType: "human player", level: 1, x: 1, y: 6))
+		game.addEnemy(Creature(enemyType: "human player", level: 1, x: 1, y: 7))
+		game.addEnemy(Creature(enemyType: "human player", level: 1, x: 1, y: 8))
+		game.addEnemy(Creature(enemyType: "elf player", level: 1, x: 3, y: 5))
+		game.addEnemy(Creature(enemyType: "elf player", level: 1, x: 3, y: 6))
+		game.addEnemy(Creature(enemyType: "elf player", level: 1, x: 2, y: 5))
+		game.addEnemy(Creature(enemyType: "elf player", level: 1, x: 2, y: 6))
+		game.addEnemy(Creature(enemyType: "bogeyman player", level: 1, x: 5, y: 5))
+		game.addEnemy(Creature(enemyType: "bogeyman player", level: 1, x: 5, y: 6))
+		game.addEnemy(Creature(enemyType: "bogeyman player", level: 1, x: 4, y: 5))
+		game.addEnemy(Creature(enemyType: "bogeyman player", level: 1, x: 4, y: 6))
+		game.addEnemy(Creature(enemyType: "fairy player", level: 1, x: 3, y: 7))
+		game.addEnemy(Creature(enemyType: "fairy player", level: 1, x: 3, y: 8))
+		game.addEnemy(Creature(enemyType: "fairy player", level: 1, x: 2, y: 7))
+		game.addEnemy(Creature(enemyType: "fairy player", level: 1, x: 2, y: 8))
+		game.addEnemy(Creature(enemyType: "zombie player", level: 1, x: 5, y: 7))
+		game.addEnemy(Creature(enemyType: "zombie player", level: 1, x: 5, y: 8))
+		game.addEnemy(Creature(enemyType: "zombie player", level: 1, x: 4, y: 7))
+		game.addEnemy(Creature(enemyType: "zombie player", level: 1, x: 4, y: 8))
+		game.addEnemy(Creature(enemyType: "skeleton player", level: 1, x: 6, y: 5))
+		game.addEnemy(Creature(enemyType: "skeleton player", level: 1, x: 6, y: 6))
+		game.addEnemy(Creature(enemyType: "skeleton player", level: 1, x: 6, y: 7))
+		game.addEnemy(Creature(enemyType: "skeleton player", level: 1, x: 6, y: 8))
 		
 		//make the tiles
 		gameArea.initializeAtCameraPoint(cameraPoint, map: game.map)
@@ -327,6 +345,11 @@ class GameViewController: UIViewController, GameDelegate {
 		secondaryBarArea.addSubview(label)
 		
 		//TODO: draw status effect icons
+	}
+	
+	func gameOver()
+	{
+		//TODO: handle a game over
 	}
 	
 	//MARK: helper methods

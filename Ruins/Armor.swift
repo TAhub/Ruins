@@ -6,7 +6,7 @@
 //  Copyright © 2016 Theodore Abshire. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Armor
 {
@@ -92,9 +92,9 @@ class Armor
 	{
 		return getStatistic("sprite name") as! String
 	}
-	var spriteColor:String
+	var spriteColor:UIColor
 	{
-		return getStatistic("color") as! String
+		return DataStore.getColorByName(getStatistic("color") as! String) ?? UIColor.blackColor()
 	}
 	
 	

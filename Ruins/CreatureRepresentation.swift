@@ -43,16 +43,72 @@ class CreatureRepresentation:Representation
 			subview.removeFromSuperview()
 		}
 		
-		let genderSuffix = DataStore.getBool("AppearanceGroups", creature.appearanceGroup, "has gender") ? "_f" : ""
-		
 		let layers = DataStore.getArray("AppearanceGroups", creature.appearanceGroup, "layers") as! [NSDictionary]
+		let colorations = DataStore.getArray("AppearanceGroups", creature.appearanceGroup, "colorations") as! [[String]]
+		
+		//tally up the total possible variants
+		
+		var possibleVariants = colorations.count
 		for layer in layers
+		{
+			if let variants = getIntFromLayer(layer, name: "variants")
+			{
+				possibleVariants *= variants
+			}
+		}
+		if DataStore.getBool("AppearanceGroups", creature.appearanceGroup, "has gender")
+		{
+			possibleVariants *= 2
+		}
+		
+		//TODO: get the real appearance number
+		var appearanceNumber:Int = Int(arc4random_uniform(UInt32(possibleVariants)))
+		
+		let genderSuffix:String
+		if DataStore.getBool("AppearanceGroups", creature.appearanceGroup, "has gender")
+		{
+			possibleVariants /= 2
+			genderSuffix = appearanceNumber >= possibleVariants ? "_f" : "_m"
+			appearanceNumber %= possibleVariants
+		}
+		else
+		{
+			genderSuffix = ""
+		}
+		
+		
+		//find the coloration from the appearance number
+		possibleVariants /= colorations.count
+		let colorationNumber = appearanceNumber / possibleVariants
+		appearanceNumber %= possibleVariants
+		let coloration = colorations[colorationNumber]
+		
+		var images = [UIImage]()
+		
+		for (i, layer) in layers.enumerate()
 		{
 			let genderSuffix = layer["has gender"] != nil ? genderSuffix : ""
 			let spriteName = layer["sprite name"] as! String
 			
-			let finalSpriteName = "\(spriteName)\(genderSuffix)"
-			addImage(finalSpriteName)
+			//TODO: calculate the actual variant if this isn't a suffix thing
+			let variantSuffix:String
+			if let variants = getIntFromLayer(layer, name: "variants")
+			{
+				possibleVariants /= variants
+				let variantNumber = appearanceNumber / possibleVariants
+				appearanceNumber %= possibleVariants
+				variantSuffix = "_\(variantNumber+1)"
+			}
+			else
+			{
+				variantSuffix = ""
+			}
+			
+			let finalSpriteName = "\(spriteName)\(genderSuffix)\(variantSuffix)"
+			if let bodyImage = makeImage(finalSpriteName, color: DataStore.getColorByName(coloration[i]) ?? UIColor.blackColor())
+			{
+				images.append(bodyImage)
+			}
 			
 			if let armorSuffix = layer["armor suffix"] as? String
 			{
@@ -61,27 +117,44 @@ class CreatureRepresentation:Representation
 				{
 					let armorSpriteName = armor.spriteName
 					let finalArmorSpriteName = "\(armorSpriteName)_\(armorSuffix)\(genderSuffix)"
-					addImage(finalArmorSpriteName)
+					if let armorImage = makeImage(finalArmorSpriteName, color: armor.spriteColor)
+					{
+						images.append(armorImage)
+					}
 				}
 			}
 		}
+		
+		//combine the images together
+		let combinationImage = UIImage.combineImages(images, anchorAt: CGPoint(x: 0.5, y: 1))
+		let imageView = UIImageView(image: combinationImage)
+		self.view.addSubview(imageView)
+		
+		//center it properly
+		imageView.center = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - combinationImage.size.height / 2)
 	}
 	
-	private func addImage(name:String)
+	private func getIntFromLayer(layer:NSDictionary, name:String) -> Int?
+	{
+		if let int = (layer[name] as? NSNumber)?.intValue
+		{
+			return Int(int)
+		}
+		return nil
+	}
+	
+	private func makeImage(name:String, color:UIColor) -> UIImage?
 	{
 		//TODO: instead of being separate image views these should all be compacted into a single image
 		
 		if let image = UIImage(named: name)
 		{
-			let imageView = UIImageView(image: image)
-			view.addSubview(imageView)
-			
-			//center the image
-			imageView.center = CGPoint(x: view.bounds.width / 2, y: view.bounds.height - image.size.height / 2)
+			return image.colorImage(color)
 		}
 		else
 		{
 			print("ERROR: could not find image named \(name)!")
+			return nil
 		}
 	}
 	

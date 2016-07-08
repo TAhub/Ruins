@@ -20,7 +20,7 @@ class AITests: XCTestCase {
 		game = Game()
 		
 		firstCharacter = Creature(enemyType: "test pzombie", level: 1, x: 1, y: 1)
-		game.creatures.append(firstCharacter)
+		game.addPlayer(firstCharacter)
     }
 	
 	func testAIActsAutomatically()
@@ -28,7 +28,7 @@ class AITests: XCTestCase {
 		//make a goodguy for the AI to target
 		let target = Creature(enemyType: "test creature", level: 1, x: 2, y: 1)
 		target.good = true
-		game.creatures.append(target)
+		game.addEnemy(target)
 		
 		game.executePhase()
 		

@@ -15,7 +15,7 @@
 		<key>weight multiplier</key> <integer>100</integer>
 		<key>status inflicted</key> <string>stun</string>
 		<key>strong vs</key> <string>mortal</string>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>COLOR HERE</string>
 	</dict>
 	
 	<key>mortal killing material</key>
@@ -46,7 +46,7 @@
 		<key>damage multiplier</key> <integer>90</integer>
 		<key>weight multiplier</key> <integer>90</integer>
 		<key>strong vs</key> <string>undead</string>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>COLOR HERE</string>
 	</dict>
 	
 	<key>iron</key>
@@ -54,7 +54,7 @@
 		<key>damage multiplier</key> <integer>100</integer>
 		<key>weight multiplier</key> <integer>110</integer>
 		<key>strong vs</key> <string>fairy</string>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>iron</string>
 	</dict>
 	
 	<key>applewood</key>
@@ -62,7 +62,7 @@
 		<key>damage multiplier</key> <integer>100</integer>
 		<key>weight multiplier</key> <integer>105</integer>
 		<key>strong vs</key> <string>fairy</string>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>COLOR HERE</string>
 	</dict>
 	
 	<key>gold</key>
@@ -70,7 +70,7 @@
 		<key>damage multiplier</key> <integer>90</integer>
 		<key>weight multiplier</key> <integer>125</integer>
 		<key>strong vs</key> <string>monster</string>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>gold</string>
 	</dict>
 	
 	<key>birch</key>
@@ -78,35 +78,35 @@
 		<key>damage multiplier</key> <integer>95</integer>
 		<key>weight multiplier</key> <integer>100</integer>
 		<key>strong vs</key> <string>monster</string>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>COLOR HERE</string>
 	</dict>
 	
 	<key>steel</key>
 	<dict>
 		<key>damage multiplier</key> <integer>110</integer>
 		<key>weight multiplier</key> <integer>125</integer>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>steel</string>
 	</dict>
 	
 	<key>oak</key>
 	<dict>
 		<key>damage multiplier</key> <integer>110</integer>
 		<key>weight multiplier</key> <integer>125</integer>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>COLOR HERE</string>
 	</dict>
 	
 	<key>titanium</key>
 	<dict>
 		<key>damage multiplier</key> <integer>90</integer>
 		<key>weight multiplier</key> <integer>70</integer>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>titanium</string>
 	</dict>
 	
 	<key>cedar</key>
 	<dict>
 		<key>damage multiplier</key> <integer>90</integer>
 		<key>weight multiplier</key> <integer>70</integer>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>COLOR HERE</string>
 	</dict>
 	
 	<key>mercury</key>
@@ -114,7 +114,7 @@
 		<key>damage multiplier</key> <integer>85</integer>
 		<key>weight multiplier</key> <integer>120</integer>
 		<key>status inflicted</key> <string>poison</string>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>mercury</string>
 	</dict>
 	
 	<key>lead</key>
@@ -122,7 +122,7 @@
 		<key>damage multiplier</key> <integer>100</integer>
 		<key>weight multiplier</key> <integer>200</integer>
 		<key>status inflicted</key> <string>stun</string>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>lead</string>
 	</dict>
 	
 	<key>rosewood</key>
@@ -130,7 +130,7 @@
 		<key>damage multiplier</key> <integer>85</integer>
 		<key>weight multiplier</key> <integer>120</integer>
 		<key>status inflicted</key> <string>shake</string>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>COLOR HERE</string>
 	</dict>
 	
 	<!-- enemy-only materials -->
@@ -138,7 +138,7 @@
 	<dict>
 		<key>damage multiplier</key> <integer>100</integer>
 		<key>weight multiplier</key> <integer>100</integer>
-		<key>color</key> <string>silver</string>
+		<key>color</key> <string>white</string>
 	</dict>
 </dict>
 </plist>

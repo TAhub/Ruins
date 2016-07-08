@@ -45,6 +45,6 @@ class ArmorTests: XCTestCase {
 		XCTAssertEqual(armor.specialResistance, 5)
 		XCTAssertEqual(armor.weight, 50)
 		XCTAssertEqual(armor.spriteName, "outfit")
-		XCTAssertEqual(armor.spriteColor, "OUTFIT COLOR")
+		XCTAssertEqual(armor.spriteColor, UIColor.blackColor())
 	}
 }

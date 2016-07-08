@@ -60,7 +60,7 @@ class TileDisplayView: UIView {
 		}
 		
 		//remove the view of old tiles
-		for (_, entry) in self.tiles.enumerate()
+		for entry in self.tiles
 		{
 			if newTiles[entry.0] == nil
 			{
