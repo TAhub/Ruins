@@ -8,6 +8,27 @@
 
 import UIKit
 
+enum TargetingMode:Int
+{
+	case Attack
+	case Examine
+	case Special //TODO: attach a reference to the special
+}
+
+class Target
+{
+	let view:UIView
+	let subject:Creature
+	init(subject:Creature, view:UIView)
+	{
+		self.view = view
+		self.subject = subject
+	}
+}
+
+let damageNumberDuration:NSTimeInterval = 0.35
+let damageNumberDistanceTraveled:CGFloat = 50
+
 class GameViewController: UIViewController, GameDelegate {
 	
 	var game:Game!
@@ -17,6 +38,9 @@ class GameViewController: UIViewController, GameDelegate {
 	var animating:Bool = false
 	var shouldUIUpdate:Bool = false
 	var cameraPoint = CGPoint(x: 0, y: 0)
+	
+	var targetingMode:TargetingMode!
+	var targets:[Target]?
 	
 	@IBOutlet weak var gameArea: TileDisplayView!
 	@IBOutlet weak var creatureLayer: UIView!
@@ -109,38 +133,69 @@ class GameViewController: UIViewController, GameDelegate {
 		
 		print("Tapped at (\(x), \(y))")
 		
-		if input && game.movePoints > 0
+		if input
 		{
-			let xDif = x - game.activeCreature.x
-			let yDif = y - game.activeCreature.y
-			
-			if xDif != 0 || yDif != 0
+			if let targets = targets
 			{
-				//you probably want to move somewhere
-				let xDis = abs(xDif)
-				let yDis = abs(yDif)
-				let xM = xDif > 0 ? 1 : -1
-				let yM = yDif > 0 ? 1 : -1
-				if xDis >= yDis * 2
+				//did you click on a target?
+				for target in targets
 				{
-					tryMove(x: xM, y: 0)
-				}
-				else if yDis >= xDis * 2
-				{
-					tryMove(x: 0, y: yM)
-				}
-				else
-				{
-					if xDis > yDis
+					if target.subject.x == x && target.subject.y == y
 					{
-						if (!tryMove(x: xM, y: 0))
+						leaveTargetingMode()
+						
+						//if so, do something appropriate for the targeting mode
+						switch(targetingMode!)
 						{
-							tryMove(x: 0, y: yM)
+						case .Attack:
+							//attack them
+							input = false
+							game.attack(x: x, y: y)
+						case .Examine:
+							//TODO: examine them
+							break
+						case .Special:
+							//TODO: use the special on them
+							input = false
 						}
+						
+						break
 					}
-					else if (!tryMove(x: 0, y: yM))
+				}
+			}
+			else if game.movePoints > 0
+			{
+				let xDif = x - game.activeCreature.x
+				let yDif = y - game.activeCreature.y
+				
+				if xDif != 0 || yDif != 0
+				{
+					//you probably want to move somewhere
+					let xDis = abs(xDif)
+					let yDis = abs(yDif)
+					let xM = xDif > 0 ? 1 : -1
+					let yM = yDif > 0 ? 1 : -1
+					if xDis >= yDis * 2
 					{
 						tryMove(x: xM, y: 0)
+					}
+					else if yDis >= xDis * 2
+					{
+						tryMove(x: 0, y: yM)
+					}
+					else
+					{
+						if xDis > yDis
+						{
+							if (!tryMove(x: xM, y: 0))
+							{
+								tryMove(x: 0, y: yM)
+							}
+						}
+						else if (!tryMove(x: 0, y: yM))
+						{
+							tryMove(x: xM, y: 0)
+						}
 					}
 				}
 			}
@@ -162,11 +217,25 @@ class GameViewController: UIViewController, GameDelegate {
 
 	@IBAction func attackButtonPressed()
 	{
-		//TODO: check to see if you can attack (have ammo, targets exist, etc)
+		//TODO: check to see if you have enough ammo to attack
 		if input
 		{
-			//TODO: switch to attack mode
-			//TODO: remember to switch input back to "false" when actually doing something!
+			if targets != nil
+			{
+				leaveTargetingMode()
+				if targetingMode! == .Attack
+				{
+					return
+				}
+			}
+			
+			targetingMode = .Attack
+			enterTargetingMode()
+			{ (creature) -> Bool in
+				//TODO: can you hit them with your weapon? IE is it in range, and are they visible?
+//				return creature.good != self.game.player.good
+				return !(creature === self.game.player)
+			}
 		}
 	}
 	
@@ -174,6 +243,7 @@ class GameViewController: UIViewController, GameDelegate {
 	{
 		if input
 		{
+			leaveTargetingMode()
 			input = false
 			game.skipAction()
 		}
@@ -189,10 +259,24 @@ class GameViewController: UIViewController, GameDelegate {
 	
 	@IBAction func examineButtonPressed()
 	{
-		//TODO: you are guaranteed to be able to examine, since self-examination is possible, so no need to check here
 		if input
 		{
-			//TODO: switch to examine mode
+			if targets != nil
+			{
+				leaveTargetingMode()
+				if targetingMode! == .Examine
+				{
+					return
+				}
+			}
+			
+			//switch to examine mode
+			targetingMode = .Examine
+			enterTargetingMode()
+			{ (creature) -> Bool in
+				//TODO: are they onscreen? can you see them?
+				return true
+			}
 		}
 	}
 	
@@ -295,10 +379,44 @@ class GameViewController: UIViewController, GameDelegate {
 	{
 		if anim.damageNumbers.count > 0
 		{
-			//TODO: create, move, and destroy the damage numbers
-			//afterwards, update representation appearance
-			//then call animChainOver
-			animChainOver()
+			//make damage number representations
+			var damageViews = [UILabel]()
+			for (creature, number) in anim.damageNumbers
+			{
+				let damageView = UILabel()
+				damageView.text = number
+				damageView.sizeToFit()
+				damageView.textColor = UIColor.whiteColor()
+				let startX = (CGFloat(creature.x) + 0.5) * tileSize - cameraPoint.x + self.gameArea.frame.origin.x
+				let startY = (CGFloat(creature.y) + 0.5) * tileSize - cameraPoint.y + self.gameArea.frame.origin.y
+				damageView.center = CGPointMake(startX, startY)
+				damageViews.append(damageView)
+				self.view.addSubview(damageView)
+			}
+			
+			//animate them
+			UIView.animateWithDuration(damageNumberDuration, animations:
+			{
+				for damageView in damageViews
+				{
+					damageView.center = CGPoint(x: damageView.center.x, y: damageView.center.y - damageNumberDistanceTraveled)
+				}
+			})
+			{ (completed) in
+				for damageView in damageViews
+				{
+					damageView.removeFromSuperview()
+				}
+				
+				//update the appearances of the representations, in case anybody changed
+				for rep in self.representations
+				{
+					rep.updateAppearance()
+				}
+				
+				//and go to the end of the chain
+				self.animChainOver()
+			}
 		}
 		else
 		{
@@ -359,8 +477,46 @@ class GameViewController: UIViewController, GameDelegate {
 	
 	//MARK: helper methods
 	
-	func pruneRepresentations()
+	private func pruneRepresentations()
 	{
 		representations = representations.filter() { !$0.dead }
+	}
+	
+	private func enterTargetingMode(isValidTarget:(Creature)->Bool)
+	{
+		targets = [Target]()
+		for creature in game.creatures
+		{
+			if isValidTarget(creature)
+			{
+				//make a reticle
+				let reticleFrame = CGRectMake(tileSize * CGFloat(creature.x) - cameraPoint.x, tileSize * CGFloat(creature.y) - cameraPoint.y, tileSize, tileSize)
+				let reticle = UIView(frame: reticleFrame)
+				reticle.alpha = 0.5
+				reticle.backgroundColor = UIColor.redColor()
+				self.creatureLayer.addSubview(reticle)
+				
+				//and register the target
+				targets!.append(Target(subject: creature, view: reticle))
+			}
+		}
+		
+		//cancel out of targeting mode if there were no targets
+		if targets!.count == 0
+		{
+			targets = nil
+		}
+	}
+	
+	private func leaveTargetingMode()
+	{
+		if let targets = targets
+		{
+			for target in targets
+			{
+				target.view.removeFromSuperview()
+			}
+			self.targets = nil
+		}
 	}
 }
