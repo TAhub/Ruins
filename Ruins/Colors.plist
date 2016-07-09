@@ -19,7 +19,7 @@
 	<!-- body colors -->
 	<key>skin light</key> <string>F9DBBD</string>
 	<key>skin swarthy</key> <string>D8B896</string>
-	<key>skin dark</key> <string>542C10</string>
+	<key>skin dark</key> <string>6F3C20</string>
 	<key>bogeyman skin light</key> <string>443333</string>
 	<key>bogeyman skin dark</key> <string>332222</string>
 	<key>zombie skin green</key> <string>C8E896</string>
@@ -36,7 +36,7 @@
 	<key>bone</key> <string>E3DAC9</string>
 	<key>wool</key> <string>DEDEDE</string>
 	<key>cloth</key> <string>E5E5C0</string>
-	<key>iron</key> <string>444B4D</string>
+	<key>iron</key> <string>545B5D</string>
 	<key>silver</key> <string>C0C0C0</string>
 	<key>gold</key> <string>FFDD00</string>
 	<key>lead</key> <string>6D6A65</string>
