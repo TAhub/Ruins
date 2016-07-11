@@ -17,7 +17,7 @@ let weaponPoisonLength:Int = 5
 let weaponStunLength:Int = 1
 let weaponShakeLength:Int = 2
 
-let aiBadlyInjuredPoint:Int = 30
+let aiBadlyInjuredPoint:Int = 20
 
 class Creature
 {
@@ -159,6 +159,12 @@ class Creature
 		
 		//fill up health (this has to happen after every variable is initialized)
 		health = maxHealth
+		
+		
+		//TODO: feature for the future; maybe enemies with no armor should get a stat bonus
+		//and enemies with spells should get a stat penalty?
+		//the actual amount... I dunno, check the comparison of armor points to levels to etc
+		//alternately: lower their effective level by an equivalent amount
 	}
 	
 	init(saveDict d:NSDictionary)
@@ -355,7 +361,7 @@ class Creature
 				game.map.pathfinding(self, movePoints: game.movePoints)
 				
 				//now examine each tile
-				var bestTileFitness = -999
+				var bestTileFitness = -99999
 				var bestTile = (x, y)
 				let tilesAccessable = game.map.tilesAccessable
 				let oldX = x

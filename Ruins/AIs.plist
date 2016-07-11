@@ -16,18 +16,18 @@
 		<key>world trap weight</key> <integer>1</integer>
 		<key>player trap weight</key> <integer>4</integer>
 		<!-- tile fitness -->
-		<key>fitness gain for being in range</key> <integer>1000</integer>
-		<key>fitness gain for being in range when fleeing</key> <integer>200</integer>
-		<key>fitness gain for not having to move</key> <integer>800</integer>
-		<key>fitness gain for trap</key> <integer>-1000</integer>
+		<key>fitness gain for being in range</key> <integer>40</integer>
+		<key>fitness gain for being in range when fleeing</key> <integer>20</integer>
+		<key>fitness gain for not having to move</key> <integer>20</integer>
+		<key>fitness gain for trap</key> <integer>-30</integer>
 		<key>fitness gain per tile to player</key> <integer>-10</integer>
-		<key>fitness gain per tile to player when fleeing</key> <integer>300</integer>
-		<key>random fitness gain</key> <integer>10</integer>
+		<key>fitness gain per tile to player when fleeing</key> <integer>15</integer>
+		<key>random fitness gain</key> <integer>5</integer>
 	</dict>
 	
 	<!-- NOTES -->
-	<!-- raise "fitness gain per tile to player when badly injured" to make them like to flee when hurt -->
-	<!--	this should be >= (fitness gain for being in range + fitness for not moving) / (their movement points) if you want them to actually flee, I think -->
+	<!-- raise "fitness gain per tile to player flee" to make them like to flee when hurt -->
+	<!-- if "fitness gain per tile to player" is less than (fitness gain for not having to move) / (move points), the AI just... won't move -->
 	<!-- if random fitness is very high, they might not actually want to approach you much -->
 	
 	<!-- AI ideas -->

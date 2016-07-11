@@ -74,8 +74,8 @@ class GameViewController: UIViewController, GameDelegate {
 		game.delegate = self
 		
 		game.addPlayer(Creature(enemyType: "human player", level: randomLevel, x: 1, y: 5))
-		game.addEnemy(Creature(enemyType: "test pzombie", level: randomLevel, x: 4, y: 5))
-		game.addEnemy(Creature(enemyType: "test pzombie", level: randomLevel, x: 5, y: 7))
+		game.addEnemy(Creature(enemyType: "shambler", level: randomLevel, x: 4, y: 5))
+		game.addEnemy(Creature(enemyType: "shambler", level: randomLevel, x: 5, y: 7))
 		
 		//make the tiles
 		gameArea.initializeAtCameraPoint(cameraPoint, map: game.map)

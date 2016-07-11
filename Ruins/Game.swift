@@ -61,6 +61,7 @@ class Game
 	
 	func validTarget(cr:Creature) -> Bool
 	{
+		//TODO: are both the attacker and attack...-ee on visible tiles?
 		let distance = abs(cr.x - activeCreature.x) + abs(cr.y - activeCreature.y)
 		let range = activeCreature.weapon.range
 		let minRange = range == 1 ? 0 : 1
@@ -263,6 +264,11 @@ class Game
 			{
 				delegate?.gameOver()
 				return
+			}
+			
+			if activeCreature === player
+			{
+				delegate?.uiUpdate()
 			}
 		}
 		

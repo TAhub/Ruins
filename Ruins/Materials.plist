@@ -160,5 +160,32 @@
 		<key>health multiplier</key> <integer>100</integer>
 		<key>color</key> <string>white</string>
 	</dict>
+	
+	<key>stun material</key>
+	<dict>
+		<key>damage multiplier</key> <integer>80</integer>
+		<key>weight multiplier</key> <integer>100</integer>
+		<key>health multiplier</key> <integer>100</integer>
+		<key>status inflicted</key> <string>stun</string>
+		<key>color</key> <string>white</string>
+	</dict>
+	
+	<key>shake material</key>
+	<dict>
+		<key>damage multiplier</key> <integer>80</integer>
+		<key>weight multiplier</key> <integer>100</integer>
+		<key>health multiplier</key> <integer>100</integer>
+		<key>status inflicted</key> <string>shake</string>
+		<key>color</key> <string>white</string>
+	</dict>
+	
+	<key>poison material</key>
+	<dict>
+		<key>damage multiplier</key> <integer>80</integer>
+		<key>weight multiplier</key> <integer>100</integer>
+		<key>health multiplier</key> <integer>100</integer>
+		<key>status inflicted</key> <string>poison</string>
+		<key>color</key> <string>white</string>
+	</dict>
 </dict>
 </plist>

@@ -52,6 +52,17 @@ class AITests: XCTestCase {
 		XCTAssertLessThan(target.health, 200)
 	}
 	
+	func testAIWalkToDistantPlayer()
+	{
+		//make a goodguy for the AI to target; this one is far enough away you'll need to walk to them
+		let target = Creature(enemyType: "human player", level: 1, x: 9, y: 9)
+		game.addPlayer(target)
+		
+		game.executePhase()
+		
+		XCTAssertEqual(game.phaseOn, GamePhase.Move)
+	}
+	
 	func testFleeWhenHurt()
 	{
 		//make a goodguy for the AI to target; this one is right ABOVE the player to make the direction of fleeing obvious
@@ -123,4 +134,5 @@ class AITests: XCTestCase {
 	
 	//TODO: more AI tests
 	//	test to make sure some AIs will avoid traps and some won't
+	//	test for AIs not "activating" until they become visible at least once
 }

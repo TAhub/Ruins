@@ -229,41 +229,45 @@ class GameTests: XCTestCase, GameDelegate {
 		secondCharacter.shake = 10
 		thirdCharacter.shake = 10
 		
+		//the turn starts for the player, so one UI update
+		
 		game.executePhase()
-		XCTAssertEqual(uiUpdateCalled, 0)
+		XCTAssertEqual(uiUpdateCalled, 1)
 		
 		//the UI should update when the player attacks
 		XCTAssertEqual(game.creatureOn, 0)
 		game.attack(x: 2, y: 1)
 		game.toNextPhase()
-		XCTAssertEqual(uiUpdateCalled, 1)
+		XCTAssertEqual(uiUpdateCalled, 2)
 		
 		//the UI should update when the player is attacked
 		XCTAssertEqual(game.creatureOn, 1)
 		game.attack(x: 1, y: 1)
 		game.toNextPhase()
-		XCTAssertEqual(uiUpdateCalled, 2)
+		XCTAssertEqual(uiUpdateCalled, 3)
 		
 		//the UI shouldn't update when an attack happens that doesn't involve the player
 		XCTAssertEqual(game.creatureOn, 2)
 		game.attack(x: 2, y: 1)
-		XCTAssertEqual(uiUpdateCalled, 2)
+		XCTAssertEqual(uiUpdateCalled, 3)
+		
+		//and another turn start
 		
 		//the UI should update when there's a poison tick
 		firstCharacter.poison = 1
 		game.toNextPhase()
-		XCTAssertEqual(uiUpdateCalled, 3)
+		XCTAssertEqual(uiUpdateCalled, 5)
 		
 		//the UI should update if the player moves
 		XCTAssertEqual(game.creatureOn, 0)
 		game.makeMove(x: 1, y: 2)
-		XCTAssertEqual(uiUpdateCalled, 4)
+		XCTAssertEqual(uiUpdateCalled, 6)
 		
 		//...but when other people move, who cares?
 		game.skipAction()
 		XCTAssertTrue(game.activeCreature === thirdCharacter) 
 		game.makeMove(x: 2, y: 3)
-		XCTAssertEqual(uiUpdateCalled, 4)
+		XCTAssertEqual(uiUpdateCalled, 6)
 	}
 	
 	func testGameOver()
