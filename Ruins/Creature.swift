@@ -110,6 +110,7 @@ class Creature
 	//MARK: equipment
 	var weapon:Weapon
 	var armor:Armor?
+	var inventory = [Item]()
 	
 	//MARK: variable stats
 	var shake:Int
@@ -119,7 +120,10 @@ class Creature
 	var encumberance:Int
 	{
 		var wei = weapon.weight + (armor?.weight ?? 0)
-		//TODO: tally up inventory weight I guess
+		for item in inventory
+		{
+			wei += item.weight
+		}
 		return wei
 	}
 	
@@ -240,7 +244,7 @@ class Creature
 		return d
 	}
 	
-	//TODO: operations
+	//MARK: operations
 	
 	func poisonTick() -> Int?
 	{

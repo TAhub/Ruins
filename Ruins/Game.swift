@@ -33,6 +33,7 @@ protocol GameDelegate
 	func inputDesired()
 	func uiUpdate()
 	func gameOver()
+	func updatePlayer()
 }
 
 class Game
@@ -114,7 +115,7 @@ class Game
 			for step in path.reverse()
 			{
 				anim!.movePath!.append(step)
-				movePoints -= map.tileAt(x: step.0, y: step.1).entryCost
+				movePoints = max(movePoints - map.tileAt(x: step.0, y: step.1).entryCost, 0)
 				
 				print("  PATH MOVING TO (\(step.0), \(step.1))")
 				

@@ -73,9 +73,14 @@ class GameViewController: UIViewController, GameDelegate {
 		game = Game()
 		game.delegate = self
 		
-		game.addPlayer(Creature(enemyType: "human player", level: randomLevel, x: 1, y: 5))
+		let player = Creature(enemyType: "human player", level: randomLevel, x: 1, y: 5)
+		game.addPlayer(player)
 		game.addEnemy(Creature(enemyType: "shambler", level: randomLevel, x: 4, y: 5))
 		game.addEnemy(Creature(enemyType: "shambler", level: randomLevel, x: 5, y: 7))
+		
+		//make a quick initial player inventory
+		player.inventory.append(Item(armor: Armor(type: "heavy armor", level: 0)))
+		player.inventory.append(Item(weapon: Weapon(type: "rifle", material: "iron", level: 0)))
 		
 		//make the tiles
 		gameArea.initializeAtCameraPoint(cameraPoint, map: game.map)
@@ -235,7 +240,8 @@ class GameViewController: UIViewController, GameDelegate {
 	{
 		if input
 		{
-			//TODO: open items menu
+			//open items menu
+			self.performSegueWithIdentifier("ShowInventory", sender: self)
 		}
 	}
 	
@@ -262,7 +268,22 @@ class GameViewController: UIViewController, GameDelegate {
 		}
 	}
 	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+	{
+		if let inv = segue.destinationViewController as? InventoryViewController
+		{
+			inv.game = self.game
+		}
+	}
+	
 	//MARK: delegate methods
+	func updatePlayer()
+	{
+		for rep in representations
+		{
+			rep.updateAppearance()
+		}
+	}
 	func inputDesired()
 	{
 		input = true
