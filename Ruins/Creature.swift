@@ -309,6 +309,23 @@ class Creature
 		health = min(max(health - myDamage, 0), maxHealth)
 		target.health = min(max(target.health - theirDamage, 0), maxHealth)
 		
+		//degrade equip,ent
+		weapon.health = max(weapon.health - 1, 0)
+		if weapon.broken
+		{
+			//TODO: break sound effect
+			weapon = Weapon(type: "unarmed", material: "neutral", level: 0)
+		}
+		if let armor = target.armor
+		{
+			armor.health = max(armor.health - 1, 0)
+			if armor.broken
+			{
+				//TODO: break sound effect
+				target.armor = nil
+			}
+		}
+		
 		return (myDamage:myDamage, theirDamage:theirDamage)
 	}
 	

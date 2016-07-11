@@ -32,6 +32,13 @@ class ArmorTests: XCTestCase {
 		normalLoadAsserts()
 	}
 	
+	func testArmorBroken()
+	{
+		XCTAssertFalse(armor.broken)
+		armor.health = 0
+		XCTAssertTrue(armor.broken)
+	}
+	
 	
 	//MARK: helper functions
 	func normalLoadAsserts()
@@ -46,5 +53,7 @@ class ArmorTests: XCTestCase {
 		XCTAssertEqual(armor.weight, 50)
 		XCTAssertEqual(armor.spriteName, "outfit")
 		XCTAssertEqual(armor.spriteColor, UIColor.blackColor())
+		XCTAssertEqual(armor.maxHealth, 100)
+		XCTAssertEqual(armor.health, 100)
 	}
 }

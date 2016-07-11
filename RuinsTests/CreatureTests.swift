@@ -122,6 +122,42 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(target.health, 20)
 	}
 	
+	func testAttackDegradesEquipment()
+	{
+		let target = Creature(enemyType: "test creature", level: 1, x: 0, y: 0)
+		target.armor = Armor(type: "sample armor", level: 0)
+		creature.armor = Armor(type: "sample armor", level: 0)
+		
+		creature.attack(target)
+		
+		XCTAssertEqual(creature.weapon.health, creature.weapon.maxHealth - 1)
+		XCTAssertEqual(creature.armor!.health, creature.armor!.maxHealth)
+		XCTAssertEqual(target.weapon.health, target.weapon.maxHealth)
+		XCTAssertEqual(target.armor!.health, target.armor!.maxHealth - 1)
+		
+		target.attack(creature)
+		
+		XCTAssertEqual(creature.weapon.health, creature.weapon.maxHealth - 1)
+		XCTAssertEqual(creature.armor!.health, creature.armor!.maxHealth - 1)
+		XCTAssertEqual(target.weapon.health, target.weapon.maxHealth - 1)
+		XCTAssertEqual(target.armor!.health, target.armor!.maxHealth - 1)
+	}
+	
+	func testEquipmentBreak()
+	{
+		let target = Creature(enemyType: "test creature", level: 1, x: 0, y: 0)
+		target.armor = Armor(type: "sample armor", level: 0)
+		target.armor!.health = 1
+		creature.weapon.health = 1
+		
+		creature.attack(target)
+		
+		XCTAssertEqual(creature.weapon.type, "unarmed")
+		XCTAssertEqual(creature.weapon.subtype, 0)
+		XCTAssertEqual(creature.weapon.material, "neutral")
+		XCTAssertNil(target.armor)
+	}
+	
 	func testWeakness()
 	{
 		let target = Creature(enemyType: "test creature", level: 1, x: 0, y: 0)

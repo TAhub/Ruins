@@ -49,6 +49,9 @@ class GameViewController: UIViewController, GameDelegate {
 	@IBOutlet weak var healthBarAuraView: UIView!
 	@IBOutlet weak var healthBarContainerView: UIView!
 	@IBOutlet weak var secondaryBarArea: UIView!
+	@IBOutlet weak var weaponBarContainerView: UIView!
+	@IBOutlet weak var armorBarContainerView: UIView!
+	
 	
 	
 	//TODO: this is a temporary function, for testing
@@ -64,6 +67,8 @@ class GameViewController: UIViewController, GameDelegate {
 		//format some views
 		healthBarAuraView.layer.cornerRadius = 10
 		healthBarContainerView.layer.cornerRadius = 10
+		weaponBarContainerView.layer.cornerRadius = 5
+		armorBarContainerView.layer.cornerRadius = 5
 		
 		game = Game()
 		game.delegate = self
@@ -447,14 +452,7 @@ class GameViewController: UIViewController, GameDelegate {
 		//TODO: switch healthBarAuraView's background color opacity between 0 and 1 depending on if the player has aura
 		
 		//update the health bar
-		for subview in healthBarContainerView.subviews
-		{
-			subview.removeFromSuperview()
-		}
-		let percentage = CGFloat(game.player.health) / CGFloat(game.player.maxHealth)
-		let bar = UIView(frame: CGRectMake(0, 0, healthBarContainerView.frame.width * percentage, healthBarContainerView.frame.height))
-		bar.backgroundColor = UIColor.redColor()
-		healthBarContainerView.addSubview(bar)
+		makeBar(healthBarContainerView, color: UIColor.redColor(), percent: CGFloat(game.player.health) / CGFloat(game.player.maxHealth))
 		
 		for subview in secondaryBarArea.subviews
 		{
@@ -462,12 +460,37 @@ class GameViewController: UIViewController, GameDelegate {
 		}
 		
 		//draw movement points number
-		let label = UILabel()
-		label.text = "\(game.movePoints)/\(game.activeCreature.maxMovePoints) MP"
-		label.sizeToFit()
-		secondaryBarArea.addSubview(label)
+		let labelM = UILabel()
+		labelM.text = "\(game.movePoints)/\(game.activeCreature.maxMovePoints) MP "
+		labelM.sizeToFit()
+		secondaryBarArea.addSubview(labelM)
+		
+		//draw weight number
+		let labelW = UILabel(frame: CGRect(x: 0, y: labelM.frame.height, width: 0, height: 0))
+		labelW.text = "\(game.player.encumberance)/\(game.player.maxEncumberance) LBs "
+		labelW.sizeToFit()
+		secondaryBarArea.addSubview(labelW)
 		
 		//TODO: draw status effect icons
+		
+		//update the equipment health bars
+		makeBar(weaponBarContainerView, color: UIColor.greenColor(), percent: game.player.weapon.maxHealth == 0 ? 0 : CGFloat(game.player.weapon.health) / CGFloat(game.player.weapon.maxHealth))
+		makeBar(armorBarContainerView, color: UIColor.greenColor(), percent: game.player.armor == nil ? 0 : CGFloat(game.player.armor!.health) / CGFloat(game.player.armor!.maxHealth))
+		
+	}
+	
+	private func makeBar(inView:UIView, color:UIColor, percent:CGFloat)
+	{
+		for subview in inView.subviews
+		{
+			subview.removeFromSuperview()
+		}
+		if percent != 0
+		{
+			let bar = UIView(frame: CGRectMake(0, 0, inView.frame.width * percent, inView.frame.height))
+			bar.backgroundColor = color
+			inView.addSubview(bar)
+		}
 	}
 	
 	func gameOver()

@@ -12,10 +12,12 @@ class Armor
 {
 	let type:String
 	let subtype:Int
+	var health:Int
 	
 	init(type:String, level:Int)
 	{
 		self.type = type
+		self.health = 0
 		
 		let subtypes = Armor.subtypesFor(type)!
 		
@@ -35,12 +37,16 @@ class Armor
 			}
 		}
 		subtype = closestSub
+		
+		//fill up health
+		self.health = self.maxHealth
 	}
 	
 	init(saveDict d:NSDictionary)
 	{
 		self.type = d["type"] as! String
 		self.subtype = Int((d["subtype"] as! NSNumber).intValue)
+		self.health = Int((d["health"] as! NSNumber).intValue)
 	}
 	
 	var saveDict:NSDictionary
@@ -49,6 +55,7 @@ class Armor
 		
 		d["type"] = type
 		d["subtype"] = subtype
+		d["health"] = health
 		
 		return d
 	}
@@ -56,6 +63,11 @@ class Armor
 	private static func subtypesFor(type:String) -> [NSDictionary]?
 	{
 		return DataStore.getArray("Armors", type, "subtypes") as? [NSDictionary]
+	}
+	
+	var broken:Bool
+	{
+		return health == 0
 	}
 	
 	//MARK: accessors
@@ -95,6 +107,10 @@ class Armor
 	var spriteColor:UIColor
 	{
 		return DataStore.getColorByName(getStatistic("color") as! String) ?? UIColor.blackColor()
+	}
+	var maxHealth:Int
+	{
+		return DataStore.getInt("Armors", self.type, "health")!
 	}
 	
 	

@@ -11,6 +11,7 @@
 <dict>
 	<key>sample armor</key>
 	<dict>
+		<key>health</key> <integer>100</integer>
 		<key>subtypes</key>
 		<array>
 			<dict>
@@ -34,6 +35,7 @@
 	<!-- real armors -->
 	<key>heavy armor</key>
 	<dict>
+		<key>health</key> <integer>50</integer>
 		<key>subtypes</key>
 		<array>
 			<dict>
@@ -93,6 +95,7 @@
 	
 	<key>light armor</key>
 	<dict>
+		<key>health</key> <integer>40</integer>
 		<key>subtypes</key>
 		<array>
 			<dict>
@@ -146,6 +149,7 @@
 	
 	<key>clothing</key>
 	<dict>
+		<key>health</key> <integer>25</integer>
 		<key>subtypes</key>
 		<array>
 			<dict>

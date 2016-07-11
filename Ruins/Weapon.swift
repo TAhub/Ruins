@@ -13,11 +13,13 @@ class Weapon
 	let type:String
 	let subtype:Int
 	let material:String
+	var health:Int
 	
 	init(type:String, material:String, level:Int)
 	{
 		self.type = type
 		self.material = material
+		self.health = 0
 		
 		if let subtypes = Weapon.subtypesFor(type)
 		{
@@ -42,6 +44,9 @@ class Weapon
 			//otherwise, set the subtype to the level
 			subtype = level
 		}
+		
+		//fill up the health
+		self.health = self.maxHealth
 	}
 	
 	init(saveDict d:NSDictionary)
@@ -49,6 +54,7 @@ class Weapon
 		self.type = d["type"] as! String
 		self.material = d["material"] as! String
 		self.subtype = Int((d["subtype"] as! NSNumber).intValue)
+		self.health = Int((d["health"] as! NSNumber).intValue)
 	}
 	
 	var saveDict:NSDictionary
@@ -58,6 +64,7 @@ class Weapon
 		d["type"] = type
 		d["material"] = material
 		d["subtype"] = subtype
+		d["health"] = health
 		
 		return d
 	}
@@ -65,6 +72,11 @@ class Weapon
 	private static func subtypesFor(type:String) -> [NSDictionary]?
 	{
 		return DataStore.getArray("Weapons", type, "subtypes") as? [NSDictionary]
+	}
+	
+	var broken:Bool
+	{
+		return health == 0 && maxHealth != 0
 	}
 	
 	//MARK: derived variables
@@ -100,6 +112,14 @@ class Weapon
 		wei = wei * DataStore.getInt("Materials", material, "weight multiplier")! / 100
 		
 		return wei
+	}
+	var maxHealth:Int
+	{
+		if let hel = DataStore.getInt("Weapons", type, "health")
+		{
+			return hel * DataStore.getInt("Materials", material, "health multiplier")! / 100
+		}
+		return 0
 	}
 	var hitDamageMultiplier:Int
 	{

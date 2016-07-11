@@ -48,6 +48,13 @@ class WeaponTests: XCTestCase {
 		XCTAssertEqual(Weapon(type: "test weapon", material: "double material", level: 0).weight, 200)
 	}
 	
+	func testMaterialHealth()
+	{
+		let oWep = Weapon(type: "test weapon", material: "double material", level: 0)
+		XCTAssertEqual(oWep.maxHealth, 200)
+		XCTAssertEqual(oWep.health, 200)
+	}
+	
 	func testSubtypePicking()
 	{
 		XCTAssertEqual(Weapon(type: "test subtype weapon", material: "neutral", level: 0).subtype, 0)
@@ -74,6 +81,18 @@ class WeaponTests: XCTestCase {
 		XCTAssertEqual(Weapon(type: "test subtype weapon", material: "neutral", level: 100).weight, 200)
 	}
 	
+	func testBroken()
+	{
+		XCTAssertFalse(weapon.broken)
+		weapon.health = 0
+		XCTAssertTrue(weapon.broken)
+		
+		//no-durability weapons should be immune to breaking
+		let oWeapon = Weapon(type: "unarmed", material: "neutral", level: 0)
+		XCTAssertEqual(oWeapon.health, 0)
+		XCTAssertFalse(oWeapon.broken)
+	}
+	
 	//MARK: helper functions
 	func normalLoadAsserts()
 	{
@@ -85,5 +104,7 @@ class WeaponTests: XCTestCase {
 		XCTAssertEqual(weapon.name, "neutral test weapon")
 		XCTAssertNil(weapon.strongVS)
 		XCTAssertNil(weapon.statusInflicted)
+		XCTAssertEqual(weapon.maxHealth, 100)
+		XCTAssertEqual(weapon.health, 100)
 	}
 }

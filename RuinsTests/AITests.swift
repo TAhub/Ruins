@@ -36,4 +36,9 @@ class AITests: XCTestCase {
 		XCTAssertEqual(game.phaseOn, GamePhase.Attack)
 		XCTAssertLessThan(target.health, 200)
 	}
+	
+	//TODO: more AI tests
+	//	test to make sure AIs will move properly before attacking, if necessary
+	//	test to make sure some AIs will avoid traps and some won't
+	//	test to make sure AIs won't attack if you switch their weapon to unarmed
 }

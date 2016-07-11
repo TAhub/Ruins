@@ -13,6 +13,7 @@
 	<dict>
 		<key>damage multiplier</key> <integer>100</integer>
 		<key>weight multiplier</key> <integer>100</integer>
+		<key>health multiplier</key> <integer>100</integer>
 		<key>status inflicted</key> <string>stun</string>
 		<key>strong vs</key> <string>mortal</string>
 		<key>color</key> <string>COLOR HERE</string>
@@ -22,6 +23,7 @@
 	<dict>
 		<key>damage multiplier</key> <integer>100</integer>
 		<key>weight multiplier</key> <integer>100</integer>
+		<key>health multiplier</key> <integer>100</integer>
 		<key>strong vs</key> <string>mortal</string>
 	</dict>
 	
@@ -29,106 +31,123 @@
 	<dict>
 		<key>damage multiplier</key> <integer>200</integer>
 		<key>weight multiplier</key> <integer>200</integer>
+		<key>health multiplier</key> <integer>200</integer>
 	</dict>
 	
 	<!-- real materials -->
 	
+	<!-- metals -->
 	<key>silver</key>
 	<dict>
 		<key>damage multiplier</key> <integer>90</integer>
 		<key>weight multiplier</key> <integer>100</integer>
+		<key>health multiplier</key> <integer>100</integer>
 		<key>strong vs</key> <string>undead</string>
 		<key>color</key> <string>silver</string>
-	</dict>
-	
-	<key>elm</key>
-	<dict>
-		<key>damage multiplier</key> <integer>90</integer>
-		<key>weight multiplier</key> <integer>90</integer>
-		<key>strong vs</key> <string>undead</string>
-		<key>color</key> <string>COLOR HERE</string>
 	</dict>
 	
 	<key>iron</key>
 	<dict>
 		<key>damage multiplier</key> <integer>100</integer>
 		<key>weight multiplier</key> <integer>110</integer>
+		<key>health multiplier</key> <integer>100</integer>
 		<key>strong vs</key> <string>fairy</string>
 		<key>color</key> <string>iron</string>
 	</dict>
 	
-	<key>applewood</key>
-	<dict>
-		<key>damage multiplier</key> <integer>100</integer>
-		<key>weight multiplier</key> <integer>105</integer>
-		<key>strong vs</key> <string>fairy</string>
-		<key>color</key> <string>COLOR HERE</string>
-	</dict>
-	
 	<key>gold</key>
 	<dict>
-		<key>damage multiplier</key> <integer>90</integer>
+		<key>damage multiplier</key> <integer>100</integer>
 		<key>weight multiplier</key> <integer>125</integer>
+		<key>health multiplier</key> <integer>75</integer>
 		<key>strong vs</key> <string>monster</string>
 		<key>color</key> <string>gold</string>
 	</dict>
 	
-	<key>birch</key>
-	<dict>
-		<key>damage multiplier</key> <integer>95</integer>
-		<key>weight multiplier</key> <integer>100</integer>
-		<key>strong vs</key> <string>monster</string>
-		<key>color</key> <string>COLOR HERE</string>
-	</dict>
-	
 	<key>steel</key>
 	<dict>
-		<key>damage multiplier</key> <integer>110</integer>
+		<key>damage multiplier</key> <integer>100</integer>
 		<key>weight multiplier</key> <integer>125</integer>
+		<key>health multiplier</key> <integer>125</integer>
 		<key>color</key> <string>steel</string>
-	</dict>
-	
-	<key>oak</key>
-	<dict>
-		<key>damage multiplier</key> <integer>110</integer>
-		<key>weight multiplier</key> <integer>125</integer>
-		<key>color</key> <string>COLOR HERE</string>
 	</dict>
 	
 	<key>titanium</key>
 	<dict>
-		<key>damage multiplier</key> <integer>90</integer>
+		<key>damage multiplier</key> <integer>95</integer>
 		<key>weight multiplier</key> <integer>70</integer>
+		<key>health multiplier</key> <integer>90</integer>
 		<key>color</key> <string>titanium</string>
-	</dict>
-	
-	<key>cedar</key>
-	<dict>
-		<key>damage multiplier</key> <integer>90</integer>
-		<key>weight multiplier</key> <integer>70</integer>
-		<key>color</key> <string>COLOR HERE</string>
 	</dict>
 	
 	<key>mercury</key>
 	<dict>
-		<key>damage multiplier</key> <integer>85</integer>
+		<key>damage multiplier</key> <integer>90</integer>
 		<key>weight multiplier</key> <integer>120</integer>
+		<key>health multiplier</key> <integer>90</integer>
 		<key>status inflicted</key> <string>poison</string>
 		<key>color</key> <string>mercury</string>
 	</dict>
 	
 	<key>lead</key>
 	<dict>
-		<key>damage multiplier</key> <integer>100</integer>
+		<key>damage multiplier</key> <integer>90</integer>
 		<key>weight multiplier</key> <integer>200</integer>
+		<key>health multiplier</key> <integer>125</integer>
 		<key>status inflicted</key> <string>stun</string>
 		<key>color</key> <string>lead</string>
 	</dict>
 	
+	<!-- woods -->
+	
+	<key>applewood</key>
+	<dict>
+		<key>damage multiplier</key> <integer>100</integer>
+		<key>weight multiplier</key> <integer>105</integer>
+		<key>health multiplier</key> <integer>90</integer>
+		<key>strong vs</key> <string>fairy</string>
+		<key>color</key> <string>COLOR HERE</string>
+	</dict>
+	
+	<key>birch</key>
+	<dict>
+		<key>damage multiplier</key> <integer>95</integer>
+		<key>weight multiplier</key> <integer>100</integer>
+		<key>health multiplier</key> <integer>100</integer>
+		<key>strong vs</key> <string>monster</string>
+		<key>color</key> <string>COLOR HERE</string>
+	</dict>
+	
+	<key>oak</key>
+	<dict>
+		<key>damage multiplier</key> <integer>105</integer>
+		<key>weight multiplier</key> <integer>125</integer>
+		<key>health multiplier</key> <integer>112</integer>
+		<key>color</key> <string>COLOR HERE</string>
+	</dict>
+	
+	<key>cedar</key>
+	<dict>
+		<key>damage multiplier</key> <integer>100</integer>
+		<key>weight multiplier</key> <integer>70</integer>
+		<key>health multiplier</key> <integer>75</integer>
+		<key>color</key> <string>COLOR HERE</string>
+	</dict>
+	
+	<key>elm</key>
+	<dict>
+		<key>damage multiplier</key> <integer>90</integer>
+		<key>weight multiplier</key> <integer>90</integer>
+		<key>health multiplier</key> <integer>100</integer>
+		<key>strong vs</key> <string>undead</string>
+		<key>color</key> <string>COLOR HERE</string>
+	</dict>
+	
 	<key>rosewood</key>
 	<dict>
-		<key>damage multiplier</key> <integer>85</integer>
+		<key>damage multiplier</key> <integer>90</integer>
 		<key>weight multiplier</key> <integer>120</integer>
+		<key>health multiplier</key> <integer>90</integer>
 		<key>status inflicted</key> <string>shake</string>
 		<key>color</key> <string>COLOR HERE</string>
 	</dict>
@@ -138,6 +157,7 @@
 	<dict>
 		<key>damage multiplier</key> <integer>100</integer>
 		<key>weight multiplier</key> <integer>100</integer>
+		<key>health multiplier</key> <integer>100</integer>
 		<key>color</key> <string>white</string>
 	</dict>
 </dict>

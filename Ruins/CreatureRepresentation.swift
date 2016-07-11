@@ -12,6 +12,9 @@ class CreatureRepresentation:Representation
 {
 	let creature:Creature
 	
+	private var lastArmorSprite = ""
+	private var lastArmorColor = UIColor.blackColor()
+	
 	init(creature:Creature, superview:UIView, atCameraPoint:CGPoint)
 	{
 		self.creature = creature
@@ -34,10 +37,22 @@ class CreatureRepresentation:Representation
 	
 	override func updateAppearance()
 	{
-		//TODO: only update this if you have changed armor appearance, weapon appearance
-		//or some other factor (tint from status effects? eh)
+		//calculate if I SHOULD update my appearance
+		let armorSprite = creature.armor == nil ? "" : creature.armor!.spriteName
+		let armorColor = creature.armor == nil ? UIColor.blueColor() : creature.armor!.spriteColor
 		
+		//TODO: also check for weapon
 		
+		if armorSprite != lastArmorSprite || armorColor != lastArmorColor
+		{
+			lastArmorSprite = armorSprite
+			lastArmorColor = armorColor
+			
+			updateAppearanceInner()
+		}
+	}
+	private func updateAppearanceInner()
+	{
 		for subview in view.subviews
 		{
 			subview.removeFromSuperview()

@@ -15,6 +15,7 @@
 		<key>accuracy</key> <integer>100</integer>
 		<key>hit damage multiplier</key> <integer>100</integer>
 		<key>weight</key> <integer>100</integer>
+		<key>health</key> <integer>100</integer>
 		<key>range</key> <integer>1</integer>
 		<key>subtypes</key>
 		<array>
@@ -33,6 +34,7 @@
 		<key>accuracy</key> <integer>100</integer>
 		<key>hit damage multiplier</key> <integer>200</integer>
 		<key>weight</key> <integer>100</integer>
+		<key>health</key> <integer>100</integer>
 		<key>range</key> <integer>100</integer>
 	</dict>
 	
@@ -42,6 +44,7 @@
 		<key>accuracy</key> <integer>100</integer>
 		<key>hit damage multiplier</key> <integer>200</integer>
 		<key>weight</key> <integer>100</integer>
+		<key>health</key> <integer>100</integer>
 		<key>range</key> <integer>100</integer>
 		<key>subtypes</key>
 		<array>
@@ -66,6 +69,7 @@
 		<key>accuracy</key> <integer>100</integer>
 		<key>hit damage multiplier</key> <integer>200</integer>
 		<key>weight</key> <integer>100</integer>
+		<key>health</key> <integer>100</integer>
 		<key>range</key> <integer>1</integer>
 	</dict>
 	
@@ -76,6 +80,7 @@
 		<key>accuracy</key> <integer>20</integer>
 		<key>hit damage multiplier</key> <integer>150</integer>
 		<key>weight</key> <integer>35</integer>
+		<key>health</key> <integer>40</integer>
 		<key>range</key> <integer>1</integer>
 		<key>subtypes</key>
 		<array>
@@ -117,6 +122,7 @@
 		<key>accuracy</key> <integer>20</integer>
 		<key>hit damage multiplier</key> <integer>200</integer>
 		<key>weight</key> <integer>32</integer>
+		<key>health</key> <integer>45</integer>
 		<key>range</key> <integer>1</integer>
 		<key>subtypes</key>
 		<array>
@@ -152,6 +158,7 @@
 		<key>accuracy</key> <integer>14</integer>
 		<key>hit damage multiplier</key> <integer>140</integer>
 		<key>weight</key> <integer>45</integer>
+		<key>health</key> <integer>50</integer>
 		<key>range</key> <integer>1</integer>
 		<key>subtypes</key>
 		<array>
@@ -193,6 +200,7 @@
 		<key>accuracy</key> <integer>30</integer>
 		<key>hit damage multiplier</key> <integer>250</integer>
 		<key>weight</key> <integer>38</integer>
+		<key>health</key> <integer>40</integer>
 		<key>range</key> <integer>4</integer>
 		<key>subtypes</key>
 		<array>
@@ -228,6 +236,7 @@
 		<key>accuracy</key> <integer>40</integer>
 		<key>hit damage multiplier</key> <integer>225</integer>
 		<key>weight</key> <integer>20</integer>
+		<key>health</key> <integer>35</integer>
 		<key>range</key> <integer>3</integer>
 		<key>subtypes</key>
 		<array>
@@ -263,6 +272,7 @@
 		<key>accuracy</key> <integer>30</integer>
 		<key>hit damage multiplier</key> <integer>300</integer>
 		<key>weight</key> <integer>18</integer>
+		<key>health</key> <integer>30</integer>
 		<key>range</key> <integer>3</integer>
 		<key>subtypes</key>
 		<array>
@@ -305,6 +315,16 @@
 		<key>damage</key> <integer>37</integer>
 		<key>accuracy</key> <integer>16</integer>
 		<key>hit damage multiplier</key> <integer>150</integer>
+		<key>weight</key> <integer>0</integer>
+		<key>range</key> <integer>1</integer>
+	</dict>
+	
+	<!-- special weapons -->
+	<key>unarmed</key>
+	<dict>
+		<key>damage</key> <integer>32</integer>
+		<key>accuracy</key> <integer>20</integer>
+		<key>hit damage multiplier</key> <integer>120</integer>
 		<key>weight</key> <integer>0</integer>
 		<key>range</key> <integer>1</integer>
 	</dict>
