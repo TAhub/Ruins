@@ -96,6 +96,28 @@ class GameTests: XCTestCase, GameDelegate {
 		XCTAssertEqual(firstCharacter.y, 2)
 	}
 	
+	func testValidTarget()
+	{
+		game.executePhase()
+		
+		firstCharacter.weapon = Weapon(type: "test melee weapon", material: "neutral", level: 0)
+		
+		//secondCharacter is the same side, so it should be an invalid target
+		XCTAssertFalse(game.validTarget(secondCharacter))
+		
+		//thirdCharacter is too far away, so it should be invalid
+		let thirdCharacter = Creature(enemyType: "human player", level: 0, x: 2, y: 2)
+		XCTAssertFalse(game.validTarget(thirdCharacter))
+		
+		//...but if we move thirdCharacter one tile closer, it will be in range
+		thirdCharacter.x = 1
+		XCTAssertTrue(game.validTarget(thirdCharacter))
+		
+		//...but x2 if we switch the player back to a ranged weapon, thirdCharacter will now be inside the minimum range
+		firstCharacter.weapon = Weapon(type: "test weapon", material: "neutral", level: 0)
+		XCTAssertFalse(game.validTarget(thirdCharacter))
+	}
+	
 	func testAttacking()
 	{
 		game.executePhase()

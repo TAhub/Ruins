@@ -20,15 +20,14 @@ class AITests: XCTestCase {
 		game = Game()
 		
 		firstCharacter = Creature(enemyType: "test pzombie", level: 1, x: 1, y: 1)
-		game.addPlayer(firstCharacter)
+		game.addEnemy(firstCharacter)
     }
 	
-	func testAIActsAutomatically()
+	func testAIAttackNearby()
 	{
-		//make a goodguy for the AI to target
-		let target = Creature(enemyType: "test creature", level: 1, x: 2, y: 1)
-		target.good = true
-		game.addEnemy(target)
+		//make a goodguy for the AI to target; this one is right next to the player
+		let target = Creature(enemyType: "human player", level: 1, x: 2, y: 1)
+		game.addPlayer(target)
 		
 		game.executePhase()
 		
@@ -37,8 +36,91 @@ class AITests: XCTestCase {
 		XCTAssertLessThan(target.health, 200)
 	}
 	
+	func testAIWalkToAttack()
+	{
+		//make a goodguy for the AI to target; this one is far enough away you'll need to walk to them
+		let target = Creature(enemyType: "human player", level: 1, x: 4, y: 1)
+		game.addPlayer(target)
+		
+		game.executePhase()
+		
+		XCTAssertEqual(game.phaseOn, GamePhase.Move)
+		
+		game.toNextPhase()
+		
+		XCTAssertEqual(game.phaseOn, GamePhase.Attack)
+		XCTAssertLessThan(target.health, 200)
+	}
+	
+	func testFleeWhenHurt()
+	{
+		//make a goodguy for the AI to target; this one is right ABOVE the player to make the direction of fleeing obvious
+		let target = Creature(enemyType: "human player", level: 1, x: 3, y: 2)
+		game.addPlayer(target)
+		
+		firstCharacter.x = 3
+		firstCharacter.y = 3
+		
+		//also make the AI near-death
+		firstCharacter.health = 1
+		
+		game.executePhase()
+		
+		//and now the AI flees
+		XCTAssertEqual(game.phaseOn, GamePhase.Move)
+		let distance = abs(firstCharacter.x - target.x) + abs(firstCharacter.y - target.y)
+		XCTAssertEqual(distance, 5)
+	}
+	
+	func testFleeWhenUnarmed()
+	{
+		//make a goodguy for the AI to target; this one is right ABOVE the player to make the direction of fleeing obvious
+		let target = Creature(enemyType: "human player", level: 1, x: 3, y: 2)
+		game.addPlayer(target)
+		
+		firstCharacter.x = 3
+		firstCharacter.y = 3
+		
+		//also make the AI's weapon be something that's about to break
+		firstCharacter.weapon = Weapon(type: "sword", material: "neutral", level: 0)
+		firstCharacter.weapon.health = 1
+		
+		game.executePhase()
+		
+		//they should attack, which breaks their weapon
+		XCTAssertEqual(game.phaseOn, GamePhase.Attack)
+		XCTAssertLessThan(target.health, 200)
+		XCTAssertEqual(firstCharacter.weapon.type, "unarmed")
+		
+		game.toNextPhase()
+		
+		//skip the target's turn
+		game.skipAction()
+		
+		//and now the AI flees
+		XCTAssertEqual(game.phaseOn, GamePhase.Move)
+		let distance = abs(firstCharacter.x - target.x) + abs(firstCharacter.y - target.y)
+		XCTAssertEqual(distance, 5)
+	}
+	
+	func testNoAttackWhenUnarmed()
+	{
+		//make two goodguys to box the AI in
+		let targetOne = Creature(enemyType: "human player", level: 1, x: 2, y: 1)
+		game.addPlayer(targetOne)
+		let targetTwo = Creature(enemyType: "human player", level: 1, x: 1, y: 2)
+		game.addEnemy(targetTwo)
+		
+		//and disarm the AI
+		firstCharacter.weapon = Weapon(type: "unarmed", material: "neutral", level: 0)
+		
+		//the AI can't move OR attack, so it should just skip its turn
+		game.executePhase()
+		
+		XCTAssertEqual(game.phaseOn, GamePhase.MakeDecision)
+		XCTAssertEqual(game.creatureOn, 1)
+	}
+	
 	//TODO: more AI tests
-	//	test to make sure AIs will move properly before attacking, if necessary
 	//	test to make sure some AIs will avoid traps and some won't
-	//	test to make sure AIs won't attack if you switch their weapon to unarmed
 }

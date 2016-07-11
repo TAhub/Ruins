@@ -59,6 +59,14 @@ class Game
 		addEnemy(creature)
 	}
 	
+	func validTarget(cr:Creature) -> Bool
+	{
+		let distance = abs(cr.x - activeCreature.x) + abs(cr.y - activeCreature.y)
+		let range = activeCreature.weapon.range
+		let minRange = range == 1 ? 0 : 1
+		return cr.good != activeCreature.good && distance <= range && distance > minRange
+	}
+	
 	func executePhase()
 	{
 		var anim:Animation?

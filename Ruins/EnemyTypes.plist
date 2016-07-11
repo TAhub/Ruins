@@ -28,6 +28,7 @@
 		<key>appearance group</key> <string>zombie</string>
 		<key>AI</key> <string>sample AI</string>
 		<!-- MARK: generation data -->
+		<key>good</key> <true/>
 		<key>level</key> <integer>1</integer>
 		<key>keywords</key>
 		<array>
@@ -72,7 +73,7 @@
 		<key>wisdom</key> <integer>10</integer>
 		<key>endurance</key> <integer>10</integer>
 		<!-- MARK: equipment -->
-		<key>weapon</key> <string>test subtype weapon</string>
+		<key>weapon</key> <string>test melee weapon</string>
 		<key>weapon material</key> <string>neutral</string>
 		<!-- MARK: special powers -->
 		<!-- MARK: identity -->
@@ -106,6 +107,7 @@
 		<key>racial group</key> <string>mortal</string>
 		<key>appearance group</key> <string>human</string>
 		<!-- MARK: generation data -->
+		<key>good</key> <true/>
 		<key>level</key> <integer>1</integer>
 		<key>keywords</key>
 		<array>
@@ -129,6 +131,7 @@
 		<key>racial group</key> <string>fairy</string>
 		<key>appearance group</key> <string>fairy</string>
 		<!-- MARK: generation data -->
+		<key>good</key> <true/>
 		<key>level</key> <integer>1</integer>
 		<key>keywords</key>
 		<array>
@@ -152,6 +155,7 @@
 		<key>racial group</key> <string>fairy</string>
 		<key>appearance group</key> <string>elf</string>
 		<!-- MARK: generation data -->
+		<key>good</key> <true/>
 		<key>level</key> <integer>1</integer>
 		<key>keywords</key>
 		<array>
@@ -175,6 +179,7 @@
 		<key>racial group</key> <string>monster</string>
 		<key>appearance group</key> <string>bogeyman</string>
 		<!-- MARK: generation data -->
+		<key>good</key> <true/>
 		<key>level</key> <integer>1</integer>
 		<key>keywords</key>
 		<array>
@@ -198,6 +203,7 @@
 		<key>racial group</key> <string>undead</string>
 		<key>appearance group</key> <string>skeleton</string>
 		<!-- MARK: generation data -->
+		<key>good</key> <true/>
 		<key>level</key> <integer>1</integer>
 		<key>keywords</key>
 		<array>
@@ -221,6 +227,7 @@
 		<key>racial group</key> <string>undead</string>
 		<key>appearance group</key> <string>zombie</string>
 		<!-- MARK: generation data -->
+		<key>good</key> <true/>
 		<key>level</key> <integer>1</integer>
 		<key>keywords</key>
 		<array>

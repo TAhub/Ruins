@@ -17,6 +17,8 @@ let weaponPoisonLength:Int = 5
 let weaponStunLength:Int = 1
 let weaponShakeLength:Int = 2
 
+let aiBadlyInjuredPoint:Int = 30
+
 class Creature
 {
 	//MARK: position
@@ -147,7 +149,7 @@ class Creature
 		
 		//set identity
 		self.enemyType = enemyType
-		good = false
+		good = DataStore.getBool("EnemyTypes", enemyType, "good")
 		
 		//initialize variables
 		health = 0
@@ -336,19 +338,51 @@ class Creature
 			//if you can move, check to see if you want to
 			if game.movePoints > 0
 			{
+				//get AI variables for fitness
+				let inRangeFitness = DataStore.getInt("AIs", AI, "fitness gain for being in range")!
+				let inRangeFitnessFlee = DataStore.getInt("AIs", AI, "fitness gain for being in range when fleeing")!
+				let noMoveFitness = DataStore.getInt("AIs", AI, "fitness gain for not having to move")!
+				let trapFitness = DataStore.getInt("AIs", AI, "fitness gain for trap")!
+				let fitnessPerTileToPlayer = DataStore.getInt("AIs", AI, "fitness gain per tile to player")!
+				let fitnessPerTileToPlayerFlee = DataStore.getInt("AIs", AI, "fitness gain per tile to player when fleeing")!
+				let randomFitness = DataStore.getInt("AIs", AI, "random fitness gain")!
+				
+				//run away if you're really hurt, or if you were disarmed
+				let flee = health * 100 < maxHealth * aiBadlyInjuredPoint || weapon.type == "unarmed"
+				
+				
 				//figure out where you can move to
 				game.map.pathfinding(self, movePoints: game.movePoints)
 				
 				//now examine each tile
-				var bestTileFitness = -1
+				var bestTileFitness = -999
 				var bestTile = (x, y)
 				let tilesAccessable = game.map.tilesAccessable
+				let oldX = x
+				let oldY = y
 				for tile in tilesAccessable
 				{
-					//TODO: get fitness for that tile
-					//prioritize not being in a trap (this shouldn't care who placed the trap), and being able to attack
-					let fitness = 10 + ((tile.0 == x && tile.1 == y) ? 10 : 0)
+					//temporarily move there
+					x = tile.0
+					y = tile.1
 					
+					//get fitness for that tile
+					let distance = abs(game.player.x - x) + abs(game.player.y - y)
+					
+					var fitness = Int(arc4random_uniform(UInt32(randomFitness)))
+					if false //TODO: if there's a trap
+					{
+						fitness += trapFitness
+					}
+					fitness += (flee ? fitnessPerTileToPlayerFlee : fitnessPerTileToPlayer) * distance
+					if game.validTarget(game.player)
+					{
+						fitness += flee ? inRangeFitnessFlee : inRangeFitness
+					}
+					if x == oldX && y == oldY
+					{
+						fitness += noMoveFitness
+					}
 					
 					if fitness > bestTileFitness
 					{
@@ -356,6 +390,8 @@ class Creature
 						bestTile = tile
 					}
 				}
+				x = oldX
+				y = oldY
 				
 				//if the tile you want to be in isn't the one you are in, move
 				if bestTile.0 != x || bestTile.1 != y
@@ -368,8 +404,15 @@ class Creature
 			
 			//if you didn't decide to move, or you did and this has now asked you for your AI action, take an action
 			
-			//TODO: for now, just attack position (2, 1)
-			game.attack(x: 2, y: 1)
+			//attack if you're in range
+			if weapon.type != "unarmed" && game.validTarget(game.player)
+			{
+				game.attack(x: game.player.x, y: game.player.y)
+			}
+			else
+			{
+				game.skipAction()
+			}
 			
 			return true
 		}
