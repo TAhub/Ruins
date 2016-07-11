@@ -247,8 +247,8 @@
                                     <action selector="modeButton" destination="E04-kl-Lum" eventType="touchUpInside" id="Xwj-nw-ihd"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pA1-SU-Dby">
-                                <rect key="frame" x="119" y="66" width="83" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECTED" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pA1-SU-Dby">
+                                <rect key="frame" x="0.0" y="66" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -266,6 +266,7 @@
                             <constraint firstItem="pA1-SU-Dby" firstAttribute="centerX" secondItem="gpd-NO-5fm" secondAttribute="centerX" id="1Kc-gV-AV3"/>
                             <constraint firstItem="2LU-SG-vyu" firstAttribute="centerX" secondItem="gpd-NO-5fm" secondAttribute="centerX" multiplier="0.5" id="2na-SH-dN2"/>
                             <constraint firstItem="C0V-Ce-uGA" firstAttribute="top" secondItem="pA1-SU-Dby" secondAttribute="bottom" constant="8" symbolic="YES" id="ANc-nu-L2d"/>
+                            <constraint firstItem="pA1-SU-Dby" firstAttribute="width" secondItem="gpd-NO-5fm" secondAttribute="width" id="II8-c4-wz4"/>
                             <constraint firstItem="N8x-Vh-FAH" firstAttribute="top" secondItem="ezo-Cp-YrN" secondAttribute="bottom" constant="8" symbolic="YES" id="Iud-o4-z0f"/>
                             <constraint firstItem="dVX-5C-PPf" firstAttribute="centerX" secondItem="gpd-NO-5fm" secondAttribute="centerX" id="SJt-ki-CVI"/>
                             <constraint firstItem="dVX-5C-PPf" firstAttribute="top" secondItem="fwq-PS-tHI" secondAttribute="bottom" constant="8" symbolic="YES" id="TGM-V0-H0E"/>

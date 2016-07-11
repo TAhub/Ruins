@@ -112,6 +112,27 @@ class Armor
 	{
 		return DataStore.getInt("Armors", self.type, "health")!
 	}
+	var description:String
+	{
+		var stats = [String]()
+		func statAppend(stat:Int, name:String)
+		{
+			if stat > 0
+			{
+				stats.append("\(stat)\(name)")
+			}
+		}
+		statAppend(meleeResistance, name: " melee resistance")
+		statAppend(dodge, name: " dodge")
+		statAppend(miscMultiplier * maxHealthBonus, name: "% health bonus")
+		statAppend(trapResistance, name: " trap resistance")
+		statAppend(specialResistance, name: " special resistance")
+		statAppend(weight, name: " weight")
+		
+		let joined = stats.joinWithSeparator(", ")
+		let flavor = getStatistic("flavor") as! String
+		return "\(flavor)\n\(joined)"
+	}
 	
 	
 	private func getStatistic(name:String) -> NSObject?

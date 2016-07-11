@@ -36,10 +36,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 		actionB2.hidden = false
 		if mode == 0
 		{
-			if !canUse
-			{
-				actionB1.hidden = true
-			}
+			actionB1.hidden = !canUse
 			if item?.weapon != nil || item?.armor != nil
 			{
 				actionB1.setTitle("Equip", forState: .Normal)
@@ -48,21 +45,22 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 			{
 				actionB1.setTitle("Use", forState: .Normal)
 			}
+			actionB2.hidden = item == nil
 			actionB2.setTitle("Drop", forState: .Normal)
 			modeB.setTitle("To Floor", forState: .Normal)
 		}
 		else
 		{
+			actionB1.hidden = item != nil
 			actionB1.setTitle("Pick Up", forState: .Normal)
 			actionB2.hidden = true
 			modeB.setTitle("To Inventory", forState: .Normal)
 		}
 		if let item = item
 		{
-			label.text = "\(item.name): DESCRIPTION"
+			label.text = item.description
 			//TODO: description
 			//it should probably include, like, stats and shit
-			//and comparisons to current stats
 		}
 		else
 		{
@@ -88,10 +86,8 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 					{
 						game.player.inventory.append(Item(armor: currentArmor))
 					}
-					game.player.armor = armor
 					removeItem()
-					
-					game.delegate?.updatePlayer()
+					game.player.armor = armor
 					
 					//this costs an entire action
 					game.skipAction()
@@ -105,13 +101,15 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 					{
 						game.player.inventory.append(Item(weapon: game.player.weapon))
 					}
-					game.player.weapon = weapon
 					removeItem()
-					
-					game.delegate?.updatePlayer()
+					game.player.weapon = weapon
 					
 					//this doesn't cost an action, just a move point
 					game.movePoints = max(game.movePoints - 1, 0)
+				}
+				else
+				{
+					//TODO: use usable
 				}
 			}
 			else
@@ -122,6 +120,10 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 			if mode == 0
 			{
 				//TODO: drop
+				//for now, this just deletes the item
+				removeItem()
+				nameButtons()
+				table.reloadData()
 			}
 		default: break
 		}
@@ -163,10 +165,11 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 		}
 		switch(section)
 		{
-		case 0: return "Weapons"
-		case 1: return "Spell Items"
-		case 2: return "Usables"
-		case 3: return "Armors"
+		case 0: return "Equipped"
+		case 1: return "Weapons"
+		case 2: return "Spell Items"
+		case 3: return "Usables"
+		case 4: return "Armors"
 		default: return "Misc"
 		}
 	}
@@ -192,17 +195,42 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	private var canUse:Bool
 	{
-		if item?.weapon != nil
+		if let item = item
 		{
-			return game.movePoints > 0
+			//are you equipping it already?
+			if equippedWeapon
+			{
+				return false
+			}
+			if equippedArmor
+			{
+				return false
+			}
+			
+			//do you have enough resources to use it?
+			if item.weapon != nil
+			{
+				return game.movePoints > 0
+			}
+			//TODO: if it's a special power, return if you have aura
+			return true
 		}
-		//TODO: if it's a special power, return if you have aura
-		return true
+		return false
 	}
 	
 	private func removeItem()
 	{
-		//remove the item from the open inventory, and de-select it
+		//if the item is equipped already, un-equip it
+		if equippedArmor
+		{
+			game.player.armor = nil
+		}
+		if equippedWeapon
+		{
+			game.player.weapon = Weapon(type: "unarmed", material: "neutral", level: 0)
+		}
+		
+		//remove the item from the open inventory
 		for (i, item) in game.player.inventory.enumerate()
 		{
 			if item === self.item
@@ -211,31 +239,68 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 				break
 			}
 		}
+		
+		//de-select it
 		item = nil
 		table.deselectRowAtIndexPath(table.indexPathForSelectedRow!, animated: false)
+	}
+	
+	var equippedWeapon:Bool
+	{
+		if let item = item
+		{
+			return item.weapon != nil && item.weapon! === game.player.weapon
+		}
+		return false
+	}
+	
+	var equippedArmor:Bool
+	{
+		if let item = item
+		{
+			return item.armor != nil && game.player.armor != nil && item.armor! === game.player.armor!
+		}
+		return false
 	}
 	
 	func inventorySubarrayInCategoryNumber(inventory:[Item], categoryNumber:Int) -> [Item]
 	{
 		var items = [Item]()
+		
+		if categoryNumber == 0
+		{
+			//0 is a special category
+			//since I have to check for everything manually
+			if game.player.weapon.type != "unarmed"
+			{
+				items.append(Item(weapon: game.player.weapon))
+			}
+			if let armor = game.player.armor
+			{
+				items.append(Item(armor: armor))
+			}
+			
+			return items
+		}
+		
 		for item in game.player.inventory
 		{
-			var catNum = 4
+			var catNum = 5
 			if item.weapon != nil
-			{
-				catNum = 0
-			}
-			else if false //TODO: special power item
 			{
 				catNum = 1
 			}
-			else if false //TODO: usable item
+			else if false //TODO: special power item
 			{
 				catNum = 2
 			}
-			else if item.armor != nil
+			else if false //TODO: usable item
 			{
 				catNum = 3
+			}
+			else if item.armor != nil
+			{
+				catNum = 4
 			}
 			
 			if catNum == categoryNumber

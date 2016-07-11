@@ -17,6 +17,7 @@
 			<dict>
 				<!-- identity -->
 				<key>name</key> <string>shirt</string>
+				<key>flavor</key> <string>SAMPLE FLAVOR.</string>
 				<key>level</key> <integer>1</integer>
 				<!-- stats -->
 				<key>weight</key> <integer>50</integer>
@@ -41,6 +42,7 @@
 			<dict>
 				<!-- identity -->
 				<key>name</key> <string>old breastplate</string>
+				<key>flavor</key> <string>This is a second-hand breastplate. You're not sure if the red is rust of old blood.</string>
 				<key>level</key> <integer>4</integer>
 				<!-- stats -->
 				<key>weight</key> <integer>50</integer>
@@ -54,6 +56,7 @@
 			<dict>
 				<!-- identity -->
 				<key>name</key> <string>breastplate</string>
+				<key>flavor</key> <string>A shiny polished breastplate.</string>
 				<key>level</key> <integer>14</integer>
 				<!-- stats -->
 				<key>weight</key> <integer>50</integer>
@@ -67,6 +70,7 @@
 			<dict>
 				<!-- identity -->
 				<key>name</key> <string>half plate</string>
+				<key>flavor</key> <string>This breastplate has been given arm and leg plates. The joints are covered by leather.</string>
 				<key>level</key> <integer>24</integer>
 				<!-- stats -->
 				<key>weight</key> <integer>70</integer>
@@ -80,6 +84,7 @@
 			<dict>
 				<!-- identity -->
 				<key>name</key> <string>full plate</string>
+				<key>flavor</key> <string>This is a complete set of steel armor. It's surprising that you could put it on, you thought they had to be custom-fitted.</string>
 				<key>level</key> <integer>34</integer>
 				<!-- stats -->
 				<key>weight</key> <integer>100</integer>
@@ -101,6 +106,7 @@
 			<dict>
 				<!-- identity -->
 				<key>name</key> <string>leather armor</string>
+				<key>flavor</key> <string>This is a simple jacket of cheap leather.</string>
 				<key>level</key> <integer>0</integer>
 				<!-- stats -->
 				<key>weight</key> <integer>30</integer>
@@ -112,6 +118,7 @@
 			<dict>
 				<!-- identity -->
 				<key>name</key> <string>reinforced leather</string>
+				<key>flavor</key> <string>This leather armor is padded on the inside and has little metal bars stitched into it.</string>
 				<key>level</key> <integer>10</integer>
 				<!-- stats -->
 				<key>weight</key> <integer>35</integer>
@@ -123,6 +130,7 @@
 			<dict>
 				<!-- identity -->
 				<key>name</key> <string>chain shirt</string>
+				<key>flavor</key> <string>This shirt of chainmail covers only your torso. Better than nothing.</string>
 				<key>level</key> <integer>20</integer>
 				<!-- stats -->
 				<key>weight</key> <integer>40</integer>
@@ -135,6 +143,7 @@
 			<dict>
 				<!-- identity -->
 				<key>name</key> <string>chainmail</string>
+				<key>flavor</key> <string>This is a full set of chainmail. It's kind of heavy, but very flexible.</string> <!-- TODO: flavor -->
 				<key>level</key> <integer>30</integer>
 				<!-- stats -->
 				<key>weight</key> <integer>45</integer>
@@ -155,6 +164,7 @@
 			<dict>
 				<!-- identity -->
 				<key>name</key> <string>peasant outfit</string>
+				<key>flavor</key> <string>This outfit smells quite foul.</string>
 				<key>level</key> <integer>0</integer>
 				<!-- stats -->
 				<key>weight</key> <integer>10</integer>
@@ -166,6 +176,7 @@
 			<dict>
 				<!-- identity -->
 				<key>name</key> <string>work outfit</string>
+				<key>flavor</key> <string>Well, at least this one is clean.</string>
 				<key>level</key> <integer>10</integer>
 				<!-- stats -->
 				<key>weight</key> <integer>10</integer>
@@ -177,6 +188,7 @@
 			<dict>
 				<!-- identity -->
 				<key>name</key> <string>comfortable outfit</string>
+				<key>flavor</key> <string>Made of 100% wool. Very soft.</string>
 				<key>level</key> <integer>20</integer>
 				<!-- stats -->
 				<key>weight</key> <integer>10</integer>
@@ -189,6 +201,7 @@
 			<dict>
 				<!-- identity -->
 				<key>name</key> <string>fine outfit</string>
+				<key>flavor</key> <string>Is that silk? Fancy.</string>
 				<key>level</key> <integer>30</integer>
 				<!-- stats -->
 				<key>weight</key> <integer>10</integer>

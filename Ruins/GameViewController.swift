@@ -52,14 +52,6 @@ class GameViewController: UIViewController, GameDelegate {
 	@IBOutlet weak var weaponBarContainerView: UIView!
 	@IBOutlet weak var armorBarContainerView: UIView!
 	
-	
-	
-	//TODO: this is a temporary function, for testing
-	private var randomLevel:Int
-	{
-		return Int(arc4random_uniform(40)) + 1
-	}
-	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
@@ -73,14 +65,14 @@ class GameViewController: UIViewController, GameDelegate {
 		game = Game()
 		game.delegate = self
 		
-		let player = Creature(enemyType: "human player", level: randomLevel, x: 1, y: 5)
+		let player = Creature(enemyType: "human player", level: 1, x: 1, y: 5)
 		game.addPlayer(player)
-		game.addEnemy(Creature(enemyType: "shambler", level: randomLevel, x: 4, y: 5))
-		game.addEnemy(Creature(enemyType: "shambler", level: randomLevel, x: 5, y: 7))
+		game.addEnemy(Creature(enemyType: "shambler", level: 1, x: 4, y: 5))
+		game.addEnemy(Creature(enemyType: "shambler", level: 1, x: 5, y: 7))
 		
 		//make a quick initial player inventory
-		player.inventory.append(Item(armor: Armor(type: "heavy armor", level: 0)))
-		player.inventory.append(Item(weapon: Weapon(type: "rifle", material: "iron", level: 0)))
+		player.inventory.append(Item(armor: Armor(type: "heavy armor", level: 50)))
+		player.inventory.append(Item(weapon: Weapon(type: "rifle", material: "iron", level: 50)))
 		
 		//make the tiles
 		gameArea.initializeAtCameraPoint(cameraPoint, map: game.map)
@@ -104,11 +96,16 @@ class GameViewController: UIViewController, GameDelegate {
 		creatureLayer.addGestureRecognizer(tappy)
 	}
 	
-	override func viewDidAppear(animated: Bool)
+	override func viewWillAppear(animated: Bool)
 	{
-		super.viewDidAppear(animated)
+		super.viewWillAppear(animated)
 		
+		//update the UI and the player in case someone has changed something in another VC
 		uiUpdate()
+		for rep in representations
+		{
+			rep.updateAppearance()
+		}
 	}
 	
 	//MARK: actions
@@ -277,13 +274,6 @@ class GameViewController: UIViewController, GameDelegate {
 	}
 	
 	//MARK: delegate methods
-	func updatePlayer()
-	{
-		for rep in representations
-		{
-			rep.updateAppearance()
-		}
-	}
 	func inputDesired()
 	{
 		input = true
@@ -298,17 +288,18 @@ class GameViewController: UIViewController, GameDelegate {
 		//this comes before attacks because if you walk over a trap, it's move -> attack -> damage
 		if let movePath = anim.movePath
 		{
-			//TODO: animate the move down that path
-			//move the camera by updating the positions of all representations BUT the moving person
-			//afterwards, update representation visibility (also, update the moving person's representation position afterwards too)
-			//then call playAttackAnimations
-			
 			let updateCamera = game.activeCreature === game.player
 			
 			if updateCamera
 			{
 				gameArea.makeTilesForCameraPoint(cameraPoint)
 			}
+			
+			//TODO: if both points in this next leg of the move
+			//IE both (active.x, active.y) and (movePath.first!)
+			//are invisible/offscreen
+			//then update the position to (movePath.first!) instantly, instead of with an animation
+			
 			
 			UIView.animateWithDuration(0.25, animations:
 			{

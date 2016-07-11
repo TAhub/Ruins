@@ -43,8 +43,14 @@ class ItemTests: XCTestCase {
 	
 	func testItemName()
 	{
-		XCTAssertEqual(weaponItem.name, "neutral test weapon")
-		XCTAssertEqual(armorItem.name, "shirt")
+		XCTAssertEqual(weaponItem.name, "neutral test weapon  100/100")
+		XCTAssertEqual(armorItem.name, "shirt  100/100")
+	}
+	
+	func testItemDescription()
+	{
+		XCTAssertEqual(weaponItem.description, "SAMPLE FLAVOR.\n200 damage (100 graze), 100% accuracy, 100 range, 100 weight")
+		XCTAssertEqual(armorItem.description, "SAMPLE FLAVOR.\n1 melee resistance, 2 dodge, 30% health bonus, 4 trap resistance, 5 special resistance, 50 weight")
 	}
 	
 	//MARK: helper functions

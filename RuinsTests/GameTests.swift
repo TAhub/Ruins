@@ -337,10 +337,4 @@ class GameTests: XCTestCase, GameDelegate {
 	{
 		gameOverCalled += 1
 	}
-	func updatePlayer()
-	{
-		//I don't care about this; it just exists to notify the main game controller that another controller has changed
-		//the player's appearance
-		//it isn't ever called by the game itself, to avoid ever double-updating appearances
-	}
 }

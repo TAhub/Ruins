@@ -83,12 +83,25 @@ class Item
 	{
 		if let weapon = weapon
 		{
-			return weapon.name
+			return "\(weapon.name)  \(weapon.health)/\(weapon.maxHealth)"
 		}
 		if let armor = armor
 		{
-			return armor.name
+			return "\(armor.name)  \(armor.health)/\(armor.maxHealth)"
 		}
 		return "TEMP" //TODO: return name of usable
+	}
+	
+	var description:String
+	{
+		if let weapon = weapon
+		{
+			return weapon.description
+		}
+		if let armor = armor
+		{
+			return armor.description
+		}
+		return "TEMP" //TODO: return description of usable
 	}
 }

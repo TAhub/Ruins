@@ -55,5 +55,6 @@ class ArmorTests: XCTestCase {
 		XCTAssertEqual(armor.spriteColor, UIColor.blackColor())
 		XCTAssertEqual(armor.maxHealth, 100)
 		XCTAssertEqual(armor.health, 100)
+		XCTAssertEqual(armor.description, "SAMPLE FLAVOR.\n1 melee resistance, 2 dodge, 30% health bonus, 4 trap resistance, 5 special resistance, 50 weight")
 	}
 }

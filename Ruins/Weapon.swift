@@ -155,4 +155,9 @@ class Weapon
 		}
 		return "\(material) \(nm)"
 	}
+	var description:String
+	{
+		let flavor = DataStore.getString("Weapons", type, "flavor")!
+		return "\(flavor)\n\(damage * hitDamageMultiplier / 100) damage (\(damage) graze), \(accuracy)% accuracy, \(range) range, \(weight) weight"
+	}
 }

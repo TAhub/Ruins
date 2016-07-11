@@ -33,7 +33,6 @@ protocol GameDelegate
 	func inputDesired()
 	func uiUpdate()
 	func gameOver()
-	func updatePlayer()
 }
 
 class Game
