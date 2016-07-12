@@ -155,6 +155,80 @@ class MapTests: XCTestCase {
 		}
 	}
 	
+	func testMapGeneratorValidity()
+	{
+		let (solidity, width, height, startX, startY, endX, endY) = MapGenerator.generateSolidityMap(MapStub(flavor: "lawless", theme: "city"))
+		
+		//firstly, all non-solid tiles must be accessable
+		//(number of accessable tiles will be 0 if the start is solid)
+		XCTAssertEqual(numberOfNonSolidTiles(solidity), numberOfAccessableTiles(solidity, startX: startX, startY: startY, width: width, height: height))
+		
+		//secondly, the end area must be an (endRoomSize x endRoomSize) square of non-solid tiles, with only one non-solid tile in the border
+		var innerSolid = 0
+		var outerSolid = 0
+		for y in -1..<endRoomSize+1
+		{
+			for x in -1..<endRoomSize+1
+			{
+				if solidity[(x + endX) + (y + endY) * width]
+				{
+					outerSolid += 1
+					if !(y == -1 || x == -1 || x == endRoomSize || y == endRoomSize)
+					{
+						innerSolid += 1
+					}
+				}
+			}
+		}
+		XCTAssertEqual(innerSolid, 0)
+		XCTAssertEqual(outerSolid, endRoomSize * 4 + 4 - 1) //endRoomSize * 4 is the edges, + 4 is the corners, - 1 is the one tile enterance
+	}
+	
+	func testMapGeneratorClip()
+	{
+		let T = true
+		let F = false
+		let oldSolidity =
+			[T, T, T, T, T, T, T, T, T, T,
+			 T, T, T, T, T, T, T, T, T, T,
+			 T, T, T, T, T, T, T, T, T, T,
+			 T, T, T, T, T, T, F, T, T, T,
+			 T, T, F, F, F, F, F, T, T, T,
+			 T, T, F, F, F, T, T, T, T, T]
+		let oldWidth = 10
+		let oldHeight = 6
+		let oldStartX = 6
+		let oldStartY = 3
+		let oldEndX = 2
+		let oldEndY = 4
+		let newSolidity =
+			[T, T, T, T, T, T, T,
+			 T, T, T, T, T, F, T,
+			 T, F, F, F, F, F, T,
+			 T, F, F, F, T, T, T,
+			 T, T, T, T, T, T, T]
+		let newWidth = 7
+		let newHeight = 5
+		let newStartX = 5
+		let newStartY = 1
+		let newEndX = 1
+		let newEndY = 2
+		
+		let (realSolidity, realWidth, realHeight, realStartX, realStartY, realEndX, realEndY) = MapGenerator.pruneSolidity(oldSolidity, width: oldWidth, height: oldHeight, startX: oldStartX, startY: oldStartY, endX: oldEndX, endY: oldEndY)
+		
+		XCTAssertEqual(newWidth, realWidth)
+		XCTAssertEqual(newHeight, realHeight)
+		XCTAssertEqual(newStartX, realStartX)
+		XCTAssertEqual(newStartY, realStartY)
+		XCTAssertEqual(newEndX, realEndX)
+		XCTAssertEqual(newEndY, realEndY)
+		XCTAssertEqual(newSolidity.count, realSolidity.count)
+		for i in 0..<min(newSolidity.count, realSolidity.count)
+		{
+			XCTAssertEqual(newSolidity[i], realSolidity[i])
+		}
+	}
+	
 	//MARK: pathfinding tests
 	func testPathfindingStraightLine()
 	{
@@ -183,6 +257,53 @@ class MapTests: XCTestCase {
 	//	what if there's a trap in the way? it should
 	
 	//MARK: helper functions
+	func numberOfNonSolidTiles(solidity:[Bool]) -> Int
+	{
+		var nonSolid = 0
+		for solid in solidity
+		{
+			if !solid
+			{
+				nonSolid += 1
+			}
+		}
+		return nonSolid
+	}
+	func numberOfAccessableTiles(solidity:[Bool], startX:Int, startY:Int, width:Int, height:Int) -> Int
+	{
+		var accessable = [Bool]()
+		for _ in solidity
+		{
+			accessable.append(false)
+		}
+		
+		func exploreAround(x x:Int, y:Int)
+		{
+			if x >= 0 && y >= 0 && x < width && y < height
+			{
+				let i = x + y * width
+				if !accessable[i] && !solidity[i]
+				{
+					accessable[i] = true
+					exploreAround(x: x - 1, y: y)
+					exploreAround(x: x + 1, y: y)
+					exploreAround(x: x, y: y - 1)
+					exploreAround(x: x, y: y + 1)
+				}
+			}
+		}
+		exploreAround(x: startX, y: startY)
+		
+		var numAcc = 0
+		for acc in accessable
+		{
+			if acc
+			{
+				numAcc += 1
+			}
+		}
+		return numAcc
+	}
 	func comparePathToExpected(toX x:Int, toY y:Int, expected:[(Int, Int)])
 	{
 		var expected = expected
