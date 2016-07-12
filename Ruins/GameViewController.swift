@@ -73,6 +73,9 @@ class GameViewController: UIViewController, GameDelegate {
 		//make a quick initial player inventory
 		player.inventory.append(Item(armor: Armor(type: "heavy armor", level: 50)))
 		player.inventory.append(Item(weapon: Weapon(type: "rifle", material: "iron", level: 50)))
+		let pot = Item(usable: "healing potion")
+		pot.number = 2
+		player.inventory.append(pot)
 		
 		//make the tiles
 		gameArea.initializeAtCameraPoint(cameraPoint, map: game.map)

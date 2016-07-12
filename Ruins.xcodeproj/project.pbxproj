@@ -12,6 +12,7 @@
 		E4520E961D34486C00EF4342 /* ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4520E951D34486C00EF4342 /* ItemTests.swift */; };
 		E4520E981D3448EB00EF4342 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4520E971D3448EB00EF4342 /* Item.swift */; };
 		E4520E9A1D344DD300EF4342 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4520E991D344DD300EF4342 /* InventoryViewController.swift */; };
+		E4520E9C1D346B8F00EF4342 /* Usables.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4520E9B1D346B8F00EF4342 /* Usables.plist */; };
 		E4F147AD1D2D712700F4C579 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147AC1D2D712700F4C579 /* AppDelegate.swift */; };
 		E4F147B21D2D712700F4C579 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F147B01D2D712700F4C579 /* Main.storyboard */; };
 		E4F147B41D2D712700F4C579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F147B31D2D712700F4C579 /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		E4520E951D34486C00EF4342 /* ItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTests.swift; sourceTree = "<group>"; };
 		E4520E971D3448EB00EF4342 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		E4520E991D344DD300EF4342 /* InventoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
+		E4520E9B1D346B8F00EF4342 /* Usables.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Usables.plist; sourceTree = "<group>"; };
 		E4F147A91D2D712700F4C579 /* Ruins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ruins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F147AC1D2D712700F4C579 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4F147B11D2D712700F4C579 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		E4F147CF1D2D717C00F4C579 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4520E9B1D346B8F00EF4342 /* Usables.plist */,
 				E44E86601D3052C500028307 /* Colors.plist */,
 				E4F147F21D2DCEE500F4C579 /* AIs.plist */,
 				E4F147E41D2D998100F4C579 /* Tests.plist */,
@@ -305,6 +308,7 @@
 				E4F147DF1D2D767F00F4C579 /* Armors.plist in Resources */,
 				E4F147D71D2D766200F4C579 /* AppearanceGroups.plist in Resources */,
 				E4F147F31D2DCEE500F4C579 /* AIs.plist in Resources */,
+				E4520E9C1D346B8F00EF4342 /* Usables.plist in Resources */,
 				E4F147DB1D2D767000F4C579 /* Weapons.plist in Resources */,
 				E4F147DD1D2D767800F4C579 /* Materials.plist in Resources */,
 				E4F147B71D2D712700F4C579 /* LaunchScreen.storyboard in Resources */,

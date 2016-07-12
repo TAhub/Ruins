@@ -12,16 +12,27 @@ class Item
 {
 	let weapon:Weapon?
 	let armor:Armor?
+	let usable:String?
+	var number:Int!
 	
 	init(weapon:Weapon)
 	{
 		self.weapon = weapon
 		self.armor = nil
+		self.usable = nil
 	}
-	init (armor:Armor)
+	init(armor:Armor)
 	{
 		self.weapon = nil
 		self.armor = armor
+		self.usable = nil
+	}
+	init(usable:String)
+	{
+		self.weapon = nil
+		self.armor = nil
+		self.usable = usable
+		self.number = 1
 	}
 	
 	init(saveDict d:NSDictionary)
@@ -30,17 +41,20 @@ class Item
 		{
 			self.weapon = Weapon(saveDict: weaponDict)
 			self.armor = nil
+			self.usable = nil
 		}
 		else if let armorDict = d["armor"] as? NSDictionary
 		{
 			self.weapon = nil
 			self.armor = Armor(saveDict: armorDict)
+			self.usable = nil
 		}
 		else
 		{
-			//TODO: load consumable
 			self.weapon = nil
 			self.armor = nil
+			self.usable = d["usable"] as? String
+			self.number = Int((d["number"] as! NSNumber).intValue)
 		}
 	}
 	
@@ -58,7 +72,8 @@ class Item
 		}
 		else
 		{
-			//TODO: save consumable
+			d["usable"] = usable
+			d["number"] = number
 		}
 		
 		return d
@@ -76,7 +91,7 @@ class Item
 		{
 			return armor.weight
 		}
-		return 100 //TODO: return weight of usable
+		return DataStore.getInt("Usables", usable!, "weight")! * number
 	}
 	
 	var name:String
@@ -89,7 +104,7 @@ class Item
 		{
 			return "\(armor.name)  \(armor.health)/\(armor.maxHealth)"
 		}
-		return "TEMP" //TODO: return name of usable
+		return "\(usable!)\(number == 1 ? "" : " x\(number)")"
 	}
 	
 	var description:String
@@ -102,6 +117,41 @@ class Item
 		{
 			return armor.description
 		}
-		return "TEMP" //TODO: return description of usable
+		if let usable = usable
+		{
+			var stats = [String]()
+			if let heals = heals
+			{
+				stats.append("Heals \(heals)")
+			}
+			if cures
+			{
+				stats.append("Cures")
+			}
+			stats.append("\(weight) \(number > 1 ? "total " : "")weight")
+			let flavor = DataStore.getString("Usables", usable, "flavor")!
+			let joined = stats.joinWithSeparator(". ")
+			return "\(flavor)\n\(joined)."
+		}
+		assertionFailure()
+		return "NO"
+	}
+	
+	var cures:Bool
+	{
+		if let usable = usable
+		{
+			return DataStore.getBool("Usables", usable, "cures")
+		}
+		return false
+	}
+	
+	var heals:Int?
+	{
+		if let usable = usable
+		{
+			return DataStore.getInt("Usables", usable, "heals")
+		}
+		return nil
 	}
 }

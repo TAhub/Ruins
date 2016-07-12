@@ -107,23 +107,58 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 					//this doesn't cost an action, just a move point
 					game.movePoints = max(game.movePoints - 1, 0)
 				}
-				else
+				else if let item = item
 				{
-					//TODO: use usable
+					backButton()
+					
+					//TODO: actually maybe this code should be moved into game
+					//and given an animation
+					
+					//use the item
+					if let heals = item.heals
+					{
+						game.player.health = min(game.player.health + heals, game.player.maxHealth)
+					}
+					if item.cures ?? false
+					{
+						//TODO: cure any other status effects I add later
+						game.player.stun = 0
+						game.player.shake = 0
+						game.player.poison = 0
+					}
+					
+					if item.number <= 1
+					{
+						removeItem()
+					}
+					else
+					{
+						item.number = item.number - 1
+					}
+					
+					
+					//this costs an entire action
+					game.skipAction()
 				}
 			}
 			else
 			{
-				//TODO: pick up
+				//TODO: pick up from a real inventory
+				var tempInv = [Item]()
+				transferBetweenInventories(&tempInv, to: &game.player.inventory)
+				nameButtons()
+				table.reloadData()
+				reselectItem()
 			}
 		case 1:
 			if mode == 0
 			{
-				//TODO: drop
-				//for now, this just deletes the item
-				removeItem()
+				//TODO: drop into a real inventory
+				var tempInv = [Item]()
+				transferBetweenInventories(&game.player.inventory, to: &tempInv)
 				nameButtons()
 				table.reloadData()
+				reselectItem()
 			}
 		default: break
 		}
@@ -193,6 +228,56 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	//MARK: helper functions
 	
+	private func transferBetweenInventories(inout from:[Item], inout to:[Item])
+	{
+		if let item = item
+		{
+			var dropItem:Item!
+			if item.usable != nil && item.number > 1
+			{
+				item.number = item.number - 1
+				dropItem = Item(usable: item.usable!)
+			}
+			else if equippedWeapon
+			{
+				game.player.weapon = Weapon(type: "unarmed", material: "neutral", level: 0)
+				dropItem = item
+				self.item = nil
+			}
+			else if equippedArmor
+			{
+				game.player.armor = nil
+				dropItem = item
+				self.item = nil
+			}
+			else
+			{
+				for (i, it) in from.enumerate()
+				{
+					if item === it
+					{
+						dropItem = item
+						from.removeAtIndex(i)
+						break
+					}
+					
+					//if you dropped it all, deselect it
+					self.item = nil
+				}
+			}
+			
+			for item in to
+			{
+				if item.usable == dropItem.usable
+				{
+					item.number = item.number + dropItem.number
+					return
+				}
+			}
+			to.append(dropItem)
+		}
+	}
+	
 	private var canUse:Bool
 	{
 		if let item = item
@@ -212,8 +297,14 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 			{
 				return game.movePoints > 0
 			}
+			if item.armor != nil
+			{
+				return true
+			}
 			//TODO: if it's a special power, return if you have aura
-			return true
+			
+			//otherwise it's a usable or a misc
+			return item.cures || item.heals != nil
 		}
 		return false
 	}
@@ -242,7 +333,33 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 		
 		//de-select it
 		item = nil
-		table.deselectRowAtIndexPath(table.indexPathForSelectedRow!, animated: false)
+	}
+	
+	func reselectItem()
+	{
+		if let item = item
+		{
+			let catNum = categoryNumberForItem(item)
+			let cat:[Item]
+			if mode == 0
+			{
+				cat = inventorySubarrayInCategoryNumber(game.player.inventory, categoryNumber: catNum)
+			}
+			else
+			{
+				//TODO: cat is the floor inventory
+				cat = [Item]()
+			}
+			for (i, it) in cat.enumerate()
+			{
+				if it === item
+				{
+					let path = NSIndexPath(forItem: i, inSection: catNum)
+					table.selectRowAtIndexPath(path, animated: false, scrollPosition: UITableViewScrollPosition.Top)
+					return
+				}
+			}
+		}
 	}
 	
 	var equippedWeapon:Bool
@@ -285,30 +402,41 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 		
 		for item in game.player.inventory
 		{
-			var catNum = 5
-			if item.weapon != nil
-			{
-				catNum = 1
-			}
-			else if false //TODO: special power item
-			{
-				catNum = 2
-			}
-			else if false //TODO: usable item
-			{
-				catNum = 3
-			}
-			else if item.armor != nil
-			{
-				catNum = 4
-			}
-			
-			if catNum == categoryNumber
+			if categoryNumberForItem(item) == categoryNumber
 			{
 				items.append(item)
 			}
 		}
 		
 		return items
+	}
+	
+	func categoryNumberForItem(item:Item) -> Int
+	{
+		if let weapon = item.weapon
+		{
+			if weapon === game.player.weapon
+			{
+				return 0
+			}
+			return 1
+		}
+		else if false //TODO: special power item
+		{
+			return 2
+		}
+		else if item.cures || item.heals != nil
+		{
+			return 3
+		}
+		else if let armor = item.armor
+		{
+			if game.player.armor != nil && armor === game.player.armor!
+			{
+				return 0
+			}
+			return 4
+		}
+		return 5
 	}
 }
