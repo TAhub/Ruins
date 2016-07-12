@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   MapThemes.plist
+   Ruins
+
+   Created by Theodore Abshire on 7/12/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+    <key>wasteland</key>
+	<dict>
+		<key>keyword</key> <string>criminal</string>
+		<key>suffixes</key>
+		<array>
+			<string>wasteland</string>
+			<string>wastes</string>
+			<string>badlands</string>
+			<string>wilds</string>
+		</array>
+	</dict>
+    <key>grove</key>
+	<dict>
+		<key>keyword</key> <string>wildlife</string>
+		<key>suffixes</key>
+		<array>
+			<string>grove</string>
+			<string>copse</string>
+			<string>thicket</string>
+			<string>woods</string>
+			<string>holt</string>
+		</array>
+	</dict>
+    <key>city</key>
+	<dict>
+		<key>keyword</key> <string>stun</string>
+		<key>suffixes</key>
+		<array>
+			<string>city</string>
+			<string>burb</string>
+			<string>town</string>
+			<string>metropolis</string>
+			<string>borough</string>
+		</array>
+	</dict>
+    <key>slum</key>
+	<dict>
+		<key>keyword</key> <string>poison</string>
+		<key>suffixes</key>
+		<array>
+			<string>slum</string>
+			<string>ghetto</string>
+			<string>shantytown</string>
+			<string>shacktown</string>
+			<string>rathole</string>
+		</array>
+	</dict>
+    <key>fort</key>
+	<dict>
+		<key>keyword</key> <string>military</string>
+		<key>suffixes</key>
+		<array>
+			<string>fortress</string>
+			<string>castle</string>
+			<string>bastion</string>
+			<string>citadel</string>
+			<string>redoubt</string>
+		</array>
+	</dict>
+    <key>cave</key>
+	<dict>
+		<key>keyword</key> <string>tomb dweller</string>
+		<key>suffixes</key>
+		<array>
+			<string>cavern</string>
+			<string>grotto</string>
+			<string>vault</string>
+			<string>cave</string>
+			<string>depths</string>
+		</array>
+	</dict>
+    <key>temple</key>
+	<dict>
+		<key>keyword</key> <string>magical</string>
+		<key>suffixes</key>
+		<array>
+			<string>temple</string>
+			<string>shrine</string>
+			<string>cathedral</string>
+			<string>fane</string>
+			<string>sanctuary</string>
+		</array>
+	</dict>
+    <key>hideout</key>
+	<dict>
+		<key>keyword</key> <string>shake</string>
+		<key>suffixes</key>
+		<array>
+			<string>hideout</string>
+			<string>retreat</string>
+			<string>refuge</string>
+			<string>safe house</string>
+			<string>hideaway</string>
+		</array>
+	</dict>
+</dict>
+</plist>

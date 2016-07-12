@@ -11,7 +11,7 @@ import UIKit
 class DataStore
 {
 	//MARK: internal functions
-	private static func getPlist(plist:String) -> [NSString : NSObject]
+	static func getPlist(plist:String) -> [NSString : NSObject]
 	{
 		if let filePath = NSBundle.mainBundle().pathForResource(plist, ofType: "plist"), let dict = NSDictionary(contentsOfFile: filePath) as? [NSString : NSObject]
 		{
@@ -21,7 +21,7 @@ class DataStore
 		return [NSString : NSObject]()
 	}
 	
-	private static func getEntry(plist:String, _ entry:String) -> [NSString : NSObject]
+	static func getEntry(plist:String, _ entry:String) -> [NSString : NSObject]
 	{
 		let plist = getPlist(plist)
 		if let entry = plist[entry] as? [NSString : NSObject]

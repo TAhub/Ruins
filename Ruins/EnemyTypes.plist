@@ -31,14 +31,14 @@
 		<key>level</key> <integer>99999</integer>
 		<key>keywords</key>
 		<array>
-			<string>poison</string>
+			<!-- <string>poison</string>
 			<string>stun</string>
 			<string>shake</string>
 			<string>criminal</string>
 			<string>wildlife</string>
 			<string>military</string>
 			<string>tomb dweller</string>
-			<string>magical</string>
+			<string>magical</string> -->
 		</array>
 	</dict>
 	

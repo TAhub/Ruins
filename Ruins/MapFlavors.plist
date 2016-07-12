@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   MapFlavors.plist
+   Ruins
+
+   Created by Theodore Abshire on 7/12/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+    <key>poisonous</key>
+	<dict>
+		<key>keyword</key> <string>poison</string>
+		<key>alternate keyword</key> <string>criminal</string>
+		<key>prefixes</key>
+		<array>
+			<string>venemous</string>
+			<string>poisonous</string>
+			<string>blighted</string>
+			<string>noxious</string>
+		</array>
+	</dict>
+    <key>lawless</key>
+	<dict>
+		<key>keyword</key> <string>criminal</string>
+		<key>alternate keyword</key> <string>shake</string>
+		<key>prefixes</key>
+		<array>
+			<string>anarchic</string>
+			<string>lawless</string>
+			<string>riotous</string>
+			<string>unruly</string>
+		</array>
+	</dict>
+    <key>dead</key>
+	<dict>
+		<key>keyword</key> <string>tomb dweller</string>
+		<key>alternate keyword</key> <string>stun</string>
+		<key>prefixes</key>
+		<array>
+			<string>dead</string>
+			<string>dusty</string>
+			<string>unholy</string>
+			<string>vile</string>
+		</array>
+	</dict>
+    <key>mystical</key>
+	<dict>
+		<key>keyword</key> <string>magical</string>
+		<key>alternate keyword</key> <string>shake</string>
+		<key>prefixes</key>
+		<array>
+			<string>mystic</string>
+			<string>occult</string>
+			<string>otherworldly</string>
+			<string>transcendental</string>
+		</array>
+	</dict>
+    <key>overgrown</key>
+	<dict>
+		<key>keyword</key> <string>wildlife</string>
+		<key>alternate keyword</key> <string>shake</string>
+		<key>prefixes</key>
+		<array>
+			<string>overgrown</string>
+			<string>green</string>
+			<string>lush</string>
+			<string>wild</string>
+		</array>
+	</dict>
+    <key>battlefield</key>
+	<dict>
+		<key>keyword</key> <string>military</string>
+		<key>alternate keyword</key> <string>stun</string>
+		<key>prefixes</key>
+		<array>
+			<string>wartorn</string>
+			<string>devastated</string>
+			<string>occupied</string>
+			<string>racked</string>
+		</array>
+	</dict>
+    <key>fierce</key>
+	<dict>
+		<key>keyword</key> <string>stun</string>
+		<key>alternate keyword</key> <string>shake</string>
+		<key>prefixes</key>
+		<array>
+			<string>fierce</string>
+			<string>savage</string>
+			<string>vicious</string>
+			<string>relentless</string>
+		</array>
+	</dict>
+</dict>
+</plist>

@@ -13,6 +13,10 @@
 		E4520E981D3448EB00EF4342 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4520E971D3448EB00EF4342 /* Item.swift */; };
 		E4520E9A1D344DD300EF4342 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4520E991D344DD300EF4342 /* InventoryViewController.swift */; };
 		E4520E9C1D346B8F00EF4342 /* Usables.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4520E9B1D346B8F00EF4342 /* Usables.plist */; };
+		E453FF6C1D3582B6002B749E /* MapGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E453FF6B1D3582B6002B749E /* MapGenerator.swift */; };
+		E453FF6E1D3589CB002B749E /* MapThemes.plist in Resources */ = {isa = PBXBuildFile; fileRef = E453FF6D1D3589CB002B749E /* MapThemes.plist */; };
+		E453FF701D3589D2002B749E /* MapFlavors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E453FF6F1D3589D2002B749E /* MapFlavors.plist */; };
+		E453FF721D3593CE002B749E /* BalanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E453FF711D3593CE002B749E /* BalanceTests.swift */; };
 		E4F147AD1D2D712700F4C579 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147AC1D2D712700F4C579 /* AppDelegate.swift */; };
 		E4F147B21D2D712700F4C579 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F147B01D2D712700F4C579 /* Main.storyboard */; };
 		E4F147B41D2D712700F4C579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F147B31D2D712700F4C579 /* Assets.xcassets */; };
@@ -63,6 +67,10 @@
 		E4520E971D3448EB00EF4342 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		E4520E991D344DD300EF4342 /* InventoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		E4520E9B1D346B8F00EF4342 /* Usables.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Usables.plist; sourceTree = "<group>"; };
+		E453FF6B1D3582B6002B749E /* MapGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGenerator.swift; sourceTree = "<group>"; };
+		E453FF6D1D3589CB002B749E /* MapThemes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MapThemes.plist; sourceTree = "<group>"; };
+		E453FF6F1D3589D2002B749E /* MapFlavors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MapFlavors.plist; sourceTree = "<group>"; };
+		E453FF711D3593CE002B749E /* BalanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceTests.swift; sourceTree = "<group>"; };
 		E4F147A91D2D712700F4C579 /* Ruins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ruins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F147AC1D2D712700F4C579 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4F147B11D2D712700F4C579 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -150,6 +158,7 @@
 		E4F147C01D2D712700F4C579 /* RuinsTests */ = {
 			isa = PBXGroup;
 			children = (
+				E453FF711D3593CE002B749E /* BalanceTests.swift */,
 				E4520E951D34486C00EF4342 /* ItemTests.swift */,
 				E4F34F171D2ECF54001FEC40 /* ArmorTests.swift */,
 				E4F147EC1D2D9DEF00F4C579 /* WeaponTests.swift */,
@@ -174,6 +183,7 @@
 				E4F147E21D2D85F400F4C579 /* Weapon.swift */,
 				E4F147D21D2D73F400F4C579 /* Creature.swift */,
 				E4F147E61D2D998F00F4C579 /* DataStore.swift */,
+				E453FF6B1D3582B6002B749E /* MapGenerator.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -202,6 +212,8 @@
 		E4F147CF1D2D717C00F4C579 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E453FF6D1D3589CB002B749E /* MapThemes.plist */,
+				E453FF6F1D3589D2002B749E /* MapFlavors.plist */,
 				E4520E9B1D346B8F00EF4342 /* Usables.plist */,
 				E44E86601D3052C500028307 /* Colors.plist */,
 				E4F147F21D2DCEE500F4C579 /* AIs.plist */,
@@ -307,6 +319,7 @@
 				E4F147E51D2D998100F4C579 /* Tests.plist in Resources */,
 				E4F147DF1D2D767F00F4C579 /* Armors.plist in Resources */,
 				E4F147D71D2D766200F4C579 /* AppearanceGroups.plist in Resources */,
+				E453FF701D3589D2002B749E /* MapFlavors.plist in Resources */,
 				E4F147F31D2DCEE500F4C579 /* AIs.plist in Resources */,
 				E4520E9C1D346B8F00EF4342 /* Usables.plist in Resources */,
 				E4F147DB1D2D767000F4C579 /* Weapons.plist in Resources */,
@@ -314,6 +327,7 @@
 				E4F147B71D2D712700F4C579 /* LaunchScreen.storyboard in Resources */,
 				E4F147E11D2D768700F4C579 /* Lists.plist in Resources */,
 				E4F147D91D2D766B00F4C579 /* EnemyTypes.plist in Resources */,
+				E453FF6E1D3589CB002B749E /* MapThemes.plist in Resources */,
 				E4F147B41D2D712700F4C579 /* Assets.xcassets in Resources */,
 				E4F147B21D2D712700F4C579 /* Main.storyboard in Resources */,
 			);
@@ -335,6 +349,7 @@
 			files = (
 				E4F147E31D2D85F400F4C579 /* Weapon.swift in Sources */,
 				E4F147E71D2D998F00F4C579 /* DataStore.swift in Sources */,
+				E453FF6C1D3582B6002B749E /* MapGenerator.swift in Sources */,
 				E4F147F91D2DD63A00F4C579 /* Representation.swift in Sources */,
 				E4F34F1A1D2ECF98001FEC40 /* Armor.swift in Sources */,
 				E4520E981D3448EB00EF4342 /* Item.swift in Sources */,
@@ -363,6 +378,7 @@
 				E4F34F201D2EEDFD001FEC40 /* MapTests.swift in Sources */,
 				E4F147ED1D2D9DEF00F4C579 /* WeaponTests.swift in Sources */,
 				E4F147EF1D2DA72A00F4C579 /* GameTests.swift in Sources */,
+				E453FF721D3593CE002B749E /* BalanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
