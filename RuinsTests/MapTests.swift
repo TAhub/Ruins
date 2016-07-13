@@ -210,33 +210,49 @@ class MapTests: XCTestCase {
 		}
 	}
 	
-	func testMapGeneratorValidity()
+	func testMapRoomCenter()
 	{
-		let (solidity, width, height, startX, startY, endX, endY) = MapGenerator.generateSolidityMap(MapStub(flavor: "lawless", theme: "city", level: 1))
+		let room = MapRoom(x: 10, y: 8, width: 4, height: 6, roomClass: .Normal)
+		XCTAssertEqual(room.centerX, 12)
+		XCTAssertEqual(room.centerY, 11)
+	}
+	
+	func testMapRoomContainsPoint()
+	{
+		let room = MapRoom(x: 10, y: 10, width: 10, height: 10, roomClass: .Normal)
+		XCTAssertTrue(room.containsPoint(x: 10, y: 10))
+		XCTAssertTrue(room.containsPoint(x: 15, y: 15))
+		XCTAssertFalse(room.containsPoint(x: 9, y: 10))
+	}
+	
+	func testMapRoomCollide()
+	{
+		let room = MapRoom(x: 10, y: 10, width: 10, height: 10, roomClass: .Normal)
+		XCTAssertTrue(room.collide(MapRoom(x: 0, y: 10, width: 10, height: 10, roomClass: .Normal))) //there needs to be a gap of 1
+		XCTAssertTrue(room.collide(MapRoom(x: 12, y: 12, width: 6, height: 6, roomClass: .Normal))) //inside
+		XCTAssertFalse(room.collide(MapRoom(x: 0, y: 10, width: 5, height: 10, roomClass: .Normal))) //not inside
+	}
+	
+	func testMapGeneratorRoomsAlgorithmValidity()
+	{
+		let (solidity, width, height, rooms) = MapGenerator.generateRoomsSolidityMap(MapStub(flavor: "lawless", theme: "city", level: 1))
 		
-		//firstly, all non-solid tiles must be accessable
-		//(number of accessable tiles will be 0 if the start is solid)
-		XCTAssertEqual(numberOfNonSolidTiles(solidity), numberOfAccessableTiles(solidity, startX: startX, startY: startY, width: width, height: height))
-		
-		//secondly, the end area must be an (endRoomSize x endRoomSize) square of non-solid tiles, with only one non-solid tile in the border
-		var innerSolid = 0
-		var outerSolid = 0
-		for y in -1..<endRoomSize+1
-		{
-			for x in -1..<endRoomSize+1
+		//firstly, there must be a start room and a boss room
+		locateRoomsThenClosure(rooms)
+		{ (startRoom, endRoom) in
+			//secondly, run the general validity test
+			self.validityGeneral(solidity, width: width, height: height, startRoom: startRoom, endRoom: endRoom)
+			
+			//finally, this algorithm is guaranteed to not need to be pruned
+			//therefore, try to prune it and see if anything changes
+			let (croppedSolidity, croppedWidth, croppedHeight) = MapGenerator.pruneSolidity(solidity, width: width, height: height)
+			XCTAssertEqual(croppedWidth, width)
+			XCTAssertEqual(croppedHeight, height)
+			for i in 0..<min(croppedSolidity.count, solidity.count)
 			{
-				if solidity[(x + endX) + (y + endY) * width]
-				{
-					outerSolid += 1
-					if !(y == -1 || x == -1 || x == endRoomSize || y == endRoomSize)
-					{
-						innerSolid += 1
-					}
-				}
+				XCTAssertEqual(croppedSolidity[i], solidity[i])
 			}
 		}
-		XCTAssertEqual(innerSolid, 0)
-		XCTAssertEqual(outerSolid, endRoomSize * 4 + 4 - 1) //endRoomSize * 4 is the edges, + 4 is the corners, - 1 is the one tile enterance
 	}
 	
 	func testMapGeneratorClip()
@@ -252,10 +268,6 @@ class MapTests: XCTestCase {
 			 T, T, F, F, F, T, T, T, T, T]
 		let oldWidth = 10
 		let oldHeight = 6
-		let oldStartX = 6
-		let oldStartY = 3
-		let oldEndX = 2
-		let oldEndY = 4
 		let newSolidity =
 			[T, T, T, T, T, T, T,
 			 T, T, T, T, T, F, T,
@@ -264,19 +276,11 @@ class MapTests: XCTestCase {
 			 T, T, T, T, T, T, T]
 		let newWidth = 7
 		let newHeight = 5
-		let newStartX = 5
-		let newStartY = 1
-		let newEndX = 1
-		let newEndY = 2
 		
-		let (realSolidity, realWidth, realHeight, realStartX, realStartY, realEndX, realEndY) = MapGenerator.pruneSolidity(oldSolidity, width: oldWidth, height: oldHeight, startX: oldStartX, startY: oldStartY, endX: oldEndX, endY: oldEndY)
+		let (realSolidity, realWidth, realHeight) = MapGenerator.pruneSolidity(oldSolidity, width: oldWidth, height: oldHeight)
 		
 		XCTAssertEqual(newWidth, realWidth)
 		XCTAssertEqual(newHeight, realHeight)
-		XCTAssertEqual(newStartX, realStartX)
-		XCTAssertEqual(newStartY, realStartY)
-		XCTAssertEqual(newEndX, realEndX)
-		XCTAssertEqual(newEndY, realEndY)
 		XCTAssertEqual(newSolidity.count, realSolidity.count)
 		for i in 0..<min(newSolidity.count, realSolidity.count)
 		{
@@ -299,22 +303,23 @@ class MapTests: XCTestCase {
 		}
 		
 		//place creatures in this rectangle
-		let startX = 5
-		let startY = 5
-		let endX = size / 2
-		let endY = size / 2
+		let startRoom = MapRoom(x: 1, y: 1, width: 4, height: 4, roomClass: .Start)
+		let endRoom = MapRoom(x: 5, y: 1, width: 4, height: 4, roomClass: .Boss)
+		let roomOne = MapRoom(x: 15, y: 15, width: 3, height: 3, roomClass: .Normal)
+		let roomTwo = MapRoom(x: 15, y: 20, width: 3, height: 3, roomClass: .Normal)
+		let rooms = [startRoom, endRoom, roomOne, roomTwo]
 		
 		let player = Creature(enemyType: "human player", level: 1, x: 0, y: 0)
 		let stub = MapStub(flavor: "lawless", theme: "city", level: 10)
-		MapGenerator.placeCreatures(tiles, width: size, height: size, startX: startX, startY: startY, endX: endX, endY: endY, player: player, stub: stub)
+		MapGenerator.placeCreatures(tiles, width: size, height: size, rooms: rooms, player: player, stub: stub)
 		
 		//first off, the player should now be at startX, startY
-		XCTAssertEqual(player.x, startX)
-		XCTAssertEqual(player.y, startY)
-		XCTAssertTrue((tiles[startX + startY * size].creature === player))
+		XCTAssertEqual(player.x, 3)
+		XCTAssertEqual(player.y, 3)
+		XCTAssertTrue((tiles[3 + 3 * size].creature === player))
 		
 		//secondly, there should be a boss at the center of the end room
-		XCTAssertNotNil(tiles[endX + endRoomSize / 2 + (endY + endRoomSize / 2) * size].creature)
+		XCTAssertNotNil(tiles[7 + 3 * size].creature)
 		//TODO: check to see if this is an actual boss
 		
 		//thirdly, make sure that all the non-player, non-boss enemies generated are in the possible generation list
@@ -338,9 +343,13 @@ class MapTests: XCTestCase {
 						}
 					}
 					XCTAssertTrue(isPossibleType)
+					
+					//TODO: test to make sure it's inside roomOne or roomTwo
 				}
 			}
 		}
+		
+		//TODO: test to make sure if roomOne and roomTwo both have at least one enemy inside
 		
 		//make sure that the enemies ENEMY TYPE levels add up to the proper amount for generation
 		//a little bit under anyway, ideally
@@ -383,6 +392,55 @@ class MapTests: XCTestCase {
 	//	what if there's a trap in the way? it should
 	
 	//MARK: helper functions
+	func validityGeneral(solidity:[Bool], width:Int, height:Int, startRoom:MapRoom, endRoom:MapRoom)
+	{
+		//all non-solid tiles must be accessable
+		//(number of accessable tiles will be 0 if the start is solid)
+		XCTAssertEqual(self.numberOfNonSolidTiles(solidity), self.numberOfAccessableTiles(solidity, startX: startRoom.centerX, startY: startRoom.centerY, width: width, height: height))
+		
+		//the end area must be an (endRoomSize x endRoomSize) square of non-solid tiles, with only one non-solid tile in the border
+		var innerSolid = 0
+		var outerSolid = 0
+		for y in -1..<endRoomSize+1
+		{
+			for x in -1..<endRoomSize+1
+			{
+				if solidity[(x + endRoom.x) + (y + endRoom.y) * width]
+				{
+					outerSolid += 1
+					if !(y == -1 || x == -1 || x == endRoomSize || y == endRoomSize)
+					{
+						innerSolid += 1
+					}
+				}
+			}
+		}
+		XCTAssertEqual(innerSolid, 0)
+		XCTAssertEqual(outerSolid, endRoomSize * 4 + 4 - 1) //endRoomSize * 4 is the edges, + 4 is the corners, - 1 is the one tile entrance
+		XCTAssertEqual(endRoom.width, endRoomSize)
+		XCTAssertEqual(endRoom.height, endRoomSize)
+	}
+	
+	func locateRoomsThenClosure(rooms:[MapRoom], closure:(startRoom:MapRoom, endRoom:MapRoom)->())
+	{
+		var startRoom:MapRoom?
+		var endRoom:MapRoom?
+		for room in rooms
+		{
+			switch (room.roomClass)
+			{
+			case .Start: startRoom = room
+			case .Boss: endRoom = room
+			default: break
+			}
+		}
+		XCTAssertNotNil(startRoom)
+		XCTAssertNotNil(endRoom)
+		if let startRoom = startRoom, endRoom = endRoom
+		{
+			closure(startRoom: startRoom, endRoom: endRoom)
+		}
+	}
 	func numberOfNonSolidTiles(solidity:[Bool]) -> Int
 	{
 		var nonSolid = 0

@@ -99,6 +99,25 @@ class GameViewController: UIViewController, GameDelegate {
 		//add a gesture recognizer for the game area
 		let tappy = UITapGestureRecognizer(target: self, action: #selector(gameAreaPressed))
 		creatureLayer.addGestureRecognizer(tappy)
+		
+//		temporaryMapViewerScript()
+	}
+	
+	private func temporaryMapViewerScript()
+	{
+		//TODO: remove this once I no longer need it
+		let drawSize:CGFloat = 5
+		let (solidity, width, height, _) = MapGenerator.generateRoomsSolidityMap(MapStub(flavor: "lawless", theme: "city", level: 1))
+		for y in 0..<height
+		{
+			for x in 0..<width
+			{
+				let solid = solidity[x + y * width]
+				let view = UIView(frame: CGRectMake(CGFloat(x) * drawSize, CGFloat(y) * drawSize, drawSize, drawSize))
+				view.backgroundColor = solid ? UIColor.lightGrayColor() : UIColor.blackColor()
+				self.view.addSubview(view)
+			}
+		}
 	}
 	
 	override func viewWillAppear(animated: Bool)
