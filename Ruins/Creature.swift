@@ -28,6 +28,7 @@ class Creature
 	//MARK: identity
 	var enemyType:String
 	var good:Bool
+	var awake:Bool
 	var level:Int
 	
 	//MARK: derived identity
@@ -101,7 +102,7 @@ class Creature
 	//MARK: secondary derived stats
 	var maxHealth:Int
 	{
-		return (good ? 200 : 100) * (100 + miscMultiplier * maxHealthBonus) / 100
+		return 100 * (100 + miscMultiplier * maxHealthBonus) / 100
 	}
 	var maxEncumberance:Int
 	{
@@ -159,6 +160,7 @@ class Creature
 		//set identity
 		self.enemyType = enemyType
 		good = DataStore.getBool("EnemyTypes", enemyType, "good")
+		awake = false
 		
 		//initialize variables
 		health = 0
@@ -198,6 +200,7 @@ class Creature
 		//load identity
 		enemyType = d["enemyType"] as! String
 		good = Creature.intFromD(d, name: "good") == 1
+		awake = Creature.intFromD(d, name: "awake") == 1
 		
 		//load variables
 		health = Creature.intFromD(d, name: "health")
@@ -237,6 +240,7 @@ class Creature
 		//save identity
 		d["enemyType"] = enemyType
 		d["good"] = good ? 1 : 0
+		d["awake"] = awake ? 1 : 0
 		
 		//save variables
 		d["health"] = health
@@ -269,6 +273,9 @@ class Creature
 	
 	func attack(target:Creature) -> (myDamage:Int, theirDamage:Int)
 	{
+		//if the AI is asleep, wake them
+		target.awake = true
+		
 		//calculate how much damage people are taking
 		let myDamage:Int
 		let theirDamage:Int
@@ -349,6 +356,19 @@ class Creature
 	{
 		if let AI = AI
 		{
+			//AIs won't do anything until you see them once
+			if game.map.tileAt(x: x, y: y).visible
+			{
+				awake = true
+			}
+			
+			if !awake
+			{
+				game.skipAction()
+				return true
+			}
+			
+			
 			//if you can move, check to see if you want to
 			if game.movePoints > 0
 			{

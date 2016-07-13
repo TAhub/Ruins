@@ -91,7 +91,7 @@
 	
 	<key>lead</key>
 	<dict>
-		<key>damage multiplier</key> <integer>90</integer>
+		<key>damage multiplier</key> <integer>70</integer>
 		<key>weight multiplier</key> <integer>200</integer>
 		<key>health multiplier</key> <integer>125</integer>
 		<key>status inflicted</key> <string>stun</string>
@@ -163,7 +163,7 @@
 	
 	<key>stun material</key>
 	<dict>
-		<key>damage multiplier</key> <integer>80</integer>
+		<key>damage multiplier</key> <integer>60</integer>
 		<key>weight multiplier</key> <integer>100</integer>
 		<key>health multiplier</key> <integer>100</integer>
 		<key>status inflicted</key> <string>stun</string>

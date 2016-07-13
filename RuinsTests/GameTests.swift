@@ -177,9 +177,11 @@ class GameTests: XCTestCase, GameDelegate {
 	{
 		firstCharacter.stun = 10
 		game.executePhase()
+		XCTAssertEqual(game.creatureOn, 0)
+		XCTAssertEqual(game.phaseOn, GamePhase.Stun)
+		game.toNextPhase()
 		XCTAssertEqual(game.creatureOn, 1)
 		XCTAssertEqual(game.phaseOn, GamePhase.MakeDecision)
-		XCTAssertEqual(inputDesiredCalled, 1)
 	}
 	
 	func testEndPhaseTicksStatuses()

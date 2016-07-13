@@ -26,6 +26,30 @@ class AITests: XCTestCase {
 		game.map.calculateVisibility(x: 1, y: 1)
     }
 	
+	func testAISleep()
+	{
+		//make a goodguy for the AI to target; this one is right next to the player
+		let target = Creature(enemyType: "human player", level: 1, x: 2, y: 1)
+		game.addPlayer(target)
+		
+		//make everyone shaky to ensure no crits
+		target.shake = 100
+		firstCharacter.shake = 100
+		
+		//move the visibility elsewhere so that the AI is offscreen
+		game.map.calculateVisibility(x: 20, y: 20)
+		
+		game.executePhase()
+		
+		//it should automatically switch turn to the player
+		XCTAssertEqual(game.creatureOn, 1)
+		XCTAssertFalse(firstCharacter.awake)
+		
+		//attack the AI; this should wake it up
+		game.attack(x: firstCharacter.x, y: firstCharacter.y)
+		XCTAssertTrue(firstCharacter.awake)
+	}
+	
 	func testAIAttackNearby()
 	{
 		//make a goodguy for the AI to target; this one is right next to the player
@@ -103,7 +127,7 @@ class AITests: XCTestCase {
 		
 		//they should attack, which breaks their weapon
 		XCTAssertEqual(game.phaseOn, GamePhase.Attack)
-		XCTAssertLessThan(target.health, 200)
+		XCTAssertLessThan(target.health, target.maxHealth)
 		XCTAssertEqual(firstCharacter.weapon.type, "unarmed")
 		
 		game.toNextPhase()
