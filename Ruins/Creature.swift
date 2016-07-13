@@ -163,12 +163,6 @@ class Creature
 		
 		//fill up health (this has to happen after every variable is initialized)
 		health = maxHealth
-		
-		
-		//TODO: feature for the future; maybe enemies with no armor should get a stat bonus
-		//and enemies with spells should get a stat penalty?
-		//the actual amount... I dunno, check the comparison of armor points to levels to etc
-		//alternately: lower their effective level by an equivalent amount
 	}
 	
 	init(saveDict d:NSDictionary)

@@ -85,6 +85,35 @@ class BalanceTests: XCTestCase {
 		}
 	}
 	
+	func testCreaturesHaveCorrectPointValues()
+	{
+		for (creature, _) in DataStore.getPlist("EnemyTypes") as! [String : NSObject]
+		{
+			if DataStore.getArray("EnemyTypes", creature, "keywords")!.count > 0
+			{
+				let level = DataStore.getInt("EnemyTypes", creature, "level")!
+				let expectedPoints = 50 + level
+				
+				let strength = DataStore.getInt("EnemyTypes", creature, "strength")!
+				let dexterity = DataStore.getInt("EnemyTypes", creature, "dexterity")!
+				let cunning = DataStore.getInt("EnemyTypes", creature, "cunning")!
+				let wisdom = DataStore.getInt("EnemyTypes", creature, "wisdom")!
+				let endurance = DataStore.getInt("EnemyTypes", creature, "endurance")!
+				
+				XCTAssertEqual(expectedPoints, strength + dexterity + cunning + wisdom + endurance)
+			}
+		}
+	}
+	
+	func testEveryMapStubHasValidCreatures()
+	{
+		for stub in allPossibleStubs()
+		{
+			print("CHECKING TO SEE IF STUB WITH KEYWORDS \(stub.keywords[0]) AND \(stub.keywords[1]) HAS ENEMIES:")
+			XCTAssertGreaterThan(stub.enemyTypes.count, 0)
+		}
+	}
+	
 	//TODO: future balance test ideas
 	//	make sure each non-gang keyword has a roughly equal number of creatures
 	

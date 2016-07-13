@@ -58,7 +58,7 @@ class MapTests: XCTestCase {
 		var stubs = [MapStub]()
 		for _ in 0..<10
 		{
-			stubs.append(MapStub(flavor: "poisonous", theme: "wasteland"))
+			stubs.append(MapStub(flavor: "poisonous", theme: "wasteland", level: 1))
 		}
 		for stub in stubs
 		{
@@ -79,13 +79,13 @@ class MapTests: XCTestCase {
 		//so it's gotta have some way of noticing that it's out of unique names and going "oh fuck it" and repeating something
 		for _ in 0..<1000
 		{
-			let _ = MapStub(flavor: "poisonous", theme: "wasteland")
+			let _ = MapStub(flavor: "poisonous", theme: "wasteland", level: 1)
 		}
 	}
 	
 	func testMapStubAttributes()
 	{
-		let stub = MapStub(flavor: "poisonous", theme: "wasteland")
+		let stub = MapStub(flavor: "poisonous", theme: "wasteland", level: 1)
 		XCTAssertEqual(stub.keywords.count, 2)
 		if stub.keywords.count == 2
 		{
@@ -94,7 +94,7 @@ class MapTests: XCTestCase {
 		}
 		
 		//also make sure that alternate keywords work
-		let stubTwo = MapStub(flavor: "battlefield", theme: "fort")
+		let stubTwo = MapStub(flavor: "battlefield", theme: "fort", level: 1)
 		XCTAssertEqual(stubTwo.keywords.count, 2)
 		if stubTwo.keywords.count == 2
 		{
@@ -106,7 +106,7 @@ class MapTests: XCTestCase {
 	func testMapStubEnemyList()
 	{
 		//get a map stub that will have both "military" and "criminal" in order to test the overlap
-		let stub = MapStub(flavor: "lawless", theme: "fort")
+		let stub = MapStub(flavor: "lawless", theme: "fort", level: 999)
 		XCTAssertEqual(stub.keywords.count, 2)
 		if stub.keywords.count == 2
 		{
@@ -127,13 +127,53 @@ class MapTests: XCTestCase {
 		XCTAssertEqual(numberOfOccurencesOf(enemies, of: "fairy musketeer"), 1)
 	}
 	
+	func testMapStubTotalEXP()
+	{
+		let lowLevelStub = MapStub(flavor: "lawless", theme: "fort", level: 1)
+		let midLevelStub = MapStub(flavor: "lawless", theme: "fort", level: 20)
+		let highLevelStub = MapStub(flavor: "lawless", theme: "fort", level: 40)
+		//TODO: take into account map theme exp multiplier
+		XCTAssertEqual(lowLevelStub.totalEXP, 60)
+		XCTAssertEqual(midLevelStub.totalEXP, 250)
+		XCTAssertEqual(highLevelStub.totalEXP, 450)
+	}
+	
+	func testMapStubEnemyListMaxLevel()
+	{
+		let lowLevelStub = MapStub(flavor: "lawless", theme: "fort", level: 1)
+		let lowLevelStubEnemies = lowLevelStub.enemyTypes
+		let midLevelStub = MapStub(flavor: "lawless", theme: "fort", level: 20)
+		let midLevelStubEnemies = midLevelStub.enemyTypes
+		let highLevelStub = MapStub(flavor: "lawless", theme: "fort", level: 40)
+		let highLevelStubEnemies = highLevelStub.enemyTypes
+		XCTAssertGreaterThan(midLevelStubEnemies.count, lowLevelStubEnemies.count)
+		XCTAssertGreaterThan(highLevelStubEnemies.count, midLevelStubEnemies.count)
+		
+		//make sure no list has any enemy higher level than expected
+		func stubTestByLevel(stub:MapStub, enemies:[String]) -> Bool
+		{
+			for enemy in enemies
+			{
+				let level = DataStore.getInt("EnemyTypes", enemy, "level")!
+				if level > stub.level + expLevelAdd
+				{
+					return false
+				}
+			}
+			return true
+		}
+		XCTAssertTrue(stubTestByLevel(lowLevelStub, enemies: lowLevelStubEnemies))
+		XCTAssertTrue(stubTestByLevel(midLevelStub, enemies: midLevelStubEnemies))
+		XCTAssertTrue(stubTestByLevel(highLevelStub, enemies: highLevelStubEnemies))
+	}
+	
 	func testMapStubGeneration()
 	{
 		//you are guaranteed to get no overlap between elements of map stubs
 		//so generate 30 sets of them to try to confirm there's no overlap
 		for _ in 0..<30
 		{
-			let stubs = MapGenerator.generateMapStubs()
+			let stubs = MapGenerator.generateMapStubs(0)
 			XCTAssertEqual(stubs.count, numStubs)
 			for stub in stubs
 			{
@@ -144,6 +184,8 @@ class MapTests: XCTestCase {
 						//flavor and theme should both be different
 						XCTAssertNotEqual(stub.flavor, oStub.flavor)
 						XCTAssertNotEqual(stub.theme, oStub.theme)
+						XCTAssertGreaterThanOrEqual(stub.level, 2)
+						XCTAssertLessThanOrEqual(stub.level, 3)
 					}
 				}
 			}
@@ -157,7 +199,7 @@ class MapTests: XCTestCase {
 	
 	func testMapGeneratorValidity()
 	{
-		let (solidity, width, height, startX, startY, endX, endY) = MapGenerator.generateSolidityMap(MapStub(flavor: "lawless", theme: "city"))
+		let (solidity, width, height, startX, startY, endX, endY) = MapGenerator.generateSolidityMap(MapStub(flavor: "lawless", theme: "city", level: 1))
 		
 		//firstly, all non-solid tiles must be accessable
 		//(number of accessable tiles will be 0 if the start is solid)
@@ -227,6 +269,77 @@ class MapTests: XCTestCase {
 		{
 			XCTAssertEqual(newSolidity[i], realSolidity[i])
 		}
+	}
+	
+	func testPlaceCreatures()
+	{
+		//just make a big empty rectangle of tiles to place creatures in
+		let size = 40
+		var tiles = [Tile]()
+		for y in 0..<size
+		{
+			for x in 0..<size
+			{
+				let tile = Tile(solid: x == 0 || y == 0 || x == size - 1 || y == size - 1)
+				tiles.append(tile)
+			}
+		}
+		
+		//place creatures in this rectangle
+		let startX = 5
+		let startY = 5
+		let endX = size / 2
+		let endY = size / 2
+		
+		let player = Creature(enemyType: "human player", level: 1, x: 0, y: 0)
+		let stub = MapStub(flavor: "lawless", theme: "city", level: 10)
+		MapGenerator.placeCreatures(tiles, width: size, height: size, startX: startX, startY: startY, endX: endX, endY: endY, player: player, stub: stub)
+		
+		//first off, the player should now be at startX, startY
+		XCTAssertEqual(player.x, startX)
+		XCTAssertEqual(player.y, startY)
+		XCTAssertTrue((tiles[startX + startY * size].creature === player))
+		
+		//secondly, there should be a boss at the center of the end room
+		XCTAssertNotNil(tiles[endX + endRoomSize / 2 + (endY + endRoomSize / 2) * size].creature)
+		//TODO: check to see if this is an actual boss
+		
+		//thirdly, make sure that all the non-player, non-boss enemies generated are in the possible generation list
+		let enemyTypes = stub.enemyTypes
+		var totalEXP = 0
+		for tile in tiles
+		{
+			if let creature = tile.creature
+			{
+				if !creature.good //TODO: also if it's not a boss
+				{
+					totalEXP += MapGenerator.expValueForEnemyType(creature.enemyType)
+					
+					var isPossibleType = false
+					for enemyType in enemyTypes
+					{
+						if creature.enemyType == enemyType
+						{
+							isPossibleType = true
+							break
+						}
+					}
+					XCTAssertTrue(isPossibleType)
+				}
+			}
+		}
+		
+		//make sure that the enemies ENEMY TYPE levels add up to the proper amount for generation
+		//a little bit under anyway, ideally
+		XCTAssertLessThanOrEqual(totalEXP, stub.totalEXP)
+		XCTAssertGreaterThan(totalEXP, 0)
+	}
+	
+	func testEnemyTypeEXPValue()
+	{
+		XCTAssertEqual(MapGenerator.expValueForEnemyType("bandit"), 12) //enemy with armor
+		XCTAssertEqual(MapGenerator.expValueForEnemyType("shambler"), 6) //enemy without armor
+		//TODO: enemy with magic
 	}
 	
 	//MARK: pathfinding tests

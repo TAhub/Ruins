@@ -10,9 +10,17 @@ import Foundation
 
 let numStubs = 3
 let endRoomSize = 6
+let expBase = 5
+let expMagicMult = 25
+let expArmorMult = 25
+let levelAddMin = 2
+let levelAddMax = 3
+let expLevelAdd = 7 //TODO: this should probably be a smaller value, once I add more low-level filler enemies? perhaps from gangs
+let mapGeneratorPickEnemiesTries = 10
 
 class MapStub
 {
+	let level:Int
 	let flavor:String
 	let theme:String
 	let name:String
@@ -20,12 +28,14 @@ class MapStub
 	{
 		self.flavor = flavor
 		self.theme = theme
-		self.name = name
+		self.name = ""
+		self.level = 0
 	}
-	init(flavor:String, theme:String)
+	init(flavor:String, theme:String, level:Int)
 	{
 		self.flavor = flavor
 		self.theme = theme
+		self.level = level
 		
 		//pick a unique name based on these factors
 		let prefixes = DataStore.getArray("MapFlavors", flavor, "prefixes") as! [String]
@@ -113,14 +123,24 @@ class MapStub
 			}
 		}
 		
-		return correctTypes
+		//finally, filter by level
+		return correctTypes.filter()
+		{
+			DataStore.getInt("EnemyTypes", $0, "level")! <= level + expLevelAdd
+		}
+	}
+	
+	var totalEXP:Int
+	{
+		//TODO: take into account map theme exp multiplier
+		return 10 * (expBase + level)
 	}
 }
 
 class MapGenerator
 {
 	//MARK: map stub
-	static func generateMapStubs() -> [MapStub]
+	static func generateMapStubs(oldLevel:Int) -> [MapStub]
 	{
 		var stubs = [MapStub]()
 		
@@ -135,7 +155,8 @@ class MapGenerator
 		//and just take the elements in row from the shuffled arrays
 		for i in 0..<numStubs
 		{
-			stubs.append(MapStub(flavor: flavors[i], theme: themes[i]))
+			let newLevel = oldLevel + levelAddMin + Int(arc4random_uniform(UInt32(levelAddMax - levelAddMin)))
+			stubs.append(MapStub(flavor: flavors[i], theme: themes[i], level: newLevel))
 		}
 		return stubs
 	}
@@ -242,6 +263,74 @@ class MapGenerator
 		let endY = oldEndY - top + 1
 		
 		return (solidity: solidity, width: width, height: height, startX: startX, startY: startY, endX: endX, endY: endY)
+	}
+	
+	static func placeCreatures(tiles:[Tile], width:Int, height:Int, startX:Int, startY:Int, endX:Int, endY:Int, player:Creature, stub:MapStub)
+	{
+		//place the player
+		player.x = startX
+		player.y = startY
+		tiles[startX + startY * width].creature = player
+	
+		let enemyTypes = stub.enemyTypes
+		
+		//come up with a group of enemies with less total EXP than the stub's total EXP
+		//try a few times to find the best one
+		var enemyTypesFiltered = enemyTypes
+		var lastEnemiesToPlace:[String]!
+		var lastTotalEXP = 0
+		for _ in 0..<mapGeneratorPickEnemiesTries
+		{
+			var totalEXP = 0
+			var enemiesToPlace = [String]()
+			
+			while enemyTypesFiltered.count > 0
+			{
+				let pick = enemyTypes[Int(arc4random_uniform(UInt32(enemyTypes.count)))]
+				totalEXP += expValueForEnemyType(pick)
+				enemiesToPlace.append(pick)
+				enemyTypesFiltered = enemyTypesFiltered.filter() { totalEXP + expValueForEnemyType($0) <= stub.totalEXP }
+			}
+			
+			if totalEXP > lastTotalEXP
+			{
+				lastTotalEXP = totalEXP
+				lastEnemiesToPlace = enemiesToPlace
+			}
+		}
+		
+		//now use those enemies you picked
+		var enemiesToPlace = lastEnemiesToPlace
+		
+		func place(x x:Int, y:Int)
+		{
+			let pick = enemiesToPlace.popLast()!
+			let enemy = Creature(enemyType: pick, level: stub.level, x: x, y: y)
+			tiles[x + y * width].creature = enemy
+		}
+		
+		//place a boss
+		//TODO: place an actual boss, not just a random enemy
+		place(x: endX + endRoomSize / 2, y: endY + endRoomSize / 2)
+		
+		//place the rest of the enemies
+		//TODO: do this, like, in random places instead of all in the corner
+		for x in 1..<width
+		{
+			if enemiesToPlace.count == 0
+			{
+				break
+			}
+			place(x: x, y: 1)
+		}
+	}
+	
+	static func expValueForEnemyType(enemyType:String) -> Int
+	{
+		let hasMagic = false //TODO: DO they have magic?
+		let hasArmor = DataStore.getBool("EnemyTypes", enemyType, "armor")
+		return (DataStore.getInt("EnemyTypes", enemyType, "level")! + expBase) *
+			(100 + (hasMagic ? expMagicMult : 0) + (hasArmor ? expArmorMult : 0)) / 100
 	}
 	
 	//TODO: future idea: mega-tile structures
