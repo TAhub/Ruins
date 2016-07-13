@@ -319,17 +319,23 @@ class MapTests: XCTestCase {
 		XCTAssertTrue((tiles[3 + 3 * size].creature === player))
 		
 		//secondly, there should be a boss at the center of the end room
-		XCTAssertNotNil(tiles[7 + 3 * size].creature)
-		//TODO: check to see if this is an actual boss
+		let cr = tiles[7 + 3 * size].creature
+		XCTAssertNotNil(cr)
+		if let cr = cr
+		{
+			XCTAssertTrue(cr.boss)
+		}
 		
 		//thirdly, make sure that all the non-player, non-boss enemies generated are in the possible generation list
 		let enemyTypes = stub.enemyTypes
 		var totalEXP = 0
+		var roomOneHasEnemy = false
+		var roomTwoHasEnemy = false
 		for tile in tiles
 		{
 			if let creature = tile.creature
 			{
-				if !creature.good //TODO: also if it's not a boss
+				if !creature.good && !creature.boss
 				{
 					totalEXP += MapGenerator.expValueForEnemyType(creature.enemyType)
 					
@@ -344,17 +350,46 @@ class MapTests: XCTestCase {
 					}
 					XCTAssertTrue(isPossibleType)
 					
-					//TODO: test to make sure it's inside roomOne or roomTwo
+					//test to make sure it's inside roomOne or roomTwo
+					let rOHE = roomOne.containsPoint(x: creature.x, y: creature.y)
+					let rTHE = roomTwo.containsPoint(x: creature.x, y: creature.y)
+					roomOneHasEnemy = roomOneHasEnemy || rOHE
+					roomTwoHasEnemy = roomTwoHasEnemy || rTHE
+					XCTAssertTrue(rOHE || rTHE)
 				}
 			}
 		}
 		
-		//TODO: test to make sure if roomOne and roomTwo both have at least one enemy inside
+		//make sure if roomOne and roomTwo both have at least one enemy inside
+		XCTAssertTrue(roomOneHasEnemy)
+		XCTAssertTrue(roomTwoHasEnemy)
 		
 		//make sure that the enemies ENEMY TYPE levels add up to the proper amount for generation
 		//a little bit under anyway, ideally
 		XCTAssertLessThanOrEqual(totalEXP, stub.totalEXP)
 		XCTAssertGreaterThan(totalEXP, 0)
+	}
+	
+	func testSolidityToTiles()
+	{
+		let T = true
+		let F = false
+		let solidity = [T, T, T, T, T, T,
+						T, F, F, F, F, T,
+						T, F, T, T, F, T,
+						T, T, T, T, T, T]
+		let width = 6
+		let height = 4
+		let tiles = MapGenerator.solidityToTiles(solidity, width: width, height: height)
+		
+		//test to see if the solidity matches
+		XCTAssertEqual(tiles.count, solidity.count)
+		for i in 0..<min(tiles.count, solidity.count)
+		{
+			XCTAssertEqual(solidity[i], tiles[i].solid)
+		}
+		
+		//TODO: test to see if the tiles are using the appropriate tilesets
 	}
 	
 	func testEnemyTypeEXPValue()

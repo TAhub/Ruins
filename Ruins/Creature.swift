@@ -93,10 +93,15 @@ class Creature
 		return wis + (armor?.specialResistance ?? 0)
 	}
 	
+	var boss:Bool
+	{
+		return DataStore.getBool("EnemyTypes", enemyType, "boss")
+	}
+	
 	//MARK: secondary derived stats
 	var maxHealth:Int
 	{
-		return 100 * (100 + miscMultiplier * maxHealthBonus) / 100
+		return (good ? 200 : 100) * (100 + miscMultiplier * maxHealthBonus) / 100
 	}
 	var maxEncumberance:Int
 	{
@@ -160,6 +165,10 @@ class Creature
 		shake = 0
 		stun = 0
 		poison = 0
+		
+		
+		//TODO: if you're a boss, automatically raise your stats based on your level
+		
 		
 		//fill up health (this has to happen after every variable is initialized)
 		health = maxHealth
@@ -308,6 +317,7 @@ class Creature
 				case "poison": target.poison += weaponPoisonLength
 				default: break
 				}
+				print("\(status) inflicted!")
 			}
 		}
 		

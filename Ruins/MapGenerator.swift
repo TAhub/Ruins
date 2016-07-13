@@ -32,6 +32,16 @@ struct MapRoom
 	var width:Int
 	var height:Int
 	var roomClass:MapRoomClass
+	var roomEXP:Int
+	init(x:Int, y:Int, width:Int, height:Int, roomClass:MapRoomClass)
+	{
+		self.x = x
+		self.y = y
+		self.width = width
+		self.height = height
+		self.roomClass = roomClass
+		roomEXP = 0
+	}
 	var centerX:Int
 	{
 		return x + width / 2
@@ -211,6 +221,18 @@ class MapGenerator
 	}
 	
 	//MARK: map generation
+	
+	static func mapGenerate(mapStub:MapStub, player:Creature) -> (tiles:[Tile], width:Int, height:Int)
+	{
+		//this is the rooms algorithm
+		//remember that this one doesn't require pruning, but others might
+		let (solidity, width, height, rooms) = generateRoomsSolidityMap(mapStub)
+		let tiles = solidityToTiles(solidity, width: width, height: height)
+		placeCreatures(tiles, width: width, height: height, rooms: rooms, player: player, stub: mapStub)
+		return (tiles: tiles, width: width, height: height)
+	}
+	
+	//MARK: map generation components
 	
 	//this algorithm generates the rooms and the solidity map at the same time
 	//it makes a series of rectangular rooms joined by hallways
@@ -451,55 +473,71 @@ class MapGenerator
 	
 		let enemyTypes = stub.enemyTypes
 		
-		//come up with a group of enemies with less total EXP than the stub's total EXP
-		//try a few times to find the best one
-		var enemyTypesFiltered = enemyTypes
-		var lastEnemiesToPlace:[String]!
-		var lastTotalEXP = 0
-		for _ in 0..<mapGeneratorPickEnemiesTries
+		//assign EXP to rooms
+		//TODO: for now this is even shares; in the future it might be good to have some rooms have bigger/smaller shares
+		for i in 0..<encounterRooms.count
 		{
-			var totalEXP = 0
-			var enemiesToPlace = [String]()
-			
-			while enemyTypesFiltered.count > 0
+			encounterRooms[i].roomEXP = stub.totalEXP / encounterRooms.count
+		}
+		
+		for room in encounterRooms
+		{
+			//come up with a group of enemies with less total EXP than the room's EXP allotment
+			//try a few times to find the best one
+			var enemyTypesFiltered = enemyTypes
+			var lastEnemiesToPlace:[String]!
+			var lastTotalEXP = 0
+			for _ in 0..<mapGeneratorPickEnemiesTries
 			{
-				let pick = enemyTypes[Int(arc4random_uniform(UInt32(enemyTypes.count)))]
-				totalEXP += expValueForEnemyType(pick)
-				enemiesToPlace.append(pick)
-				enemyTypesFiltered = enemyTypesFiltered.filter() { totalEXP + expValueForEnemyType($0) <= stub.totalEXP }
+				var totalEXP = 0
+				var enemiesToPlace = [String]()
+				
+				while enemyTypesFiltered.count > 0
+				{
+					let pick = enemyTypes[Int(arc4random_uniform(UInt32(enemyTypes.count)))]
+					totalEXP += expValueForEnemyType(pick)
+					enemiesToPlace.append(pick)
+					enemyTypesFiltered = enemyTypesFiltered.filter() { totalEXP + expValueForEnemyType($0) <= room.roomEXP }
+				}
+				
+				if totalEXP > lastTotalEXP
+				{
+					lastTotalEXP = totalEXP
+					lastEnemiesToPlace = enemiesToPlace
+				}
 			}
 			
-			if totalEXP > lastTotalEXP
+			//now use those enemies you picked
+			
+			//find all of the valid tiles for placing enemies
+			var validTiles = [(Int, Int)]()
+			for y in room.y..<room.y+room.height
 			{
-				lastTotalEXP = totalEXP
-				lastEnemiesToPlace = enemiesToPlace
+				for x in room.x..<room.x+room.width
+				{
+					let tile = tiles[x + y * width]
+					if tile.walkable
+					{
+						validTiles.append((x, y))
+					}
+				}
+			}
+			
+			//and now use that generated data to place enemies
+			validTiles.shuffleInPlace()
+			for i in 0..<min(validTiles.count, lastEnemiesToPlace.count)
+			{
+				let enemy = Creature(enemyType: lastEnemiesToPlace[i], level: stub.level, x: validTiles[i].0, y: validTiles[i].1)
+				tiles[validTiles[i].0 + validTiles[i].1 * width].creature = enemy
 			}
 		}
 		
-		//now use those enemies you picked
-		var enemiesToPlace = lastEnemiesToPlace
 		
-		func place(x x:Int, y:Int)
-		{
-			let pick = enemiesToPlace.popLast()!
-			let enemy = Creature(enemyType: pick, level: stub.level, x: x, y: y)
-			tiles[x + y * width].creature = enemy
-		}
 		
-		//place a boss
-		//TODO: place an actual boss, not just a random enemy
-		place(x: endRoom.centerX, y: endRoom.centerY)
-		
-		//place the rest of the enemies
-		//TODO: do this, like, in random places instead of all in the corner
-		for x in 1..<width
-		{
-			if enemiesToPlace.count == 0
-			{
-				break
-			}
-			place(x: x, y: 1)
-		}
+		//finally, place a boss
+		//TODO: place a boss appropriate to the stub, instead of just the generic boss
+		let boss = Creature(enemyType: "boss", level: stub.level, x: endRoom.centerX, y: endRoom.centerY)
+		tiles[endRoom.centerX + endRoom.centerY * width].creature = boss
 	}
 	
 	static func expValueForEnemyType(enemyType:String) -> Int
@@ -510,13 +548,27 @@ class MapGenerator
 			(100 + (hasMagic ? expMagicMult : 0) + (hasArmor ? expArmorMult : 0)) / 100
 	}
 	
-	//TODO: future idea: mega-tile structures
-	//	there are a number of registered mega-tile structures, which are rectangular arrangement of tiles
-	//	after making the solidity map, it "claims" rectangular areas of solidity to be mega-tile structures
-	//	each structure must have at least one non-solid tile adjacent to it
-	//	and structures cannot overlap
-	//	suggested uses: individual buildings in the city tileset, etc
-	//	all tiles that are not claimed by a mega-tile structure should be a generic wall tile
+	static func solidityToTiles(solidity:[Bool], width:Int, height:Int) -> [Tile]
+	{
+		//TODO: future idea: mega-tile structures
+		//	there are a number of registered mega-tile structures, which are rectangular arrangement of tiles
+		//	after making the solidity map, it "claims" rectangular areas of solidity to be mega-tile structures
+		//	each structure must have at least one non-solid tile adjacent to it
+		//	and structures cannot overlap
+		//	suggested uses: individual buildings in the city tileset, etc
+		//	all tiles that are not claimed by a mega-tile structure should be a generic wall tile
+		
+		var tiles = [Tile]()
+		for y in 0..<height
+		{
+			for x in 0..<width
+			{
+				let i = x + y * width
+				tiles.append(Tile(solid: solidity[i]))
+			}
+		}
+		return tiles
+	}
 }
 
 //TODO: move this elsewhere

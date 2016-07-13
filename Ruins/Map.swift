@@ -16,7 +16,7 @@ struct PathTile
 }
 
 let visibilityRange = 5
-let numRays = 80
+let numRays = 180
 let rayInterval:Float = 0.5
 
 class Map
@@ -41,6 +41,14 @@ class Map
 				tiles.append(Tile(solid: x == 0 || y == 0 || x == width - 1 || y == height - 1))
 			}
 		}
+	}
+	
+	init(mapStub:MapStub, player:Creature)
+	{
+		let (tiles, width, height) = MapGenerator.mapGenerate(mapStub, player: player)
+		self.width = width
+		self.height = height
+		self.tiles = tiles
 	}
 	
 	func tileAt(x x:Int, y:Int) -> Tile

@@ -16,6 +16,7 @@ enum GamePhase:Int
 	case MakeDecision
 	case Move
 	case Attack
+	case Stun
 	case EndTurn
 }
 
@@ -45,7 +46,35 @@ class Game
 	var movePoints:Int = 0
 	var targetX:Int = 0
 	var targetY:Int = 0
-	var map = Map(width: 30, height: 30)
+	var map:Map
+	
+	init()
+	{
+		map = Map(width: 30, height: 30)
+	}
+	
+	init(mapStub:MapStub)
+	{
+		player = Creature(enemyType: "human player", level: mapStub.level, x: 0, y: 0)
+		creatures.append(player)
+		map = Map(mapStub: mapStub, player: player)
+		
+		//get all of the creatures from the map, and put them on the creatures list
+		for y in 0..<map.height
+		{
+			for x in 0..<map.width
+			{
+				let tile = map.tileAt(x: x, y: y)
+				if let cr = tile.creature
+				{
+					if !(cr === player)
+					{
+						creatures.append(cr)
+					}
+				}
+			}
+		}
+	}
 	
 	func addEnemy(creature:Creature)
 	{
@@ -126,7 +155,7 @@ class Game
 				anim!.movePath!.append(step)
 				movePoints = max(movePoints - map.tileAt(x: step.0, y: step.1).entryCost, 0)
 				
-				print("  PATH MOVING TO (\(step.0), \(step.1))")
+//				print("  PATH MOVING TO (\(step.0), \(step.1))")
 				
 				if false //TODO: if you stepped onto a trap
 				{
@@ -199,6 +228,10 @@ class Game
 					delegate?.uiUpdate()
 				}
 			}
+		case .Stun:
+			//make a stun anim pop up
+			anim = Animation()
+			anim!.damageNumbers.append((activeCreature, "stunned"))
 		case .EndTurn:
 			activeCreature.endTurn()
 		default: break
@@ -216,12 +249,14 @@ class Game
 	
 	func skipAction()
 	{
+		print("SKIP")
 		phaseOn = .EndTurn
 		executePhase()
 	}
 	
 	func attack(x x:Int, y:Int)
 	{
+		print("ATTACK")
 		phaseOn = .Attack
 		targetX = x
 		targetY = y
@@ -230,6 +265,7 @@ class Game
 	
 	func makeMove(x x:Int, y:Int)
 	{
+		print("MOVE")
 		phaseOn = .Move
 		targetX = x
 		targetY = y
@@ -243,11 +279,13 @@ class Game
 	
 	func toNextPhase()
 	{
+		print("TO NEXT PHASE from phase \(phaseOn)")
+		
 		var nextCreature = false
 		switch(phaseOn)
 		{
 		case .Start: phaseOn = .PoisonDamage; nextCreature = true
-		case .PoisonDamage: phaseOn = (activeCreature.stun > 0) ? GamePhase.EndTurn : GamePhase.MakeDecision
+		case .PoisonDamage: phaseOn = (activeCreature.stun > 0) ? GamePhase.Stun : GamePhase.MakeDecision
 		case .MakeDecision:
 			if !activeCreature.AIAction(self)
 			{
@@ -256,6 +294,7 @@ class Game
 			return
 		case .Move: phaseOn = .MakeDecision
 		case .Attack: phaseOn = .EndTurn
+		case .Stun: phaseOn = .EndTurn
 		case .EndTurn: phaseOn = .PoisonDamage; nextCreature = true
 		}
 		
@@ -280,6 +319,8 @@ class Game
 			{
 				delegate?.uiUpdate()
 			}
+			
+			print("Starting turn for creature #\(creatureOn) of type \(activeCreature.enemyType)!")
 		}
 		
 		executePhase()

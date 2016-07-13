@@ -62,20 +62,25 @@ class GameViewController: UIViewController, GameDelegate {
 		weaponBarContainerView.layer.cornerRadius = 5
 		armorBarContainerView.layer.cornerRadius = 5
 		
-		game = Game()
+		game = Game(mapStub: MapStub(flavor: "lawless", theme: "city", level: 1))
 		game.delegate = self
 		
-		let player = Creature(enemyType: "human player", level: 1, x: 1, y: 5)
-		game.addPlayer(player)
-		game.addEnemy(Creature(enemyType: "shambler", level: 1, x: 4, y: 5))
-		game.addEnemy(Creature(enemyType: "shambler", level: 1, x: 5, y: 7))
-		
 		//make a quick initial player inventory
-		player.inventory.append(Item(armor: Armor(type: "heavy armor", level: 50)))
-		player.inventory.append(Item(weapon: Weapon(type: "rifle", material: "iron", level: 50)))
+		game.player.inventory.append(Item(armor: Armor(type: "heavy armor", level: 10)))
+		game.player.inventory.append(Item(weapon: Weapon(type: "rifle", material: "iron", level: 10)))
 		let pot = Item(usable: "healing potion")
 		pot.number = 2
-		player.inventory.append(pot)
+		game.player.inventory.append(pot)
+		
+		//TODO: all sprite tiles and such should auto-scale so that differently-sized iphones all have the same screen size
+		
+	
+		//start the game loop with executePhase()
+		game.executePhase()
+		
+		
+		//get an initial camera point
+		calculateCameraPoint()
 		
 		game.calculateVisibility()
 		
@@ -86,14 +91,6 @@ class GameViewController: UIViewController, GameDelegate {
 		{
 			representations.append(CreatureRepresentation(creature: creature, superview: creatureLayer, atCameraPoint: cameraPoint, map:game.map))
 		}
-		
-		//TODO: all sprite tiles and such should auto-scale so that differently-sized iphones all have the same screen size
-		
-		//TODO: for tiles I probably want a lower-effort system than representations
-		//since I have to do a lot of "all representation" operations
-	
-		//start the game loop with executePhase()
-		game.executePhase()
 		
 		
 		//add a gesture recognizer for the game area
@@ -312,60 +309,18 @@ class GameViewController: UIViewController, GameDelegate {
 		//this comes before attacks because if you walk over a trap, it's move -> attack -> damage
 		if let movePath = anim.movePath
 		{
-			let updateCamera = game.activeCreature === game.player
+			let active = self.game.activeCreature
+			let updateCamera = active === game.player
 			
 			if updateCamera
 			{
 				gameArea.makeTilesForCameraPoint(cameraPoint)
 			}
 			
-			//TODO: if both points in this next leg of the move
-			//IE both (active.x, active.y) and (movePath.first!)
-			//are invisible/offscreen
-			//then update the position to (movePath.first!) instantly, instead of with an animation
-			
-			
-			UIView.animateWithDuration(0.25, animations:
+			func moveAnimToNext()
 			{
-				let active = self.game.activeCreature
-				
-				//update the moving creature's position step by step
-				let realX = active.x
-				let realY = active.y
-				active.x = movePath.first!.0
-				active.y = movePath.first!.1
-				
-				if updateCamera
-				{
-					let newX = min(max(CGFloat(active.x) * tileSize - self.gameArea.frame.width / 2, 0), CGFloat(self.game.map.width) * tileSize - self.gameArea.frame.width)
-					let newY = min(max(CGFloat(active.y) * tileSize - self.gameArea.frame.height / 2, 0), CGFloat(self.game.map.height) * tileSize - self.gameArea.frame.height)
-					self.cameraPoint = CGPoint(x: newX, y: newY)
-					
-					self.gameArea.adjustTilesForCameraPoint(self.cameraPoint)
-					
-					//update the visibility map
-					self.game.calculateVisibility()
-					self.gameArea.updateTileHidden()
-				}
-				
-				for rep in self.representations
-				{
-					rep.updatePosition(self.cameraPoint)
-					rep.updateVisibility(self.cameraPoint, map:self.game.map)
-				}
-				
-				active.x = realX
-				active.y = realY
-			})
-			{ (completed) in
 				if movePath.count == 1
 				{
-					//the move is over, so clean up visibility and go on
-//					for rep in self.representations
-//					{
-//						rep.updateVisibility(self.cameraPoint)
-//					}
-					
 					self.gameArea.cullTilesForCameraPoint(self.cameraPoint)
 					
 					self.playAttackAnimations(anim)
@@ -376,6 +331,57 @@ class GameViewController: UIViewController, GameDelegate {
 					//TODO: it'd be ideal if moves were a queue I guess, but it probably doesn't matter much
 					anim.movePath!.removeFirst()
 					self.playMoveAnimations(anim)
+				}
+			}
+			
+			
+			//if both points in this next leg of the move
+			//IE both (active.x, active.y) and (movePath.first!)
+			//are invisible/offscreen
+			//then update the position to (movePath.first!) instantly, instead of with an animation
+			let startPointInvisible = !self.game.map.tileAt(x: active.x, y: active.y).visible
+			let endPointInvisible = !self.game.map.tileAt(x: movePath.first!.0, y: movePath.first!.1).visible
+			if startPointInvisible && endPointInvisible && !updateCamera
+			{
+				for rep in self.representations
+				{
+					rep.updatePosition(self.cameraPoint)
+					rep.updateVisibility(self.cameraPoint, map:self.game.map)
+				}
+				
+				moveAnimToNext()
+			}
+			else
+			{
+				UIView.animateWithDuration(0.25, animations:
+				{
+					//update the moving creature's position step by step
+					let realX = active.x
+					let realY = active.y
+					active.x = movePath.first!.0
+					active.y = movePath.first!.1
+					
+					if updateCamera
+					{
+						self.calculateCameraPoint()
+						self.gameArea.adjustTilesForCameraPoint(self.cameraPoint)
+						
+						//update the visibility map
+						self.game.calculateVisibility()
+						self.gameArea.updateTileHidden()
+					}
+					
+					for rep in self.representations
+					{
+						rep.updatePosition(self.cameraPoint)
+						rep.updateVisibility(self.cameraPoint, map:self.game.map)
+					}
+					
+					active.x = realX
+					active.y = realY
+				})
+				{ (completed) in
+					moveAnimToNext()
 				}
 			}
 		}
@@ -400,6 +406,9 @@ class GameViewController: UIViewController, GameDelegate {
 	}
 	private func playDamageNumberAnimations(anim: Animation)
 	{
+		//discard all damage number representations that come from invisible tiles
+		anim.damageNumbers = anim.damageNumbers.filter() { self.game.map.tileAt(x: $0.0.x, y: $0.0.y).visible }
+		
 		if anim.damageNumbers.count > 0
 		{
 			//make damage number representations
@@ -559,5 +568,13 @@ class GameViewController: UIViewController, GameDelegate {
 			}
 			self.targets = nil
 		}
+	}
+	
+	private func calculateCameraPoint()
+	{
+		let active = self.game.activeCreature
+		let newX = min(max(CGFloat(active.x) * tileSize - self.gameArea.frame.width / 2, 0), CGFloat(self.game.map.width) * tileSize - self.gameArea.frame.width)
+		let newY = min(max(CGFloat(active.y) * tileSize - self.gameArea.frame.height / 2, 0), CGFloat(self.game.map.height) * tileSize - self.gameArea.frame.height)
+		self.cameraPoint = CGPoint(x: newX, y: newY)
 	}
 }

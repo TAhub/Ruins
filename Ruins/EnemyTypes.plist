@@ -28,6 +28,7 @@
 		<key>appearance group</key> <string>zombie</string>
 		<key>AI</key> <string>sample AI</string>
 		<!-- MARK: generation data -->
+		<key>boss</key> <true/>
 		<key>level</key> <integer>99999</integer>
 		<key>keywords</key>
 		<array>
@@ -235,6 +236,32 @@
 		a "medium-level" enemy is level 20-ish
 		a "high-level" enemy is level 35-ish
 		-->
+	
+	<!-- bosses -->
+	<key>boss</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>strength</key> <integer>10</integer>
+		<key>dexterity</key> <integer>10</integer>
+		<key>cunning</key> <integer>10</integer>
+		<key>wisdom</key> <integer>10</integer>
+		<key>endurance</key> <integer>10</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>sword</string>
+		<key>weapon material</key> <string>steel</string>
+		<key>armor</key> <string>heavy armor</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>mortal</string>
+		<key>appearance group</key> <string>human</string>
+		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<!-- MARK: generation data -->
+		<key>boss</key> <true/>
+		<key>level</key> <integer>1</integer>
+		<key>keywords</key>
+		<array>
+		</array>
+	</dict>
 	
 	
 	<!-- humans -->
