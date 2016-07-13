@@ -59,9 +59,19 @@ class Game
 		addEnemy(creature)
 	}
 	
+	func calculateVisibility()
+	{
+		map.calculateVisibility(x: player.x, y: player.y)
+	}
+	
 	func validTarget(cr:Creature) -> Bool
 	{
-		//TODO: are both the attacker and attack...-ee on visible tiles?
+		//if either the attacker or the defender are on invisible tiles, no
+		if !map.tileAt(x: cr.x, y: cr.y).visible || !map.tileAt(x: activeCreature.x, y: activeCreature.y).visible
+		{
+			return false
+		}
+		
 		let distance = abs(cr.x - activeCreature.x) + abs(cr.y - activeCreature.y)
 		let range = activeCreature.weapon.range
 		let minRange = range == 1 ? 0 : 1

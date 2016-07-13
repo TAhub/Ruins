@@ -100,6 +100,9 @@ class GameTests: XCTestCase, GameDelegate {
 	{
 		game.executePhase()
 		
+		//calculate visibility to let attacking happen
+		game.map.calculateVisibility(x: 1, y: 1)
+		
 		firstCharacter.weapon = Weapon(type: "test melee weapon", material: "neutral", level: 0)
 		
 		//secondCharacter is the same side, so it should be an invalid target

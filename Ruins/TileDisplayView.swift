@@ -24,6 +24,17 @@ class TileDisplayView: UIView {
 		makeTilesForCameraPoint(cameraPoint)
 	}
 	
+	func updateTileHidden()
+	{
+		for (i, rep) in tiles
+		{
+			let x = i % map.width
+			let y = i / map.width
+			let tile = map.tileAt(x: x, y: y)
+			rep.alpha = tile.visible ? 1 : 0
+		}
+	}
+	
 	func makeTilesForCameraPoint(cameraPoint:CGPoint)
 	{
 		operateOnCameraPoint(cameraPoint)
@@ -31,10 +42,12 @@ class TileDisplayView: UIView {
 			if self.tiles[self.map.width * y + x] == nil
 			{
 				//generate a new tile, appropriate for those coordinates
-				let tile = UIView(frame: self.tileRectFor(x: x, y: y, atCameraPoint: cameraPoint))
-				tile.backgroundColor = self.map.tileAt(x: x, y: y).solid ? UIColor.whiteColor() : UIColor.darkGrayColor()
-				self.tiles[self.map.width * y + x] = tile
-				self.addSubview(tile)
+				let tile = self.map.tileAt(x: x, y: y)
+				let rep = UIView(frame: self.tileRectFor(x: x, y: y, atCameraPoint: cameraPoint))
+				rep.backgroundColor = tile.solid ? UIColor.whiteColor() : UIColor.darkGrayColor()
+				rep.alpha = tile.visible ? 1 : 0
+				self.tiles[self.map.width * y + x] = rep
+				self.addSubview(rep)
 			}
 		}
 	}

@@ -15,6 +15,10 @@ struct PathTile
 	var distance:Int
 }
 
+let visibilityRange = 5
+let numRays = 80
+let rayInterval:Float = 0.5
+
 class Map
 {
 	let width:Int
@@ -72,6 +76,51 @@ class Map
 	private func toY(i:Int) -> Int
 	{
 		return i / width
+	}
+	
+	func calculateVisibility(x startX:Int, y startY:Int)
+	{
+		//make everything invisible
+		for tile in tiles
+		{
+			tile.visible = false
+		}
+		
+		for ray in 0..<numRays
+		{
+			var xOn = Float(startX)
+			var yOn = Float(startY)
+			
+			while true
+			{
+				//make sure you don't leave the bounds
+				let roundX = Int(round(xOn))
+				let roundY = Int(round(yOn))
+				if roundX < 0 || roundY < 0 || roundX >= width || roundY >= height
+				{
+					break
+				}
+				
+				//make sure it doesn't get too far away
+				if abs(roundX - startX) + abs(roundY - startY) > visibilityRange
+				{
+					break
+				}
+				
+				//interact with tiles
+				let tile = tiles[toI(x: roundX, y: roundY)]
+				tile.visible = true
+				if tile.solid
+				{
+					break
+				}
+				
+				//move the ray forward
+				let angle = Float(M_PI) * 2 * Float(ray) / Float(numRays)
+				xOn += cos(angle) * rayInterval
+				yOn += sin(angle) * rayInterval
+			}
+		}
 	}
 	
 	func pathfinding(from:Creature, movePoints:Int)

@@ -40,6 +40,19 @@ class MapTests: XCTestCase {
 		XCTAssertFalse(map.tileAt(x: 1, y: 1).walkable)
 	}
 	
+	func testCalculateVisibility()
+	{
+		map.calculateVisibility(x: 1, y: 1)
+		for y in 1..<map.height
+		{
+			for x in 1..<map.width
+			{
+				let distance = abs(x - 1) + abs(y - 1)
+				XCTAssertEqual(distance <= visibilityRange, map.tileAt(x: x, y: y).visible)
+			}
+		}
+	}
+	
 	
 	//MARK: map gen tests
 	func testDefaultMapGen()

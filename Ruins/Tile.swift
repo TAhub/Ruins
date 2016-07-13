@@ -13,10 +13,12 @@ class Tile
 	var creature:Creature?
 	let solid:Bool
 	let entryCost:Int = 1
+	var visible:Bool
 	
 	init(solid:Bool)
 	{
 		self.solid = solid
+		visible = false
 	}
 	
 	var walkable:Bool

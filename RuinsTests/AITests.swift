@@ -21,6 +21,9 @@ class AITests: XCTestCase {
 		
 		firstCharacter = Creature(enemyType: "test pzombie", level: 1, x: 1, y: 1)
 		game.addEnemy(firstCharacter)
+		
+		//calculate visibility to let attacking happen
+		game.map.calculateVisibility(x: 1, y: 1)
     }
 	
 	func testAIAttackNearby()

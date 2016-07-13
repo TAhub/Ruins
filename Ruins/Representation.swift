@@ -29,10 +29,9 @@ class Representation
 		//TODO: update the position of the view (for use in UIView animates during movement)
 	}
 	
-	func updateVisibility(atCameraPoint:CGPoint)
+	func updateVisibility(atCameraPoint:CGPoint, map:Map)
 	{
-		//TODO: set view to hidden if it's not visible, or not hidden if its visible
-		//to be used AFTER UIView animates during movement
+		//TODO: change alpha depending on hidden
 	}
 	
 	var dead:Bool

@@ -77,12 +77,14 @@ class GameViewController: UIViewController, GameDelegate {
 		pot.number = 2
 		player.inventory.append(pot)
 		
+		game.calculateVisibility()
+		
 		//make the tiles
 		gameArea.initializeAtCameraPoint(cameraPoint, map: game.map)
 		
 		for creature in game.creatures
 		{
-			representations.append(CreatureRepresentation(creature: creature, superview: creatureLayer, atCameraPoint: cameraPoint))
+			representations.append(CreatureRepresentation(creature: creature, superview: creatureLayer, atCameraPoint: cameraPoint, map:game.map))
 		}
 		
 		//TODO: all sprite tiles and such should auto-scale so that differently-sized iphones all have the same screen size
@@ -262,8 +264,8 @@ class GameViewController: UIViewController, GameDelegate {
 			targetingMode = .Examine
 			enterTargetingMode()
 			{ (creature) -> Bool in
-				//TODO: are they onscreen? can you see them?
-				return true
+				//are they onscreen? can you see them?
+				return self.game.map.tileAt(x: creature.x, y: creature.y).visible
 			}
 		}
 	}
@@ -321,11 +323,16 @@ class GameViewController: UIViewController, GameDelegate {
 					self.cameraPoint = CGPoint(x: newX, y: newY)
 					
 					self.gameArea.adjustTilesForCameraPoint(self.cameraPoint)
+					
+					//update the visibility map
+					self.game.calculateVisibility()
+					self.gameArea.updateTileHidden()
 				}
 				
 				for rep in self.representations
 				{
 					rep.updatePosition(self.cameraPoint)
+					rep.updateVisibility(self.cameraPoint, map:self.game.map)
 				}
 				
 				active.x = realX
@@ -335,10 +342,10 @@ class GameViewController: UIViewController, GameDelegate {
 				if movePath.count == 1
 				{
 					//the move is over, so clean up visibility and go on
-					for rep in self.representations
-					{
-						rep.updateVisibility(self.cameraPoint)
-					}
+//					for rep in self.representations
+//					{
+//						rep.updateVisibility(self.cameraPoint)
+//					}
 					
 					self.gameArea.cullTilesForCameraPoint(self.cameraPoint)
 					

@@ -15,7 +15,7 @@ class CreatureRepresentation:Representation
 	private var lastArmorSprite = ""
 	private var lastArmorColor = UIColor.blackColor()
 	
-	init(creature:Creature, superview:UIView, atCameraPoint:CGPoint)
+	init(creature:Creature, superview:UIView, atCameraPoint:CGPoint, map:Map)
 	{
 		self.creature = creature
 		let view = UIView(frame: CGRectMake(0, 0, tileSize, tileSize))
@@ -24,7 +24,7 @@ class CreatureRepresentation:Representation
 		
 		updateAppearance()
 		updatePosition(atCameraPoint)
-		updateVisibility(atCameraPoint)
+		updateVisibility(atCameraPoint, map: map)
 	}
 	
 	override func updatePosition(toCameraPoint:CGPoint)
@@ -33,6 +33,11 @@ class CreatureRepresentation:Representation
 		
 		//TODO: if this new position isn't visible, also change your alpha to 0 so you'll fade out nicely
 		//and the inverse too
+	}
+	
+	override func updateVisibility(atCameraPoint:CGPoint, map:Map)
+	{
+		self.view.alpha = map.tileAt(x: creature.x, y: creature.y).visible ? 1 : 0
 	}
 	
 	override func updateAppearance()
