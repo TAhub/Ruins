@@ -178,8 +178,7 @@ class MapStub
 	
 	var totalEXP:Int
 	{
-		//TODO: take into account map theme exp multiplier
-		return 10 * (expBase + level)
+		return DataStore.getInt("MapThemes", theme, "creature exp multiplier")! * (expBase + level)
 	}
 }
 
@@ -454,7 +453,7 @@ class MapGenerator
 	
 	static func placeTraps(tiles:[Tile], width:Int, height:Int, stub:MapStub)
 	{
-		var numTraps = 10
+		var numTraps = DataStore.getInt("MapThemes", stub.theme, "trap number")!
 		
 		func trapTileOK(x x:Int, y:Int) -> Bool
 		{
@@ -483,8 +482,8 @@ class MapGenerator
 			
 			if spotOK
 			{
-				//TODO: get a real trap type
-				tiles[x + y * width].trap = Trap(type: "sample trap", trapPower: 15 + 2 * stub.level, good: false)
+				let trapType = DataStore.getString("MapFlavors", stub.flavor, "trap type")!
+				tiles[x + y * width].trap = Trap(type: trapType, trapPower: 15 + 2 * stub.level, good: false)
 				numTraps -= 1
 			}
 		}

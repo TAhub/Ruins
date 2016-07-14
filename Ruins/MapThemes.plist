@@ -11,6 +11,9 @@
 <dict>
     <key>wasteland</key>
 	<dict>
+		<!-- TODO: map generator data -->
+		<key>trap number</key> <integer>10</integer>
+		<key>creature exp multiplier</key> <integer>12</integer>
 		<key>keyword</key> <string>criminal</string>
 		<key>suffixes</key>
 		<array>
@@ -22,6 +25,9 @@
 	</dict>
     <key>grove</key>
 	<dict>
+		<!-- TODO: map generator data -->
+		<key>trap number</key> <integer>10</integer>
+		<key>creature exp multiplier</key> <integer>12</integer>
 		<key>keyword</key> <string>wildlife</string>
 		<key>suffixes</key>
 		<array>
@@ -34,6 +40,9 @@
 	</dict>
     <key>city</key>
 	<dict>
+		<!-- TODO: map generator data -->
+		<key>trap number</key> <integer>15</integer>
+		<key>creature exp multiplier</key> <integer>10</integer>
 		<key>keyword</key> <string>stun</string>
 		<key>suffixes</key>
 		<array>
@@ -46,6 +55,9 @@
 	</dict>
     <key>slum</key>
 	<dict>
+		<!-- TODO: map generator data -->
+		<key>trap number</key> <integer>20</integer>
+		<key>creature exp multiplier</key> <integer>8</integer>
 		<key>keyword</key> <string>poison</string>
 		<key>suffixes</key>
 		<array>
@@ -58,6 +70,9 @@
 	</dict>
     <key>fort</key>
 	<dict>
+		<!-- TODO: map generator data -->
+		<key>trap number</key> <integer>15</integer>
+		<key>creature exp multiplier</key> <integer>10</integer>
 		<key>keyword</key> <string>military</string>
 		<key>suffixes</key>
 		<array>
@@ -70,6 +85,9 @@
 	</dict>
     <key>cave</key>
 	<dict>
+		<!-- TODO: map generator data -->
+		<key>trap number</key> <integer>15</integer>
+		<key>creature exp multiplier</key> <integer>10</integer>
 		<key>keyword</key> <string>tomb dweller</string>
 		<key>suffixes</key>
 		<array>
@@ -82,6 +100,9 @@
 	</dict>
     <key>temple</key>
 	<dict>
+		<!-- TODO: map generator data -->
+		<key>trap number</key> <integer>10</integer>
+		<key>creature exp multiplier</key> <integer>12</integer>
 		<key>keyword</key> <string>magical</string>
 		<key>suffixes</key>
 		<array>
@@ -94,6 +115,9 @@
 	</dict>
     <key>hideout</key>
 	<dict>
+		<!-- TODO: map generator data -->
+		<key>trap number</key> <integer>25</integer>
+		<key>creature exp multiplier</key> <integer>7</integer>
 		<key>keyword</key> <string>shake</string>
 		<key>suffixes</key>
 		<array>

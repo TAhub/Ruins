@@ -21,8 +21,37 @@
 	<!-- real traps -->
     <key>bear trap</key>
 	<dict>
+		<key>damage</key> <integer>100</integer>
+	</dict>
+	
+    <key>necrotic trap</key>
+	<dict>
+		<key>damage</key> <integer>90</integer>
+		<key>shake</key> <integer>1</integer>
+	</dict>
+	
+    <key>poison needle trap</key>
+	<dict>
 		<key>damage</key> <integer>70</integer>
+		<key>poison</key> <integer>3</integer>
+	</dict>
+	
+    <key>bomb trap</key>
+	<dict>
+		<key>damage</key> <integer>70</integer>
+		<key>shake</key> <integer>3</integer>
+	</dict>
+	
+    <key>paralysis trap</key>
+	<dict>
+		<key>damage</key> <integer>25</integer>
 		<key>stun</key> <integer>1</integer>
+		<!-- TODO: future idea: trap variable that makes it interrupt your action, not just your move (mostly to be combined with stun I guess) -->
+	</dict>
+	
+    <key>rune trap</key>
+	<dict>
+		<key>damage</key> <integer>60</integer>
 		<!-- TODO: future idea: trap variable that makes it interrupt your action, not just your move (mostly to be combined with stun I guess) -->
 	</dict>
 </dict>

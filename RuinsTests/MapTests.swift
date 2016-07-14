@@ -145,7 +145,6 @@ class MapTests: XCTestCase {
 		let lowLevelStub = MapStub(flavor: "lawless", theme: "fort", level: 1)
 		let midLevelStub = MapStub(flavor: "lawless", theme: "fort", level: 20)
 		let highLevelStub = MapStub(flavor: "lawless", theme: "fort", level: 40)
-		//TODO: take into account map theme exp multiplier
 		XCTAssertEqual(lowLevelStub.totalEXP, 60)
 		XCTAssertEqual(midLevelStub.totalEXP, 250)
 		XCTAssertEqual(highLevelStub.totalEXP, 450)
@@ -331,6 +330,9 @@ class MapTests: XCTestCase {
 					//fourthly, it should have an effective trap power of (15 + 2 * level)
 					XCTAssertEqual(trap.trapPower, 17)
 					
+					//fifthly, it should be the right type for the map
+					XCTAssertEqual(trap.type, "paralysis trap")
+					
 					//finally, all pre-generated traps must be non-good
 					XCTAssertFalse(trap.good)
 				}
@@ -338,7 +340,7 @@ class MapTests: XCTestCase {
 		}
 		
 		//make sure there are enough traps
-		XCTAssertEqual(numTraps, 10) //TODO: real trap number for this combination
+		XCTAssertEqual(numTraps, 15)
 	}
 	
 	func testPlaceCreatures()

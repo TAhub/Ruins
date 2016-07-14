@@ -31,6 +31,7 @@
 		<!-- MARK: generation data -->
 		<key>boss</key> <true/>
 		<key>level</key> <integer>99999</integer>
+		<key>flavor text</key> <string>FLAVOR TEXT GOES HERE.</string>
 		<key>keywords</key>
 		<array>
 			<!-- <string>poison</string>
@@ -268,6 +269,7 @@
 		<!-- MARK: generation data -->
 		<key>boss</key> <true/>
 		<key>level</key> <integer>1</integer>
+		<key>flavor text</key> <string>FLAVOR TEXT GOES HERE.</string> <!-- TODO: flavor text -->
 		<key>keywords</key>
 		<array>
 		</array>
@@ -296,6 +298,7 @@
 		<key>AI</key> <string>warrior</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>5</integer>
+		<key>flavor text</key> <string>There are a lot of bandits around this place. It's an occupation that doesn't require much expertise.</string>
 		<key>keywords</key>
 		<array>
 			<string>criminal</string>
@@ -321,6 +324,7 @@
 		<key>AI</key> <string>minesweeper</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>12</integer>
+		<key>flavor text</key> <string>This soldier has the unenviable job of disarming traps. Someone's gotta do it.</string>
 		<key>keywords</key>
 		<array>
 			<string>military</string>
@@ -346,6 +350,7 @@
 		<key>AI</key> <string>thief</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>20</integer>
+		<key>flavor text</key> <string>Ah, the free life of an outlaw. How fun it must be. Up *he they met you, anyway.</string>
 		<key>keywords</key>
 		<array>
 			<string>criminal</string>
@@ -371,6 +376,7 @@
 		<key>AI</key> <string>drunkard</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>22</integer>
+		<key>flavor text</key> <string>All of those skeletons and zombies go around naked all the time, and yet the moment a human takes *his pants off *he's a streaker. The nerve of it all.</string>
 		<key>keywords</key>
 		<array>
 			<string>stun</string>
@@ -396,6 +402,7 @@
 		<key>AI</key> <string>big guy</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>35</integer>
+		<key>flavor text</key> <string>This soldier looks well-equipped and highly trained. That kind of quality is a rarity nowadays.</string>
 		<key>keywords</key>
 		<array>
 			<string>military</string>
@@ -409,7 +416,7 @@
 		<!-- MARK: stats -->
 		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>9</integer>
-		<key>dexterity</key> <integer>13</integer>
+		<key>dexterity</key> <integer>14</integer>
 		<key>cunning</key> <integer>12</integer>
 		<key>wisdom</key> <integer>9</integer>
 		<key>endurance</key> <integer>8</integer>
@@ -422,7 +429,8 @@
 		<key>appearance group</key> <string>rat</string>
 		<key>AI</key> <string>animal</string>
 		<!-- MARK: generation data -->
-		<key>level</key> <integer>1</integer>
+		<key>level</key> <integer>2</integer>
+		<key>flavor text</key> <string>This rat is nearly the size of a dog, so don't get too cocky.</string>
 		<key>keywords</key>
 		<array>
 			<string>shake</string>
@@ -437,7 +445,7 @@
 		<key>dexterity</key> <integer>12</integer>
 		<key>cunning</key> <integer>9</integer>
 		<key>wisdom</key> <integer>8</integer>
-		<key>endurance</key> <integer>16</integer>
+		<key>endurance</key> <integer>15</integer>
 		<!-- MARK: equipment -->
 		<key>weapon</key> <string>bash</string>
 		<key>weapon material</key> <string>neutral</string>
@@ -447,11 +455,36 @@
 		<key>appearance group</key> <string>dog</string>
 		<key>AI</key> <string>animal</string>
 		<!-- MARK: generation data -->
-		<key>level</key> <integer>11</integer>
+		<key>level</key> <integer>10</integer>
+		<key>flavor text</key> <string>This dog doesn't look too happy to see you. Looks to be a stray.</string>
+		<key>keywords</key>
+		<array>
+			<string>wildlife</string>
+		</array>
+	</dict>
+	<key>dog</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
+		<key>strength</key> <integer>16</integer>
+		<key>dexterity</key> <integer>12</integer>
+		<key>cunning</key> <integer>9</integer>
+		<key>wisdom</key> <integer>8</integer>
+		<key>endurance</key> <integer>17</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>bash</string>
+		<key>weapon material</key> <string>neutral</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>mortal</string>
+		<key>appearance group</key> <string>dog</string>
+		<key>AI</key> <string>animal</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>12</integer>
+		<key>flavor text</key> <string>Even after the end, dogs are still the faithful companions of mankind. This dog looks well cared for, must be someone's guard dog.</string>
 		<key>keywords</key>
 		<array>
 			<string>criminal</string>
-			<string>wildlife</string>
 			<string>military</string>
 		</array>
 	</dict>
@@ -474,6 +507,7 @@
 		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>18</integer>
+		<key>flavor text</key> <string>Yeah, it's kind of weird to see bulls around here. Maybe some broke out of a farm or something.</string>
 		<key>keywords</key>
 		<array>
 			<string>stun</string>
@@ -499,6 +533,7 @@
 		<key>AI</key> <string>animal</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>30</integer>
+		<key>flavor text</key> <string>This is a bear. It's probably a bad idea to piss it off.</string>
 		<key>keywords</key>
 		<array>
 			<string>stun</string>
@@ -527,6 +562,7 @@
 		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>7</integer>
+		<key>flavor text</key> <string>This is a weak bogeyman. It looks like *he is mostly interested in kidnapping children, but isn't all that picky.</string>
 		<key>keywords</key>
 		<array>
 			<string>stun</string>
@@ -551,6 +587,7 @@
 		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>22</integer>
+		<key>flavor text</key> <string>This bogeyman used to be just mischievous, but the end was hard on everyone.</string>
 		<key>keywords</key>
 		<array>
 			<string>shake</string>
@@ -575,6 +612,7 @@
 		<key>AI</key> <string>minesweeper</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>24</integer>
+		<key>flavor text</key> <string>This bogeyman seems to be more interested in setting off traps than hurting you. But *he is still interested in hurting you, don't think otherwise.</string>
 		<key>keywords</key>
 		<array>
 			<string>stun</string>
@@ -601,6 +639,7 @@
 		<key>AI</key> <string>big guy</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>37</integer>
+		<key>flavor text</key> <string>This bogeyman seems to have taken up work as some kind of executioner. You would rather not be executed.</string>
 		<key>keywords</key>
 		<array>
 			<string>military</string>
@@ -630,6 +669,7 @@
 		<key>AI</key> <string>thief</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>6</integer>
+		<key>flavor text</key> <string>It's a goat-sucker. You haven't seen any goats around here, so it's settled for sucking your blood instead.</string>
 		<key>keywords</key>
 		<array>
 			<string>wildlife</string>
@@ -655,6 +695,7 @@
 		<key>AI</key> <string>animal</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>18</integer>
+		<key>flavor text</key> <string>This snake has learned to roll around like a wheel, like Ouroboros' less dignified cousin.</string>
 		<key>keywords</key>
 		<array>
 			<string>poison</string>
@@ -680,6 +721,7 @@
 		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>38</integer>
+		<key>flavor text</key> <string>This thing has come from a terrible poisonous swamp. You'd rather not know what's under all that muck.</string>
 		<key>keywords</key>
 		<array>
 			<string>poison</string>
@@ -705,10 +747,10 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>monster</string>
 		<key>appearance group</key> <string>wendigo</string>
-		<!-- TODO: because of how I draw them, it'd be cool if the text description mentioned it was a spirit of hunger, half strong and half emaciated -->
 		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>34</integer>
+		<key>flavor text</key> <string>This is a terrible spirit, incarnated in the flesh. It seems to be half-emaciated.</string>
 		<key>keywords</key>
 		<array>
 			<string>shake</string>
@@ -738,6 +780,7 @@
 		<key>AI</key> <string>thief</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>2</integer>
+		<key>flavor text</key> <string>In lieu of fixing shoes for gifts of food, this brownie has decided to skip the middleman and just get the food off your corpse.</string>
 		<key>keywords</key>
 		<array>
 			<string>shake</string>
@@ -764,6 +807,7 @@
 		<key>AI</key> <string>thief</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>18</integer>
+		<key>flavor text</key> <string>Most fairies can't actually fly, but this pixie has it all figured out.</string>
 		<key>keywords</key>
 		<array>
 			<string>poison</string>
@@ -790,6 +834,7 @@
 		<key>AI</key> <string>thief</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>21</integer>
+		<key>flavor text</key> <string>Most fairies are jerks, but this one is an exception. Instead, *he is a double jerk.</string>
 		<key>keywords</key>
 		<array>
 			<string>criminal</string>
@@ -816,6 +861,7 @@
 		<key>AI</key> <string>thief</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>34</integer>
+		<key>flavor text</key> <string>This fairy looks unusually serious. Most fairies aren't disciplined enough to be soldiers, but some are just too lured by the promise of the sharp uniform.</string>
 		<key>keywords</key>
 		<array>
 			<string>military</string>
@@ -845,6 +891,7 @@
 		<key>AI</key> <string>coward</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>6</integer>
+		<key>flavor text</key> <string>This elf is giving you a cocky grin as *he runs around.</string>
 		<key>keywords</key>
 		<array>
 			<string>military</string>
@@ -871,6 +918,7 @@
 		<key>AI</key> <string>thief</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>9</integer>
+		<key>flavor text</key> <string>Some elves have a bit too much fun watching people die horribly. This one seems to favor poison.</string>
 		<key>keywords</key>
 		<array>
 			<string>poison</string>
@@ -899,9 +947,9 @@
 		<key>AI</key> <string>coward</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>22</integer>
+		<key>flavor text</key> <string>This elf is a master of magic, even by the standard of the elves.</string>
 		<key>keywords</key>
 		<array>
-			<string>military</string>
 			<string>stun</string>
 			<string>magical</string>
 		</array>
@@ -927,6 +975,7 @@
 		<key>AI</key> <string>warrior</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>37</integer>
+		<key>flavor text</key> <string>Elflord is an honorary title, so this elf may or may not be an actual noble. This isn't really an appropriate time to ask *him.</string>
 		<key>keywords</key>
 		<array>
 			<string>military</string>
@@ -955,6 +1004,7 @@
 		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>3</integer>
+		<key>flavor text</key> <string>This skeleton looks like a real bonehead.</string>
 		<key>keywords</key>
 		<array>
 			<string>tomb dweller</string>
@@ -980,6 +1030,7 @@
 		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>9</integer>
+		<key>flavor text</key> <string>This skeleton has a very heavy-looking hammer, a bunch of bandages, and a suggestive-sounding name. That's all you really need.</string>
 		<key>keywords</key>
 		<array>
 			<string>tomb dweller</string>
@@ -1005,6 +1056,7 @@
 		<key>AI</key> <string>big guy</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>20</integer>
+		<key>flavor text</key> <string>This skeleton was probably a soldier in life.</string>
 		<key>keywords</key>
 		<array>
 			<string>tomb dweller</string>
@@ -1031,6 +1083,7 @@
 		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>34</integer>
+		<key>flavor text</key> <string>This is the animated skeletal remains of a mighty warrior from the north.</string>
 		<key>keywords</key>
 		<array>
 			<string>tomb dweller</string>
@@ -1058,6 +1111,7 @@
 		<key>AI</key> <string>drunkard</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>1</integer>
+		<key>flavor text</key> <string>Not all zombies are blessed with intelligence. Most are quite stupid, in fact.</string>
 		<key>keywords</key>
 		<array>
 			<string>tomb dweller</string>
@@ -1082,6 +1136,7 @@
 		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>17</integer>
+		<key>flavor text</key> <string>As zombies are immune to poison, some spend a long time drinking poison without realizing it and become ghouls.</string>
 		<key>keywords</key>
 		<array>
 			<string>tomb dweller</string>
@@ -1109,6 +1164,7 @@
 		<key>AI</key> <string>drunkard</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>29</integer>
+		<key>flavor text</key> <string>Mummies are technically a type of zombie. They are set apart by their envious comfortable bandages and magic powers.</string>
 		<key>keywords</key>
 		<array>
 			<string>tomb dweller</string>

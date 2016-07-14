@@ -60,10 +60,14 @@ class ExamineViewController: UIViewController {
 			}
 			desc += creature.weapon.range == 1 ? "melee\n" : "ranged\n"
 			desc += "\n"
-			//TODO: enemy type description
-			//just a single line of flavor text
-			desc += "FLAVOR TEXT GOES HERE.\n"
+			//TODO: replace "*he" with "he" or "she" as appropriate
+			//TODO: same with "*his" with "his" or "hers"
+			//TODO: same with "*him" with "him" or "her"
+			let flavorText = DataStore.getString("EnemyTypes", creature.enemyType, "flavor text")!
+			desc += "\(flavorText)\n"
 		}
+		
+		desc += "\n"
 		
 		//immunities
 		if DataStore.getBool("RacialGroups", creature.racialGroup, "stun immunity")
@@ -77,6 +81,10 @@ class ExamineViewController: UIViewController {
 		if DataStore.getBool("RacialGroups", creature.racialGroup, "poison immunity")
 		{
 			desc += "immune to poison\n"
+		}
+		if let status = creature.weapon.statusInflicted
+		{
+			desc += "can inflict \(status)\n"
 		}
 		if creature.poison > 0
 		{

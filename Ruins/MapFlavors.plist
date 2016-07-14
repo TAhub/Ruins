@@ -11,6 +11,7 @@
 <dict>
     <key>poisonous</key>
 	<dict>
+		<key>trap type</key> <string>poison needle trap</string>
 		<key>keyword</key> <string>poison</string>
 		<key>alternate keyword</key> <string>criminal</string>
 		<key>prefixes</key>
@@ -23,6 +24,7 @@
 	</dict>
     <key>lawless</key>
 	<dict>
+		<key>trap type</key> <string>paralysis trap</string>
 		<key>keyword</key> <string>criminal</string>
 		<key>alternate keyword</key> <string>shake</string>
 		<key>prefixes</key>
@@ -35,6 +37,7 @@
 	</dict>
     <key>dead</key>
 	<dict>
+		<key>trap type</key> <string>necrotic trap</string>
 		<key>keyword</key> <string>tomb dweller</string>
 		<key>alternate keyword</key> <string>stun</string>
 		<key>prefixes</key>
@@ -47,6 +50,7 @@
 	</dict>
     <key>mystical</key>
 	<dict>
+		<key>trap type</key> <string>rune trap</string>
 		<key>keyword</key> <string>magical</string>
 		<key>alternate keyword</key> <string>shake</string>
 		<key>prefixes</key>
@@ -59,6 +63,7 @@
 	</dict>
     <key>overgrown</key>
 	<dict>
+		<key>trap type</key> <string>bear trap</string>
 		<key>keyword</key> <string>wildlife</string>
 		<key>alternate keyword</key> <string>shake</string>
 		<key>prefixes</key>
@@ -71,6 +76,7 @@
 	</dict>
     <key>battlefield</key>
 	<dict>
+		<key>trap type</key> <string>bomb trap</string>
 		<key>keyword</key> <string>military</string>
 		<key>alternate keyword</key> <string>stun</string>
 		<key>prefixes</key>
@@ -83,6 +89,7 @@
 	</dict>
     <key>fierce</key>
 	<dict>
+		<key>trap type</key> <string>bear trap</string>
 		<key>keyword</key> <string>stun</string>
 		<key>alternate keyword</key> <string>shake</string>
 		<key>prefixes</key>

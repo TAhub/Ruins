@@ -238,6 +238,25 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(target.poison, 0)
 	}
 	
+	func testAllEnemyTypesHaveFlavorText()
+	{
+		for (creature, _) in DataStore.getPlist("EnemyTypes") as! [String : NSObject]
+		{
+			let hasKeywords = DataStore.getArray("EnemyTypes", creature, "keywords")!.count > 0
+			let isBoss = DataStore.getBool("EnemyTypes", creature, "boss")
+			let isPlayer = DataStore.getBool("EnemyTypes", creature, "good")
+			if !isPlayer && (isBoss || hasKeywords)
+			{
+				let flavorText = DataStore.getString("EnemyTypes", creature, "flavor text")
+				XCTAssertNotNil(flavorText)
+				if flavorText == nil
+				{
+					print("WARNING: CREATURE \(creature) HAS NO FLAVOR TEXT!")
+				}
+			}
+		}
+	}
+	
 	//TODO: other attack tests to make:
 	//	test healing weapons
 	
