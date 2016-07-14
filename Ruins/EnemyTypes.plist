@@ -419,7 +419,7 @@
 		<!-- MARK: special powers -->
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>mortal</string>
-		<key>appearance group</key> <string>zombie</string> <!-- TODO: rat race -->
+		<key>appearance group</key> <string>rat</string>
 		<key>AI</key> <string>animal</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>1</integer>
@@ -444,7 +444,7 @@
 		<!-- MARK: special powers -->
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>mortal</string>
-		<key>appearance group</key> <string>zombie</string> <!-- TODO: dog race -->
+		<key>appearance group</key> <string>dog</string>
 		<key>AI</key> <string>animal</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>11</integer>
@@ -470,7 +470,7 @@
 		<!-- MARK: special powers -->
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>mortal</string>
-		<key>appearance group</key> <string>zombie</string> <!-- TODO: bull race -->
+		<key>appearance group</key> <string>bull</string>
 		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>18</integer>
@@ -495,7 +495,7 @@
 		<!-- MARK: special powers -->
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>mortal</string>
-		<key>appearance group</key> <string>zombie</string> <!-- TODO: bear race -->
+		<key>appearance group</key> <string>bear</string>
 		<key>AI</key> <string>animal</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>30</integer>
@@ -626,7 +626,7 @@
 		<!-- MARK: special powers -->
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>monster</string>
-		<key>appearance group</key> <string>zombie</string> <!-- TODO: chupacabra race -->
+		<key>appearance group</key> <string>chupacabra</string>
 		<key>AI</key> <string>thief</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>6</integer>
@@ -651,7 +651,7 @@
 		<!-- MARK: special powers -->
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>monster</string>
-		<key>appearance group</key> <string>zombie</string> <!-- TODO: hoop snake race -->
+		<key>appearance group</key> <string>hoop snake</string>
 		<key>AI</key> <string>animal</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>18</integer>
@@ -676,7 +676,7 @@
 		<!-- MARK: special powers -->
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>monster</string>
-		<key>appearance group</key> <string>zombie</string> <!-- TODO: swamp monster race -->
+		<key>appearance group</key> <string>swamp monster</string>
 		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>38</integer>
@@ -704,7 +704,8 @@
 		<key>ignore terrain cost</key> <true/>
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>monster</string>
-		<key>appearance group</key> <string>zombie</string> <!-- TODO: spooky ghost wendigo race -->
+		<key>appearance group</key> <string>wendigo</string>
+		<!-- TODO: because of how I draw them, it'd be cool if the text description mentioned it was a spirit of hunger, half strong and half emaciated -->
 		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>34</integer>

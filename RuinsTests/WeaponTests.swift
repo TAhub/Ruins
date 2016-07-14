@@ -106,6 +106,7 @@ class WeaponTests: XCTestCase {
 		XCTAssertNil(weapon.statusInflicted)
 		XCTAssertEqual(weapon.maxHealth, 100)
 		XCTAssertEqual(weapon.health, 100)
+		XCTAssertNil(weapon.spriteName)
 		XCTAssertEqual(weapon.description, "SAMPLE FLAVOR.\n200 damage (100 graze), 100% accuracy, 100 range, 100 weight")
 	}
 }

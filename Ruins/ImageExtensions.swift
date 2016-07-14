@@ -50,22 +50,26 @@ extension UIImage
 		return newImage
 	}
 	
-	class func combineImages(images:[UIImage], anchorAt:CGPoint) -> UIImage
+	class func combineImages(images:[UIImage], anchorAt:CGPoint, yAdds:[Int]) -> UIImage
 	{
 		var largestSize = CGSize(width: 0, height: 0)
-		for image in images
+		for i in 0..<images.count
 		{
+			let image = images[i]
+			let yAdd = yAdds[i]
 			largestSize.width = max(largestSize.width, image.size.width)
-			largestSize.height = max(largestSize.height, image.size.height)
+			largestSize.height = max(largestSize.height, image.size.height - CGFloat(yAdd))
 		}
 		
 		UIGraphicsBeginImageContext(largestSize)
-		for image in images
+		for i in 0..<images.count
 		{
+			let image = images[i]
+			let yAdd = yAdds[i]
 			//the anchorAt point is where the views should converge
 			//ie 0.5, 0.5 means they should all be centered
 			//0, 0 means they should all be drawn in the upper-left
-			image.drawAtPoint(CGPoint(x: (largestSize.width - image.size.width) * anchorAt.x, y: (largestSize.height - image.size.height) * anchorAt.y))
+			image.drawAtPoint(CGPoint(x: (largestSize.width - image.size.width) * anchorAt.x, y: (largestSize.height - image.size.height) * anchorAt.y + CGFloat(yAdd)))
 		}
 		let newImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()

@@ -65,7 +65,7 @@ class GameViewController: UIViewController, GameDelegate {
 		weaponBarContainerView.layer.cornerRadius = 5
 		armorBarContainerView.layer.cornerRadius = 5
 		
-		game = Game(mapStub: MapStub(flavor: "lawless", theme: "city", level: 1))
+		game = Game(mapStub: MapStub(flavor: "overgrown", theme: "city", level: 1))
 		game.delegate = self
 		
 		//make a quick initial player inventory

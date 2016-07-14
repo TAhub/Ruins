@@ -6,7 +6,7 @@
 //  Copyright © 2016 Theodore Abshire. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Weapon
 {
@@ -140,6 +140,14 @@ class Weapon
 	var statusInflicted:String?
 	{
 		return DataStore.getString("Materials", material, "status inflicted")
+	}
+	var spriteName:String?
+	{
+		return DataStore.getString("Weapons", type, "sprite")
+	}
+	var spriteColor:UIColor
+	{
+		return DataStore.getColor("Materials", material, "color") ?? UIColor.blackColor()
 	}
 	var name:String
 	{

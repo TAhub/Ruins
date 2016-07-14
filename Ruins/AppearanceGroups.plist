@@ -18,6 +18,7 @@
 				<key>sprite name</key> <string>human</string>
 				<key>has gender</key> <true/>
 				<key>armor suffix</key> <string>human</string>
+				<key>weapon height</key> <integer>0</integer>
 				<key>variants</key> <integer>1</integer>
 			</dict>
 		</array>
@@ -44,6 +45,8 @@
 				<key>sprite name</key> <string>human_hair</string>
 				<key>has gender</key> <true/>
 				<key>variants</key> <integer>1</integer>
+				<key>weapon height</key> <integer>0</integer>
+				<key>weapon height female</key> <integer>1</integer>
 			</dict>
 			<dict>
 				<key>sprite name</key> <string>human_eye</string>
@@ -87,6 +90,7 @@
 				<key>sprite name</key> <string>fairy_hair</string>
 				<key>has gender</key> <true/>
 				<key>variants</key> <integer>1</integer>
+				<key>weapon height</key> <integer>1</integer>
 			</dict>
 			<dict>
 				<key>sprite name</key> <string>fairy_eye</string>
@@ -128,6 +132,7 @@
 				<key>sprite name</key> <string>elf_hair</string>
 				<key>has gender</key> <true/>
 				<key>variants</key> <integer>1</integer>
+				<key>weapon height</key> <integer>-1</integer>
 			</dict>
 			<dict>
 				<key>sprite name</key> <string>elf_eye</string>
@@ -161,6 +166,8 @@
 				<key>sprite name</key> <string>zombie_hair</string>
 				<key>has gender</key> <true/>
 				<key>variants</key> <integer>1</integer>
+				<key>weapon height</key> <integer>0</integer>
+				<key>weapon height female</key> <integer>1</integer>
 			</dict>
 			<dict>
 				<key>sprite name</key> <string>human_eye</string>
@@ -190,6 +197,7 @@
 				<key>sprite name</key> <string>bogeyman</string>
 				<key>has gender</key> <true/>
 				<key>armor suffix</key> <string>bogeyman</string>
+				<key>weapon height</key> <integer>0</integer>
 			</dict>
 			<dict>
 				<key>sprite name</key> <string>bogeyman_eye</string>
@@ -214,6 +222,7 @@
 			<dict>
 				<key>sprite name</key> <string>skeleton</string>
 				<key>armor suffix</key> <string>human_m</string>
+				<key>weapon height</key> <integer>0</integer>
 			</dict>
 			<dict>
 				<key>sprite name</key> <string>human_eye_m</string>
@@ -232,6 +241,166 @@
 			<array>
 				<string>bone</string>
 				<string>blue</string>
+			</array>
+		</array>
+	</dict>
+	
+	<!-- monster appearance groups -->
+	<key>rat</key>
+	<dict>
+		<key>layers</key>
+		<array>
+			<dict>
+				<key>sprite name</key> <string>rat</string>
+			</dict>
+		</array>
+		<key>colorations</key>
+		<array>
+			<array>
+				<string>human hair brown</string>
+			</array>
+			<array>
+				<string>human hair black</string>
+			</array>
+		</array>
+	</dict>
+	<key>dog</key>
+	<dict>
+		<key>layers</key>
+		<array>
+			<dict>
+				<key>sprite name</key> <string>dog</string>
+			</dict>
+			<dict>
+				<key>sprite name</key> <string>dog_tongue</string>
+			</dict>
+		</array>
+		<key>colorations</key>
+		<array>
+			<array>
+				<string>human hair brown</string>
+				<string>fairy hair red</string>
+			</array>
+			<array>
+				<string>human hair black</string>
+				<string>fairy hair red</string>
+			</array>
+			<array>
+				<string>wool</string>
+				<string>fairy hair red</string>
+			</array>
+		</array>
+	</dict>
+	<key>bull</key>
+	<dict>
+		<key>layers</key>
+		<array>
+			<dict>
+				<key>sprite name</key> <string>bull</string>
+			</dict>
+			<dict>
+				<key>sprite name</key> <string>bull_horns</string>
+			</dict>
+		</array>
+		<key>colorations</key>
+		<array>
+			<array>
+				<string>human hair brown</string>
+				<string>bone</string>
+			</array>
+		</array>
+	</dict>
+	<key>bear</key>
+	<dict>
+		<key>layers</key>
+		<array>
+			<dict>
+				<key>sprite name</key> <string>bear</string>
+			</dict>
+		</array>
+		<key>colorations</key>
+		<array>
+			<array>
+				<string>human hair brown</string>
+			</array>
+			<array>
+				<string>human hair black</string>
+			</array>
+		</array>
+	</dict>
+	<key>chupacabra</key>
+	<dict>
+		<key>layers</key>
+		<array>
+			<dict>
+				<key>sprite name</key> <string>chupacabra</string>
+			</dict>
+			<dict>
+				<key>sprite name</key> <string>chupacabra_eye</string>
+			</dict>
+		</array>
+		<key>colorations</key>
+		<array>
+			<array>
+				<string>fairy hair green</string>
+				<string>red</string>
+			</array>
+			<!-- <array>
+				<string>fairy hair yellow</string>
+				<string>blue</string>
+			</array> -->
+		</array>
+	</dict>
+	<key>hoop snake</key>
+	<dict>
+		<key>layers</key>
+		<array>
+			<dict>
+				<key>sprite name</key> <string>hoopsnake</string>
+			</dict>
+		</array>
+		<key>colorations</key>
+		<array>
+			<array>
+				<string>fairy hair green</string>
+			</array>
+		</array>
+	</dict>
+	<key>swamp monster</key>
+	<dict>
+		<key>layers</key>
+		<array>
+			<dict>
+				<key>sprite name</key> <string>swampmonster</string>
+			</dict>
+			<dict>
+				<key>sprite name</key> <string>swampmonster_moss</string>
+			</dict>
+			<dict>
+				<key>sprite name</key> <string>swampmonster_eye</string>
+			</dict>
+		</array>
+		<key>colorations</key>
+		<array>
+			<array>
+				<string>zombie skin green</string>
+				<string>fairy hair green</string>
+				<string>fairy hair blue</string>
+			</array>
+		</array>
+	</dict>
+	<key>wendigo</key>
+	<dict>
+		<key>layers</key>
+		<array>
+			<dict>
+				<key>sprite name</key> <string>wendigo</string>
+			</dict>
+		</array>
+		<key>colorations</key>
+		<array>
+			<array>
+				<string>bone</string>
 			</array>
 		</array>
 	</dict>

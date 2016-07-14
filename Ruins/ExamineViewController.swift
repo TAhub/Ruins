@@ -22,11 +22,21 @@ class ExamineViewController: UIViewController {
 		super.viewWillAppear(animated)
 		
 		var desc = ""
+		if creature === game.player
+		{
+			//TODO: player name
+			desc += "NAME HERE: "
+		}
+		else
+		{
+			desc += "\(creature.enemyType): "
+		}
 		desc += "level \(creature.level) \(creature.racialGroup)\n"
 		if creature === game.player
 		{
 			//do the full description
 			desc += "\(creature.health)/\(creature.maxHealth) health\n"
+			desc += "\n"
 			desc += "\(creature.str) STR, \(creature.dex) DEX, \(creature.cun) CUN, \(creature.wis) WIS, \(creature.end) END\n"
 			desc += "\(creature.meleePow) melee pow, \(creature.meleeRes) melee res\n"
 			desc += "\(creature.accuracy) accuracy, \(creature.dodge) dodge\n"
@@ -35,10 +45,6 @@ class ExamineViewController: UIViewController {
 		}
 		else
 		{
-			//TODO: enemy type description
-			//just a single line of flavor text
-			desc += "FLAVOR TEXT GOES HERE.\n"
-			
 			//do the partial description
 			if creature.health == creature.maxHealth
 			{
@@ -53,6 +59,10 @@ class ExamineViewController: UIViewController {
 				desc += "injured\n"
 			}
 			desc += creature.weapon.range == 1 ? "melee\n" : "ranged\n"
+			desc += "\n"
+			//TODO: enemy type description
+			//just a single line of flavor text
+			desc += "FLAVOR TEXT GOES HERE.\n"
 		}
 		
 		//immunities
