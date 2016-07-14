@@ -44,6 +44,7 @@ class GameViewController: UIViewController, GameDelegate {
 	
 	@IBOutlet weak var gameArea: TileDisplayView!
 	@IBOutlet weak var creatureLayer: UIView!
+	@IBOutlet weak var objectLayer: UIView!
 	
 	
 	@IBOutlet weak var healthBarAuraView: UIView!
@@ -71,6 +72,7 @@ class GameViewController: UIViewController, GameDelegate {
 		let pot = Item(usable: "healing potion")
 		pot.number = 2
 		game.player.inventory.append(pot)
+		game.player.inventory.append(Item(usable: "bear trap"))
 		
 		//TODO: all sprite tiles and such should auto-scale so that differently-sized iphones all have the same screen size
 		
@@ -94,7 +96,7 @@ class GameViewController: UIViewController, GameDelegate {
 			{
 				if let trap = game.map.tileAt(x: x, y: y).trap
 				{
-					representations.append(TrapRepresentation(trap: trap, x: x, y: y, superview: creatureLayer, atCameraPoint: cameraPoint, map: game.map))
+					representations.append(TrapRepresentation(trap: trap, x: x, y: y, superview: objectLayer, atCameraPoint: cameraPoint, map: game.map))
 				}
 			}
 		}
@@ -504,7 +506,7 @@ class GameViewController: UIViewController, GameDelegate {
 		
 		//draw movement points number
 		let labelM = UILabel()
-		labelM.text = "\(game.movePoints)/\(game.activeCreature.maxMovePoints) MP "
+		labelM.text = "\(game.movePoints)/\(game.activeCreature.maxMovePoints) MP \(game.hasAction ? "ACTION " : "")"
 		labelM.sizeToFit()
 		secondaryBarArea.addSubview(labelM)
 		
@@ -539,6 +541,12 @@ class GameViewController: UIViewController, GameDelegate {
 	func gameOver()
 	{
 		//TODO: handle a game over
+	}
+	
+	func trapCreated(trap:Trap, x:Int, y:Int)
+	{
+		let rep = TrapRepresentation(trap: trap, x: x, y: y, superview: objectLayer, atCameraPoint: cameraPoint, map: game.map)
+		representations.append(rep)
 	}
 	
 	//MARK: helper methods

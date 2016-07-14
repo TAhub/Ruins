@@ -126,6 +126,12 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 						game.player.shake = 0
 						game.player.poison = 0
 					}
+					if let trap = item.trap
+					{
+						//can only use a trap item when not on a trap
+						let trap = Trap(type: trap, trapPower: game.player.trapPow, good: true)
+						game.addTrap(trap, x: game.player.x, y: game.player.y)
+					}
 					
 					if item.number <= 1
 					{
@@ -136,9 +142,8 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 						item.number = item.number - 1
 					}
 					
-					
-					//this costs an entire action
-					game.skipAction()
+					//this removes your action, but doesn't end your turn
+					game.hasAction = false
 				}
 			}
 			else
@@ -301,7 +306,20 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 			{
 				return true
 			}
+			
+			if item.usable != nil && !game.hasAction
+			{
+				return false //doesn't have an action to use it
+			}
+			
 			//TODO: if it's a special power, return if you have aura
+			
+			if let _ = item.trap
+			{
+				//can only use a trap item when not on a trap
+				let tile = game.map.tileAt(x: game.player.x, y: game.player.y)
+				return tile.trap == nil
+			}
 			
 			//otherwise it's a usable or a misc
 			return item.cures || item.heals != nil
@@ -425,7 +443,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 		{
 			return 2
 		}
-		else if item.cures || item.heals != nil
+		else if item.cures || item.heals != nil || item.trap != nil
 		{
 			return 3
 		}

@@ -22,6 +22,10 @@
                                 <rect key="frame" x="0.0" y="100" width="320" height="336"/>
                                 <color key="backgroundColor" red="0.1214264607805462" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GD4-Nq-TGi">
+                                <rect key="frame" x="0.0" y="100" width="320" height="336"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iYK-5o-eyG">
                                 <rect key="frame" x="0.0" y="100" width="320" height="336"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -160,6 +164,7 @@
                             <constraint firstItem="iYK-5o-eyG" firstAttribute="width" secondItem="NPZ-1v-IWo" secondAttribute="width" id="0zx-oW-gPx"/>
                             <constraint firstItem="JRn-kD-KBM" firstAttribute="height" secondItem="xx7-VK-klT" secondAttribute="height" multiplier="0.15" id="75d-ke-CSy"/>
                             <constraint firstItem="iYK-5o-eyG" firstAttribute="height" secondItem="NPZ-1v-IWo" secondAttribute="height" id="HaI-sc-nWe"/>
+                            <constraint firstItem="GD4-Nq-TGi" firstAttribute="width" secondItem="iYK-5o-eyG" secondAttribute="width" id="HiW-r9-9O7"/>
                             <constraint firstItem="iYK-5o-eyG" firstAttribute="centerY" secondItem="NPZ-1v-IWo" secondAttribute="centerY" id="KmS-rz-0Bx"/>
                             <constraint firstItem="NPZ-1v-IWo" firstAttribute="width" secondItem="xx7-VK-klT" secondAttribute="width" id="Rap-Xh-lr5"/>
                             <constraint firstItem="JRn-kD-KBM" firstAttribute="width" secondItem="xx7-VK-klT" secondAttribute="width" id="SaJ-Kj-Jhr"/>
@@ -168,11 +173,14 @@
                             <constraint firstItem="NPZ-1v-IWo" firstAttribute="top" secondItem="JRn-kD-KBM" secondAttribute="bottom" id="Z4n-sX-jB8"/>
                             <constraint firstItem="iYK-5o-eyG" firstAttribute="centerX" secondItem="NPZ-1v-IWo" secondAttribute="centerX" id="e1a-D0-0q5"/>
                             <constraint firstItem="NPZ-1v-IWo" firstAttribute="centerX" secondItem="xx7-VK-klT" secondAttribute="centerX" id="h1b-vZ-1Xe"/>
+                            <constraint firstItem="GD4-Nq-TGi" firstAttribute="height" secondItem="iYK-5o-eyG" secondAttribute="height" id="kg2-gE-4cY"/>
                             <constraint firstItem="dkm-YG-z1J" firstAttribute="top" secondItem="NPZ-1v-IWo" secondAttribute="bottom" id="ncg-hR-HW9"/>
                             <constraint firstItem="JRn-kD-KBM" firstAttribute="centerX" secondItem="xx7-VK-klT" secondAttribute="centerX" id="qwh-0A-Ax1"/>
                             <constraint firstItem="JRn-kD-KBM" firstAttribute="top" secondItem="cmJ-7i-wBD" secondAttribute="bottom" constant="8" symbolic="YES" id="rc0-Rt-sk2"/>
                             <constraint firstItem="dkm-YG-z1J" firstAttribute="centerX" secondItem="xx7-VK-klT" secondAttribute="centerX" id="uXx-Vb-AtE"/>
                             <constraint firstItem="ZH5-Ds-czt" firstAttribute="top" secondItem="dkm-YG-z1J" secondAttribute="bottom" constant="8" symbolic="YES" id="wJB-tX-Zoy"/>
+                            <constraint firstItem="GD4-Nq-TGi" firstAttribute="centerY" secondItem="iYK-5o-eyG" secondAttribute="centerY" id="wQN-TR-bPC"/>
+                            <constraint firstItem="GD4-Nq-TGi" firstAttribute="centerX" secondItem="iYK-5o-eyG" secondAttribute="centerX" id="zUw-QA-t3g"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -182,6 +190,7 @@
                         <outlet property="gameArea" destination="NPZ-1v-IWo" id="9ro-Rg-87a"/>
                         <outlet property="healthBarAuraView" destination="Sew-n6-y2a" id="vn2-g4-cdg"/>
                         <outlet property="healthBarContainerView" destination="863-10-eD8" id="k4F-Ku-ZAL"/>
+                        <outlet property="objectLayer" destination="GD4-Nq-TGi" id="L8V-FZ-87m"/>
                         <outlet property="secondaryBarArea" destination="EfO-Ch-e7g" id="tEY-pU-ETS"/>
                         <outlet property="weaponBarContainerView" destination="RPn-Da-7ZN" id="O1o-N1-5G5"/>
                         <segue destination="E04-kl-Lum" kind="presentation" identifier="ShowInventory" id="jfl-WS-zVW"/>

@@ -15,6 +15,18 @@
 		<key>weight</key> <integer>100</integer>
 		<key>heals</key> <integer>100</integer>
 		<key>cures</key> <true/>
+		<!-- <key>trap</key> <string>bear trap</string> -->
+		<key>magic</key>
+		<dict>
+			<!-- TODO: magic data -->
+		</dict>
+	</dict>
+	
+	<key>sample trap</key>
+	<dict>
+		<key>flavor</key> <string>SAMPLE FLAVOR.</string>
+		<key>weight</key> <integer>100</integer>
+		<key>trap</key> <string>sample trap</string>
 		<key>magic</key>
 		<dict>
 			<!-- TODO: magic data -->
@@ -64,6 +76,13 @@
 		<key>flavor</key> <string>A needle full of revitalizing chemicals.</string>
 		<key>weight</key> <integer>10</integer>
 		<key>cures</key> <true/>
+	</dict>
+	
+	<key>bear trap</key>
+	<dict>
+		<key>flavor</key> <string>A simple but effective hunter's tool.</string>
+		<key>weight</key> <integer>50</integer>
+		<key>trap</key> <string>bear trap</string>
 	</dict>
 </dict>
 </plist>

@@ -128,6 +128,40 @@ class Item
 			{
 				stats.append("Cures")
 			}
+			if let trap = trap
+			{
+				let trapDamage = DataStore.getInt("Traps", trap, "damage")!
+				let trapStun = DataStore.getBool("Traps", trap, "stun")
+				let trapShake = DataStore.getBool("Traps", trap, "shake")
+				let trapPoison = DataStore.getBool("Traps", trap, "poison")
+				var effectDesc = ""
+				if trapStun
+				{
+					effectDesc += "stuns"
+				}
+				if trapShake
+				{
+					if !effectDesc.isEmpty
+					{
+						effectDesc += ", "
+						if !trapPoison
+						{
+							effectDesc += "and "
+						}
+					}
+					effectDesc += "shakes"
+				}
+				if trapPoison
+				{
+					if !effectDesc.isEmpty
+					{
+						effectDesc += ", and "
+					}
+					effectDesc += "poisons"
+				}
+				
+				stats.append("Lays a \(trapDamage)-damage trap\(effectDesc.isEmpty ? "" : " that ")\(effectDesc)")
+			}
 			stats.append("\(weight) \(number > 1 ? "total " : "")weight")
 			let flavor = DataStore.getString("Usables", usable, "flavor")!
 			let joined = stats.joinWithSeparator(". ")
@@ -144,6 +178,15 @@ class Item
 			return DataStore.getBool("Usables", usable, "cures")
 		}
 		return false
+	}
+	
+	var trap:String?
+	{
+		if let usable = usable
+		{
+			return DataStore.getString("Usables", usable, "trap")
+		}
+		return nil
 	}
 	
 	var heals:Int?

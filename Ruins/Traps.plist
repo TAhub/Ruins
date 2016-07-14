@@ -17,5 +17,13 @@
 		<key>poison</key> <integer>1</integer>
 		<!-- TODO: future idea: trap variable that makes it interrupt your action, not just your move (mostly to be combined with stun I guess) -->
 	</dict>
+	
+	<!-- real traps -->
+    <key>bear trap</key>
+	<dict>
+		<key>damage</key> <integer>70</integer>
+		<key>stun</key> <integer>1</integer>
+		<!-- TODO: future idea: trap variable that makes it interrupt your action, not just your move (mostly to be combined with stun I guess) -->
+	</dict>
 </dict>
 </plist>

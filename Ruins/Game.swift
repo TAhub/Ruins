@@ -34,6 +34,7 @@ protocol GameDelegate
 	func inputDesired()
 	func uiUpdate()
 	func gameOver()
+	func trapCreated(trap:Trap, x:Int, y:Int)
 }
 
 class Game
@@ -44,6 +45,7 @@ class Game
 	var delegate:GameDelegate?
 	var creatures = [Creature]()
 	var movePoints:Int = 0
+	var hasAction:Bool = false
 	var targetX:Int = 0
 	var targetY:Int = 0
 	var map:Map
@@ -88,6 +90,13 @@ class Game
 		addEnemy(creature)
 	}
 	
+	func addTrap(trap:Trap, x:Int, y:Int)
+	{
+		let tile = map.tileAt(x: x, y: y)
+		tile.trap = trap
+		delegate?.trapCreated(trap, x: x, y: y)
+	}
+	
 	func calculateVisibility()
 	{
 		map.calculateVisibility(x: player.x, y: player.y)
@@ -95,6 +104,12 @@ class Game
 	
 	func validTarget(cr:Creature) -> Bool
 	{
+		//if you don't have an action, you can't attack
+		if !hasAction
+		{
+			return false
+		}
+		
 		//if either the attacker or the defender are on invisible tiles, no
 		if !map.tileAt(x: cr.x, y: cr.y).visible || !map.tileAt(x: activeCreature.x, y: activeCreature.y).visible
 		{
@@ -294,7 +309,7 @@ class Game
 				delegate?.inputDesired()
 			}
 			return
-		case .Move: phaseOn = .MakeDecision
+		case .Move: phaseOn = hasAction ? .MakeDecision : .EndTurn
 		case .Attack: phaseOn = .EndTurn
 		case .Stun: phaseOn = .EndTurn
 		case .EndTurn: phaseOn = .PoisonDamage; nextCreature = true
@@ -309,6 +324,7 @@ class Game
 				creatures = creatures.filter() { $0.health > 0 }
 			}
 			movePoints = activeCreature.maxMovePoints
+			hasAction = true
 			nextCreature = activeCreature.health == 0
 			
 			if player.health == 0

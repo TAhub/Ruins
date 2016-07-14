@@ -16,6 +16,10 @@ class GameTests: XCTestCase, GameDelegate {
 	var playAnimationCalled = 0
 	var uiUpdateCalled = 0
 	var gameOverCalled = 0
+	var trapCreatedCalled = 0
+	var lastTrapCreatedX = 0
+	var lastTrapCreatedY = 0
+	var lastTrapCreatedTrap:Trap?
 	var firstCharacter:Creature!
 	var secondCharacter:Creature!
 	var lastAnimation:Animation?
@@ -29,6 +33,7 @@ class GameTests: XCTestCase, GameDelegate {
 		playAnimationCalled = 0
 		uiUpdateCalled = 0
 		gameOverCalled = 0
+		trapCreatedCalled = 0
 		
 		firstCharacter = Creature(enemyType: "test creature", level: 1, x: 1, y: 1)
 		game.addPlayer(firstCharacter)
@@ -94,6 +99,28 @@ class GameTests: XCTestCase, GameDelegate {
 		XCTAssertEqual(game.movePoints, 4)
 		XCTAssertEqual(firstCharacter.x, 1)
 		XCTAssertEqual(firstCharacter.y, 2)
+	}
+	
+	func testHasAction()
+	{
+		game.executePhase()
+		
+		//calculate visibility to let attacking happen
+		game.map.calculateVisibility(x: 1, y: 1)
+		
+		//make secondCharacter good, so it's a valid target (also move him to x=3 so there's no minimum range problem)
+		secondCharacter.good = true
+		secondCharacter.x = 3
+		XCTAssertTrue(game.validTarget(secondCharacter))
+		
+		//once I set hasAction to false though, nobody is a valid target
+		game.hasAction = false
+		XCTAssertFalse(game.validTarget(secondCharacter))
+		
+		//also, once hasAction is false, moving ends your turn
+		game.makeMove(x: 1, y: 2)
+		game.toNextPhase()
+		XCTAssertEqual(game.creatureOn, 1)
 	}
 	
 	func testValidTarget()
@@ -357,6 +384,20 @@ class GameTests: XCTestCase, GameDelegate {
 		XCTAssertNil(game.map.tileAt(x: 2, y: 1).creature)
 	}
 	
+	func testAddTrap()
+	{
+		let trap = Trap(type: "sample trap", trapPower: 10, good: false)
+		game.addTrap(trap, x: 5, y: 6)
+		XCTAssertEqual(trapCreatedCalled, 1)
+		XCTAssertEqual(lastTrapCreatedX, 5)
+		XCTAssertEqual(lastTrapCreatedY, 6)
+		XCTAssertNotNil(lastTrapCreatedTrap)
+		if let t = lastTrapCreatedTrap
+		{
+			XCTAssertTrue(t === trap)
+		}
+	}
+	
 	//MARK: delegate methods
 	
 	func inputDesired()
@@ -375,5 +416,12 @@ class GameTests: XCTestCase, GameDelegate {
 	func gameOver()
 	{
 		gameOverCalled += 1
+	}
+	func trapCreated(trap:Trap, x:Int, y:Int)
+	{
+		trapCreatedCalled += 1
+		lastTrapCreatedX = x
+		lastTrapCreatedY = y
+		lastTrapCreatedTrap = trap
 	}
 }
