@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E439902A1D36FC1500936008 /* Trap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43990291D36FC1500936008 /* Trap.swift */; };
+		E439902C1D36FC2500936008 /* Traps.plist in Resources */ = {isa = PBXBuildFile; fileRef = E439902B1D36FC2500936008 /* Traps.plist */; };
+		E439902E1D36FC3600936008 /* TrapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439902D1D36FC3600936008 /* TrapTests.swift */; };
+		E43990301D370C1000936008 /* TrapRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439902F1D370C1000936008 /* TrapRepresentation.swift */; };
 		E44E86611D3052C500028307 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E44E86601D3052C500028307 /* Colors.plist */; };
 		E44E86631D3061EA00028307 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44E86621D3061EA00028307 /* ImageExtensions.swift */; };
 		E4520E961D34486C00EF4342 /* ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4520E951D34486C00EF4342 /* ItemTests.swift */; };
@@ -61,6 +65,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E43990291D36FC1500936008 /* Trap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trap.swift; sourceTree = "<group>"; };
+		E439902B1D36FC2500936008 /* Traps.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Traps.plist; sourceTree = "<group>"; };
+		E439902D1D36FC3600936008 /* TrapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrapTests.swift; sourceTree = "<group>"; };
+		E439902F1D370C1000936008 /* TrapRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrapRepresentation.swift; sourceTree = "<group>"; };
 		E44E86601D3052C500028307 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
 		E44E86621D3061EA00028307 /* ImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		E4520E951D34486C00EF4342 /* ItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTests.swift; sourceTree = "<group>"; };
@@ -161,6 +169,7 @@
 				E453FF711D3593CE002B749E /* BalanceTests.swift */,
 				E4520E951D34486C00EF4342 /* ItemTests.swift */,
 				E4F34F171D2ECF54001FEC40 /* ArmorTests.swift */,
+				E439902D1D36FC3600936008 /* TrapTests.swift */,
 				E4F147EC1D2D9DEF00F4C579 /* WeaponTests.swift */,
 				E4F147F41D2DD10900F4C579 /* AITests.swift */,
 				E4F34F1F1D2EEDFD001FEC40 /* MapTests.swift */,
@@ -182,6 +191,7 @@
 				E4F34F191D2ECF98001FEC40 /* Armor.swift */,
 				E4F147E21D2D85F400F4C579 /* Weapon.swift */,
 				E4F147D21D2D73F400F4C579 /* Creature.swift */,
+				E43990291D36FC1500936008 /* Trap.swift */,
 				E4F147E61D2D998F00F4C579 /* DataStore.swift */,
 				E453FF6B1D3582B6002B749E /* MapGenerator.swift */,
 			);
@@ -203,6 +213,7 @@
 				E4520E991D344DD300EF4342 /* InventoryViewController.swift */,
 				E4F147F01D2DB2BB00F4C579 /* GameViewController.swift */,
 				E4F147F81D2DD63A00F4C579 /* Representation.swift */,
+				E439902F1D370C1000936008 /* TrapRepresentation.swift */,
 				E4F147F61D2DD54B00F4C579 /* CreatureRepresentation.swift */,
 				E44E86621D3061EA00028307 /* ImageExtensions.swift */,
 			);
@@ -212,6 +223,7 @@
 		E4F147CF1D2D717C00F4C579 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E439902B1D36FC2500936008 /* Traps.plist */,
 				E453FF6D1D3589CB002B749E /* MapThemes.plist */,
 				E453FF6F1D3589D2002B749E /* MapFlavors.plist */,
 				E4520E9B1D346B8F00EF4342 /* Usables.plist */,
@@ -319,6 +331,7 @@
 				E4F147E51D2D998100F4C579 /* Tests.plist in Resources */,
 				E4F147DF1D2D767F00F4C579 /* Armors.plist in Resources */,
 				E4F147D71D2D766200F4C579 /* AppearanceGroups.plist in Resources */,
+				E439902C1D36FC2500936008 /* Traps.plist in Resources */,
 				E453FF701D3589D2002B749E /* MapFlavors.plist in Resources */,
 				E4F147F31D2DCEE500F4C579 /* AIs.plist in Resources */,
 				E4520E9C1D346B8F00EF4342 /* Usables.plist in Resources */,
@@ -350,12 +363,14 @@
 				E4F147E31D2D85F400F4C579 /* Weapon.swift in Sources */,
 				E4F147E71D2D998F00F4C579 /* DataStore.swift in Sources */,
 				E453FF6C1D3582B6002B749E /* MapGenerator.swift in Sources */,
+				E43990301D370C1000936008 /* TrapRepresentation.swift in Sources */,
 				E4F147F91D2DD63A00F4C579 /* Representation.swift in Sources */,
 				E4F34F1A1D2ECF98001FEC40 /* Armor.swift in Sources */,
 				E4520E981D3448EB00EF4342 /* Item.swift in Sources */,
 				E4F147D31D2D73F400F4C579 /* Creature.swift in Sources */,
 				E4F147D11D2D719C00F4C579 /* Game.swift in Sources */,
 				E4520E9A1D344DD300EF4342 /* InventoryViewController.swift in Sources */,
+				E439902A1D36FC1500936008 /* Trap.swift in Sources */,
 				E4F147F71D2DD54B00F4C579 /* CreatureRepresentation.swift in Sources */,
 				E4F34F1E1D2EEC93001FEC40 /* Map.swift in Sources */,
 				E4F34F1C1D2EEC88001FEC40 /* Tile.swift in Sources */,
@@ -370,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E439902E1D36FC3600936008 /* TrapTests.swift in Sources */,
 				E4F147EB1D2D99EC00F4C579 /* CreatureTests.swift in Sources */,
 				E4F34F181D2ECF54001FEC40 /* ArmorTests.swift in Sources */,
 				E4F147E91D2D99A000F4C579 /* DataStoreTests.swift in Sources */,

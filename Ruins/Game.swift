@@ -115,13 +115,6 @@ class Game
 		switch(phaseOn)
 		{
 		case .Move:
-			//TODO: to get the path,
-			//if it's a single tile of movement, you just make the path like I am now
-			//otherwise, I should save the last pathfinding result and use the stored path from that
-			
-			//TODO: check for problems on the way over the path
-			//IE if you walk over a trap, stop the path right there, add a "hurt by trap" anim to the animation, and a damage number
-			
 			//construct the path backwards
 			var path = [(Int, Int)]()
 			if abs(targetX - activeCreature.x) + abs(targetY - activeCreature.y) == 1
@@ -152,18 +145,25 @@ class Game
 			//now follow the backwards path forwards
 			for step in path.reverse()
 			{
+				let tile = map.tileAt(x: step.0, y: step.1)
+				
 				anim!.movePath!.append(step)
-				movePoints = max(movePoints - map.tileAt(x: step.0, y: step.1).entryCost, 0)
+				movePoints = max(movePoints - tile.entryCost, 0)
 				
 //				print("  PATH MOVING TO (\(step.0), \(step.1))")
 				
-				if false //TODO: if you stepped onto a trap
+				print("IS THERE A TRAP ON TILE \(step.0), \(step.1)????")
+				if let trap = tile.trap
 				{
-					//TODO: add the trap attack anim to the animation
-					//TODO: deal damage to the person who stepped on the trap
-					//TODO: add damage numbers too
-					//TODO: keep in mind that traps CAN kill
+					print("SET OFF TRAP OF TYPE \(trap.type)!")
 					
+					//set off the trap
+					let damage = trap.activate(activeCreature)
+					tile.trap = nil
+					
+					//give it a trap attack animation
+					anim!.attackType = "trap" //TODO: trap-specific animation
+					anim!.damageNumbers.append((activeCreature, "\(damage)"))
 					
 					//and immediately stop moving here
 					targetX = step.0
@@ -227,6 +227,8 @@ class Game
 				{
 					delegate?.uiUpdate()
 				}
+				
+				print("TAKING \(damage) FROM POISON")
 			}
 		case .Stun:
 			//make a stun anim pop up

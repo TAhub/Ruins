@@ -229,6 +229,7 @@ class MapGenerator
 		let (solidity, width, height, rooms) = generateRoomsSolidityMap(mapStub)
 		let tiles = solidityToTiles(solidity, width: width, height: height)
 		placeCreatures(tiles, width: width, height: height, rooms: rooms, player: player, stub: mapStub)
+		placeTraps(tiles, width: width, height: height, stub: mapStub)
 		return (tiles: tiles, width: width, height: height)
 	}
 	
@@ -447,6 +448,44 @@ class MapGenerator
 		}
 		
 		return (solidity: solidity, width: width, height: height)
+	}
+	
+	static func placeTraps(tiles:[Tile], width:Int, height:Int, stub:MapStub)
+	{
+		var numTraps = 10
+		
+		func trapTileOK(x x:Int, y:Int) -> Bool
+		{
+			let tile = tiles[x + y * width]
+			return tile.trap == nil && tile.walkable
+		}
+		
+		while numTraps > 0
+		{
+			let x = Int(arc4random_uniform(UInt32(width - 2))) + 1
+			let y = Int(arc4random_uniform(UInt32(height - 2))) + 1
+			
+			//see if it's a valid spot for a trap
+			var spotOK = true
+			for y in y-1...y+1
+			{
+				for x in x-1...x+1
+				{
+					if !trapTileOK(x: x, y: y)
+					{
+						spotOK = false
+						break
+					}
+				}
+			}
+			
+			if spotOK
+			{
+				//TODO: get a real trap type
+				tiles[x + y * width].trap = Trap(type: "sample trap", trapPower: 15 + 2 * stub.level, good: false)
+				numTraps -= 1
+			}
+		}
 	}
 	
 	static func placeCreatures(tiles:[Tile], width:Int, height:Int, rooms:[MapRoom], player:Creature, stub:MapStub)

@@ -8,6 +8,7 @@
 
 import Foundation
 
+let minMultiplier:Int = 25
 let damMultiplier:Int = 8
 let miscMultiplier:Int = 10
 let weakDamMult:Int = 40
@@ -287,7 +288,7 @@ class Creature
 		var wDamage = weapon.damage
 		if weapon.range == 1
 		{
-			wDamage = wDamage * (100 + damMultiplier * (meleePow - (isWeak ? 0 : target.meleeRes))) / 100
+			wDamage = wDamage * max(100 + damMultiplier * (meleePow - (isWeak ? 0 : target.meleeRes)), minMultiplier) / 100
 		}
 		else if isWeak
 		{
@@ -298,7 +299,7 @@ class Creature
 		if shake == 0
 		{
 			var hitChance = weapon.accuracy
-			hitChance = hitChance * (100 + miscMultiplier * (accuracy - target.dodge)) / 100
+			hitChance = hitChance * max(100 + miscMultiplier * (accuracy - target.dodge), minMultiplier) / 100
 			
 			if Int(arc4random_uniform(100)) < hitChance
 			{

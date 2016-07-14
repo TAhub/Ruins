@@ -288,6 +288,59 @@ class MapTests: XCTestCase {
 		}
 	}
 	
+	func testPlaceTraps()
+	{
+		//trap placement depends heavily on other factors, so generate a functional map to place the traps in
+		let player = Creature(enemyType: "human player", level: 1, x: 0, y: 0)
+		let stub = MapStub(flavor: "lawless", theme: "city", level: 1)
+		let (solidity, width, height, rooms) = MapGenerator.generateRoomsSolidityMap(stub)
+		let tiles = MapGenerator.solidityToTiles(solidity, width: width, height: height)
+		MapGenerator.placeCreatures(tiles, width: width, height: height, rooms: rooms, player: player, stub: stub)
+		
+		//now, place traps
+		MapGenerator.placeTraps(tiles, width: width, height: height, stub: stub)
+		
+		//examine the traps placed for validity
+		var numTraps = 0
+		for y in 0..<height
+		{
+			for x in 0..<width
+			{
+				let tile = tiles[x + y * width]
+				if let trap = tile.trap
+				{
+					numTraps += 1
+					
+					//first off, a trap cannot be in a non-walkable tile
+					XCTAssertTrue(tile.walkable)
+					
+					//secondly, a trap cannot have a non-walkable tile or a trap in its surroundings
+					for y in y-1...y+1
+					{
+						for x in x-1...x+1
+						{
+							let sTile = tiles[x + y * width]
+							if !(tile === sTile)
+							{
+								XCTAssertTrue(sTile.walkable)
+								XCTAssertNil(sTile.trap)
+							}
+						}
+					}
+					
+					//fourthly, it should have an effective trap power of (15 + 2 * level)
+					XCTAssertEqual(trap.trapPower, 17)
+					
+					//finally, all pre-generated traps must be non-good
+					XCTAssertFalse(trap.good)
+				}
+			}
+		}
+		
+		//make sure there are enough traps
+		XCTAssertEqual(numTraps, 10) //TODO: real trap number for this combination
+	}
+	
 	func testPlaceCreatures()
 	{
 		//just make a big empty rectangle of tiles to place creatures in
@@ -421,10 +474,35 @@ class MapTests: XCTestCase {
 		XCTAssertNil(map.pathResultAt(x: 6, y: 1))
 	}
 	
+	func testPathfindingAvoidTrap()
+	{
+		//place a trap just to the right of the person
+		//this should make it very hard to path to anywhere on the right
+		map.tileAt(x: 2, y: 1).trap = Trap(type: "sample trap", trapPower: 10, good: true)
+		
+		let person = Creature(enemyType: "test pzombie", level: 1, x: 1, y: 1)
+		map.tileAt(x: 1, y: 1).creature = person
+		map.pathfinding(person, movePoints: 4)
+		
+		//when asked to move to x=3, you should walk over the trap because it's a player trap and just adds 1 move cost
+		comparePathToExpected(toX: 3, toY: 1, expected: [(1, 1), (2, 1), (3, 1)])
+		
+		//you can't quite reach x=5, because of the effective extra cost
+		XCTAssertNil(map.pathResultAt(x: 5, y: 1))
+		
+		
+		//now replace that trap with a world trap
+		//the AI should avoid this much more strictly
+		map.tileAt(x: 2, y: 1).trap = Trap(type: "sample trap", trapPower: 10, good: false)
+		map.pathfinding(person, movePoints: 4)
+		
+		//now when asked to move to x=3, you should walk around the trap
+		comparePathToExpected(toX: 3, toY: 1, expected: [(1, 1), (1, 2), (2, 2), (3, 2), (3, 1)])
+	}
+	
 	//TODO: future pathfinding tests:
 	//	what if there's difficult terrain?
 	//	what if there's walls in the way?
-	//	what if there's a trap in the way? it should
 	
 	//MARK: helper functions
 	func validityGeneral(solidity:[Bool], width:Int, height:Int, startRoom:MapRoom, endRoom:MapRoom)
@@ -537,10 +615,15 @@ class MapTests: XCTestCase {
 				XCTAssertEqual(result.backY, expected.last!.1)
 				x = result.backX
 				y = result.backY
+				if x != expected.last!.0 || y != expected.last!.1
+				{
+					return
+				}
 			}
 			else
 			{
 				XCTAssertTrue(false)
+				return
 			}
 		}
 	}

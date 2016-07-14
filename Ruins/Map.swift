@@ -171,10 +171,9 @@ class Map
 				}
 				let i = toI(x: x, y: y)
 				var newDistance = tile.entryCost * weightPerMovePoint + fromTile.distance
-				if false //TODO: if there's a trap
+				if let trap = tile.trap
 				{
-					let isWorldTrap = false //TODO: if it's a world trap
-					newDistance += isWorldTrap ? worldTrapWeight : playerTrapWeight
+					newDistance += trap.good ? playerTrapWeight : worldTrapWeight
 				}
 				if pathfindingResults[i] == nil || pathfindingResults[i]!.distance > newDistance
 				{

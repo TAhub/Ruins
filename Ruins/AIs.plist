@@ -13,8 +13,8 @@
 	<dict>
 		<!-- movement AI weights -->
 		<key>weight per move point</key> <integer>1</integer>
-		<key>world trap weight</key> <integer>1</integer>
-		<key>player trap weight</key> <integer>4</integer>
+		<key>world trap weight</key> <integer>4</integer>
+		<key>player trap weight</key> <integer>1</integer>
 		<!-- tile fitness -->
 		<key>fitness gain for being in range</key> <integer>40</integer>
 		<key>fitness gain for being in range when fleeing</key> <integer>20</integer>

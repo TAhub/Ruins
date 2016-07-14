@@ -87,6 +87,17 @@ class GameViewController: UIViewController, GameDelegate {
 		//make the tiles
 		gameArea.initializeAtCameraPoint(cameraPoint, map: game.map)
 		
+		//make representations
+		for y in 0..<game.map.height
+		{
+			for x in 0..<game.map.width
+			{
+				if let trap = game.map.tileAt(x: x, y: y).trap
+				{
+					representations.append(TrapRepresentation(trap: trap, x: x, y: y, superview: creatureLayer, atCameraPoint: cameraPoint, map: game.map))
+				}
+			}
+		}
 		for creature in game.creatures
 		{
 			representations.append(CreatureRepresentation(creature: creature, superview: creatureLayer, atCameraPoint: cameraPoint, map:game.map))
@@ -345,14 +356,19 @@ class GameViewController: UIViewController, GameDelegate {
 			{
 				for rep in self.representations
 				{
-					rep.updatePosition(self.cameraPoint)
-					rep.updateVisibility(self.cameraPoint, map:self.game.map)
+					rep.updatePosition(self.cameraPoint, map:self.game.map)
 				}
 				
 				moveAnimToNext()
 			}
 			else
 			{
+				//update visibility after moving to hide things strategically
+				for rep in self.representations
+				{
+					rep.updateVisibility(self.cameraPoint, map:self.game.map)
+				}
+				
 				UIView.animateWithDuration(0.25, animations:
 				{
 					//update the moving creature's position step by step
@@ -373,7 +389,7 @@ class GameViewController: UIViewController, GameDelegate {
 					
 					for rep in self.representations
 					{
-						rep.updatePosition(self.cameraPoint)
+						rep.updatePosition(self.cameraPoint, map:self.game.map)
 						rep.updateVisibility(self.cameraPoint, map:self.game.map)
 					}
 					

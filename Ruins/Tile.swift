@@ -10,6 +10,7 @@ import Foundation
 
 class Tile
 {
+	var trap:Trap?
 	var creature:Creature?
 	let solid:Bool
 	let entryCost:Int = 1

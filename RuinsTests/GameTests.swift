@@ -297,6 +297,40 @@ class GameTests: XCTestCase, GameDelegate {
 		XCTAssertTrue((game.map.tileAt(x: 2, y: 1).creature ?? firstCharacter) === secondCharacter)
 	}
 	
+	func testTrapsStopMovement()
+	{
+		game.executePhase()
+		
+		//add a trap that the player will have to walk over
+		let trap = Trap(type: "sample trap", trapPower: 10, good: true)
+		game.map.tileAt(x: 1, y: 2).trap = trap
+		
+		//switch the player to a pzombie to give them a movement AI
+		firstCharacter.enemyType = "test pzombie"
+		
+		game.map.pathfinding(firstCharacter, movePoints: 4)
+		
+		game.makeMove(x: 1, y: 3)
+		
+		//it should have stopped at (1, 2) with a damage number and attack anim on the last anim
+		XCTAssertEqual(game.movePoints, 0)
+		XCTAssertEqual(firstCharacter.x, 1)
+		XCTAssertEqual(firstCharacter.y, 2)
+		if let lastAnimation = lastAnimation
+		{
+			XCTAssertEqual(lastAnimation.damageNumbers.count, 1)
+			XCTAssertNotNil(lastAnimation.attackType)
+			if let attackTarget = lastAnimation.attackTarget
+			{
+				XCTAssertTrue(attackTarget == (firstCharacter.x, firstCharacter.y))
+			}
+		}
+		
+		//also, the trap should be dead and gone
+		XCTAssertTrue(trap.dead)
+		XCTAssertNil(game.map.tileAt(x: 1, y: 2).trap)
+	}
+	
 	func testMovingUpdatesTiles()
 	{
 		game.executePhase()

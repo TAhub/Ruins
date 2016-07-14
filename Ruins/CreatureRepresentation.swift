@@ -23,21 +23,19 @@ class CreatureRepresentation:Representation
 		super.init(view: view, superview: superview)
 		
 		updateAppearance()
-		updatePosition(atCameraPoint)
+		updatePosition(atCameraPoint, map: map)
 		updateVisibility(atCameraPoint, map: map)
 	}
 	
-	override func updatePosition(toCameraPoint:CGPoint)
+	override func updatePosition(toCameraPoint:CGPoint, map:Map)
 	{
 		view.center = CGPoint(x: (0.5 + CGFloat(creature.x)) * tileSize - toCameraPoint.x, y: (0.5 + CGFloat(creature.y)) * tileSize - toCameraPoint.y)
-		
-		//TODO: if this new position isn't visible, also change your alpha to 0 so you'll fade out nicely
-		//and the inverse too
+		self.view.alpha = map.tileAt(x: creature.x, y: creature.y).visible ? 1 : 0
 	}
 	
 	override func updateVisibility(atCameraPoint:CGPoint, map:Map)
 	{
-		self.view.alpha = map.tileAt(x: creature.x, y: creature.y).visible ? 1 : 0
+		self.view.hidden = !map.tileAt(x: creature.x, y: creature.y).visible
 	}
 	
 	override func updateAppearance()
