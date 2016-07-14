@@ -182,7 +182,7 @@ class CreatureRepresentation:Representation
 	
 	override var dead:Bool
 	{
-		return creature.health == 0
+		return creature.dead
 	}
 	
 	deinit

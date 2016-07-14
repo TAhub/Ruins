@@ -46,6 +46,7 @@
 		E4F147F51D2DD10900F4C579 /* AITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147F41D2DD10900F4C579 /* AITests.swift */; };
 		E4F147F71D2DD54B00F4C579 /* CreatureRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147F61D2DD54B00F4C579 /* CreatureRepresentation.swift */; };
 		E4F147F91D2DD63A00F4C579 /* Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147F81D2DD63A00F4C579 /* Representation.swift */; };
+		E4F309881D38245F00522DD8 /* ExamineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F309871D38245F00522DD8 /* ExamineViewController.swift */; };
 		E4F34F181D2ECF54001FEC40 /* ArmorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F34F171D2ECF54001FEC40 /* ArmorTests.swift */; };
 		E4F34F1A1D2ECF98001FEC40 /* Armor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F34F191D2ECF98001FEC40 /* Armor.swift */; };
 		E4F34F1C1D2EEC88001FEC40 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F34F1B1D2EEC88001FEC40 /* Tile.swift */; };
@@ -108,6 +109,7 @@
 		E4F147F41D2DD10900F4C579 /* AITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AITests.swift; sourceTree = "<group>"; };
 		E4F147F61D2DD54B00F4C579 /* CreatureRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureRepresentation.swift; sourceTree = "<group>"; };
 		E4F147F81D2DD63A00F4C579 /* Representation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Representation.swift; sourceTree = "<group>"; };
+		E4F309871D38245F00522DD8 /* ExamineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamineViewController.swift; sourceTree = "<group>"; };
 		E4F34F171D2ECF54001FEC40 /* ArmorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArmorTests.swift; sourceTree = "<group>"; };
 		E4F34F191D2ECF98001FEC40 /* Armor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Armor.swift; sourceTree = "<group>"; };
 		E4F34F1B1D2EEC88001FEC40 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 		E4F147CE1D2D717400F4C579 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E4F309871D38245F00522DD8 /* ExamineViewController.swift */,
 				E4520E991D344DD300EF4342 /* InventoryViewController.swift */,
 				E4F147F01D2DB2BB00F4C579 /* GameViewController.swift */,
 				E4F147F81D2DD63A00F4C579 /* Representation.swift */,
@@ -370,6 +373,7 @@
 				E4F147D31D2D73F400F4C579 /* Creature.swift in Sources */,
 				E4F147D11D2D719C00F4C579 /* Game.swift in Sources */,
 				E4520E9A1D344DD300EF4342 /* InventoryViewController.swift in Sources */,
+				E4F309881D38245F00522DD8 /* ExamineViewController.swift in Sources */,
 				E439902A1D36FC1500936008 /* Trap.swift in Sources */,
 				E4F147F71D2DD54B00F4C579 /* CreatureRepresentation.swift in Sources */,
 				E4F34F1E1D2EEC93001FEC40 /* Map.swift in Sources */,

@@ -227,7 +227,7 @@ class Game
 				delegate?.uiUpdate()
 			}
 			
-			if target.health == 0
+			if target.dead
 			{
 				map.tileAt(x: target.x, y: target.y).creature = nil
 			}
@@ -321,13 +321,13 @@ class Game
 			if creatureOn == 0
 			{
 				//cull the creature list
-				creatures = creatures.filter() { $0.health > 0 }
+				creatures = creatures.filter() { !$0.dead }
 			}
 			movePoints = activeCreature.maxMovePoints
 			hasAction = true
-			nextCreature = activeCreature.health == 0
+			nextCreature = activeCreature.dead
 			
-			if player.health == 0
+			if player.dead
 			{
 				delegate?.gameOver()
 				return

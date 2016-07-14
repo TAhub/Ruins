@@ -42,6 +42,8 @@ class GameViewController: UIViewController, GameDelegate {
 	var targetingMode:TargetingMode!
 	var targets:[Target]?
 	
+	var examineTarget:Creature!
+	
 	@IBOutlet weak var gameArea: TileDisplayView!
 	@IBOutlet weak var creatureLayer: UIView!
 	@IBOutlet weak var objectLayer: UIView!
@@ -172,7 +174,9 @@ class GameViewController: UIViewController, GameDelegate {
 							input = false
 							game.attack(x: x, y: y)
 						case .Examine:
-							//TODO: examine them
+							//examine them
+							examineTarget = target.subject
+							self.performSegueWithIdentifier("ShowExamine", sender: self)
 							break
 						case .Special:
 							//TODO: use the special on them
@@ -304,6 +308,12 @@ class GameViewController: UIViewController, GameDelegate {
 		if let inv = segue.destinationViewController as? InventoryViewController
 		{
 			inv.game = self.game
+		}
+		else if let exm = segue.destinationViewController as? ExamineViewController
+		{
+			exm.game = self.game
+			exm.creature = examineTarget
+			examineTarget = nil
 		}
 	}
 	

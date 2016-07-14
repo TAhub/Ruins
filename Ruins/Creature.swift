@@ -95,6 +95,16 @@ class Creature
 		return wis + (armor?.specialResistance ?? 0)
 	}
 	
+	//MARK: misc flags
+	var dead:Bool
+	{
+		return health == 0
+	}
+	var injured:Bool
+	{
+		return health * 100 < maxHealth * aiBadlyInjuredPoint
+	}
+	
 	//MARK: type-derived flags
 	var boss:Bool
 	{
@@ -388,7 +398,7 @@ class Creature
 				let randomFitness = DataStore.getInt("AIs", AI, "random fitness gain")!
 				
 				//run away if you're really hurt, or if you were disarmed
-				let flee = health * 100 < maxHealth * aiBadlyInjuredPoint || weapon.type == "unarmed"
+				let flee = injured || weapon.type == "unarmed"
 				
 				
 				//figure out where you can move to

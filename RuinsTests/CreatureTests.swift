@@ -43,6 +43,18 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(creature.specialRes, 15)
 	}
 	
+	func testDead()
+	{
+		XCTAssertFalse(creature.dead)
+		XCTAssertFalse(creature.injured)
+		creature.health = 1
+		XCTAssertFalse(creature.dead)
+		XCTAssertTrue(creature.injured)
+		creature.health = 0
+		XCTAssertTrue(creature.dead)
+		XCTAssertTrue(creature.injured)
+	}
+	
 	func testPoison()
 	{
 		//poisonTick should do nothing if you aren't poisoned
