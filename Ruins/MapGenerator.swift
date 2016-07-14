@@ -13,6 +13,8 @@ let endRoomSize = 11
 let expBase = 5
 let expMagicMult = 25
 let expArmorMult = 25
+let expMovePointMult = 25
+let expIgnoreTerrainCostMult = 15
 let levelAddMin = 2
 let levelAddMax = 3
 let expLevelAdd = 7 //TODO: this should probably be a smaller value, once I add more low-level filler enemies? perhaps from gangs
@@ -583,8 +585,13 @@ class MapGenerator
 	{
 		let hasMagic = false //TODO: DO they have magic?
 		let hasArmor = DataStore.getBool("EnemyTypes", enemyType, "armor")
-		return (DataStore.getInt("EnemyTypes", enemyType, "level")! + expBase) *
-			(100 + (hasMagic ? expMagicMult : 0) + (hasArmor ? expArmorMult : 0)) / 100
+		let movePoints = DataStore.getInt("EnemyTypes", enemyType, "move points")!
+		let ignoreTerrainCost = DataStore.getBool("EnemyTypes", enemyType, "ignore terrain cost")
+		
+		let mult = (hasMagic ? expMagicMult : 0) + (hasArmor ? expArmorMult : 0) +
+					(movePoints - 4) * expMovePointMult + (ignoreTerrainCost ? expIgnoreTerrainCostMult : 0)
+		
+		return (DataStore.getInt("EnemyTypes", enemyType, "level")! + expBase) * (100 + mult) / 100
 	}
 	
 	static func solidityToTiles(solidity:[Bool], width:Int, height:Int) -> [Tile]

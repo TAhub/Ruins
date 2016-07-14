@@ -30,11 +30,142 @@
 	<!-- if "fitness gain per tile to player" is less than (fitness gain for not having to move) / (move points), the AI just... won't move -->
 	<!-- if random fitness is very high, they might not actually want to approach you much -->
 	
-	<!-- AI ideas -->
-	<!-- drunkard: high random, ignores traps, barely attracted to player -->
-	<!-- thief: medium random, strongly avoids traps, very high flee -->
-	<!-- berserker: low random, ignores traps, high approach priority, no flee -->
-	<!-- big guy: low random, likes to stand in place, low flee, low approach -->
-	<!-- minsweeper: enemy who purposefully tries to step on traps (for an enemy with high trap resistance obviously) -->
+	<!-- real AIs -->
+	
+	<!-- warrior: the basic AI; at the moment it's the same as sample AI, but sample AI has to stay the same for tests, while I can tweak warrior -->
+	<key>warrior</key>
+	<dict>
+		<!-- movement AI weights -->
+		<key>weight per move point</key> <integer>1</integer>
+		<key>world trap weight</key> <integer>4</integer>
+		<key>player trap weight</key> <integer>1</integer>
+		<!-- tile fitness -->
+		<key>fitness gain for being in range</key> <integer>40</integer>
+		<key>fitness gain for being in range when fleeing</key> <integer>20</integer>
+		<key>fitness gain for not having to move</key> <integer>20</integer>
+		<key>fitness gain for trap</key> <integer>-30</integer>
+		<key>fitness gain per tile to player</key> <integer>-10</integer>
+		<key>fitness gain per tile to player when fleeing</key> <integer>15</integer>
+		<key>random fitness gain</key> <integer>5</integer>
+	</dict>
+	
+	<!-- coward: like warrior but more cowardly -->
+	<key>coward</key>
+	<dict>
+		<!-- movement AI weights -->
+		<key>weight per move point</key> <integer>1</integer>
+		<key>world trap weight</key> <integer>4</integer>
+		<key>player trap weight</key> <integer>1</integer>
+		<!-- tile fitness -->
+		<key>fitness gain for being in range</key> <integer>40</integer>
+		<key>fitness gain for being in range when fleeing</key> <integer>10</integer>
+		<key>fitness gain for not having to move</key> <integer>20</integer>
+		<key>fitness gain for trap</key> <integer>-35</integer>
+		<key>fitness gain per tile to player</key> <integer>-10</integer>
+		<key>fitness gain per tile to player when fleeing</key> <integer>15</integer>
+		<key>random fitness gain</key> <integer>8</integer>
+	</dict>
+	
+	<!-- animal: ignores player traps, strongly avoids world traps, pretty cowardly -->
+	<key>animal</key>
+	<dict>
+		<!-- movement AI weights -->
+		<key>weight per move point</key> <integer>1</integer>
+		<key>world trap weight</key> <integer>6</integer>
+		<key>player trap weight</key> <integer>0</integer>
+		<!-- tile fitness -->
+		<key>fitness gain for being in range</key> <integer>40</integer>
+		<key>fitness gain for being in range when fleeing</key> <integer>10</integer>
+		<key>fitness gain for not having to move</key> <integer>20</integer>
+		<key>fitness gain for trap</key> <integer>-35</integer>
+		<key>fitness gain per tile to player</key> <integer>-10</integer>
+		<key>fitness gain per tile to player when fleeing</key> <integer>20</integer>
+		<key>random fitness gain</key> <integer>10</integer>
+	</dict>
+	
+	<!-- drunkard: random, not very aggressive, ignores traps -->
+	<key>drunkard</key>
+	<dict>
+		<!-- movement AI weights -->
+		<key>weight per move point</key> <integer>1</integer>
+		<key>world trap weight</key> <integer>2</integer>
+		<key>player trap weight</key> <integer>0</integer>
+		<!-- tile fitness -->
+		<key>fitness gain for being in range</key> <integer>20</integer>
+		<key>fitness gain for being in range when fleeing</key> <integer>0</integer>
+		<key>fitness gain for not having to move</key> <integer>10</integer>
+		<key>fitness gain for trap</key> <integer>0</integer>
+		<key>fitness gain per tile to player</key> <integer>-5</integer>
+		<key>fitness gain per tile to player when fleeing</key> <integer>10</integer>
+		<key>random fitness gain</key> <integer>15</integer>
+	</dict>
+	
+	<!-- thief: mobile, cowardly, strongly avoids traps -->
+	<key>thief</key>
+	<dict>
+		<!-- movement AI weights -->
+		<key>weight per move point</key> <integer>1</integer>
+		<key>world trap weight</key> <integer>5</integer>
+		<key>player trap weight</key> <integer>2</integer>
+		<!-- tile fitness -->
+		<key>fitness gain for being in range</key> <integer>40</integer>
+		<key>fitness gain for being in range when fleeing</key> <integer>20</integer>
+		<key>fitness gain for not having to move</key> <integer>10</integer>
+		<key>fitness gain for trap</key> <integer>-60</integer>
+		<key>fitness gain per tile to player</key> <integer>-10</integer>
+		<key>fitness gain per tile to player when fleeing</key> <integer>30</integer>
+		<key>random fitness gain</key> <integer>10</integer>
+	</dict>
+	
+	<!-- berserker: super aggressive, completely ignores traps, never flees -->
+	<key>berserker</key>
+	<dict>
+		<!-- movement AI weights -->
+		<key>weight per move point</key> <integer>1</integer>
+		<key>world trap weight</key> <integer>0</integer>
+		<key>player trap weight</key> <integer>0</integer>
+		<!-- tile fitness -->
+		<key>fitness gain for being in range</key> <integer>40</integer>
+		<key>fitness gain for being in range when fleeing</key> <integer>40</integer>
+		<key>fitness gain for not having to move</key> <integer>0</integer>
+		<key>fitness gain for trap</key> <integer>0</integer>
+		<key>fitness gain per tile to player</key> <integer>-10</integer>
+		<key>fitness gain per tile to player when fleeing</key> <integer>-10</integer>
+		<key>random fitness gain</key> <integer>3</integer>
+	</dict>
+	
+	<!-- big guy: doesn't like moving, unlikely to flee -->
+	<key>big guy</key>
+	<dict>
+		<!-- movement AI weights -->
+		<key>weight per move point</key> <integer>1</integer>
+		<key>world trap weight</key> <integer>3</integer>
+		<key>player trap weight</key> <integer>1</integer>
+		<!-- tile fitness -->
+		<key>fitness gain for being in range</key> <integer>40</integer>
+		<key>fitness gain for being in range when fleeing</key> <integer>10</integer>
+		<key>fitness gain for not having to move</key> <integer>30</integer>
+		<key>fitness gain for trap</key> <integer>-30</integer>
+		<key>fitness gain per tile to player</key> <integer>-10</integer>
+		<key>fitness gain per tile to player when fleeing</key> <integer>11</integer>
+		<key>random fitness gain</key> <integer>5</integer>
+	</dict>
+	
+	<!-- minesweeper: purposefully tries to step on traps; becomes very, very cowardly when fleeing; ONLY GIVE TO ENEMIES WITH HIGH TRAP RESISTANCE -->
+	<key>minesweeper</key>
+	<dict>
+		<!-- movement AI weights -->
+		<key>weight per move point</key> <integer>1</integer>
+		<key>world trap weight</key> <integer>0</integer>
+		<key>player trap weight</key> <integer>0</integer>
+		<!-- tile fitness -->
+		<key>fitness gain for being in range</key> <integer>40</integer>
+		<key>fitness gain for being in range when fleeing</key> <integer>10</integer>
+		<key>fitness gain for not having to move</key> <integer>20</integer>
+		<key>fitness gain for trap</key> <integer>40</integer>
+		<key>fitness gain per tile to player</key> <integer>-10</integer>
+		<key>fitness gain per tile to player when fleeing</key> <integer>100</integer>
+		<key>random fitness gain</key> <integer>10</integer>
+	</dict>
 </dict>
 </plist>

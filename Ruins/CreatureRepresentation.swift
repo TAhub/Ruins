@@ -8,6 +8,8 @@
 
 import UIKit
 
+let ignoreTerrainFloat:CGFloat = 10
+
 class CreatureRepresentation:Representation
 {
 	let creature:Creature
@@ -29,7 +31,9 @@ class CreatureRepresentation:Representation
 	
 	override func updatePosition(toCameraPoint:CGPoint, map:Map)
 	{
-		view.center = CGPoint(x: (0.5 + CGFloat(creature.x)) * tileSize - toCameraPoint.x, y: (0.5 + CGFloat(creature.y)) * tileSize - toCameraPoint.y)
+		let cX = (0.5 + CGFloat(creature.x)) * tileSize - toCameraPoint.x
+		let cY = (0.5 + CGFloat(creature.y)) * tileSize - toCameraPoint.y - (creature.ignoreTerrainCosts ? ignoreTerrainFloat : 0)
+		view.center = CGPoint(x: cX, y: cY)
 		self.view.alpha = map.tileAt(x: creature.x, y: creature.y).visible ? 1 : 0
 	}
 	

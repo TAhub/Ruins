@@ -335,7 +335,7 @@ class GameTests: XCTestCase, GameDelegate {
 		//switch the player to a pzombie to give them a movement AI
 		firstCharacter.enemyType = "test pzombie"
 		
-		game.map.pathfinding(firstCharacter, movePoints: 4)
+		game.map.pathfinding(firstCharacter, movePoints: 4, ignoreTerrainCosts: false)
 		
 		game.makeMove(x: 1, y: 3)
 		

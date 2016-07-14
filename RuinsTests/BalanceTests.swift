@@ -79,6 +79,8 @@ class BalanceTests: XCTestCase {
 					let expectedPoints = 6 + level
 					let actualPoints = 2 * (meleeResistance + dodge + maxHealthBonus + specialResistance) +
 										1 * (trapResistance)
+					
+					print("TEST ARMOR POINTS FOR ARMOR \(armor): \(actualPoints) vs \(expectedPoints)")
 					XCTAssertEqual(expectedPoints, actualPoints)
 				}
 			}
@@ -100,8 +102,36 @@ class BalanceTests: XCTestCase {
 				let wisdom = DataStore.getInt("EnemyTypes", creature, "wisdom")!
 				let endurance = DataStore.getInt("EnemyTypes", creature, "endurance")!
 				
-				XCTAssertEqual(expectedPoints, strength + dexterity + cunning + wisdom + endurance)
+				let actualPoints = strength + dexterity + cunning + wisdom + endurance
+				print("TEST ARMOR POINTS FOR CREATURE \(creature): \(actualPoints) vs \(expectedPoints)")
+				XCTAssertEqual(expectedPoints, actualPoints)
 			}
+		}
+	}
+	
+	func testCreaturesHaveGoodVarietyOfKeywords()
+	{
+		//similar to the other keyword balance check, but from the other side
+		//do they keywords have a reasonable balance of enemy types?
+		//because status effects are keywords this will ensure there's a good amount of status effect enemies
+		
+		var keywords = [String : Int]()
+		var totalKeywords = 0
+		for (creature, _) in DataStore.getPlist("EnemyTypes") as! [String : NSObject]
+		{
+			for keyword in DataStore.getArray("EnemyTypes", creature, "keywords") as! [String]
+			{
+				keywords[keyword] = (keywords[keyword] ?? 0) + 1
+				totalKeywords += 1
+			}
+		}
+		
+		let desiredAverage = totalKeywords / keywords.keys.count
+		
+		for (keyword, number) in keywords
+		{
+			print("TESTING KEYWORD BALANCE OF \(keyword): \(number) vs \(desiredAverage)")
+			compare(num: number, desired: desiredAverage)
 		}
 	}
 	
@@ -115,13 +145,14 @@ class BalanceTests: XCTestCase {
 	}
 	
 	//TODO: future balance test ideas
-	//	make sure each non-gang keyword has a roughly equal number of creatures
+	//	make sure each race type has a reasonable number of enemies
+	//	make sure each keyword has a good level balance (IE between level 5-ish people, level 20-ish people, and level 35-ish people)
 	
 	
 	//MARK: helper functions
 	private func compare(num num:Int, desired:Int)
 	{
-		XCTAssertLessThan(abs(num - desired), Int(marginOfError * Float(desired)))
+		XCTAssertLessThanOrEqual(abs(num - desired), Int(marginOfError * Float(desired)))
 	}
 	private func allPossibleStubs() -> [MapStub]
 	{

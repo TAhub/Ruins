@@ -12,6 +12,7 @@
 	<key>sample enemy type</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>10</integer>
 		<key>dexterity</key> <integer>10</integer>
 		<key>cunning</key> <integer>10</integer>
@@ -46,6 +47,7 @@
 	<key>test creature</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>10</integer>
 		<key>dexterity</key> <integer>10</integer>
 		<key>cunning</key> <integer>10</integer>
@@ -68,6 +70,7 @@
 	<key>test pzombie</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>10</integer>
 		<key>dexterity</key> <integer>10</integer>
 		<key>cunning</key> <integer>10</integer>
@@ -93,6 +96,7 @@
 	<key>human player</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>10</integer>
 		<key>dexterity</key> <integer>10</integer>
 		<key>cunning</key> <integer>10</integer>
@@ -116,6 +120,7 @@
 	<key>fairy player</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>8</integer>
 		<key>dexterity</key> <integer>11</integer>
 		<key>cunning</key> <integer>12</integer>
@@ -139,6 +144,7 @@
 	<key>elf player</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>10</integer>
 		<key>dexterity</key> <integer>11</integer>
 		<key>cunning</key> <integer>8</integer>
@@ -162,6 +168,7 @@
 	<key>bogeyman player</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>12</integer>
 		<key>dexterity</key> <integer>8</integer>
 		<key>cunning</key> <integer>10</integer>
@@ -185,6 +192,7 @@
 	<key>skeleton player</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>11</integer>
 		<key>dexterity</key> <integer>12</integer>
 		<key>cunning</key> <integer>9</integer>
@@ -208,6 +216,7 @@
 	<key>zombie player</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>11</integer>
 		<key>dexterity</key> <integer>10</integer>
 		<key>cunning</key> <integer>9</integer>
@@ -241,6 +250,7 @@
 	<key>boss</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>10</integer>
 		<key>dexterity</key> <integer>10</integer>
 		<key>cunning</key> <integer>10</integer>
@@ -254,7 +264,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>mortal</string>
 		<key>appearance group</key> <string>human</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>big guy</string>
 		<!-- MARK: generation data -->
 		<key>boss</key> <true/>
 		<key>level</key> <integer>1</integer>
@@ -265,10 +275,11 @@
 	
 	
 	<!-- humans -->
-	<!-- TODO: humans should have average AIs -->
+	<!-- humans should have average AIs -->
 	<key>bandit</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>12</integer>
 		<key>dexterity</key> <integer>12</integer>
 		<key>cunning</key> <integer>11</integer>
@@ -282,7 +293,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>mortal</string>
 		<key>appearance group</key> <string>human</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>warrior</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>5</integer>
 		<key>keywords</key>
@@ -290,9 +301,35 @@
 			<string>criminal</string>
 		</array>
 	</dict>
+	<key>minesweeper</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
+		<key>strength</key> <integer>12</integer>
+		<key>dexterity</key> <integer>11</integer>
+		<key>cunning</key> <integer>16</integer>
+		<key>wisdom</key> <integer>8</integer>
+		<key>endurance</key> <integer>15</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>sword</string>
+		<key>weapon material</key> <string>steel</string>
+		<key>armor</key> <string>uniform</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>mortal</string>
+		<key>appearance group</key> <string>human</string>
+		<key>AI</key> <string>minesweeper</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>12</integer>
+		<key>keywords</key>
+		<array>
+			<string>military</string>
+		</array>
+	</dict>
 	<key>outlaw</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>12</integer>
 		<key>dexterity</key> <integer>17</integer>
 		<key>cunning</key> <integer>12</integer>
@@ -306,7 +343,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>mortal</string>
 		<key>appearance group</key> <string>human</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>thief</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>20</integer>
 		<key>keywords</key>
@@ -315,9 +352,34 @@
 			<string>shake</string>
 		</array>
 	</dict>
+	<key>streaker</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>5</integer>
+		<key>strength</key> <integer>12</integer>
+		<key>dexterity</key> <integer>16</integer>
+		<key>cunning</key> <integer>14</integer>
+		<key>wisdom</key> <integer>9</integer>
+		<key>endurance</key> <integer>21</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>bash</string>
+		<key>weapon material</key> <string>stun material</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>mortal</string>
+		<key>appearance group</key> <string>human</string>
+		<key>AI</key> <string>drunkard</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>22</integer>
+		<key>keywords</key>
+		<array>
+			<string>stun</string>
+		</array>
+	</dict>
 	<key>royal soldier</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>12</integer>
 		<key>dexterity</key> <integer>22</integer>
 		<key>cunning</key> <integer>16</integer>
@@ -326,12 +388,12 @@
 		<!-- MARK: equipment -->
 		<key>weapon</key> <string>rifle</string>
 		<key>weapon material</key> <string>oak</string>
-		<key>armor</key> <string>light armor</string> <!-- TODO: soldier uniform -->
+		<key>armor</key> <string>uniform</string>
 		<!-- MARK: special powers -->
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>mortal</string>
 		<key>appearance group</key> <string>human</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>big guy</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>35</integer>
 		<key>keywords</key>
@@ -341,17 +403,115 @@
 	</dict>
 	
 	<!-- animals -->
-	<!-- IN GENERAL: most of them use bash attacks; tend to have high END
-			rat (low-low-level, shakiness-inflicting bash, weak but plentiful)
-			mutt (low-medium level, bash)
-			bear (medium-high-level, stun-inflicting bash) -->
-	<!-- TODO: animals should probably mostly have trap-ignoring, cowardly AIs -->
+	<!-- animals should probably mostly have trap-ignoring, cowardly AIs (IE animal AI) -->
+	<key>rat</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
+		<key>strength</key> <integer>9</integer>
+		<key>dexterity</key> <integer>13</integer>
+		<key>cunning</key> <integer>12</integer>
+		<key>wisdom</key> <integer>9</integer>
+		<key>endurance</key> <integer>8</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>bash</string>
+		<key>weapon material</key> <string>shake material</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>mortal</string>
+		<key>appearance group</key> <string>zombie</string> <!-- TODO: rat race -->
+		<key>AI</key> <string>animal</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>1</integer>
+		<key>keywords</key>
+		<array>
+			<string>shake</string>
+			<string>wildlife</string>
+		</array>
+	</dict>
+	<key>mutt</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
+		<key>strength</key> <integer>16</integer>
+		<key>dexterity</key> <integer>12</integer>
+		<key>cunning</key> <integer>9</integer>
+		<key>wisdom</key> <integer>8</integer>
+		<key>endurance</key> <integer>16</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>bash</string>
+		<key>weapon material</key> <string>neutral</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>mortal</string>
+		<key>appearance group</key> <string>zombie</string> <!-- TODO: dog race -->
+		<key>AI</key> <string>animal</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>11</integer>
+		<key>keywords</key>
+		<array>
+			<string>criminal</string>
+			<string>wildlife</string>
+			<string>military</string>
+		</array>
+	</dict>
+	<key>urban bull</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>5</integer>
+		<key>strength</key> <integer>18</integer>
+		<key>dexterity</key> <integer>12</integer>
+		<key>cunning</key> <integer>9</integer>
+		<key>wisdom</key> <integer>12</integer>
+		<key>endurance</key> <integer>17</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>bash</string>
+		<key>weapon material</key> <string>stun material</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>mortal</string>
+		<key>appearance group</key> <string>zombie</string> <!-- TODO: bull race -->
+		<key>AI</key> <string>berserker</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>18</integer>
+		<key>keywords</key>
+		<array>
+			<string>stun</string>
+			<string>wildlife</string>
+		</array>
+	</dict>
+	<key>bear</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
+		<key>strength</key> <integer>24</integer>
+		<key>dexterity</key> <integer>12</integer>
+		<key>cunning</key> <integer>8</integer>
+		<key>wisdom</key> <integer>8</integer>
+		<key>endurance</key> <integer>28</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>bash</string>
+		<key>weapon material</key> <string>stun material</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>mortal</string>
+		<key>appearance group</key> <string>zombie</string> <!-- TODO: bear race -->
+		<key>AI</key> <string>animal</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>30</integer>
+		<key>keywords</key>
+		<array>
+			<string>stun</string>
+			<string>wildlife</string>
+		</array>
+	</dict>
 	
 	<!-- bogeymen -->
-	<!-- TODO: bogeymen should probably mostly have fearless AIs -->
+	<!-- bogeymen should probably mostly have fearless AIs -->
 	<key>bag man</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>13</integer>
 		<key>dexterity</key> <integer>9</integer>
 		<key>cunning</key> <integer>10</integer>
@@ -364,7 +524,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>monster</string>
 		<key>appearance group</key> <string>bogeyman</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>7</integer>
 		<key>keywords</key>
@@ -375,6 +535,7 @@
 	<key>boggart</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>18</integer>
 		<key>dexterity</key> <integer>12</integer>
 		<key>cunning</key> <integer>12</integer>
@@ -387,7 +548,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>monster</string>
 		<key>appearance group</key> <string>bogeyman</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>22</integer>
 		<key>keywords</key>
@@ -395,9 +556,35 @@
 			<string>shake</string>
 		</array>
 	</dict>
+	<key>vandal</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
+		<key>strength</key> <integer>8</integer>
+		<key>dexterity</key> <integer>18</integer>
+		<key>cunning</key> <integer>22</integer>
+		<key>wisdom</key> <integer>8</integer>
+		<key>endurance</key> <integer>18</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>pistol</string>
+		<key>weapon material</key> <string>lead</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>monster</string>
+		<key>appearance group</key> <string>bogeyman</string>
+		<key>AI</key> <string>minesweeper</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>24</integer>
+		<key>keywords</key>
+		<array>
+			<string>stun</string>
+			<string>criminal</string>
+		</array>
+	</dict>
 	<key>hammerman</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>23</integer>
 		<key>dexterity</key> <integer>11</integer>
 		<key>cunning</key> <integer>11</integer>
@@ -411,7 +598,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>monster</string>
 		<key>appearance group</key> <string>bogeyman</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>big guy</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>37</integer>
 		<key>keywords</key>
@@ -423,17 +610,117 @@
 	</dict>
 	
 	<!-- cryptids -->
-	<!-- IN GENERAL: most of them use bash attacks; tend to have high STR
-			chupacabra (low-level, bash that heals a little bit of health for the chupa)
-			hoop snake (medium-level, poison-inflicting bash, lots of move points)
-			swamp monster (high-level, poison-inflicting bash) -->
-	<!-- TODO: cryptids should probably mostly have trap-ignoring AIs -->
+	<!-- cryptids should probably mostly have trap-ignoring AIs -->
+	<key>chupacabra</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
+		<key>strength</key> <integer>14</integer>
+		<key>dexterity</key> <integer>11</integer>
+		<key>cunning</key> <integer>11</integer>
+		<key>wisdom</key> <integer>8</integer>
+		<key>endurance</key> <integer>12</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>bash</string>
+		<key>weapon material</key> <string>neutral</string> <!-- TODO: vampiric material -->
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>monster</string>
+		<key>appearance group</key> <string>zombie</string> <!-- TODO: chupacabra race -->
+		<key>AI</key> <string>thief</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>6</integer>
+		<key>keywords</key>
+		<array>
+			<string>wildlife</string>
+			<string>magical</string>
+		</array>
+	</dict>
+	<key>hoop snake</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>5</integer>
+		<key>strength</key> <integer>18</integer>
+		<key>dexterity</key> <integer>15</integer>
+		<key>cunning</key> <integer>9</integer>
+		<key>wisdom</key> <integer>11</integer>
+		<key>endurance</key> <integer>15</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>bash</string>
+		<key>weapon material</key> <string>poison material</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>monster</string>
+		<key>appearance group</key> <string>zombie</string> <!-- TODO: hoop snake race -->
+		<key>AI</key> <string>animal</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>18</integer>
+		<key>keywords</key>
+		<array>
+			<string>poison</string>
+			<string>wildlife</string>
+		</array>
+	</dict>
+	<key>swamp monster</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>3</integer>
+		<key>strength</key> <integer>27</integer>
+		<key>dexterity</key> <integer>13</integer>
+		<key>cunning</key> <integer>13</integer>
+		<key>wisdom</key> <integer>13</integer>
+		<key>endurance</key> <integer>22</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>bash</string>
+		<key>weapon material</key> <string>poison material</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>monster</string>
+		<key>appearance group</key> <string>zombie</string> <!-- TODO: swamp monster race -->
+		<key>AI</key> <string>berserker</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>38</integer>
+		<key>keywords</key>
+		<array>
+			<string>poison</string>
+			<string>magical</string>
+		</array>
+	</dict>
+	<key>wendigo</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
+		<key>strength</key> <integer>23</integer>
+		<key>dexterity</key> <integer>13</integer>
+		<key>cunning</key> <integer>12</integer>
+		<key>wisdom</key> <integer>17</integer>
+		<key>endurance</key> <integer>19</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>bash</string>
+		<key>weapon material</key> <string>neutral</string> <!-- TODO: vampiric material -->
+		<!-- MARK: special powers -->
+		<!-- TODO: special attack -->
+		<!-- TODO: special attack that inflicts shake, specifically -->
+		<key>ignore terrain cost</key> <true/>
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>monster</string>
+		<key>appearance group</key> <string>zombie</string> <!-- TODO: spooky ghost wendigo race -->
+		<key>AI</key> <string>berserker</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>34</integer>
+		<key>keywords</key>
+		<array>
+			<string>shake</string>
+			<string>magical</string>
+		</array>
+	</dict>
 	
 	<!-- fairies -->
-	<!-- TODO: fairies should probably mostly have trap-avoiding AIs -->
+	<!-- fairies should probably mostly have trap-avoiding AIs -->
 	<key>brownie</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>12</integer>
 		<key>dexterity</key> <integer>11</integer>
 		<key>cunning</key> <integer>11</integer>
@@ -442,12 +729,12 @@
 		<!-- MARK: equipment -->
 		<key>weapon</key> <string>bash</string>
 		<key>weapon material</key> <string>shake material</string>
-		<key>armor</key> <string>outfit</string> <!-- TODO: brownies wear especially dire clothing; look up pictures -->
+		<key>armor</key> <string>clothing</string> <!-- TODO: brownies wear especially dire clothing; look up pictures -->
 		<!-- MARK: special powers -->
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>fairy</string>
 		<key>appearance group</key> <string>fairy</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>thief</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>2</integer>
 		<key>keywords</key>
@@ -459,6 +746,7 @@
 	<key>pixie</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>9</integer>
 		<key>dexterity</key> <integer>17</integer>
 		<key>cunning</key> <integer>15</integer>
@@ -468,11 +756,11 @@
 		<key>weapon</key> <string>wand</string>
 		<key>weapon material</key> <string>mercury</string>
 		<!-- MARK: special powers -->
-		<key>ignore terrain cost</key> <true/> <!-- TODO: remember to make "ignore terrain cost" enemies float -->
+		<key>ignore terrain cost</key> <true/>
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>fairy</string>
 		<key>appearance group</key> <string>fairy</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>thief</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>18</integer>
 		<key>keywords</key>
@@ -481,9 +769,36 @@
 			<string>magical</string>
 		</array>
 	</dict>
+	<key>trickster</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
+		<key>strength</key> <integer>18</integer>
+		<key>dexterity</key> <integer>17</integer>
+		<key>cunning</key> <integer>12</integer>
+		<key>wisdom</key> <integer>11</integer>
+		<key>endurance</key> <integer>13</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>bash</string>
+		<key>weapon material</key> <string>shake material</string>
+		<key>armor</key> <string>light armor</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>fairy</string>
+		<key>appearance group</key> <string>fairy</string>
+		<key>AI</key> <string>thief</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>21</integer>
+		<key>keywords</key>
+		<array>
+			<string>criminal</string>
+			<string>shake</string>
+		</array>
+	</dict>
 	<key>fairy musketeer</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>11</integer>
 		<key>dexterity</key> <integer>24</integer>
 		<key>cunning</key> <integer>15</integer>
@@ -492,13 +807,12 @@
 		<!-- MARK: equipment -->
 		<key>weapon</key> <string>rifle</string>
 		<key>weapon material</key> <string>elm</string>
-		<key>armor</key> <string>light armor</string>
+		<key>armor</key> <string>uniform</string>
 		<!-- MARK: special powers -->
-		<key>ignore terrain cost</key> <true/>
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>fairy</string>
 		<key>appearance group</key> <string>fairy</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>thief</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>34</integer>
 		<key>keywords</key>
@@ -508,10 +822,11 @@
 	</dict>
 	
 	<!-- elves -->
-	<!-- TODO: elves should probably mostly have cowardly AIs -->
+	<!-- elves should probably mostly have cowardly AIs -->
 	<key>scout</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>5</integer>
 		<key>strength</key> <integer>12</integer>
 		<key>dexterity</key> <integer>12</integer>
 		<key>cunning</key> <integer>10</integer>
@@ -520,13 +835,13 @@
 		<!-- MARK: equipment -->
 		<key>weapon</key> <string>sword</string>
 		<key>weapon material</key> <string>steel</string>
-		<key>armor</key> <string>outfit</string>
+		<key>armor</key> <string>clothing</string>
 		<!-- MARK: special powers -->
 		<!-- TODO: special attack -->
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>fairy</string>
 		<key>appearance group</key> <string>elf</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>coward</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>6</integer>
 		<key>keywords</key>
@@ -535,9 +850,36 @@
 			<string>magical</string>
 		</array>
 	</dict>
+	<key>poisoner</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
+		<key>strength</key> <integer>12</integer>
+		<key>dexterity</key> <integer>15</integer>
+		<key>cunning</key> <integer>10</integer>
+		<key>wisdom</key> <integer>10</integer>
+		<key>endurance</key> <integer>12</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>sword</string>
+		<key>weapon material</key> <string>mercury</string>
+		<key>armor</key> <string>clothing</string>
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>fairy</string>
+		<key>appearance group</key> <string>elf</string>
+		<key>AI</key> <string>thief</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>9</integer>
+		<key>keywords</key>
+		<array>
+			<string>poison</string>
+			<string>criminal</string>
+		</array>
+	</dict>
 	<key>mage</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>12</integer>
 		<key>dexterity</key> <integer>18</integer>
 		<key>cunning</key> <integer>12</integer>
@@ -546,24 +888,27 @@
 		<!-- MARK: equipment -->
 		<key>weapon</key> <string>wand</string>
 		<key>weapon material</key> <string>birch</string>
-		<key>armor</key> <string>outfit</string> <!-- TODO: magic robes I guess -->
+		<key>armor</key> <string>clothing</string> <!-- TODO: magic robes I guess -->
 		<!-- MARK: special powers -->
 		<!-- TODO: special attack -->
+		<!-- TODO: specifically, it should be a special attack that stuns -->
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>fairy</string>
 		<key>appearance group</key> <string>elf</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>coward</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>22</integer>
 		<key>keywords</key>
 		<array>
 			<string>military</string>
+			<string>stun</string>
 			<string>magical</string>
 		</array>
 	</dict>
 	<key>elflord</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>22</integer>
 		<key>dexterity</key> <integer>14</integer>
 		<key>cunning</key> <integer>12</integer>
@@ -578,7 +923,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>fairy</string>
 		<key>appearance group</key> <string>elf</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>warrior</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>37</integer>
 		<key>keywords</key>
@@ -589,10 +934,11 @@
 	</dict>
 	
 	<!-- skeletons -->
-	<!-- TODO: skeletons should probably mostly have trap-ignoring AIs -->
+	<!-- skeletons should probably mostly have trap-ignoring AIs -->
 	<key>crumbling bones</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>12</integer>
 		<key>dexterity</key> <integer>11</integer>
 		<key>cunning</key> <integer>9</integer>
@@ -605,7 +951,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>undead</string>
 		<key>appearance group</key> <string>skeleton</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>3</integer>
 		<key>keywords</key>
@@ -613,9 +959,36 @@
 			<string>tomb dweller</string>
 		</array>
 	</dict>
+	<key>pounder</key>
+	<dict>
+		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
+		<key>strength</key> <integer>14</integer>
+		<key>dexterity</key> <integer>12</integer>
+		<key>cunning</key> <integer>9</integer>
+		<key>wisdom</key> <integer>10</integer>
+		<key>endurance</key> <integer>14</integer>
+		<!-- MARK: equipment -->
+		<key>weapon</key> <string>hammer</string>
+		<key>weapon material</key> <string>lead</string>
+		<key>armor</key> <string>heavy armor</string> <!-- TODO: mummy wrappings -->
+		<!-- MARK: special powers -->
+		<!-- MARK: identity -->
+		<key>racial group</key> <string>undead</string>
+		<key>appearance group</key> <string>skeleton</string>
+		<key>AI</key> <string>berserker</string>
+		<!-- MARK: generation data -->
+		<key>level</key> <integer>9</integer>
+		<key>keywords</key>
+		<array>
+			<string>tomb dweller</string>
+			<string>stun</string>
+		</array>
+	</dict>
 	<key>skeleton soldier</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>12</integer>
 		<key>dexterity</key> <integer>17</integer>
 		<key>cunning</key> <integer>12</integer>
@@ -628,7 +1001,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>undead</string>
 		<key>appearance group</key> <string>skeleton</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>big guy</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>20</integer>
 		<key>keywords</key>
@@ -640,6 +1013,7 @@
 	<key>draug</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>24</integer>
 		<key>dexterity</key> <integer>14</integer>
 		<key>cunning</key> <integer>8</integer>
@@ -653,7 +1027,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>undead</string>
 		<key>appearance group</key> <string>skeleton</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>34</integer>
 		<key>keywords</key>
@@ -663,10 +1037,11 @@
 	</dict>
 	
 	<!-- zombies -->
-	<!-- TODO: zombies should probably mostly have random but fearless AIs -->
+	<!-- zombies should probably mostly have random but fearless AIs -->
 	<key>shambler</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>3</integer>
 		<key>strength</key> <integer>11</integer>
 		<key>dexterity</key> <integer>8</integer>
 		<key>cunning</key> <integer>10</integer>
@@ -679,7 +1054,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>undead</string>
 		<key>appearance group</key> <string>zombie</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>drunkard</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>1</integer>
 		<key>keywords</key>
@@ -690,6 +1065,7 @@
 	<key>ghoul</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>15</integer>
 		<key>dexterity</key> <integer>13</integer>
 		<key>cunning</key> <integer>11</integer>
@@ -702,7 +1078,7 @@
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>undead</string>
 		<key>appearance group</key> <string>zombie</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>berserker</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>17</integer>
 		<key>keywords</key>
@@ -714,6 +1090,7 @@
 	<key>mummy</key>
 	<dict>
 		<!-- MARK: stats -->
+		<key>move points</key> <integer>4</integer>
 		<key>strength</key> <integer>11</integer>
 		<key>dexterity</key> <integer>20</integer>
 		<key>cunning</key> <integer>12</integer>
@@ -722,13 +1099,13 @@
 		<!-- MARK: equipment -->
 		<key>weapon</key> <string>wand</string>
 		<key>weapon material</key> <string>elm</string>
-		<key>armor</key> <string>outfit</string> <!-- TODO: mummy wraps obviously -->
+		<key>armor</key> <string>clothing</string> <!-- TODO: mummy wraps obviously -->
 		<!-- MARK: special powers -->
 		<!-- TODO: special attack -->
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>undead</string>
 		<key>appearance group</key> <string>zombie</string>
-		<key>AI</key> <string>sample AI</string> <!-- TODO: real AI -->
+		<key>AI</key> <string>drunkard</string>
 		<!-- MARK: generation data -->
 		<key>level</key> <integer>29</integer>
 		<key>keywords</key>

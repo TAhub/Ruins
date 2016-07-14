@@ -448,7 +448,10 @@ class MapTests: XCTestCase {
 	func testEnemyTypeEXPValue()
 	{
 		XCTAssertEqual(MapGenerator.expValueForEnemyType("bandit"), 12) //enemy with armor
-		XCTAssertEqual(MapGenerator.expValueForEnemyType("shambler"), 6) //enemy without armor
+		XCTAssertEqual(MapGenerator.expValueForEnemyType("rat"), 6) //enemy without armor
+		XCTAssertEqual(MapGenerator.expValueForEnemyType("pixie"), 26) //enemy who ignores terrain
+		XCTAssertEqual(MapGenerator.expValueForEnemyType("hoop snake"), 28) //enemy with extra movement
+		XCTAssertEqual(MapGenerator.expValueForEnemyType("shambler"), 4) //enemy with less movement
 		//TODO: enemy with magic
 	}
 	
@@ -457,7 +460,7 @@ class MapTests: XCTestCase {
 	{
 		let person = Creature(enemyType: "test pzombie", level: 1, x: 1, y: 1)
 		map.tileAt(x: 1, y: 1).creature = person
-		map.pathfinding(person, movePoints: 4)
+		map.pathfinding(person, movePoints: 4, ignoreTerrainCosts: false)
 		
 		XCTAssertEqual(map.tilesAccessable.count, 15) //from this position, with no obstacles, it should be able to reach 15 tiles
 		//P****		(the starting tile is considered accessable, so that makes 15)
@@ -482,7 +485,7 @@ class MapTests: XCTestCase {
 		
 		let person = Creature(enemyType: "test pzombie", level: 1, x: 1, y: 1)
 		map.tileAt(x: 1, y: 1).creature = person
-		map.pathfinding(person, movePoints: 4)
+		map.pathfinding(person, movePoints: 4, ignoreTerrainCosts: false)
 		
 		//when asked to move to x=3, you should walk over the trap because it's a player trap and just adds 1 move cost
 		comparePathToExpected(toX: 3, toY: 1, expected: [(1, 1), (2, 1), (3, 1)])
@@ -490,11 +493,10 @@ class MapTests: XCTestCase {
 		//you can't quite reach x=5, because of the effective extra cost
 		XCTAssertNil(map.pathResultAt(x: 5, y: 1))
 		
-		
 		//now replace that trap with a world trap
 		//the AI should avoid this much more strictly
 		map.tileAt(x: 2, y: 1).trap = Trap(type: "sample trap", trapPower: 10, good: false)
-		map.pathfinding(person, movePoints: 4)
+		map.pathfinding(person, movePoints: 4, ignoreTerrainCosts: false)
 		
 		//now when asked to move to x=3, you should walk around the trap
 		comparePathToExpected(toX: 3, toY: 1, expected: [(1, 1), (1, 2), (2, 2), (3, 2), (3, 1)])
@@ -502,6 +504,7 @@ class MapTests: XCTestCase {
 	
 	//TODO: future pathfinding tests:
 	//	what if there's difficult terrain?
+	//		furthermore, make sure "ignore terrain costs" works
 	//	what if there's walls in the way?
 	
 	//MARK: helper functions

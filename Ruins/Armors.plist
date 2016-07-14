@@ -213,5 +213,57 @@
 			</dict>
 		</array>
 	</dict>
+	
+	<key>uniform</key>
+	<dict>
+		<key>health</key> <integer>30</integer>
+		<key>subtypes</key>
+		<array>
+			<dict>
+				<!-- identity -->
+				<key>level</key> <integer>0</integer>
+				<!-- stats -->
+				<key>weight</key> <integer>20</integer>
+				<key>dodge</key> <integer>1</integer>
+				<key>max health bonus</key> <integer>2</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>uniform</string>
+				<key>color</key> <string>navy</string>
+			</dict>
+			<dict>
+				<!-- identity -->
+				<key>level</key> <integer>10</integer>
+				<!-- stats -->
+				<key>weight</key> <integer>20</integer>
+				<key>dodge</key> <integer>3</integer>
+				<key>max health bonus</key> <integer>5</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>uniform</string>
+				<key>color</key> <string>navy</string>
+			</dict>
+			<dict>
+				<!-- identity -->
+				<key>level</key> <integer>20</integer>
+				<!-- stats -->
+				<key>weight</key> <integer>20</integer>
+				<key>dodge</key> <integer>5</integer>
+				<key>max health bonus</key> <integer>8</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>uniform</string>
+				<key>color</key> <string>navy</string>
+			</dict>
+			<dict>
+				<!-- identity -->
+				<key>level</key> <integer>30</integer>
+				<!-- stats -->
+				<key>weight</key> <integer>20</integer>
+				<key>dodge</key> <integer>7</integer>
+				<key>max health bonus</key> <integer>11</integer>
+				<!-- appearance -->
+				<key>sprite name</key> <string>uniform</string>
+				<key>color</key> <string>navy</string>
+			</dict>
+		</array>
+	</dict>
 </dict>
 </plist>

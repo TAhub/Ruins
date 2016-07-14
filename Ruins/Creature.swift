@@ -95,9 +95,14 @@ class Creature
 		return wis + (armor?.specialResistance ?? 0)
 	}
 	
+	//MARK: type-derived flags
 	var boss:Bool
 	{
 		return DataStore.getBool("EnemyTypes", enemyType, "boss")
+	}
+	var ignoreTerrainCosts:Bool
+	{
+		return DataStore.getBool("EnemyTypes", enemyType, "ignore terrain cost")
 	}
 	
 	//MARK: secondary derived stats
@@ -111,7 +116,7 @@ class Creature
 	}
 	var maxMovePoints:Int
 	{
-		return 4
+		return DataStore.getInt("EnemyTypes", enemyType, "move points")!
 	}
 	
 	//MARK: equipment
@@ -387,7 +392,7 @@ class Creature
 				
 				
 				//figure out where you can move to
-				game.map.pathfinding(self, movePoints: game.movePoints)
+				game.map.pathfinding(self, movePoints: game.movePoints, ignoreTerrainCosts: ignoreTerrainCosts)
 				
 				//now examine each tile
 				var bestTileFitness = -99999

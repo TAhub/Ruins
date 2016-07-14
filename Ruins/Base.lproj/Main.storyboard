@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="100" width="320" height="336"/>
                                 <color key="backgroundColor" red="0.1214264607805462" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GD4-Nq-TGi">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GD4-Nq-TGi">
                                 <rect key="frame" x="0.0" y="100" width="320" height="336"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>

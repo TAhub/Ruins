@@ -131,7 +131,7 @@ class Map
 		}
 	}
 	
-	func pathfinding(from:Creature, movePoints:Int)
+	func pathfinding(from:Creature, movePoints:Int, ignoreTerrainCosts:Bool)
 	{
 		//get AI variables
 		let weightPerMovePoint = DataStore.getInt("AIs", from.AI!, "weight per move point")!
@@ -170,7 +170,8 @@ class Map
 					return
 				}
 				let i = toI(x: x, y: y)
-				var newDistance = tile.entryCost * weightPerMovePoint + fromTile.distance
+				let cost = ignoreTerrainCosts ? 1 : tile.entryCost
+				var newDistance = cost * weightPerMovePoint + fromTile.distance
 				if let trap = tile.trap
 				{
 					newDistance += trap.good ? playerTrapWeight : worldTrapWeight
