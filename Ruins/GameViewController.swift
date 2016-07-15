@@ -26,6 +26,8 @@ class Target
 	}
 }
 
+let autoSkipRadius = 6
+
 let damageNumberDuration:NSTimeInterval = 0.35
 let damageNumberDistanceTraveled:CGFloat = 50
 
@@ -321,6 +323,36 @@ class GameViewController: UIViewController, GameDelegate {
 	//MARK: delegate methods
 	func inputDesired()
 	{
+		//check to see if you can auto-skip
+		var activeNearby = false
+		for y in max(0, game.player.y - autoSkipRadius)...min(game.map.height - 1, game.player.y + autoSkipRadius)
+		{
+			for x in max(0, game.player.x - autoSkipRadius)...min(game.map.width - 1, game.player.x + autoSkipRadius)
+			{
+				if let cr = game.map.tileAt(x: x, y: y).creature
+				{
+					if !cr.good && cr.awake
+					{
+						activeNearby = true
+						break
+					}
+				}
+			}
+			if activeNearby
+			{
+				break
+			}
+		}
+		if !activeNearby
+		{
+			//TODO: regain aura
+			
+			if game.movePoints == 0
+			{
+				game.skipAction()
+				return
+			}
+		}
 		input = true
 	}
 	func playAnimation(anim: Animation)
