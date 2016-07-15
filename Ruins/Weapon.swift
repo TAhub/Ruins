@@ -166,6 +166,8 @@ class Weapon
 	var description:String
 	{
 		let flavor = DataStore.getString("Weapons", type, "flavor")!
-		return "\(flavor)\n\(damage * hitDamageMultiplier / 100) damage (\(damage) graze), \(accuracy)% accuracy, \(range) range, \(weight) weight"
+		let strongVSText = strongVS == nil ? "" : ", strong vs \(strongVS!)"
+		let inflictsText = statusInflicted == nil ? "" : ", inflicts \(statusInflicted!)"
+		return "\(flavor)\n\(damage * hitDamageMultiplier / 100) damage (\(damage) graze), \(accuracy)% accuracy, \(range) range, \(weight) weight\(strongVSText)\(inflictsText)"
 	}
 }

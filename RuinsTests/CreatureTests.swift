@@ -59,6 +59,17 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(s1, s2 - 10)
 	}
 	
+	func testCreatureGetMultiplier()
+	{
+		XCTAssertEqual(Creature.getMultiplier(-100), 25)
+		XCTAssertEqual(Creature.getMultiplier(-50), 50)
+		XCTAssertEqual(Creature.getMultiplier(50), 150)
+		XCTAssertEqual(Creature.getMultiplier(100), 200)
+		XCTAssertEqual(Creature.getMultiplier(150), 250)
+		XCTAssertEqual(Creature.getMultiplier(200), 300)
+		XCTAssertEqual(Creature.getMultiplier(250), 300)
+	}
+	
 	func testDead()
 	{
 		XCTAssertFalse(creature.dead)
@@ -145,9 +156,9 @@ class CreatureTests: XCTestCase {
 		target.health = target.maxHealth
 		creature.weapon = Weapon(type: "test melee weapon", material: "neutral", level: 0)
 		let oDamages = creature.attack(target)
-		XCTAssertEqual(oDamages.theirDamage, 180)
+		XCTAssertEqual(oDamages.theirDamage, 150)
 		XCTAssertEqual(oDamages.myDamage, 0)
-		XCTAssertEqual(target.health, 20)
+		XCTAssertEqual(target.health, 50)
 	}
 	
 	func testAttackDegradesEquipment()
@@ -206,8 +217,8 @@ class CreatureTests: XCTestCase {
 		creature.weapon = Weapon(type: "test melee weapon", material: "mortal killing material", level: 0)
 		let mDamages = creature.attack(target)
 		let oMDamages = creature.attack(invalidTarget)
-		XCTAssertEqual(mDamages.theirDamage, 260) //it ignores the -80 from their melee res from melee weakness
-		XCTAssertEqual(oMDamages.theirDamage, 180)
+		XCTAssertEqual(mDamages.theirDamage, 200) //it ignores the -80 from their melee res from melee weakness
+		XCTAssertEqual(oMDamages.theirDamage, 150)
 	}
 	
 	func testCrit()

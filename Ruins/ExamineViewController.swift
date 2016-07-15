@@ -93,6 +93,10 @@ class ExamineViewController: UIViewController {
 		{
 			desc += "can inflict \(status)\n"
 		}
+		if let strongVS = creature.weapon.strongVS
+		{
+			desc += "does extra damage to \(strongVS)\n"
+		}
 		if creature.poison > 0
 		{
 			desc += "poisoned\n"

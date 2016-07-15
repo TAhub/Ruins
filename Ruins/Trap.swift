@@ -26,7 +26,7 @@ class Trap
 	func damage(trapResistance:Int) -> Int
 	{
 		let baseDamage = DataStore.getInt("Traps", type, "damage")!
-		return baseDamage * max(100 + (trapPower - trapResistance) * damMultiplier, minMultiplier) / 100
+		return baseDamage * Creature.getMultiplier((trapPower - trapResistance) * damMultiplier) / 100
 	}
 	
 	func activate(creature:Creature) -> Int

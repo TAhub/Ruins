@@ -16,20 +16,22 @@ class TrapTests: XCTestCase {
     override func setUp() {
         super.setUp()
 		
-		trap = Trap(type: "sample trap", trapPower: 20, good: false)
+		trap = Trap(type: "sample trap", trapPower: 30, good: false)
     }
 	
 	func testTrapDamage()
 	{
-		XCTAssertEqual(trap.damage(20), 100)
-		XCTAssertEqual(trap.damage(15), 140)
-		XCTAssertEqual(trap.damage(25), 60)
+		XCTAssertEqual(trap.damage(30), 100)
+		XCTAssertEqual(trap.damage(25), 140)
+		XCTAssertEqual(trap.damage(35), 60)
 		XCTAssertEqual(trap.damage(999999), 25)
+		XCTAssertEqual(trap.damage(1), 300)
 	}
 	
 	func testActiveTrap()
 	{
 		let mineSweeper = Creature(enemyType: "test creature", level: 1, x: 0, y: 0)
+		mineSweeper.cun += 10
 		
 		XCTAssertFalse(trap.dead)
 		

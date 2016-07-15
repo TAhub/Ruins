@@ -29,6 +29,8 @@ class TileRepresentation
 			{
 				if let image = UIImage(named: name)
 				{
+					//TODO: the images should probably be cached
+					
 					let tintedImage = image.colorImage(tile.color.colorLerp(mapColor, percent: mapColorPercent))
 					let view = UIImageView(image: tintedImage)
 					let fadeView = UIView(frame: CGRectMake(0, 0, 0, 0))

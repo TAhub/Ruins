@@ -9,7 +9,9 @@
 import Foundation
 
 let minMultiplier:Int = 25
+let maxMultiplier:Int = 300
 let damMultiplier:Int = 8
+let meleeDamMultiplier:Int = 5
 let miscMultiplier:Int = 10
 let weakDamMult:Int = 40
 let poisonDam:Int = 5
@@ -298,6 +300,11 @@ class Creature
 		shake = max(shake - 1, 0)
 	}
 	
+	static func getMultiplier(rawMultiplier:Int) -> Int
+	{
+		return min(max(100 + rawMultiplier, minMultiplier), maxMultiplier)
+	}
+	
 	func attack(target:Creature) -> (myDamage:Int, theirDamage:Int)
 	{
 		//if the AI is asleep, wake them
@@ -314,7 +321,8 @@ class Creature
 		var wDamage = weapon.damage
 		if weapon.range == 1
 		{
-			wDamage = wDamage * max(100 + damMultiplier * (meleePow - (isWeak ? 0 : target.meleeRes)), minMultiplier) / 100
+			let meleeDif = meleePow - (isWeak ? 0 : target.meleeRes)
+			wDamage = wDamage * Creature.getMultiplier(meleeDif * meleeDamMultiplier) / 100
 		}
 		else if isWeak
 		{
@@ -325,7 +333,7 @@ class Creature
 		if shake == 0
 		{
 			var hitChance = weapon.accuracy
-			hitChance = hitChance * max(100 + miscMultiplier * (accuracy - target.dodge), minMultiplier) / 100
+			hitChance = hitChance * Creature.getMultiplier(miscMultiplier * (accuracy - target.dodge)) / 100
 			
 			if Int(arc4random_uniform(100)) < hitChance
 			{

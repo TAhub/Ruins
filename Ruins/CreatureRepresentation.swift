@@ -23,7 +23,7 @@ class CreatureRepresentation:Representation
 	{
 		self.creature = creature
 		let view = UIView(frame: CGRectMake(0, 0, tileSize, tileSize))
-		view.backgroundColor = UIColor.blackColor()
+//		view.backgroundColor = UIColor.blackColor()
 		super.init(view: view, superview: superview)
 		
 		updateAppearance()
