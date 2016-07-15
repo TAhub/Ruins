@@ -6,24 +6,49 @@
 //  Copyright © 2016 Theodore Abshire. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Tile
 {
 	var trap:Trap?
 	var creature:Creature?
-	let solid:Bool
 	let entryCost:Int = 1
 	var visible:Bool
+	let type:String
 	
-	init(solid:Bool)
+	init(type:String)
 	{
-		self.solid = solid
+		self.type = type
 		visible = false
+	}
+	
+	var solid:Bool
+	{
+		return DataStore.getBool("Tiles", type, "solid")
 	}
 	
 	var walkable:Bool
 	{
 		return !solid && creature == nil
+	}
+	
+	var lowerSprite:String?
+	{
+		return DataStore.getString("Tiles", type, "lower sprite")
+	}
+	
+	var middleSprite:String?
+	{
+		return DataStore.getString("Tiles", type, "middle sprite")
+	}
+	
+	var upperSprite:String?
+	{
+		return DataStore.getString("Tiles", type, "upper sprite")
+	}
+	
+	var color:UIColor
+	{
+		return DataStore.getColor("Tiles", type, "color") ?? UIColor.whiteColor()
 	}
 }

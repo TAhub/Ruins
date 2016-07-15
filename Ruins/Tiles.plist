@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Tiles.plist
+   Ruins
+
+   Created by Theodore Abshire on 7/15/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+    <key>sample wall</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>upper sprite</key> <string>tile_caveceil</string>
+		<key>middle sprite</key> <string>tile_cavewall</string>
+		<key>color</key> <string>white</string>
+	</dict>
+    <key>sample floor</key>
+	<dict>
+		<key>middle sprite</key> <string>tile_cavefloor</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>white</string>
+	</dict>
+    <key>sample pit</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>lower sprite</key> <string>tile_pitfloor</string>
+		<key>color</key> <string>white</string>
+	</dict>
+</dict>
+</plist>

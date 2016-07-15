@@ -6,7 +6,7 @@
 //  Copyright © 2016 Theodore Abshire. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct PathTile
 {
@@ -23,6 +23,7 @@ class Map
 {
 	let width:Int
 	let height:Int
+	let mapColor:UIColor
 	private var tiles:[Tile]
 	
 	private var pathfindingResults = [Int : PathTile]()
@@ -31,6 +32,7 @@ class Map
 	{
 		self.width = width
 		self.height = height
+		mapColor = UIColor.whiteColor()
 		
 		//make just a simple walled arena in the size
 		tiles = [Tile]()
@@ -38,7 +40,8 @@ class Map
 		{
 			for x in 0..<width
 			{
-				tiles.append(Tile(solid: x == 0 || y == 0 || x == width - 1 || y == height - 1))
+				let solid = x == 0 || y == 0 || x == width - 1 || y == height - 1
+				tiles.append(Tile(type: solid ? "sample wall" : "sample floor"))
 			}
 		}
 	}
@@ -49,6 +52,7 @@ class Map
 		self.width = width
 		self.height = height
 		self.tiles = tiles
+		self.mapColor = DataStore.getColor("MapFlavors", mapStub.flavor, "map color") ?? UIColor.whiteColor()
 	}
 	
 	func tileAt(x x:Int, y:Int) -> Tile

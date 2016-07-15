@@ -45,6 +45,7 @@ class GameViewController: UIViewController, GameDelegate {
 	var examineTarget:Creature!
 	
 	@IBOutlet weak var gameArea: TileDisplayView!
+	@IBOutlet weak var gameAreaUpper: UIView!
 	@IBOutlet weak var creatureLayer: UIView!
 	@IBOutlet weak var objectLayer: UIView!
 	
@@ -89,7 +90,7 @@ class GameViewController: UIViewController, GameDelegate {
 		game.calculateVisibility()
 		
 		//make the tiles
-		gameArea.initializeAtCameraPoint(cameraPoint, map: game.map)
+		gameArea.initializeAtCameraPoint(cameraPoint, map: game.map, upperView: gameAreaUpper)
 		
 		//make representations
 		for y in 0..<game.map.height
@@ -110,7 +111,7 @@ class GameViewController: UIViewController, GameDelegate {
 		
 		//add a gesture recognizer for the game area
 		let tappy = UITapGestureRecognizer(target: self, action: #selector(gameAreaPressed))
-		creatureLayer.addGestureRecognizer(tappy)
+		gameAreaUpper.addGestureRecognizer(tappy)
 		
 //		temporaryMapViewerScript()
 	}

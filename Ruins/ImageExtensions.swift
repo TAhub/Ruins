@@ -9,6 +9,30 @@
 import UIKit
 import CoreImage
 
+extension UIColor
+{
+	func colorLerp(other:UIColor, percent p:CGFloat) -> UIColor
+	{
+		var myRed:CGFloat = 0
+		var myGreen:CGFloat = 0
+		var myBlue:CGFloat = 0
+		var myAlpha:CGFloat = 0
+		var theirRed:CGFloat = 0
+		var theirGreen:CGFloat = 0
+		var theirBlue:CGFloat = 0
+		var theirAlpha:CGFloat = 0
+		self.getRed(&myRed, green: &myGreen, blue: &myBlue, alpha: &myAlpha)
+		other.getRed(&theirRed, green: &theirGreen, blue: &theirBlue, alpha: &theirAlpha)
+		
+		let nP = 1 - p
+		let newRed = myRed * p + theirRed * nP
+		let newGreen = myGreen * p + theirGreen * nP
+		let newBlue = myBlue * p + theirBlue * nP
+		let newAlpha = myAlpha * p + theirAlpha * nP
+		return UIColor(red: newRed, green: newGreen, blue: newBlue, alpha: newAlpha)
+	}
+}
+
 extension UIImage
 {
 	private func solidColorImage(color:UIColor) -> UIImage

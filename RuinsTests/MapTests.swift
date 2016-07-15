@@ -352,7 +352,8 @@ class MapTests: XCTestCase {
 		{
 			for x in 0..<size
 			{
-				let tile = Tile(solid: x == 0 || y == 0 || x == size - 1 || y == size - 1)
+				let solid = x == 0 || y == 0 || x == size - 1 || y == size - 1
+				let tile = Tile(type: solid ? "sample wall" : "sample floor")
 				tiles.append(tile)
 			}
 		}

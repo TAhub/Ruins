@@ -45,5 +45,12 @@
 	<key>steel</key> <string>BBCCDD</string>
 	<key>leather</key> <string>997755</string>
 	<key>blue cloth</key> <string>111188</string>
+	
+	<!-- tile material colors -->
+	<key>grass</key> <string>005C09</string>
+	<key>stone</key> <string>8B8B7A</string>
+	<key>temple</key> <string>FF9933</string>
+	<key>dirt</key> <string>774400</string>
+	<key>poison</key> <string>993399</string>
 </dict>
 </plist>

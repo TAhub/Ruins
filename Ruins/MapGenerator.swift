@@ -614,7 +614,7 @@ class MapGenerator
 			for x in 0..<width
 			{
 				let i = x + y * width
-				tiles.append(Tile(solid: solidity[i]))
+				tiles.append(Tile(type: solidity[i] ? "sample wall" : "sample floor"))
 			}
 		}
 		return tiles

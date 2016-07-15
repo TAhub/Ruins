@@ -11,6 +11,7 @@
 <dict>
     <key>poisonous</key>
 	<dict>
+		<key>map color</key> <string>poison</string>
 		<key>trap type</key> <string>poison needle trap</string>
 		<key>keyword</key> <string>poison</string>
 		<key>alternate keyword</key> <string>criminal</string>
@@ -24,6 +25,7 @@
 	</dict>
     <key>lawless</key>
 	<dict>
+		<key>map color</key> <string>iron</string>
 		<key>trap type</key> <string>paralysis trap</string>
 		<key>keyword</key> <string>criminal</string>
 		<key>alternate keyword</key> <string>shake</string>
@@ -37,6 +39,7 @@
 	</dict>
     <key>dead</key>
 	<dict>
+		<key>map color</key> <string>bogeyman skin light</string>
 		<key>trap type</key> <string>necrotic trap</string>
 		<key>keyword</key> <string>tomb dweller</string>
 		<key>alternate keyword</key> <string>stun</string>
@@ -50,6 +53,7 @@
 	</dict>
     <key>mystical</key>
 	<dict>
+		<key>map color</key> <string>temple</string>
 		<key>trap type</key> <string>rune trap</string>
 		<key>keyword</key> <string>magical</string>
 		<key>alternate keyword</key> <string>shake</string>
@@ -63,6 +67,7 @@
 	</dict>
     <key>overgrown</key>
 	<dict>
+		<key>map color</key> <string>grass</string>
 		<key>trap type</key> <string>bear trap</string>
 		<key>keyword</key> <string>wildlife</string>
 		<key>alternate keyword</key> <string>shake</string>
@@ -76,6 +81,7 @@
 	</dict>
     <key>battlefield</key>
 	<dict>
+		<key>map color</key> <string>dirt</string>
 		<key>trap type</key> <string>bomb trap</string>
 		<key>keyword</key> <string>military</string>
 		<key>alternate keyword</key> <string>stun</string>
@@ -89,6 +95,7 @@
 	</dict>
     <key>fierce</key>
 	<dict>
+		<key>map color</key> <string>fairy hair red</string>
 		<key>trap type</key> <string>bear trap</string>
 		<key>keyword</key> <string>stun</string>
 		<key>alternate keyword</key> <string>shake</string>

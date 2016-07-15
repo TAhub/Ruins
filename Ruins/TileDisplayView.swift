@@ -9,17 +9,76 @@
 import UIKit
 
 let tileSize:CGFloat = 40
+let tileLevelOff:CGFloat = 16
+let mapColorPercent:CGFloat = 0.5
+
+class TileRepresentation
+{
+	var upper:UIView?
+	var middle:UIView?
+	var lower:UIView?
+	
+	init(tile:Tile, mapColor:UIColor)
+	{
+		func loadRep(name:String?) -> UIView?
+		{
+			if let name = name
+			{
+				if let image = UIImage(named: name)
+				{
+					let tintedImage = image.colorImage(tile.color.colorLerp(mapColor, percent: mapColorPercent))
+					let view = UIImageView(image: tintedImage)
+					return view
+				}
+			}
+			return nil
+		}
+		upper = loadRep(tile.upperSprite)
+		middle = loadRep(tile.middleSprite)
+		lower = loadRep(tile.lowerSprite)
+	}
+	
+	func removeFromSuperview()
+	{
+		upper?.removeFromSuperview()
+		middle?.removeFromSuperview()
+		lower?.removeFromSuperview()
+	}
+	
+	func setFrame(frame:CGRect)
+	{
+		upper?.frame = CGRectMake(frame.origin.x, frame.origin.y - tileLevelOff, frame.size.width, frame.size.height)
+		middle?.frame = frame
+		lower?.frame = CGRectMake(frame.origin.x, frame.origin.y + tileLevelOff, frame.size.width, frame.size.height)
+	}
+	
+	func setAlpha(alpha:CGFloat)
+	{
+		upper?.alpha = alpha
+		middle?.alpha = alpha
+		lower?.alpha = alpha
+	}
+}
 
 class TileDisplayView: UIView {
 
 	//TODO: remove the reference to map; instead, make a delegate protocol to feed the info I need
 	//width, height, tile at, etc
 	
-	private var tiles = [Int : UIView]()
+	private var tiles = [Int : TileRepresentation]()
 	private var map:Map!
 	
-	func initializeAtCameraPoint(cameraPoint:CGPoint, map:Map)
+	private var lowerView:UIView!
+	private var middleView:UIView!
+	private var upperView:UIView!
+	
+	func initializeAtCameraPoint(cameraPoint:CGPoint, map:Map, upperView: UIView)
 	{
+		self.upperView = upperView
+		lowerView = UIView(frame: self.bounds)
+		middleView = UIView(frame: self.bounds)
+		self.addSubview(lowerView)
+		self.addSubview(middleView)
 		self.map = map
 		makeTilesForCameraPoint(cameraPoint)
 	}
@@ -31,7 +90,7 @@ class TileDisplayView: UIView {
 			let x = i % map.width
 			let y = i / map.width
 			let tile = map.tileAt(x: x, y: y)
-			rep.alpha = tile.visible ? 1 : 0
+			rep.setAlpha(tile.visible ? 1 : 0)
 		}
 	}
 	
@@ -43,11 +102,25 @@ class TileDisplayView: UIView {
 			{
 				//generate a new tile, appropriate for those coordinates
 				let tile = self.map.tileAt(x: x, y: y)
-				let rep = UIView(frame: self.tileRectFor(x: x, y: y, atCameraPoint: cameraPoint))
-				rep.backgroundColor = tile.solid ? UIColor.whiteColor() : UIColor.darkGrayColor()
-				rep.alpha = tile.visible ? 1 : 0
+				let tileRect = self.tileRectFor(x: x, y: y, atCameraPoint: cameraPoint)
+				
+				let rep = TileRepresentation(tile: tile, mapColor: self.map.mapColor)
+				rep.setFrame(tileRect)
+				rep.setAlpha(tile.visible ? 1 : 0)
 				self.tiles[self.map.width * y + x] = rep
-				self.addSubview(rep)
+				
+				if let upper = rep.upper
+				{
+					self.upperView.addSubview(upper)
+				}
+				if let middle = rep.middle
+				{
+					self.middleView.addSubview(middle)
+				}
+				if let lower = rep.lower
+				{
+					self.lowerView.addSubview(lower)
+				}
 			}
 		}
 	}
@@ -58,14 +131,14 @@ class TileDisplayView: UIView {
 		{ (x, y) in
 			if let tile = self.tiles[self.map.width * y + x]
 			{
-				tile.frame = self.tileRectFor(x: x, y: y, atCameraPoint: cameraPoint)
+				tile.setFrame(self.tileRectFor(x: x, y: y, atCameraPoint: cameraPoint))
 			}
 		}
 	}
 	
 	func cullTilesForCameraPoint(cameraPoint:CGPoint)
 	{
-		var newTiles = [Int : UIView]()
+		var newTiles = [Int : TileRepresentation]()
 		operateOnCameraPoint(cameraPoint)
 		{ (x, y) in
 			let i = y * self.map.width + x

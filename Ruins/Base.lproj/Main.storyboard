@@ -35,7 +35,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixp-jX-mAl">
                                         <rect key="frame" x="0.0" y="20" width="320" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -96,6 +96,10 @@
                                 <rect key="frame" x="0.0" y="100" width="320" height="336"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blN-Pv-VI7">
+                                <rect key="frame" x="0.0" y="100" width="320" height="336"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JRn-kD-KBM">
                                 <rect key="frame" x="0.0" y="28" width="320" height="72"/>
                                 <subviews>
@@ -130,13 +134,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weapon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJi-MD-JLG">
                                         <rect key="frame" x="200" y="36" width="63" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Armor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFU-yf-aAo">
                                         <rect key="frame" x="200" y="51" width="48" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RPn-Da-7ZN">
@@ -229,9 +233,13 @@
                         <constraints>
                             <constraint firstItem="iYK-5o-eyG" firstAttribute="width" secondItem="NPZ-1v-IWo" secondAttribute="width" id="0zx-oW-gPx"/>
                             <constraint firstItem="JRn-kD-KBM" firstAttribute="height" secondItem="xx7-VK-klT" secondAttribute="height" multiplier="0.15" id="75d-ke-CSy"/>
+                            <constraint firstItem="blN-Pv-VI7" firstAttribute="width" secondItem="iYK-5o-eyG" secondAttribute="width" id="CTH-w1-z3S"/>
+                            <constraint firstItem="blN-Pv-VI7" firstAttribute="centerY" secondItem="iYK-5o-eyG" secondAttribute="centerY" id="GMp-37-zyc"/>
                             <constraint firstItem="iYK-5o-eyG" firstAttribute="height" secondItem="NPZ-1v-IWo" secondAttribute="height" id="HaI-sc-nWe"/>
                             <constraint firstItem="GD4-Nq-TGi" firstAttribute="width" secondItem="iYK-5o-eyG" secondAttribute="width" id="HiW-r9-9O7"/>
                             <constraint firstItem="iYK-5o-eyG" firstAttribute="centerY" secondItem="NPZ-1v-IWo" secondAttribute="centerY" id="KmS-rz-0Bx"/>
+                            <constraint firstItem="blN-Pv-VI7" firstAttribute="centerX" secondItem="iYK-5o-eyG" secondAttribute="centerX" id="Mx0-UJ-UTe"/>
+                            <constraint firstItem="blN-Pv-VI7" firstAttribute="height" secondItem="iYK-5o-eyG" secondAttribute="height" id="Qw8-mn-c44"/>
                             <constraint firstItem="NPZ-1v-IWo" firstAttribute="width" secondItem="xx7-VK-klT" secondAttribute="width" id="Rap-Xh-lr5"/>
                             <constraint firstItem="JRn-kD-KBM" firstAttribute="width" secondItem="xx7-VK-klT" secondAttribute="width" id="SaJ-Kj-Jhr"/>
                             <constraint firstItem="dkm-YG-z1J" firstAttribute="height" secondItem="xx7-VK-klT" secondAttribute="height" multiplier="0.075" id="Xic-YF-dJb"/>
@@ -254,6 +262,7 @@
                         <outlet property="armorBarContainerView" destination="rwC-wH-XmG" id="e8M-WW-h5P"/>
                         <outlet property="creatureLayer" destination="iYK-5o-eyG" id="6MQ-og-I4d"/>
                         <outlet property="gameArea" destination="NPZ-1v-IWo" id="9ro-Rg-87a"/>
+                        <outlet property="gameAreaUpper" destination="blN-Pv-VI7" id="zi6-6Y-rJK"/>
                         <outlet property="healthBarAuraView" destination="Sew-n6-y2a" id="vn2-g4-cdg"/>
                         <outlet property="healthBarContainerView" destination="863-10-eD8" id="k4F-Ku-ZAL"/>
                         <outlet property="objectLayer" destination="GD4-Nq-TGi" id="L8V-FZ-87m"/>
@@ -294,7 +303,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="290" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -326,7 +335,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECTED" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pA1-SU-Dby">
                                 <rect key="frame" x="0.0" y="66" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezo-Cp-YrN">

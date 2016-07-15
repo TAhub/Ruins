@@ -383,9 +383,14 @@
 		<key>colorations</key>
 		<array>
 			<array>
-				<string>bogeyman skin dark</string>
+				<string>bogeyman skin light</string>
 				<string>zombie skin green</string>
 				<string>fairy hair blue</string>
+			</array>
+			<array>
+				<string>bogeyman skin dark</string>
+				<string>grass</string>
+				<string>steel</string>
 			</array>
 		</array>
 	</dict>
