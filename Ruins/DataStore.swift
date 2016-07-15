@@ -10,11 +10,21 @@ import UIKit
 
 class DataStore
 {
+	private static var plistCache = [String : [NSString : NSObject]]()
+	
+	
 	//MARK: internal functions
 	static func getPlist(plist:String) -> [NSString : NSObject]
 	{
+		if let cached = plistCache[plist]
+		{
+			return cached
+		}
+		
 		if let filePath = NSBundle.mainBundle().pathForResource(plist, ofType: "plist"), let dict = NSDictionary(contentsOfFile: filePath) as? [NSString : NSObject]
 		{
+			plistCache[plist] = dict
+			
 			return dict
 		}
 		assertionFailure()
