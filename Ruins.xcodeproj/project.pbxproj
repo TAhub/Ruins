@@ -13,6 +13,7 @@
 		E43990301D370C1000936008 /* TrapRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439902F1D370C1000936008 /* TrapRepresentation.swift */; };
 		E442548B1D39773B009E353A /* Tiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = E442548A1D39773B009E353A /* Tiles.plist */; };
 		E442548F1D3977A3009E353A /* TileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442548E1D3977A3009E353A /* TileTests.swift */; };
+		E44254911D398659009E353A /* Tilesets.plist in Resources */ = {isa = PBXBuildFile; fileRef = E44254901D398659009E353A /* Tilesets.plist */; };
 		E44E86611D3052C500028307 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E44E86601D3052C500028307 /* Colors.plist */; };
 		E44E86631D3061EA00028307 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44E86621D3061EA00028307 /* ImageExtensions.swift */; };
 		E4520E961D34486C00EF4342 /* ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4520E951D34486C00EF4342 /* ItemTests.swift */; };
@@ -35,7 +36,6 @@
 		E4F147DB1D2D767000F4C579 /* Weapons.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147DA1D2D767000F4C579 /* Weapons.plist */; };
 		E4F147DD1D2D767800F4C579 /* Materials.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147DC1D2D767800F4C579 /* Materials.plist */; };
 		E4F147DF1D2D767F00F4C579 /* Armors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147DE1D2D767F00F4C579 /* Armors.plist */; };
-		E4F147E11D2D768700F4C579 /* Lists.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147E01D2D768700F4C579 /* Lists.plist */; };
 		E4F147E31D2D85F400F4C579 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147E21D2D85F400F4C579 /* Weapon.swift */; };
 		E4F147E51D2D998100F4C579 /* Tests.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4F147E41D2D998100F4C579 /* Tests.plist */; };
 		E4F147E71D2D998F00F4C579 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147E61D2D998F00F4C579 /* DataStore.swift */; };
@@ -74,6 +74,7 @@
 		E439902F1D370C1000936008 /* TrapRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrapRepresentation.swift; sourceTree = "<group>"; };
 		E442548A1D39773B009E353A /* Tiles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tiles.plist; sourceTree = "<group>"; };
 		E442548E1D3977A3009E353A /* TileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileTests.swift; sourceTree = "<group>"; };
+		E44254901D398659009E353A /* Tilesets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tilesets.plist; sourceTree = "<group>"; };
 		E44E86601D3052C500028307 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
 		E44E86621D3061EA00028307 /* ImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		E4520E951D34486C00EF4342 /* ItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTests.swift; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 		E4F147DA1D2D767000F4C579 /* Weapons.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Weapons.plist; sourceTree = "<group>"; };
 		E4F147DC1D2D767800F4C579 /* Materials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Materials.plist; sourceTree = "<group>"; };
 		E4F147DE1D2D767F00F4C579 /* Armors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Armors.plist; sourceTree = "<group>"; };
-		E4F147E01D2D768700F4C579 /* Lists.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lists.plist; sourceTree = "<group>"; };
 		E4F147E21D2D85F400F4C579 /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 		E4F147E41D2D998100F4C579 /* Tests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tests.plist; sourceTree = "<group>"; };
 		E4F147E61D2D998F00F4C579 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -231,6 +231,7 @@
 		E4F147CF1D2D717C00F4C579 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E44254901D398659009E353A /* Tilesets.plist */,
 				E442548A1D39773B009E353A /* Tiles.plist */,
 				E439902B1D36FC2500936008 /* Traps.plist */,
 				E453FF6D1D3589CB002B749E /* MapThemes.plist */,
@@ -245,7 +246,6 @@
 				E4F147DA1D2D767000F4C579 /* Weapons.plist */,
 				E4F147DC1D2D767800F4C579 /* Materials.plist */,
 				E4F147DE1D2D767F00F4C579 /* Armors.plist */,
-				E4F147E01D2D768700F4C579 /* Lists.plist */,
 				E4F147B31D2D712700F4C579 /* Assets.xcassets */,
 				E4F147AC1D2D712700F4C579 /* AppDelegate.swift */,
 				E4F147B51D2D712700F4C579 /* LaunchScreen.storyboard */,
@@ -344,11 +344,11 @@
 				E453FF701D3589D2002B749E /* MapFlavors.plist in Resources */,
 				E4F147F31D2DCEE500F4C579 /* AIs.plist in Resources */,
 				E442548B1D39773B009E353A /* Tiles.plist in Resources */,
+				E44254911D398659009E353A /* Tilesets.plist in Resources */,
 				E4520E9C1D346B8F00EF4342 /* Usables.plist in Resources */,
 				E4F147DB1D2D767000F4C579 /* Weapons.plist in Resources */,
 				E4F147DD1D2D767800F4C579 /* Materials.plist in Resources */,
 				E4F147B71D2D712700F4C579 /* LaunchScreen.storyboard in Resources */,
-				E4F147E11D2D768700F4C579 /* Lists.plist in Resources */,
 				E4F147D91D2D766B00F4C579 /* EnemyTypes.plist in Resources */,
 				E453FF6E1D3589CB002B749E /* MapThemes.plist in Resources */,
 				E4F147B41D2D712700F4C579 /* Assets.xcassets in Resources */,

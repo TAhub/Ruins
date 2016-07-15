@@ -15,9 +15,9 @@ struct PathTile
 	var distance:Int
 }
 
-let visibilityRange = 5
-let numRays = 180
-let rayInterval:Float = 0.5
+let visibilityRange:CGFloat = 5
+let numRays = 400
+let rayInterval:Float = 1
 
 class Map
 {
@@ -114,7 +114,10 @@ class Map
 				}
 				
 				//make sure it doesn't get too far away
-				if abs(roundX - startX) + abs(roundY - startY) > visibilityRange
+				let xDis = CGFloat(abs(roundX - startX))
+				let yDis = CGFloat(abs(roundY - startY))
+				let dis = sqrt(xDis * xDis + yDis * yDis)
+				if dis > visibilityRange
 				{
 					break
 				}
@@ -122,6 +125,7 @@ class Map
 				//interact with tiles
 				let tile = tiles[toI(x: roundX, y: roundY)]
 				tile.visible = true
+				tile.discovered = true
 				if tile.solid
 				{
 					break

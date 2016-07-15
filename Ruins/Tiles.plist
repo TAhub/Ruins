@@ -14,6 +14,7 @@
 		<key>solid</key> <true/>
 		<key>upper sprite</key> <string>tile_caveceil</string>
 		<key>middle sprite</key> <string>tile_cavewall</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
 		<key>color</key> <string>white</string>
 	</dict>
     <key>sample floor</key>

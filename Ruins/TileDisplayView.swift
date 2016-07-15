@@ -15,12 +15,15 @@ let mapColorPercent:CGFloat = 0.5
 class TileRepresentation
 {
 	var upper:UIView?
+	var upperFadeView:UIView?
 	var middle:UIView?
+	var middleFadeView:UIView?
 	var lower:UIView?
+	var lowerFadeView:UIView?
 	
 	init(tile:Tile, mapColor:UIColor)
 	{
-		func loadRep(name:String?) -> UIView?
+		func loadRep(name:String?) -> (UIView, UIView)?
 		{
 			if let name = name
 			{
@@ -28,14 +31,28 @@ class TileRepresentation
 				{
 					let tintedImage = image.colorImage(tile.color.colorLerp(mapColor, percent: mapColorPercent))
 					let view = UIImageView(image: tintedImage)
-					return view
+					let fadeView = UIView(frame: CGRectMake(0, 0, 0, 0))
+					fadeView.backgroundColor = UIColor.darkGrayColor()
+					return (view, fadeView)
 				}
 			}
 			return nil
 		}
-		upper = loadRep(tile.upperSprite)
-		middle = loadRep(tile.middleSprite)
-		lower = loadRep(tile.lowerSprite)
+		if let upperP = loadRep(tile.upperSprite)
+		{
+			upper = upperP.0
+			upperFadeView = upperP.1
+		}
+		if let middleP = loadRep(tile.middleSprite)
+		{
+			middle = middleP.0
+			middleFadeView = middleP.1
+		}
+		if let lowerP = loadRep(tile.lowerSprite)
+		{
+			lower = lowerP.0
+			lowerFadeView = lowerP.1
+		}
 	}
 	
 	func removeFromSuperview()
@@ -43,20 +60,33 @@ class TileRepresentation
 		upper?.removeFromSuperview()
 		middle?.removeFromSuperview()
 		lower?.removeFromSuperview()
+		upperFadeView?.removeFromSuperview()
+		middleFadeView?.removeFromSuperview()
+		lowerFadeView?.removeFromSuperview()
 	}
 	
 	func setFrame(frame:CGRect)
 	{
-		upper?.frame = CGRectMake(frame.origin.x, frame.origin.y - tileLevelOff, frame.size.width, frame.size.height)
+		let upperFrame = CGRectMake(frame.origin.x, frame.origin.y - tileLevelOff, frame.size.width, frame.size.height)
+		let lowerFrame = CGRectMake(frame.origin.x, frame.origin.y + tileLevelOff, frame.size.width, frame.size.height)
+		upper?.frame = upperFrame
 		middle?.frame = frame
-		lower?.frame = CGRectMake(frame.origin.x, frame.origin.y + tileLevelOff, frame.size.width, frame.size.height)
+		lower?.frame = lowerFrame
+		upperFadeView?.frame = upperFrame
+		middleFadeView?.frame = frame
+		lowerFadeView?.frame = lowerFrame
 	}
 	
-	func setAlpha(alpha:CGFloat)
+	func setVisibility(tile:Tile)
 	{
+		let alpha:CGFloat = (tile.visible ? 0.75 : 0) + (tile.discovered ? 0.25 : 0)
+		let fadeAlpha:CGFloat = tile.discovered ? 1 : 0
 		upper?.alpha = alpha
 		middle?.alpha = alpha
 		lower?.alpha = alpha
+		upperFadeView?.alpha = fadeAlpha
+		middleFadeView?.alpha = fadeAlpha
+		lowerFadeView?.alpha = fadeAlpha
 	}
 }
 
@@ -90,7 +120,7 @@ class TileDisplayView: UIView {
 			let x = i % map.width
 			let y = i / map.width
 			let tile = map.tileAt(x: x, y: y)
-			rep.setAlpha(tile.visible ? 1 : 0)
+			rep.setVisibility(tile)
 		}
 	}
 	
@@ -106,16 +136,28 @@ class TileDisplayView: UIView {
 				
 				let rep = TileRepresentation(tile: tile, mapColor: self.map.mapColor)
 				rep.setFrame(tileRect)
-				rep.setAlpha(tile.visible ? 1 : 0)
+				rep.setVisibility(tile)
 				self.tiles[self.map.width * y + x] = rep
 				
+				if let upperFade = rep.upperFadeView
+				{
+					self.upperView.addSubview(upperFade)
+				}
 				if let upper = rep.upper
 				{
 					self.upperView.addSubview(upper)
 				}
+				if let middleFade = rep.middleFadeView
+				{
+					self.middleView.addSubview(middleFade)
+				}
 				if let middle = rep.middle
 				{
 					self.middleView.addSubview(middle)
+				}
+				if let lowerFade = rep.lowerFadeView
+				{
+					self.lowerView.addSubview(lowerFade)
 				}
 				if let lower = rep.lower
 				{

@@ -49,7 +49,11 @@ class TileTests: XCTestCase {
 		}
 		XCTAssertNil(pitTile.middleSprite)
 		
-		XCTAssertNil(wallTile.lowerSprite)
+		XCTAssertNotNil(wallTile.lowerSprite)
+		if let lower = wallTile.lowerSprite
+		{
+			XCTAssertEqual(lower, "tile_pitwall")
+		}
 		XCTAssertNotNil(floorTile.lowerSprite)
 		if let lower = floorTile.lowerSprite
 		{

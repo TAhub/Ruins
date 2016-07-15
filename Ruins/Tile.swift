@@ -14,12 +14,14 @@ class Tile
 	var creature:Creature?
 	let entryCost:Int = 1
 	var visible:Bool
+	var discovered:Bool
 	let type:String
 	
 	init(type:String)
 	{
 		self.type = type
 		visible = false
+		discovered = false
 	}
 	
 	var solid:Bool

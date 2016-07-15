@@ -47,7 +47,9 @@ class MapTests: XCTestCase {
 		{
 			for x in 1..<map.width
 			{
-				let distance = abs(x - 1) + abs(y - 1)
+				let xDis = CGFloat(abs(x - 1))
+				let yDis = CGFloat(abs(y - 1))
+				let distance = sqrt(xDis * xDis + yDis * yDis)
 				XCTAssertEqual(distance <= visibilityRange, map.tileAt(x: x, y: y).visible)
 			}
 		}
