@@ -43,6 +43,22 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(creature.specialRes, 15)
 	}
 	
+	func testBossLevelScaling()
+	{
+		let b0 = Creature(enemyType: "boss", level: 0, x: 0, y: 0)
+		let b1 = Creature(enemyType: "boss", level: 10, x: 0, y: 0)
+		let b2 = Creature(enemyType: "boss", level: 20, x: 0, y: 0)
+		
+		XCTAssertTrue(b0.boss)
+		XCTAssertTrue(b1.boss)
+		XCTAssertTrue(b2.boss)
+		let s0 = b0.str+b0.dex+b0.cun+b0.wis+b0.end
+		let s1 = b1.str+b1.dex+b1.cun+b1.wis+b1.end
+		let s2 = b2.str+b2.dex+b2.cun+b2.wis+b2.end
+		XCTAssertEqual(s0, s1 - 10)
+		XCTAssertEqual(s1, s2 - 10)
+	}
+	
 	func testDead()
 	{
 		XCTAssertFalse(creature.dead)

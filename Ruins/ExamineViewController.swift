@@ -60,10 +60,17 @@ class ExamineViewController: UIViewController {
 			}
 			desc += creature.weapon.range == 1 ? "melee\n" : "ranged\n"
 			desc += "\n"
-			//TODO: replace "*he" with "he" or "she" as appropriate
-			//TODO: same with "*his" with "his" or "hers"
-			//TODO: same with "*him" with "him" or "her"
-			let flavorText = DataStore.getString("EnemyTypes", creature.enemyType, "flavor text")!
+			
+			//TODO: get appropriate words based on gender
+			let he = "she"
+			let his = "her"
+			let him = "her"
+			
+			var flavorText = DataStore.getString("EnemyTypes", creature.enemyType, "flavor text")!
+			flavorText = flavorText.stringByReplacingOccurrencesOfString("*he", withString: he)
+			flavorText = flavorText.stringByReplacingOccurrencesOfString("*his", withString: his)
+			flavorText = flavorText.stringByReplacingOccurrencesOfString("*him", withString: him)
+
 			desc += "\(flavorText)\n"
 		}
 		

@@ -13,7 +13,7 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>trap number</key> <integer>10</integer>
-		<key>creature exp multiplier</key> <integer>12</integer>
+		<key>creature exp multiplier</key> <integer>24</integer>
 		<key>keyword</key> <string>criminal</string>
 		<key>suffixes</key>
 		<array>
@@ -27,7 +27,7 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>trap number</key> <integer>10</integer>
-		<key>creature exp multiplier</key> <integer>12</integer>
+		<key>creature exp multiplier</key> <integer>24</integer>
 		<key>keyword</key> <string>wildlife</string>
 		<key>suffixes</key>
 		<array>
@@ -42,7 +42,7 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>trap number</key> <integer>15</integer>
-		<key>creature exp multiplier</key> <integer>10</integer>
+		<key>creature exp multiplier</key> <integer>20</integer>
 		<key>keyword</key> <string>stun</string>
 		<key>suffixes</key>
 		<array>
@@ -57,7 +57,7 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>trap number</key> <integer>20</integer>
-		<key>creature exp multiplier</key> <integer>8</integer>
+		<key>creature exp multiplier</key> <integer>16</integer>
 		<key>keyword</key> <string>poison</string>
 		<key>suffixes</key>
 		<array>
@@ -72,7 +72,7 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>trap number</key> <integer>15</integer>
-		<key>creature exp multiplier</key> <integer>10</integer>
+		<key>creature exp multiplier</key> <integer>20</integer>
 		<key>keyword</key> <string>military</string>
 		<key>suffixes</key>
 		<array>
@@ -87,7 +87,7 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>trap number</key> <integer>15</integer>
-		<key>creature exp multiplier</key> <integer>10</integer>
+		<key>creature exp multiplier</key> <integer>20</integer>
 		<key>keyword</key> <string>tomb dweller</string>
 		<key>suffixes</key>
 		<array>
@@ -102,7 +102,7 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>trap number</key> <integer>10</integer>
-		<key>creature exp multiplier</key> <integer>12</integer>
+		<key>creature exp multiplier</key> <integer>24</integer>
 		<key>keyword</key> <string>magical</string>
 		<key>suffixes</key>
 		<array>
@@ -117,7 +117,7 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>trap number</key> <integer>25</integer>
-		<key>creature exp multiplier</key> <integer>7</integer>
+		<key>creature exp multiplier</key> <integer>15</integer>
 		<key>keyword</key> <string>shake</string>
 		<key>suffixes</key>
 		<array>

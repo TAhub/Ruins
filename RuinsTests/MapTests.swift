@@ -145,9 +145,9 @@ class MapTests: XCTestCase {
 		let lowLevelStub = MapStub(flavor: "lawless", theme: "fort", level: 1)
 		let midLevelStub = MapStub(flavor: "lawless", theme: "fort", level: 20)
 		let highLevelStub = MapStub(flavor: "lawless", theme: "fort", level: 40)
-		XCTAssertEqual(lowLevelStub.totalEXP, 60)
-		XCTAssertEqual(midLevelStub.totalEXP, 250)
-		XCTAssertEqual(highLevelStub.totalEXP, 450)
+		XCTAssertEqual(lowLevelStub.totalEXP, 120)
+		XCTAssertEqual(midLevelStub.totalEXP, 500)
+		XCTAssertEqual(highLevelStub.totalEXP, 900)
 	}
 	
 	func testMapStubEnemyListMaxLevel()
@@ -422,7 +422,13 @@ class MapTests: XCTestCase {
 		//make sure that the enemies ENEMY TYPE levels add up to the proper amount for generation
 		//a little bit under anyway, ideally
 		XCTAssertLessThanOrEqual(totalEXP, stub.totalEXP)
-		XCTAssertGreaterThan(totalEXP, 0)
+		XCTAssertGreaterThan(totalEXP, stub.totalEXP / 2)
+		
+		//TODO: sometimes this test fails!
+		//specifically, the "less than or equal" compared to stub.totalEXP
+		//that's bizzare
+		//it's just rare enough I didn't see it before
+		//so fix that
 	}
 	
 	func testSolidityToTiles()
@@ -450,7 +456,7 @@ class MapTests: XCTestCase {
 	func testEnemyTypeEXPValue()
 	{
 		XCTAssertEqual(MapGenerator.expValueForEnemyType("bandit"), 12) //enemy with armor
-		XCTAssertEqual(MapGenerator.expValueForEnemyType("rat"), 6) //enemy without armor
+		XCTAssertEqual(MapGenerator.expValueForEnemyType("rat"), 7) //enemy without armor
 		XCTAssertEqual(MapGenerator.expValueForEnemyType("pixie"), 26) //enemy who ignores terrain
 		XCTAssertEqual(MapGenerator.expValueForEnemyType("hoop snake"), 28) //enemy with extra movement
 		XCTAssertEqual(MapGenerator.expValueForEnemyType("shambler"), 4) //enemy with less movement

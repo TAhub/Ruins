@@ -184,8 +184,19 @@ class Creature
 		stun = 0
 		poison = 0
 		
-		
-		//TODO: if you're a boss, automatically raise your stats based on your level
+		//if you're a boss, automatically raise your stats based on your level
+		if boss
+		{
+			//this is designed to raise all stats equally
+			//and any remainder goes into end
+			let statBoost = level / 5
+			
+			str += statBoost
+			dex += statBoost
+			cun += statBoost
+			wis += statBoost
+			end += statBoost + (level - statBoost * 5)
+		}
 		
 		
 		//fill up health (this has to happen after every variable is initialized)

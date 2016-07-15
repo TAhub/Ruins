@@ -532,12 +532,16 @@ class MapGenerator
 				var totalEXP = 0
 				var enemiesToPlace = [String]()
 				
-				while enemyTypesFiltered.count > 0
+				while true
 				{
-					let pick = enemyTypes[Int(arc4random_uniform(UInt32(enemyTypes.count)))]
+					enemyTypesFiltered = enemyTypesFiltered.filter() { totalEXP + expValueForEnemyType($0) <= room.roomEXP }
+					if enemyTypesFiltered.count == 0
+					{
+						break
+					}
+					let pick = enemyTypesFiltered[Int(arc4random_uniform(UInt32(enemyTypesFiltered.count)))]
 					totalEXP += expValueForEnemyType(pick)
 					enemiesToPlace.append(pick)
-					enemyTypesFiltered = enemyTypesFiltered.filter() { totalEXP + expValueForEnemyType($0) <= room.roomEXP }
 				}
 				
 				if totalEXP > lastTotalEXP
@@ -546,6 +550,7 @@ class MapGenerator
 					lastEnemiesToPlace = enemiesToPlace
 				}
 			}
+		
 			
 			//now use those enemies you picked
 			
