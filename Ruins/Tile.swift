@@ -12,7 +12,6 @@ class Tile
 {
 	var trap:Trap?
 	var creature:Creature?
-	let entryCost:Int = 1
 	var visible:Bool
 	var discovered:Bool
 	let type:String
@@ -24,9 +23,19 @@ class Tile
 		discovered = false
 	}
 	
+	var entryCost:Int
+	{
+		return DataStore.getBool("Tiles", type, "difficult") ? 2 : 1
+	}
+	
 	var solid:Bool
 	{
 		return DataStore.getBool("Tiles", type, "solid")
+	}
+	
+	var opaque:Bool
+	{
+		return DataStore.getBool("Tiles", type, "opaque")
 	}
 	
 	var walkable:Bool

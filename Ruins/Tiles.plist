@@ -12,6 +12,7 @@
     <key>sample wall</key>
 	<dict>
 		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
 		<key>upper sprite</key> <string>tile_caveceil</string>
 		<key>middle sprite</key> <string>tile_cavewall</string>
 		<key>lower sprite</key> <string>tile_pitwall</string>
@@ -23,11 +24,144 @@
 		<key>lower sprite</key> <string>tile_pitwall</string>
 		<key>color</key> <string>white</string>
 	</dict>
+    <key>sample difficult</key>
+	<dict>
+		<key>difficult</key> <true/>
+		<key>middle sprite</key> <string>tile_rubblefloor</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>white</string>
+	</dict>
     <key>sample pit</key>
 	<dict>
 		<key>solid</key> <true/>
 		<key>lower sprite</key> <string>tile_pitfloor</string>
 		<key>color</key> <string>white</string>
+	</dict>
+	
+	<!-- real walls -->
+    <key>pit</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>lower sprite</key> <string>tile_pitfloor</string>
+		<key>color</key> <string>stone</string>
+	</dict>
+    <key>spike pit</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>lower sprite</key> <string>tile_spikepitfloor</string>
+		<key>color</key> <string>stone</string>
+	</dict>
+    <key>cave wall</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>upper sprite</key> <string>tile_caveceil</string>
+		<key>middle sprite</key> <string>tile_cavewall</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>stone</string>
+	</dict>
+    <key>dirt wall</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>upper sprite</key> <string>tile_caveceil</string>
+		<key>middle sprite</key> <string>tile_cavewall</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>dirt</string>
+	</dict>
+    <key>city building wall</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>upper sprite</key> <string>tile_caveceil</string>
+		<key>middle sprite</key> <string>tile_citywall</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>brick</string>
+	</dict>
+	<!-- TODO: city wall variants -->
+    <key>castle wall</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>upper sprite</key> <string>tile_caveceil</string>
+		<key>middle sprite</key> <string>tile_castlewall</string>
+		<key>lower sprite</key> <string>tile_castlepitwall</string>
+		<key>color</key> <string>stone</string>
+	</dict>
+    <key>cave floor</key>
+	<dict>
+		<key>middle sprite</key> <string>tile_cavefloor</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>stone</string>
+	</dict>
+    <key>grass floor</key>
+	<dict>
+		<key>middle sprite</key> <string>tile_cavefloor</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>grass</string>
+	</dict>
+    <key>dirt floor</key>
+	<dict>
+		<key>middle sprite</key> <string>tile_cavefloor</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>dirt</string>
+	</dict>
+    <key>castle floor</key>
+	<dict>
+		<key>middle sprite</key> <string>tile_tilefloor</string>
+		<key>lower sprite</key> <string>tile_castlepitwall</string>
+		<key>color</key> <string>stone</string>
+	</dict>
+    <key>rubble floor</key>
+	<dict>
+		<key>difficult</key> <true/>
+		<key>middle sprite</key> <string>tile_rubblefloor</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>stone</string>
+	</dict>
+    <key>warning floor</key>
+	<dict>
+		<key>middle sprite</key> <string>tile_warningfloor</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>fairy hair yellow</string>
+	</dict>
+	
+	<!-- throne megastructure bits -->
+    <key>throne 1</key>
+	<dict>
+		<key>middle sprite</key> <string>tile_throne_1</string>
+		<key>color</key> <string>stone</string>
+	</dict>
+    <key>throne 2</key>
+	<dict>
+		<key>middle sprite</key> <string>tile_throne_2</string>
+		<key>color</key> <string>stone</string>
+	</dict>
+    <key>throne 3</key>
+	<dict>
+		<key>difficult</key> <true/> <!-- it's difficult terrain because it has the actual throne on it -->
+		<key>middle sprite</key> <string>tile_throne_3</string>
+		<key>color</key> <string>stone</string>
+	</dict>
+    <key>throne 4</key>
+	<dict>
+		<key>middle sprite</key> <string>tile_throne_4</string>
+		<key>color</key> <string>stone</string>
+	</dict>
+    <key>throne 5</key>
+	<dict>
+		<key>middle sprite</key> <string>tile_throne_5</string>
+		<key>color</key> <string>stone</string>
+	</dict>
+    <key>throne 6</key>
+	<dict>
+		<key>middle sprite</key> <string>tile_throne_6</string>
+		<key>color</key> <string>stone</string>
+	</dict>
+    <key>throne 7</key>
+	<dict>
+		<key>middle sprite</key> <string>tile_throne_7</string>
+		<key>color</key> <string>stone</string>
 	</dict>
 </dict>
 </plist>

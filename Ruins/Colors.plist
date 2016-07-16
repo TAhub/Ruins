@@ -49,6 +49,7 @@
 	<!-- tile material colors -->
 	<key>grass</key> <string>005C09</string>
 	<key>stone</key> <string>8B8B7A</string>
+	<key>brick</key> <string>841F27</string>
 	<key>temple</key> <string>FF9933</string>
 	<key>dirt</key> <string>774400</string>
 	<key>poison</key> <string>993399</string>

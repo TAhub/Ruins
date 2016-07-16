@@ -228,7 +228,7 @@ class MapGenerator
 		//this is the rooms algorithm
 		//remember that this one doesn't require pruning, but others might
 		let (solidity, width, height, rooms) = generateRoomsSolidityMap(mapStub)
-		let tiles = solidityToTiles(solidity, width: width, height: height)
+		let tiles = solidityToTiles(solidity, width: width, height: height, stub: mapStub)
 		placeCreatures(tiles, width: width, height: height, rooms: rooms, player: player, stub: mapStub)
 		placeTraps(tiles, width: width, height: height, stub: mapStub)
 		return (tiles: tiles, width: width, height: height)
@@ -598,7 +598,7 @@ class MapGenerator
 		return (DataStore.getInt("EnemyTypes", enemyType, "level")! + expBase) * (100 + mult) / 100
 	}
 	
-	static func solidityToTiles(solidity:[Bool], width:Int, height:Int) -> [Tile]
+	static func solidityToTiles(solidity:[Bool], width:Int, height:Int, stub:MapStub) -> [Tile]
 	{
 		//TODO: future idea: mega-tile structures
 		//	there are a number of registered mega-tile structures, which are rectangular arrangement of tiles
@@ -608,13 +608,31 @@ class MapGenerator
 		//	suggested uses: individual buildings in the city tileset, etc
 		//	all tiles that are not claimed by a mega-tile structure should be a generic wall tile
 		
+		//TODO: other future idea: splashes
+		//	they just place blobs of contiguous stuff
+		//	this is how I'll place pits
+		
+		//TODO: also, just place a random sprinkling of difficult terrain
+		//	exact amount depends on map theme I suppose
+		
+		//TODO: obviously, neither splashes nor difficult sprinkling should go on the boss throne, or other mega-structures
+		//so maybe the mega-structures go last?
+		
+		
+		let tileset = DataStore.getString("MapThemes", stub.theme, "tileset")!
+		
+		let tilesetFloor = DataStore.getString("Tilesets", tileset, "floor tile")!
+		let tilesetWall = DataStore.getString("Tilesets", tileset, "wall tile")!
+		let tilesetDifficult = DataStore.getString("Tilesets", tileset, "difficult tile")!
+		let tilesetPit = DataStore.getString("Tilesets", tileset, "pit tile")!
+		
 		var tiles = [Tile]()
 		for y in 0..<height
 		{
 			for x in 0..<width
 			{
 				let i = x + y * width
-				tiles.append(Tile(type: solidity[i] ? "sample wall" : "sample floor"))
+				tiles.append(Tile(type: solidity[i] ? tilesetWall : tilesetFloor))
 			}
 		}
 		return tiles

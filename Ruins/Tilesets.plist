@@ -13,6 +13,52 @@
 	<dict>
 		<key>wall tile</key> <string>sample wall</string>
 		<key>floor tile</key> <string>sample floor</string>
+		<key>pit tile</key> <string>sample pit</string>
+		<key>difficult tile</key> <string>sample difficult</string>
+	</dict>
+	
+	<!-- real tilesets -->
+	<key>city</key>
+	<dict>
+		<key>wall tile</key> <string>cave wall</string>
+		<key>floor tile</key> <string>cave floor</string>
+		<key>pit tile</key> <string>pit</string>
+		<key>difficult tile</key> <string>rubble floor</string>
+	</dict>
+	<key>hideout</key>
+	<dict>
+		<key>wall tile</key> <string>castle wall</string>
+		<key>floor tile</key> <string>dirt floor</string>
+		<key>pit tile</key> <string>spike pit</string>
+		<key>difficult tile</key> <string>rubble floor</string>
+	</dict>
+	<key>castle</key>
+	<dict>
+		<key>wall tile</key> <string>castle wall</string>
+		<key>floor tile</key> <string>castle floor</string>
+		<key>pit tile</key> <string>pit</string>
+		<key>difficult tile</key> <string>rubble floor</string>
+	</dict>
+	<key>cave</key>
+	<dict>
+		<key>wall tile</key> <string>cave wall</string>
+		<key>floor tile</key> <string>cave floor</string>
+		<key>pit tile</key> <string>pit</string>
+		<key>difficult tile</key> <string>rubble floor</string>
+	</dict>
+	<key>grove</key>
+	<dict>
+		<key>wall tile</key> <string>cave wall</string>
+		<key>floor tile</key> <string>grass floor</string>
+		<key>pit tile</key> <string>spike pit</string>
+		<key>difficult tile</key> <string>rubble floor</string> <!-- TODO: bushes -->
+	</dict>
+	<key>wasteland</key>
+	<dict>
+		<key>wall tile</key> <string>dirt wall</string>
+		<key>floor tile</key> <string>dirt floor</string>
+		<key>pit tile</key> <string>pit</string>
+		<key>difficult tile</key> <string>rubble floor</string> <!-- TODO: dead (brown) bushes -->
 	</dict>
 </dict>
 </plist>

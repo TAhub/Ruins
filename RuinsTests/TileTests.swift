@@ -14,6 +14,7 @@ class TileTests: XCTestCase {
 	var wallTile:Tile!
 	var floorTile:Tile!
 	var pitTile:Tile!
+	var difficultTile:Tile!
 	
     override func setUp() {
         super.setUp()
@@ -21,6 +22,7 @@ class TileTests: XCTestCase {
 		wallTile = Tile(type: "sample wall")
 		floorTile = Tile(type: "sample floor")
 		pitTile = Tile(type: "sample pit")
+		difficultTile = Tile(type: "sample difficult")
     }
     
     func testSolid()
@@ -28,7 +30,23 @@ class TileTests: XCTestCase {
 		XCTAssertTrue(wallTile.solid)
 		XCTAssertFalse(floorTile.solid)
 		XCTAssertTrue(pitTile.solid)
-		
+	}
+	
+	func testOpaque()
+	{
+		XCTAssertTrue(wallTile.opaque)
+		XCTAssertFalse(floorTile.opaque)
+		XCTAssertFalse(pitTile.opaque)
+	}
+	
+	func testEntryCost()
+	{
+		XCTAssertEqual(floorTile.entryCost, 1)
+		XCTAssertEqual(difficultTile.entryCost, 2)
+	}
+	
+	func testSpriteValues()
+	{
 		XCTAssertNotNil(wallTile.upperSprite)
 		if let upper = wallTile.upperSprite
 		{

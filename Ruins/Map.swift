@@ -126,7 +126,7 @@ class Map
 				let tile = tiles[toI(x: roundX, y: roundY)]
 				tile.visible = true
 				tile.discovered = true
-				if tile.solid
+				if tile.opaque
 				{
 					break
 				}
