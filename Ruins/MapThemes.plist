@@ -13,6 +13,8 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>difficult percent</key> <integer>7</integer>
+		<key>number of pits</key> <integer>4</integer>
+		<key>pit size</key> <integer>5</integer>
 		<key>tileset</key> <string>wasteland</string>
 		<key>trap number</key> <integer>10</integer>
 		<key>creature exp multiplier</key> <integer>24</integer>
@@ -29,6 +31,8 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>difficult percent</key> <integer>15</integer>
+		<key>number of pits</key> <integer>2</integer>
+		<key>pit size</key> <integer>3</integer>
 		<key>tileset</key> <string>grove</string>
 		<key>trap number</key> <integer>10</integer>
 		<key>creature exp multiplier</key> <integer>24</integer>
@@ -46,6 +50,8 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>difficult percent</key> <integer>20</integer>
+		<key>number of pits</key> <integer>3</integer>
+		<key>pit size</key> <integer>8</integer>
 		<key>tileset</key> <string>city</string>
 		<key>trap number</key> <integer>15</integer>
 		<key>creature exp multiplier</key> <integer>20</integer>
@@ -63,6 +69,8 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>difficult percent</key> <integer>30</integer>
+		<key>number of pits</key> <integer>4</integer>
+		<key>pit size</key> <integer>8</integer>
 		<key>tileset</key> <string>city</string>
 		<key>trap number</key> <integer>20</integer>
 		<key>creature exp multiplier</key> <integer>16</integer>
@@ -80,6 +88,8 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>difficult percent</key> <integer>20</integer>
+		<key>number of pits</key> <integer>2</integer>
+		<key>pit size</key> <integer>10</integer>
 		<key>tileset</key> <string>castle</string>
 		<key>trap number</key> <integer>15</integer>
 		<key>creature exp multiplier</key> <integer>20</integer>
@@ -97,6 +107,8 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>difficult percent</key> <integer>35</integer>
+		<key>number of pits</key> <integer>3</integer>
+		<key>pit size</key> <integer>15</integer>
 		<key>tileset</key> <string>cave</string>
 		<key>trap number</key> <integer>15</integer>
 		<key>creature exp multiplier</key> <integer>20</integer>
@@ -114,6 +126,8 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>difficult percent</key> <integer>10</integer>
+		<key>number of pits</key> <integer>2</integer>
+		<key>pit size</key> <integer>7</integer>
 		<key>tileset</key> <string>castle</string>
 		<key>trap number</key> <integer>10</integer>
 		<key>creature exp multiplier</key> <integer>24</integer>
@@ -131,6 +145,8 @@
 	<dict>
 		<!-- TODO: map generator data -->
 		<key>difficult percent</key> <integer>25</integer>
+		<key>number of pits</key> <integer>8</integer>
+		<key>pit size</key> <integer>7</integer>
 		<key>tileset</key> <string>hideout</string>
 		<key>trap number</key> <integer>25</integer>
 		<key>creature exp multiplier</key> <integer>15</integer>

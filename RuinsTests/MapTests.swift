@@ -426,12 +426,47 @@ class MapTests: XCTestCase {
 		//a little bit under anyway, ideally
 		XCTAssertLessThanOrEqual(totalEXP, stub.totalEXP)
 		XCTAssertGreaterThan(totalEXP, stub.totalEXP / 2)
+	}
+	
+	func testPlacePits()
+	{
+		let T = true
+		let F = false
+		let solidity = [T, T, T, T, T, T,
+		                T, T, T, T, T, T,
+		                T, T, T, T, T, T,
+		                F, F, F, F, F, F,
+		                F, F, F, F, F, F,
+		                F, F, F, F, F, F]
+		let megastructure = [T, T, T, F, F, F,
+		                     T, T, T, F, F, F,
+		                     T, T, T, F, F, F,
+		                     T, T, T, F, F, F,
+		                     T, T, T, F, F, F,
+		                     T, T, T, F, F, F]
+		let width = 6
+		let height = 6
 		
-		//TODO: sometimes this test fails!
-		//specifically, the "less than or equal" compared to stub.totalEXP
-		//that's bizzare
-		//it's just rare enough I didn't see it before
-		//so fix that
+		let pit = MapGenerator.makePits(solidity, width: width, height: height, megastructure: megastructure, stub: MapStub(flavor: "lawless", theme: "cave", level: 1))
+		
+		XCTAssertEqual(pit.count, solidity.count)
+		if pit.count == solidity.count
+		{
+			//I can't guarantee the number of pits, because it might try to extend the pit into an invalid area and get over-written
+			//I can only guarantee there will be A pit
+			var hasPit = false
+			for i in 0..<solidity.count
+			{
+				if pit[i]
+				{
+					//the tile must be solid, and free of megastructures
+					XCTAssertTrue(solidity[i])
+					XCTAssertFalse(megastructure[i])
+					hasPit = true
+				}
+			}
+			XCTAssertTrue(hasPit)
+		}
 	}
 	
 	func testPlaceDifficultTerrain()
@@ -509,8 +544,8 @@ class MapTests: XCTestCase {
 		//including the boss room tiles
 		XCTAssertTrue(tileTypes.contains("cave wall"))
 		XCTAssertTrue(tileTypes.contains("cave floor"))
-//		XCTAssertTrue(tileTypes.contains("pit"))
-//		XCTAssertTrue(tileTypes.contains("rubble floor"))
+		XCTAssertTrue(tileTypes.contains("pit"))
+		XCTAssertTrue(tileTypes.contains("rubble floor"))
 //		for i in 1...7
 //		{
 //			XCTAssertTrue(tileTypes.contains("throne \(i)"))

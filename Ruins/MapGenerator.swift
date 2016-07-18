@@ -119,12 +119,12 @@ class MapStub
 		if uniqueNames.count == 0
 		{
 			//every possible name has been picked already, so just pick a name
-			name = possibleNames[Int(arc4random_uniform(UInt32(possibleNames.count)))]
+			name = possibleNames.randomElement!
 		}
 		else
 		{
 			//pick a possible name
-			name = uniqueNames[Int(arc4random_uniform(UInt32(uniqueNames.count)))]
+			name = uniqueNames.randomElement!
 			
 			//and register it
 			var newNames = existingNames
@@ -539,7 +539,7 @@ class MapGenerator
 					{
 						break
 					}
-					let pick = enemyTypesFiltered[Int(arc4random_uniform(UInt32(enemyTypesFiltered.count)))]
+					let pick = enemyTypesFiltered.randomElement!
 					totalEXP += expValueForEnemyType(pick)
 					enemiesToPlace.append(pick)
 				}
@@ -601,7 +601,7 @@ class MapGenerator
 	static func solidityToTiles(solidity:[Bool], width:Int, height:Int, rooms:[MapRoom], stub:MapStub) -> [Tile]
 	{
 		let megastructure = [Bool](count: width*height, repeatedValue: false)
-		let pit = [Bool](count: width*height, repeatedValue: false)
+		let pit = makePits(solidity, width: width, height: height, megastructure: megastructure, stub: stub)
 		let difficult = makeDifficultTiles(solidity, width: width, height: height, megastructure: megastructure, stub: stub)
 		
 		
@@ -660,9 +660,96 @@ class MapGenerator
 		
 		return difficult
 	}
+	static func makePits(solidity:[Bool], width:Int, height:Int, megastructure:[Bool], stub:MapStub) -> [Bool]
+	{
+		var pit = [Bool](count: width*height, repeatedValue: false)
+		
+		let numPits = DataStore.getInt("MapThemes", stub.theme, "number of pits")!
+		let pitSize = DataStore.getInt("MapThemes", stub.theme, "pit size")!
+		
+		for i in 0..<numPits
+		{
+			var possibilities = [Int]()
+			for i in 0..<width*height
+			{
+				if solidity[i] && !megastructure[i]
+				{
+					possibilities.append(i)
+				}
+			}
+			
+			if possibilities.count == 0
+			{
+				//end immediately
+				return pit
+			}
+			
+			let centerI = possibilities.randomElement!
+			
+			pit[centerI] = true
+			
+			var tilesLeft = pitSize - 1
+			var placedIs = [centerI]
+			
+			while tilesLeft > 0 && placedIs.count > 0
+			{
+				func tileIsValidToExplore(i:Int) -> Bool
+				{
+					let x = i % width
+					let y = i / width
+					let n = y > 0 && !pit[i - width]
+					let s = y < height - 1 && !pit[i + width]
+					let e = x < width - 1 && !pit[i + 1]
+					let w = x > 0 && !pit[i - 1]
+					return !pit[i] && (w || e || n || s)
+				}
+				
+				let i = placedIs.randomElement!
+				pit[i] = true
+				tilesLeft -= 1
+				let x = i % width
+				let y = i / width
+				if x > 0
+				{
+					placedIs.append(i - 1)
+				}
+				if x < width - 1
+				{
+					placedIs.append(i + 1)
+				}
+				if y > 0
+				{
+					placedIs.append(i - width)
+				}
+				if y < height - 1
+				{
+					placedIs.append(i + width)
+				}
+				
+				placedIs = placedIs.filter() { tileIsValidToExplore($0) }
+			}
+		}
+		
+		//filter out all pits over invalid tiles
+		for i in 0..<pit.count
+		{
+			pit[i] = pit[i] && solidity[i] && !megastructure[i]
+		}
+		
+		return pit
+	}
 }
 
 //TODO: move this elsewhere
+extension CollectionType where Index == Int
+{
+	var randomElement:Self.Generator.Element?
+	{
+		let index = Int(arc4random_uniform(UInt32(self.count)))
+		return self[index]
+	}
+}
+
 extension MutableCollectionType where Index == Int
 {
 	mutating func shuffleInPlace()
