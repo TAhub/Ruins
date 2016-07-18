@@ -295,7 +295,7 @@ class MapTests: XCTestCase {
 		let player = Creature(enemyType: "human player", level: 1, x: 0, y: 0)
 		let stub = MapStub(flavor: "lawless", theme: "city", level: 1)
 		let (solidity, width, height, rooms) = MapGenerator.generateRoomsSolidityMap(stub)
-		let tiles = MapGenerator.solidityToTiles(solidity, width: width, height: height, stub: stub)
+		let tiles = MapGenerator.solidityToTiles(solidity, width: width, height: height, rooms: rooms, stub: stub)
 		MapGenerator.placeCreatures(tiles, width: width, height: height, rooms: rooms, player: player, stub: stub)
 		
 		//now, place traps
@@ -434,26 +434,87 @@ class MapTests: XCTestCase {
 		//so fix that
 	}
 	
-	func testSolidityToTiles()
+	func testPlaceDifficultTerrain()
 	{
 		let T = true
 		let F = false
 		let solidity = [T, T, T, T, T, T,
-						T, F, F, F, F, T,
-						T, F, T, T, F, T,
-						T, T, T, T, T, T]
+		                T, T, T, T, T, T,
+		                T, T, T, T, T, T,
+		                F, F, F, F, F, F,
+		                F, F, F, F, F, F,
+		                F, F, F, F, F, F]
+		let megastructure = [T, T, T, F, F, F,
+		                     T, T, T, F, F, F,
+		                     T, T, T, F, F, F,
+		                     T, T, T, F, F, F,
+		                     T, T, T, F, F, F,
+		                     T, T, T, F, F, F]
 		let width = 6
-		let height = 4
-		let tiles = MapGenerator.solidityToTiles(solidity, width: width, height: height, stub: MapStub(flavor: "lawless", theme: "cave", level: 1))
+		let height = 6
+		
+		let difficult = MapGenerator.makeDifficultTiles(solidity, width: width, height: height, megastructure: megastructure, stub: MapStub(flavor: "lawless", theme: "cave", level: 1))
+		
+		XCTAssertEqual(difficult.count, solidity.count)
+		if difficult.count == solidity.count
+		{
+			var numDifficult = 0
+			for i in 0..<solidity.count
+			{
+				if difficult[i]
+				{
+					//the tile can't be solid OR home to a megastructure
+					XCTAssertFalse(solidity[i])
+					XCTAssertFalse(megastructure[i])
+					numDifficult += 1
+				}
+			}
+			//with the cave scheme, and with exactly 9 difficult tiles, there should be exactly 3 difficult tiles
+			XCTAssertEqual(numDifficult, 3)
+		}
+	}
+	
+	func testSolidityToTiles()
+	{
+		let T = true
+		let F = false
+		let solidity = [T, T, T, T, T, T, T,
+						T, F, F, F, F, T, T,
+						T, F, T, T, F, T, T,
+						T, T, T, T, T, T, T,
+						T, T, T, T, T, T, T,
+						T, T, T, T, T, T, T,
+						T, T, T, T, T, T, T,
+						T, T, T, T, T, T, T,
+						T, T, T, T, T, T, T,
+						T, T, T, T, T, T, T,
+						T, T, T, T, T, T, T,
+						T, T, T, T, T, T, T,
+						]
+		let width = 7
+		let height = 12
+		let rooms = [MapRoom(x: 0, y: 4, width: endRoomSize, height: endRoomSize, roomClass: MapRoomClass.Boss)]
+		let tiles = MapGenerator.solidityToTiles(solidity, width: width, height: height, rooms: rooms, stub: MapStub(flavor: "lawless", theme: "cave", level: 1))
 		
 		//test to see if the solidity matches
 		XCTAssertEqual(tiles.count, solidity.count)
+		var tileTypes = Set<String>()
 		for i in 0..<min(tiles.count, solidity.count)
 		{
 			XCTAssertEqual(solidity[i], tiles[i].solid)
+			tileTypes.insert(tiles[i].type)
 		}
 		
-		//TODO: test to see if the tiles are using the appropriate tilesets
+		//test to see if the tiles are using the appropriate tilesets
+		//including the boss room tiles
+		XCTAssertTrue(tileTypes.contains("cave wall"))
+		XCTAssertTrue(tileTypes.contains("cave floor"))
+//		XCTAssertTrue(tileTypes.contains("pit"))
+//		XCTAssertTrue(tileTypes.contains("rubble floor"))
+//		for i in 1...7
+//		{
+//			XCTAssertTrue(tileTypes.contains("throne \(i)"))
+//		}
 	}
 	
 	func testEnemyTypeEXPValue()

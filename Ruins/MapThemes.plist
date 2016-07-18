@@ -12,6 +12,7 @@
     <key>wasteland</key>
 	<dict>
 		<!-- TODO: map generator data -->
+		<key>difficult percent</key> <integer>7</integer>
 		<key>tileset</key> <string>wasteland</string>
 		<key>trap number</key> <integer>10</integer>
 		<key>creature exp multiplier</key> <integer>24</integer>
@@ -27,6 +28,7 @@
     <key>grove</key>
 	<dict>
 		<!-- TODO: map generator data -->
+		<key>difficult percent</key> <integer>15</integer>
 		<key>tileset</key> <string>grove</string>
 		<key>trap number</key> <integer>10</integer>
 		<key>creature exp multiplier</key> <integer>24</integer>
@@ -43,6 +45,7 @@
     <key>city</key>
 	<dict>
 		<!-- TODO: map generator data -->
+		<key>difficult percent</key> <integer>20</integer>
 		<key>tileset</key> <string>city</string>
 		<key>trap number</key> <integer>15</integer>
 		<key>creature exp multiplier</key> <integer>20</integer>
@@ -59,6 +62,7 @@
     <key>slum</key>
 	<dict>
 		<!-- TODO: map generator data -->
+		<key>difficult percent</key> <integer>30</integer>
 		<key>tileset</key> <string>city</string>
 		<key>trap number</key> <integer>20</integer>
 		<key>creature exp multiplier</key> <integer>16</integer>
@@ -75,6 +79,7 @@
     <key>fort</key>
 	<dict>
 		<!-- TODO: map generator data -->
+		<key>difficult percent</key> <integer>20</integer>
 		<key>tileset</key> <string>castle</string>
 		<key>trap number</key> <integer>15</integer>
 		<key>creature exp multiplier</key> <integer>20</integer>
@@ -91,6 +96,7 @@
     <key>cave</key>
 	<dict>
 		<!-- TODO: map generator data -->
+		<key>difficult percent</key> <integer>35</integer>
 		<key>tileset</key> <string>cave</string>
 		<key>trap number</key> <integer>15</integer>
 		<key>creature exp multiplier</key> <integer>20</integer>
@@ -107,6 +113,7 @@
     <key>temple</key>
 	<dict>
 		<!-- TODO: map generator data -->
+		<key>difficult percent</key> <integer>10</integer>
 		<key>tileset</key> <string>castle</string>
 		<key>trap number</key> <integer>10</integer>
 		<key>creature exp multiplier</key> <integer>24</integer>
@@ -123,6 +130,7 @@
     <key>hideout</key>
 	<dict>
 		<!-- TODO: map generator data -->
+		<key>difficult percent</key> <integer>25</integer>
 		<key>tileset</key> <string>hideout</string>
 		<key>trap number</key> <integer>25</integer>
 		<key>creature exp multiplier</key> <integer>15</integer>

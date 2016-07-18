@@ -228,7 +228,7 @@ class MapGenerator
 		//this is the rooms algorithm
 		//remember that this one doesn't require pruning, but others might
 		let (solidity, width, height, rooms) = generateRoomsSolidityMap(mapStub)
-		let tiles = solidityToTiles(solidity, width: width, height: height, stub: mapStub)
+		let tiles = solidityToTiles(solidity, width: width, height: height, rooms: rooms, stub: mapStub)
 		placeCreatures(tiles, width: width, height: height, rooms: rooms, player: player, stub: mapStub)
 		placeTraps(tiles, width: width, height: height, stub: mapStub)
 		return (tiles: tiles, width: width, height: height)
@@ -598,25 +598,11 @@ class MapGenerator
 		return (DataStore.getInt("EnemyTypes", enemyType, "level")! + expBase) * (100 + mult) / 100
 	}
 	
-	static func solidityToTiles(solidity:[Bool], width:Int, height:Int, stub:MapStub) -> [Tile]
+	static func solidityToTiles(solidity:[Bool], width:Int, height:Int, rooms:[MapRoom], stub:MapStub) -> [Tile]
 	{
-		//TODO: future idea: mega-tile structures
-		//	there are a number of registered mega-tile structures, which are rectangular arrangement of tiles
-		//	after making the solidity map, it "claims" rectangular areas of solidity to be mega-tile structures
-		//	each structure must have at least one non-solid tile adjacent to it
-		//	and structures cannot overlap
-		//	suggested uses: individual buildings in the city tileset, etc
-		//	all tiles that are not claimed by a mega-tile structure should be a generic wall tile
-		
-		//TODO: other future idea: splashes
-		//	they just place blobs of contiguous stuff
-		//	this is how I'll place pits
-		
-		//TODO: also, just place a random sprinkling of difficult terrain
-		//	exact amount depends on map theme I suppose
-		
-		//TODO: obviously, neither splashes nor difficult sprinkling should go on the boss throne, or other mega-structures
-		//so maybe the mega-structures go last?
+		let megastructure = [Bool](count: width*height, repeatedValue: false)
+		let pit = [Bool](count: width*height, repeatedValue: false)
+		let difficult = makeDifficultTiles(solidity, width: width, height: height, megastructure: megastructure, stub: stub)
 		
 		
 		let tileset = DataStore.getString("MapThemes", stub.theme, "tileset")!
@@ -632,10 +618,47 @@ class MapGenerator
 			for x in 0..<width
 			{
 				let i = x + y * width
-				tiles.append(Tile(type: solidity[i] ? tilesetWall : tilesetFloor))
+				let type:String
+				if solidity[i]
+				{
+					type = pit[i] ? tilesetPit : tilesetWall
+				}
+				else
+				{
+					type = difficult[i] ? tilesetDifficult : tilesetFloor
+				}
+				tiles.append(Tile(type: type))
 			}
 		}
 		return tiles
+	}
+	
+	//MARK: solidity to tiles components
+	static func makeDifficultTiles(solidity:[Bool], width:Int, height:Int, megastructure:[Bool], stub:MapStub) -> [Bool]
+	{
+		//find the tiles that can be turned into difficult WHILE initializing the difficult array
+		var difficult = [Bool]()
+		var applicable = [Int]()
+		for i in 0..<width*height
+		{
+			difficult.append(false)
+			if !solidity[i] && !megastructure[i]
+			{
+				applicable.append(i)
+			}
+		}
+		
+		let numDifficult = applicable.count * DataStore.getInt("MapThemes", stub.theme, "difficult percent")! / 100
+		if numDifficult > 0
+		{
+			applicable.shuffleInPlace()
+			for i in 0..<numDifficult
+			{
+				difficult[applicable[i]] = true
+			}
+		}
+		
+		return difficult
 	}
 }
 
