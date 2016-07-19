@@ -36,11 +36,12 @@ class CreatureTests: XCTestCase {
 	func testGetStatsFromArmor()
 	{
 		creature.armor = Armor(type: "sample armor", level: 0)
-		XCTAssertEqual(creature.maxHealthBonus, 13)
-		XCTAssertEqual(creature.dodge, 12)
-		XCTAssertEqual(creature.meleeRes, 11)
+		XCTAssertEqual(creature.maxHealthBonus, 20)
+		XCTAssertEqual(creature.dodge, 19)
+		XCTAssertEqual(creature.naturalMeleeRes, 15) //natural melee resistance DOESN'T get a bonus from your armor, by definition
+		XCTAssertEqual(creature.meleeRes, 16)
 		XCTAssertEqual(creature.trapRes, 24)
-		XCTAssertEqual(creature.specialRes, 15)
+		XCTAssertEqual(creature.specialRes, 25)
 	}
 	
 	func testBossLevelScaling()
@@ -86,17 +87,17 @@ class CreatureTests: XCTestCase {
 	{
 		//poisonTick should do nothing if you aren't poisoned
 		XCTAssertNil(creature.poisonTick())
-		XCTAssertEqual(creature.health, 200)
+		XCTAssertEqual(creature.health, 270)
 		
 		creature.poison = 100
 		
 		//make sure the poison does the right damage
-		XCTAssertEqual(creature.poisonTick() ?? 999, 10)
-		XCTAssertEqual(creature.health, 190)
+		XCTAssertEqual(creature.poisonTick() ?? 999, 13)
+		XCTAssertEqual(creature.health, 257)
 		
 		//run it again to make sure it keys off your max health and not current health
-		XCTAssertEqual(creature.poisonTick() ?? 999, 10)
-		XCTAssertEqual(creature.health, 180)
+		XCTAssertEqual(creature.poisonTick() ?? 999, 13)
+		XCTAssertEqual(creature.health, 244)
 		
 		//run it again to make sure that poison can't reduce you below 1 health
 		creature.health = 10
@@ -149,16 +150,16 @@ class CreatureTests: XCTestCase {
 		let damages = creature.attack(target)
 		XCTAssertEqual(damages.theirDamage, 100)
 		XCTAssertEqual(damages.myDamage, 0)
-		XCTAssertEqual(target.health, 100)
+		XCTAssertEqual(target.health, 170)
 		
 		
 		//next, switch to a melee weapon
 		target.health = target.maxHealth
 		creature.weapon = Weapon(type: "test melee weapon", material: "neutral", level: 0)
 		let oDamages = creature.attack(target)
-		XCTAssertEqual(oDamages.theirDamage, 150)
+		XCTAssertEqual(oDamages.theirDamage, 125)
 		XCTAssertEqual(oDamages.myDamage, 0)
-		XCTAssertEqual(target.health, 50)
+		XCTAssertEqual(target.health, 145)
 	}
 	
 	func testAttackDegradesEquipment()
@@ -217,8 +218,8 @@ class CreatureTests: XCTestCase {
 		creature.weapon = Weapon(type: "test melee weapon", material: "mortal killing material", level: 0)
 		let mDamages = creature.attack(target)
 		let oMDamages = creature.attack(invalidTarget)
-		XCTAssertEqual(mDamages.theirDamage, 200) //it ignores the -80 from their melee res from melee weakness
-		XCTAssertEqual(oMDamages.theirDamage, 150)
+		XCTAssertEqual(mDamages.theirDamage, 200) //it ignores the -160 from their natural melee res from melee weakness
+		XCTAssertEqual(oMDamages.theirDamage, 100)
 	}
 	
 	func testCrit()
@@ -300,17 +301,18 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(creature.wis, 10)
 		XCTAssertEqual(creature.end, 10)
 		XCTAssertEqual(creature.meleePow, 20)
-		XCTAssertEqual(creature.meleeRes, 10)
+		XCTAssertEqual(creature.meleeRes, 15)
+		XCTAssertEqual(creature.naturalMeleeRes, 15)
 		XCTAssertEqual(creature.accuracy, 20)
-		XCTAssertEqual(creature.dodge, 10)
-		XCTAssertEqual(creature.maxHealthBonus, 10)
+		XCTAssertEqual(creature.dodge, 17)
+		XCTAssertEqual(creature.maxHealthBonus, 17)
 		XCTAssertEqual(creature.encumberanceBonus, 10)
 		XCTAssertEqual(creature.trapPow, 20)
 		XCTAssertEqual(creature.trapRes, 20)
 		XCTAssertEqual(creature.specialPow, 10)
-		XCTAssertEqual(creature.specialRes, 10)
-		XCTAssertEqual(creature.maxHealth, 200)
-		XCTAssertEqual(creature.health, 200)
+		XCTAssertEqual(creature.specialRes, 20)
+		XCTAssertEqual(creature.maxHealth, 270)
+		XCTAssertEqual(creature.health, 270)
 		XCTAssertEqual(creature.maxEncumberance, 200)
 		XCTAssertEqual(creature.maxMovePoints, 4)
 		XCTAssertEqual(creature.encumberance, 100) //the test guy should be carrying his 100-weight weapon, and nothing else

@@ -11,18 +11,34 @@
 <dict>
 	<key>mortal</key>
 	<dict>
+		<key>base melee resistance</key> <integer>5</integer>
+		<key>base dodge</key> <integer>7</integer>
+		<key>base special resistance</key> <integer>10</integer>
+		<key>base health bonus</key> <integer>7</integer>
 	</dict>
 	<key>monster</key>
 	<dict>
 		<key>stun immunity</key> <true/>
+		<key>base melee resistance</key> <integer>7</integer>
+		<key>base dodge</key> <integer>7</integer>
+		<key>base special resistance</key> <integer>5</integer>
+		<key>base health bonus</key> <integer>10</integer>
 	</dict>
 	<key>fairy</key>
 	<dict>
 		<key>shake immunity</key> <true/>
+		<key>base melee resistance</key> <integer>7</integer>
+		<key>base dodge</key> <integer>10</integer>
+		<key>base special resistance</key> <integer>7</integer>
+		<key>base health bonus</key> <integer>5</integer>
 	</dict>
 	<key>undead</key>
 	<dict>
 		<key>poison immunity</key> <true/>
+		<key>base melee resistance</key> <integer>10</integer>
+		<key>base dodge</key> <integer>5</integer>
+		<key>base special resistance</key> <integer>7</integer>
+		<key>base health bonus</key> <integer>7</integer>
 	</dict>
 </dict>
 </plist>

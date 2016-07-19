@@ -39,7 +39,7 @@
 	<!-- metals -->
 	<key>silver</key>
 	<dict>
-		<key>damage multiplier</key> <integer>90</integer>
+		<key>damage multiplier</key> <integer>70</integer>
 		<key>weight multiplier</key> <integer>100</integer>
 		<key>health multiplier</key> <integer>100</integer>
 		<key>strong vs</key> <string>undead</string>
@@ -48,7 +48,7 @@
 	
 	<key>iron</key>
 	<dict>
-		<key>damage multiplier</key> <integer>100</integer>
+		<key>damage multiplier</key> <integer>80</integer>
 		<key>weight multiplier</key> <integer>110</integer>
 		<key>health multiplier</key> <integer>100</integer>
 		<key>strong vs</key> <string>fairy</string>
@@ -57,7 +57,7 @@
 	
 	<key>gold</key>
 	<dict>
-		<key>damage multiplier</key> <integer>100</integer>
+		<key>damage multiplier</key> <integer>80</integer>
 		<key>weight multiplier</key> <integer>125</integer>
 		<key>health multiplier</key> <integer>75</integer>
 		<key>strong vs</key> <string>monster</string>
@@ -102,7 +102,7 @@
 	
 	<key>applewood</key>
 	<dict>
-		<key>damage multiplier</key> <integer>100</integer>
+		<key>damage multiplier</key> <integer>80</integer>
 		<key>weight multiplier</key> <integer>105</integer>
 		<key>health multiplier</key> <integer>90</integer>
 		<key>strong vs</key> <string>fairy</string>
@@ -111,7 +111,7 @@
 	
 	<key>birch</key>
 	<dict>
-		<key>damage multiplier</key> <integer>95</integer>
+		<key>damage multiplier</key> <integer>75</integer>
 		<key>weight multiplier</key> <integer>100</integer>
 		<key>health multiplier</key> <integer>100</integer>
 		<key>strong vs</key> <string>monster</string>
@@ -136,7 +136,7 @@
 	
 	<key>elm</key>
 	<dict>
-		<key>damage multiplier</key> <integer>90</integer>
+		<key>damage multiplier</key> <integer>70</integer>
 		<key>weight multiplier</key> <integer>90</integer>
 		<key>health multiplier</key> <integer>100</integer>
 		<key>strong vs</key> <string>undead</string>

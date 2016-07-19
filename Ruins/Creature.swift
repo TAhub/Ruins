@@ -60,9 +60,13 @@ class Creature
 	{
 		return 2 * str
 	}
+	var naturalMeleeRes:Int
+	{
+		return end + DataStore.getInt("RacialGroups", racialGroup, "base melee resistance")!
+	}
 	var meleeRes:Int
 	{
-		return end + (armor?.meleeResistance ?? 0)
+		return naturalMeleeRes + (armor?.meleeResistance ?? 0)
 	}
 	var encumberanceBonus:Int
 	{
@@ -74,11 +78,11 @@ class Creature
 	}
 	var dodge:Int
 	{
-		return dex + (armor?.dodge ?? 0)
+		return dex + (armor?.dodge ?? 0) + DataStore.getInt("RacialGroups", racialGroup, "base dodge")!
 	}
 	var maxHealthBonus:Int
 	{
-		return end + (armor?.maxHealthBonus ?? 0)
+		return end + (armor?.maxHealthBonus ?? 0) + DataStore.getInt("RacialGroups", racialGroup, "base health bonus")!
 	}
 	var trapPow:Int
 	{
@@ -94,7 +98,7 @@ class Creature
 	}
 	var specialRes:Int
 	{
-		return wis + (armor?.specialResistance ?? 0)
+		return wis + (armor?.specialResistance ?? 0) + DataStore.getInt("RacialGroups", racialGroup, "base special resistance")!
 	}
 	
 	//MARK: misc flags
@@ -321,7 +325,7 @@ class Creature
 		var wDamage = weapon.damage
 		if weapon.range == 1
 		{
-			let meleeDif = meleePow - (isWeak ? 0 : target.meleeRes)
+			let meleeDif = meleePow - (isWeak ? target.meleeRes - target.naturalMeleeRes : target.meleeRes)
 			wDamage = wDamage * Creature.getMultiplier(meleeDif * meleeDamMultiplier) / 100
 		}
 		else if isWeak

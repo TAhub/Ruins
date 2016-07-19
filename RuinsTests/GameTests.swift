@@ -188,7 +188,7 @@ class GameTests: XCTestCase, GameDelegate {
 		XCTAssertEqual(game.creatureOn, 0)
 		XCTAssertEqual(playAnimationCalled, 1)
 		XCTAssertEqual(inputDesiredCalled, 0)
-		XCTAssertEqual(firstCharacter.health, 190)
+		XCTAssertEqual(firstCharacter.health, 257)
 		
 		//make sure the animation has the right stuff inside it too
 		let lA = lastAnimation ?? Animation()
@@ -196,7 +196,7 @@ class GameTests: XCTestCase, GameDelegate {
 		if let dNum = lA.damageNumbers.first
 		{
 			XCTAssertTrue(dNum.0 === firstCharacter)
-			XCTAssertEqual(dNum.1, "10")
+			XCTAssertEqual(dNum.1, "13")
 		}
 	}
 	
@@ -282,6 +282,9 @@ class GameTests: XCTestCase, GameDelegate {
 		XCTAssertEqual(game.creatureOn, 2)
 		game.attack(x: 2, y: 1)
 		XCTAssertEqual(uiUpdateCalled, 3)
+		
+		//kill the second character
+		secondCharacter.health = 0
 		
 		//and another turn start
 		
@@ -376,8 +379,10 @@ class GameTests: XCTestCase, GameDelegate {
 		
 		game.executePhase()
 		
-		//ensure a crit, so it will be a one-hit kill
+		//ensure a super damaging crit, so it will be a one-hit kill
 		firstCharacter.dex = 99999
+		firstCharacter.str = 99999
+		firstCharacter.weapon = Weapon(type: "test melee weapon", material: "neutral", level: 99)
 		
 		game.attack(x: 2, y: 1)
 		
