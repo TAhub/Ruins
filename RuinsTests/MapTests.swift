@@ -514,22 +514,25 @@ class MapTests: XCTestCase {
 		let T = true
 		let F = false
 		let solidity = [T, T, T, T, T, T, T,
-						T, F, F, F, F, T, T,
-						T, F, T, T, F, T, T,
-						T, T, T, T, T, T, T,
-						T, T, T, T, T, T, T,
-						T, T, T, T, T, T, T,
-						T, T, T, T, T, T, T,
-						T, T, T, T, T, T, T,
-						T, T, T, T, T, T, T,
-						T, T, T, T, T, T, T,
-						T, T, T, T, T, T, T,
-						T, T, T, T, T, T, T,
-						]
+		                T, F, F, F, F, T, T,
+		                T, F, T, T, F, T, T,
+		                T, T, T, T, T, T, T,
+		                T, T, T, T, T, T, T,
+		                T, F, F, F, F, F, T,
+		                T, F, F, F, F, F, T,
+		                T, F, F, F, F, F, T,
+		                T, F, F, F, F, F, T,
+		                T, F, F, F, F, F, T,
+		                T, T, T, T, T, T, T,
+		                T, T, T, T, T, T, T,
+		                ]
 		let width = 7
 		let height = 12
 		let rooms = [MapRoom(x: 0, y: 4, width: endRoomSize, height: endRoomSize, roomClass: MapRoomClass.Boss)]
 		let tiles = MapGenerator.solidityToTiles(solidity, width: width, height: height, rooms: rooms, stub: MapStub(flavor: "lawless", theme: "cave", level: 1))
+		
+		//note that the boss room megastructure will clear a 5x5 area in the 7x7 boss room
+		//even if the boss room is entirely solid wall, because it's over-writing tiles
 		
 		//test to see if the solidity matches
 		XCTAssertEqual(tiles.count, solidity.count)
@@ -546,10 +549,11 @@ class MapTests: XCTestCase {
 		XCTAssertTrue(tileTypes.contains("cave floor"))
 		XCTAssertTrue(tileTypes.contains("pit"))
 		XCTAssertTrue(tileTypes.contains("rubble floor"))
-//		for i in 1...7
-//		{
-//			XCTAssertTrue(tileTypes.contains("throne \(i)"))
-//		}
+		for i in 1...7
+		{
+			XCTAssertTrue(tileTypes.contains("throne \(i)"))
+		}
+		XCTAssertTrue(tileTypes.contains("warning floor"))
 	}
 	
 	func testEnemyTypeEXPValue()

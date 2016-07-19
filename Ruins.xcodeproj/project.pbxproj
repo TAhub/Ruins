@@ -11,6 +11,7 @@
 		E439902C1D36FC2500936008 /* Traps.plist in Resources */ = {isa = PBXBuildFile; fileRef = E439902B1D36FC2500936008 /* Traps.plist */; };
 		E439902E1D36FC3600936008 /* TrapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439902D1D36FC3600936008 /* TrapTests.swift */; };
 		E43990301D370C1000936008 /* TrapRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E439902F1D370C1000936008 /* TrapRepresentation.swift */; };
+		E43B70C91D3D9DEF00982AA3 /* MegaStructures.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43B70C81D3D9DEF00982AA3 /* MegaStructures.plist */; };
 		E442548B1D39773B009E353A /* Tiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = E442548A1D39773B009E353A /* Tiles.plist */; };
 		E442548F1D3977A3009E353A /* TileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442548E1D3977A3009E353A /* TileTests.swift */; };
 		E44254911D398659009E353A /* Tilesets.plist in Resources */ = {isa = PBXBuildFile; fileRef = E44254901D398659009E353A /* Tilesets.plist */; };
@@ -72,6 +73,7 @@
 		E439902B1D36FC2500936008 /* Traps.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Traps.plist; sourceTree = "<group>"; };
 		E439902D1D36FC3600936008 /* TrapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrapTests.swift; sourceTree = "<group>"; };
 		E439902F1D370C1000936008 /* TrapRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrapRepresentation.swift; sourceTree = "<group>"; };
+		E43B70C81D3D9DEF00982AA3 /* MegaStructures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MegaStructures.plist; sourceTree = "<group>"; };
 		E442548A1D39773B009E353A /* Tiles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tiles.plist; sourceTree = "<group>"; };
 		E442548E1D3977A3009E353A /* TileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileTests.swift; sourceTree = "<group>"; };
 		E44254901D398659009E353A /* Tilesets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tilesets.plist; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 		E4F147CF1D2D717C00F4C579 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E43B70C81D3D9DEF00982AA3 /* MegaStructures.plist */,
 				E44254901D398659009E353A /* Tilesets.plist */,
 				E442548A1D39773B009E353A /* Tiles.plist */,
 				E439902B1D36FC2500936008 /* Traps.plist */,
@@ -335,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E43B70C91D3D9DEF00982AA3 /* MegaStructures.plist in Resources */,
 				E4F147D51D2D765800F4C579 /* RacialGroups.plist in Resources */,
 				E44E86611D3052C500028307 /* Colors.plist in Resources */,
 				E4F147E51D2D998100F4C579 /* Tests.plist in Resources */,

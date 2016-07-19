@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   MegaStructures.plist
+   Ruins
+
+   Created by Theodore Abshire on 7/18/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+    <key>boss room</key>
+	<dict>
+		<key>width</key> <integer>7</integer>
+		<key>height</key> <integer>7</integer>
+		<key>tiles</key>
+		<array>
+			<string></string> <string></string> <string></string> <string></string> <string></string> <string></string> <string></string>
+			<string></string> <string>warning floor</string> <string>warning floor</string> <string>warning floor</string> <string>warning floor</string> <string>warning floor</string> <string></string>
+			<string></string> <string>warning floor</string> <string>cave floor</string> <string>throne 1</string> <string>cave floor</string> <string>warning floor</string> <string></string>
+			<string></string> <string>warning floor</string> <string>throne 2</string> <string>throne 3</string> <string>throne 4</string> <string>warning floor</string> <string></string>
+			<string></string> <string>warning floor</string> <string>throne 5</string> <string>throne 6</string> <string>throne 7</string> <string>warning floor</string> <string></string>
+			<string></string> <string>warning floor</string> <string>warning floor</string> <string>warning floor</string> <string>warning floor</string> <string>warning floor</string> <string></string>
+			<string></string> <string></string> <string></string> <string></string> <string></string> <string></string> <string></string>
+		</array>
+	</dict>
+	
+    <key>small house</key>
+	<dict>
+		<key>width</key> <integer>3</integer>
+		<key>height</key> <integer>3</integer>
+		<key>tiles</key>
+		<array>
+			<string></string> <string></string> <string></string>
+			<string></string> <string></string> <string></string>
+			<string></string> <string></string> <string></string>
+		</array>
+	</dict>
+	
+    <key>small house</key>
+	<dict>
+		<key>width</key> <integer>3</integer>
+		<key>height</key> <integer>3</integer>
+		<key>tiles</key>
+		<array>
+			<string></string> <string></string> <string></string>
+			<string></string> <string></string> <string></string>
+			<string></string> <string></string> <string></string>
+		</array>
+	</dict>
+</dict>
+</plist>

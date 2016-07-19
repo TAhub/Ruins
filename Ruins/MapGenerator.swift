@@ -9,7 +9,7 @@
 import Foundation
 
 let numStubs = 3
-let endRoomSize = 11
+let endRoomSize = 7
 let expBase = 5
 let expMagicMult = 25
 let expArmorMult = 25
@@ -510,7 +510,7 @@ class MapGenerator
 		player.x = startRoom.centerX
 		player.y = startRoom.centerY
 		tiles[startRoom.centerX + startRoom.centerY * width].creature = player
-	
+		
 		let enemyTypes = stub.enemyTypes
 		
 		//assign EXP to rooms
@@ -600,7 +600,17 @@ class MapGenerator
 	
 	static func solidityToTiles(solidity:[Bool], width:Int, height:Int, rooms:[MapRoom], stub:MapStub) -> [Tile]
 	{
-		let megastructure = [Bool](count: width*height, repeatedValue: false)
+		var endRoom:MapRoom!
+		for room in rooms
+		{
+			if room.roomClass == .Boss
+			{
+				endRoom = room
+				break
+			}
+		}
+		
+		let (structures, megastructure) = makeMegastructures(solidity, width: width, height: height, bossRoom: endRoom, stub: stub)
 		let pit = makePits(solidity, width: width, height: height, megastructure: megastructure, stub: stub)
 		let difficult = makeDifficultTiles(solidity, width: width, height: height, megastructure: megastructure, stub: stub)
 		
@@ -630,10 +640,74 @@ class MapGenerator
 				tiles.append(Tile(type: type))
 			}
 		}
+		//place megastructure tiles
+		for ms in structures
+		{
+			let msWidth = DataStore.getInt("MegaStructures", ms.2, "width")!
+			let msHeight = DataStore.getInt("MegaStructures", ms.2, "height")!
+			let msTiles = DataStore.getArray("MegaStructures", ms.2, "tiles") as! [String]
+			for y in 0..<msHeight
+			{
+				for x in 0..<msWidth
+				{
+					let i = x + y * msWidth
+					let tile = msTiles[i]
+					if tile != ""
+					{
+						let mI = (x + ms.0) + (y + ms.1) * width
+						tiles[mI] = Tile(type: tile)
+					}
+				}
+			}
+		}
 		return tiles
 	}
 	
 	//MARK: solidity to tiles components
+	static func makeMegastructures(solidity:[Bool], width:Int, height:Int, bossRoom:MapRoom, stub:MapStub) -> ([(Int, Int, String)], [Bool])
+	{
+		var megastructure = [Bool](count: width*height, repeatedValue: false)
+		var structures = [(Int, Int, String)]()
+		
+		//TODO: get the map's actual list of megastructures
+		
+		func placeMegastructureAt(ms:String, x startX:Int, y startY:Int, consistencyCheck:Bool) -> Bool
+		{
+			let msWidth = DataStore.getInt("MegaStructures", ms, "width")!
+			let msHeight = DataStore.getInt("MegaStructures", ms, "height")!
+			if consistencyCheck
+			{
+				for y in startY..<startY+msHeight
+				{
+					for x in startX..<startX+msWidth
+					{
+						if x >= width - 1 || y >= height - 1 || megastructure[x+y*width]
+						{
+							return false
+						}
+					}
+				}
+			}
+			for y in startY..<startY+msHeight
+			{
+				for x in startX..<startX+msWidth
+				{
+					megastructure[x+y*width] = true
+				}
+			}
+			return true
+		}
+		
+		//place the boss room
+		placeMegastructureAt("boss room", x: bossRoom.x, y: bossRoom.y, consistencyCheck: false)
+		structures.append((bossRoom.x, bossRoom.y, "boss room"))
+		
+		//TODO: place a lot of megastructures
+		//each one should go in a position that has one corner in common with an open tile
+		
+		return (structures, megastructure)
+	}
+	
 	static func makeDifficultTiles(solidity:[Bool], width:Int, height:Int, megastructure:[Bool], stub:MapStub) -> [Bool]
 	{
 		//find the tiles that can be turned into difficult WHILE initializing the difficult array
