@@ -78,7 +78,42 @@
 		<key>lower sprite</key> <string>tile_pitwall</string>
 		<key>color</key> <string>brick</string>
 	</dict>
-	<!-- TODO: city wall variants -->
+    <key>city building left</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>upper sprite</key> <string>tile_caveceil</string>
+		<key>middle sprite</key> <string>tile_citywall_left</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>brick</string>
+	</dict>
+    <key>city building right</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>upper sprite</key> <string>tile_caveceil</string>
+		<key>middle sprite</key> <string>tile_citywall_right</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>brick</string>
+	</dict>
+    <key>city building window</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>upper sprite</key> <string>tile_caveceil</string>
+		<key>middle sprite</key> <string>tile_citywall_window</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>brick</string>
+	</dict>
+    <key>city building door</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>upper sprite</key> <string>tile_caveceil</string>
+		<key>middle sprite</key> <string>tile_citywall_door</string>
+		<key>lower sprite</key> <string>tile_pitwall</string>
+		<key>color</key> <string>brick</string>
+	</dict>
     <key>castle wall</key>
 	<dict>
 		<key>solid</key> <true/>

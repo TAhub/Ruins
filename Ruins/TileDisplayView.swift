@@ -9,7 +9,8 @@
 import UIKit
 
 let tileSize:CGFloat = 40
-let tileLevelOff:CGFloat = 16
+let tileLevelOff:CGFloat = 24
+let tileLevelOffDown:CGFloat = 23.5
 let mapColorPercent:CGFloat = 0.5
 
 class TileRepresentation
@@ -70,7 +71,7 @@ class TileRepresentation
 	func setFrame(frame:CGRect)
 	{
 		let upperFrame = CGRectMake(frame.origin.x, frame.origin.y - tileLevelOff, frame.size.width, frame.size.height)
-		let lowerFrame = CGRectMake(frame.origin.x, frame.origin.y + tileLevelOff, frame.size.width, frame.size.height)
+		let lowerFrame = CGRectMake(frame.origin.x, frame.origin.y + tileLevelOffDown, frame.size.width, frame.size.height)
 		upper?.frame = upperFrame
 		middle?.frame = frame
 		lower?.frame = lowerFrame

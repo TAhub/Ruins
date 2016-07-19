@@ -25,27 +25,28 @@
 		</array>
 	</dict>
 	
+	<!-- TODO: add chimneys to houses; I think I forgot to make the tiles? -->
     <key>small house</key>
 	<dict>
 		<key>width</key> <integer>3</integer>
 		<key>height</key> <integer>3</integer>
 		<key>tiles</key>
 		<array>
-			<string></string> <string></string> <string></string>
-			<string></string> <string></string> <string></string>
-			<string></string> <string></string> <string></string>
+			<string>city building wall</string> <string>city building wall</string> <string>city building wall</string>
+			<string>city building wall</string> <string>city building wall</string> <string>city building wall</string>
+			<string>city building wall</string> <string>city building door</string> <string>city building window</string>
 		</array>
 	</dict>
 	
-    <key>small house</key>
+    <key>large house</key>
 	<dict>
-		<key>width</key> <integer>3</integer>
+		<key>width</key> <integer>5</integer>
 		<key>height</key> <integer>3</integer>
 		<key>tiles</key>
 		<array>
-			<string></string> <string></string> <string></string>
-			<string></string> <string></string> <string></string>
-			<string></string> <string></string> <string></string>
+			<string>city building wall</string> <string>city building wall</string> <string>city building wall</string> <string>city building wall</string> <string>city building wall</string>
+			<string>city building wall</string> <string>city building wall</string> <string>city building wall</string> <string>city building wall</string> <string>city building wall</string>
+			<string>city building left</string> <string>city building window</string> <string>city building door</string> <string>city building window</string> <string>city building right</string>
 		</array>
 	</dict>
 </dict>

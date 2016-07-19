@@ -511,6 +511,8 @@ class MapGenerator
 		player.y = startRoom.centerY
 		tiles[startRoom.centerX + startRoom.centerY * width].creature = player
 		
+//		return
+		
 		let enemyTypes = stub.enemyTypes
 		
 		//assign EXP to rooms
@@ -670,24 +672,12 @@ class MapGenerator
 		var structures = [(Int, Int, String)]()
 		
 		//TODO: get the map's actual list of megastructures
+		var numStructures = DataStore.getInt("MapThemes", stub.theme, "number of megastructures")!
 		
-		func placeMegastructureAt(ms:String, x startX:Int, y startY:Int, consistencyCheck:Bool) -> Bool
+		func placeMegastructureAt(ms:String, x startX:Int, y startY:Int)
 		{
 			let msWidth = DataStore.getInt("MegaStructures", ms, "width")!
 			let msHeight = DataStore.getInt("MegaStructures", ms, "height")!
-			if consistencyCheck
-			{
-				for y in startY..<startY+msHeight
-				{
-					for x in startX..<startX+msWidth
-					{
-						if x >= width - 1 || y >= height - 1 || megastructure[x+y*width]
-						{
-							return false
-						}
-					}
-				}
-			}
 			for y in startY..<startY+msHeight
 			{
 				for x in startX..<startX+msWidth
@@ -695,15 +685,146 @@ class MapGenerator
 					megastructure[x+y*width] = true
 				}
 			}
-			return true
+			structures.append((startX, startY, ms))
 		}
 		
 		//place the boss room
-		placeMegastructureAt("boss room", x: bossRoom.x, y: bossRoom.y, consistencyCheck: false)
-		structures.append((bossRoom.x, bossRoom.y, "boss room"))
+		placeMegastructureAt("boss room", x: bossRoom.x, y: bossRoom.y)
 		
-		//TODO: place a lot of megastructures
+		//place a lot of megastructures
 		//each one should go in a position that has one corner in common with an open tile
+		while numStructures > 0
+		{
+			let ms = "small house"
+			var validSpots = [(Int, Int)]()
+			let msWidth = DataStore.getInt("MegaStructures", ms, "width")!
+			let msHeight = DataStore.getInt("MegaStructures", ms, "height")!
+			
+			func isValidSpot(x startX:Int, y startY:Int) -> Bool
+			{
+				func rectCheck(x startX:Int, y startY:Int, w rectWidth:Int, h rectHeight:Int, closure:(Int)->(Bool))
+				{
+					for y in startY..<startY+rectHeight
+					{
+						for x in startX..<startX+rectWidth
+						{
+							if x >= 0 && y >= 0 && x < width && y < height
+							{
+								if closure(x + y * width)
+								{
+									return
+								}
+							}
+						}
+					}
+				}
+				
+				//check to make sure that every tile in the spot is wall and non-megastructure
+				var allValid = true
+				rectCheck(x: startX, y: startY, w: msWidth, h: msHeight)
+				{ (i) in
+					if megastructure[i] || !solidity[i]
+					{
+						allValid = false
+						return true
+					}
+					return false
+				}
+				
+				if !allValid
+				{
+					return false
+				}
+				
+				
+				//now check to make sure at least one border has a non-wall tile, so that you can SEE the megastructure
+				var sideFloor = false
+				rectCheck(x: startX - 1, y: startY, w: 1, h: msHeight)
+				{ (i) in
+					if !solidity[i]
+					{
+						sideFloor = true
+						return true
+					}
+					return false
+				}
+				if sideFloor
+				{
+					return true
+				}
+				rectCheck(x: startX, y: startY - 1, w: msWidth, h: 1)
+				{ (i) in
+					if !solidity[i]
+					{
+						sideFloor = true
+						return true
+					}
+					return false
+				}
+				if sideFloor
+				{
+					return true
+				}
+				rectCheck(x: startX + msWidth, y: startY, w: 1, h: msHeight)
+				{ (i) in
+					if !solidity[i]
+					{
+						sideFloor = true
+						return true
+					}
+					return false
+				}
+				if sideFloor
+				{
+					return true
+				}
+				rectCheck(x: startX, y: startY + msHeight, w: msWidth, h: 1)
+				{ (i) in
+					if !solidity[i]
+					{
+						sideFloor = true
+						return true
+					}
+					return false
+				}
+				return sideFloor
+			}
+			
+			for y in 0..<height-msHeight
+			{
+				for x in 0..<width-msWidth
+				{
+					if isValidSpot(x: x, y: y)
+					{
+						validSpots.append((x, y))
+					}
+				}
+			}
+			
+			if validSpots.count == 0
+			{
+				//you can't place this type of megastructure
+				//TODO: rmeove this type of megastructure from the list; only break if there are no types left
+				break
+			}
+			else
+			{
+				let spot = validSpots.randomElement!
+				numStructures -= 1
+				placeMegastructureAt(ms, x: spot.0, y: spot.1)
+				
+				if validSpots.count > 1 && numStructures > 0
+				{
+					//try placing a second megastructure with the same validSpots, to save some time
+					let otherSpot = validSpots.randomElement!
+					if isValidSpot(x: otherSpot.0, y: otherSpot.1)
+					{
+						placeMegastructureAt(ms, x: otherSpot.0, y: otherSpot.1)
+						numStructures -= 1
+					}
+				}
+			}
+		}
 		
 		return (structures, megastructure)
 	}

@@ -57,7 +57,7 @@ class Game
 	
 	init(mapStub:MapStub)
 	{
-		player = Creature(enemyType: "human player", level: mapStub.level, x: 0, y: 0)
+		player = Creature(enemyType: "fairy player", level: mapStub.level, x: 0, y: 0)
 		creatures.append(player)
 		map = Map(mapStub: mapStub, player: player)
 		
