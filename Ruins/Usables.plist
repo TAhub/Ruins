@@ -16,10 +16,14 @@
 		<key>heals</key> <integer>100</integer>
 		<key>cures</key> <true/>
 		<!-- <key>trap</key> <string>bear trap</string> -->
-		<key>magic</key>
-		<dict>
-			<!-- TODO: magic data -->
-		</dict>
+		<!-- <key>special</key> <string>test special</string> -->
+	</dict>
+	
+	<key>sample magic</key>
+	<dict>
+		<key>flavor</key> <string>SAMPLE FLAVOR.</string>
+		<key>weight</key> <integer>100</integer>
+		<key>special</key> <string>test special</string>
 	</dict>
 	
 	<key>sample trap</key>
@@ -27,10 +31,6 @@
 		<key>flavor</key> <string>SAMPLE FLAVOR.</string>
 		<key>weight</key> <integer>100</integer>
 		<key>trap</key> <string>sample trap</string>
-		<key>magic</key>
-		<dict>
-			<!-- TODO: magic data -->
-		</dict>
 	</dict>
 	
 	<key>test usable</key>
@@ -83,6 +83,14 @@
 		<key>flavor</key> <string>A simple but effective hunter's tool.</string>
 		<key>weight</key> <integer>50</integer>
 		<key>trap</key> <string>bear trap</string>
+	</dict>
+	
+	<key>wand of blasting</key>
+	<dict>
+		<key>flavor</key> <string>SAMPLE FLAVOR.</string>
+		<key>weight</key> <integer>10</integer>
+		<!-- <key>trap</key> <string>bear trap</string> -->
+		<key>special</key> <string>flame blast</string>
 	</dict>
 </dict>
 </plist>

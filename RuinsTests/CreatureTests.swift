@@ -41,7 +41,7 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(creature.naturalMeleeRes, 15) //natural melee resistance DOESN'T get a bonus from your armor, by definition
 		XCTAssertEqual(creature.meleeRes, 16)
 		XCTAssertEqual(creature.trapRes, 24)
-		XCTAssertEqual(creature.specialRes, 25)
+		XCTAssertEqual(creature.specialRes, 20)
 	}
 	
 	func testBossLevelScaling()
@@ -135,6 +135,28 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(creature.poison, 0)
 		XCTAssertEqual(creature.stun, 0)
 		XCTAssertEqual(creature.shake, 0)
+	}
+	
+	//MARK: special tests
+	
+	func testSpecial()
+	{
+		let target = Creature(enemyType: "test creature", level: 1, x: 0, y: 0)
+		
+		//you start with aura
+		XCTAssertTrue(creature.aura)
+		
+		//set your health down to test the health drain effect on the special
+		creature.health = 1
+		
+		//try using a special
+		let damages = creature.useSpecial(target, special: "test special")
+		XCTAssertEqual(damages.theirDamage, 60)
+		XCTAssertEqual(damages.myDamage, -damages.theirDamage / 2)
+		XCTAssertEqual(creature.health, 1 - damages.myDamage)
+		XCTAssertEqual(target.health, target.maxHealth - damages.theirDamage)
+		XCTAssertFalse(creature.aura)
+		XCTAssertEqual(target.shake, 999)
 	}
 	
 	//MARK: attack tests
@@ -310,7 +332,7 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(creature.trapPow, 20)
 		XCTAssertEqual(creature.trapRes, 20)
 		XCTAssertEqual(creature.specialPow, 10)
-		XCTAssertEqual(creature.specialRes, 20)
+		XCTAssertEqual(creature.specialRes, 15)
 		XCTAssertEqual(creature.maxHealth, 270)
 		XCTAssertEqual(creature.health, 270)
 		XCTAssertEqual(creature.maxEncumberance, 200)
@@ -319,6 +341,7 @@ class CreatureTests: XCTestCase {
 		XCTAssertEqual(creature.weapon.type, "test subtype weapon")
 		XCTAssertEqual(creature.weapon.material, "neutral")
 		XCTAssertEqual(creature.weapon.subtype, 0)
+		XCTAssertTrue(creature.aura)
 		XCTAssertNil(creature.armor)
 	}
 }

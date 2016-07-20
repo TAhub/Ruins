@@ -18,6 +18,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 	@IBOutlet weak var modeB: UIButton!
 	
 	var game:Game!
+	var useSpecialClosure:((String)->())!
 	private var mode:Int = 0
 	private var item:Item?
 	
@@ -133,7 +134,11 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 						game.addTrap(trap, x: game.player.x, y: game.player.y)
 					}
 					
-					if item.number <= 1
+					if let special = item.special
+					{
+						useSpecialClosure(special)
+					}
+					else if item.number <= 1
 					{
 						removeItem()
 					}
@@ -312,7 +317,10 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 				return false //doesn't have an action to use it
 			}
 			
-			//TODO: if it's a special power, return if you have aura
+			if item.special != nil
+			{
+				return game.player.aura //you can't use a special without aura
+			}
 			
 			if let _ = item.trap
 			{
@@ -439,7 +447,7 @@ class InventoryViewController: UIViewController, UITableViewDelegate, UITableVie
 			}
 			return 1
 		}
-		else if false //TODO: special power item
+		else if item.special != nil
 		{
 			return 2
 		}

@@ -74,6 +74,13 @@ class ItemTests: XCTestCase {
 		XCTAssertEqual(trapItem.description, "SAMPLE FLAVOR.\nLays a 100-damage trap that stuns, shakes, and poisons. 100 weight.")
 	}
 	
+	func testItemMagicDescription()
+	{
+		let magicItem = Item(usable: "sample magic")
+		XCTAssertNotNil(magicItem.special)
+		XCTAssertEqual(magicItem.description, "SAMPLE FLAVOR.\nStrikes a foe for 100 damage, and heals the user for 50, and inflicts shake. 100 weight.")
+	}
+	
 	//MARK: helper functions
 	func normalLoadAsserts()
 	{
@@ -82,17 +89,20 @@ class ItemTests: XCTestCase {
 		XCTAssertFalse(weaponItem.cures)
 		XCTAssertNil(weaponItem.heals)
 		XCTAssertNil(weaponItem.trap)
+		XCTAssertNil(weaponItem.special)
 		
 		XCTAssertNil(armorItem.weapon)
 		XCTAssertNotNil(armorItem.armor)
 		XCTAssertFalse(armorItem.cures)
 		XCTAssertNil(armorItem.heals)
 		XCTAssertNil(armorItem.trap)
+		XCTAssertNil(armorItem.special)
 		
 		XCTAssertNil(usableItem.weapon)
 		XCTAssertNil(usableItem.armor)
 		XCTAssertTrue(usableItem.cures)
 		XCTAssertNotNil(usableItem.heals)
 		XCTAssertNil(usableItem.trap)
+		XCTAssertNil(usableItem.special)
 	}
 }

@@ -145,6 +145,7 @@ class Creature
 	var poison:Int
 	var stun:Int
 	var health:Int
+	var aura:Bool
 	var encumberance:Int
 	{
 		var wei = weapon.weight + (armor?.weight ?? 0)
@@ -186,6 +187,7 @@ class Creature
 		
 		//initialize variables
 		health = 0
+		aura = true
 		shake = 0
 		stun = 0
 		poison = 0
@@ -237,6 +239,7 @@ class Creature
 		
 		//load variables
 		health = Creature.intFromD(d, name: "health")
+		aura = Creature.intFromD(d, name: "aura") == 1
 		shake = Creature.intFromD(d, name: "shake")
 		poison = Creature.intFromD(d, name: "poison")
 		stun = Creature.intFromD(d, name: "stun")
@@ -277,6 +280,7 @@ class Creature
 		
 		//save variables
 		d["health"] = health
+		d["aura"] = aura ? 1 : 0
 		d["shake"] = shake
 		d["poison"] = poison
 		d["stun"] = stun
@@ -307,6 +311,36 @@ class Creature
 	static func getMultiplier(rawMultiplier:Int) -> Int
 	{
 		return min(max(100 + rawMultiplier, minMultiplier), maxMultiplier)
+	}
+	
+	func useSpecial(target:Creature, special:String) -> (myDamage:Int, theirDamage:Int)
+	{
+		aura = false
+		
+		var damage = DataStore.getInt("Specials", special, "damage")!
+		damage = damage * Creature.getMultiplier((specialPow - target.specialRes) * damMultiplier) / 100
+		let healing = -damage * (DataStore.getInt("Specials", special, "vampire") ?? 0) / 100
+		
+		target.health = max(0, target.health - damage)
+		health = min(maxHealth, health - healing)
+		
+		if let status = DataStore.getString("Specials", special, "status")
+		{
+			if !DataStore.getBool("RacialGroups", target.racialGroup, "\(status) immunity")
+			{
+				let length = DataStore.getInt("Specials", special, "status duration") ?? 0
+				switch(status)
+				{
+				case "shake": target.shake += length
+				case "stun": target.stun += length
+				case "poison": target.poison += length
+				default: break
+				}
+				print("\(status) inflicted for duration \(length)!")
+			}
+		}
+		
+		return (myDamage: healing, theirDamage: damage)
 	}
 	
 	func attack(target:Creature) -> (myDamage:Int, theirDamage:Int)
@@ -422,6 +456,23 @@ class Creature
 				
 				//run away if you're really hurt, or if you were disarmed
 				let flee = injured || weapon.type == "unarmed"
+				
+				
+				//if you can use a special, use it immediately
+				//don't bother to move
+				if aura
+				{
+					if let special = DataStore.getString("EnemyTypes", enemyType, "special")
+					{
+						game.targetSpecial = special
+						if game.validTarget(game.player)
+						{
+							game.special(x: game.player.x, y: game.player.y)
+							return true
+						}
+						game.targetSpecial = nil
+					}
+				}
 				
 				
 				//figure out where you can move to

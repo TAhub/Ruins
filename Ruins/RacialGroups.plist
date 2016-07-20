@@ -13,7 +13,7 @@
 	<dict>
 		<key>base melee resistance</key> <integer>5</integer>
 		<key>base dodge</key> <integer>7</integer>
-		<key>base special resistance</key> <integer>10</integer>
+		<key>base special resistance</key> <integer>5</integer>
 		<key>base health bonus</key> <integer>7</integer>
 	</dict>
 	<key>monster</key>
@@ -21,7 +21,7 @@
 		<key>stun immunity</key> <true/>
 		<key>base melee resistance</key> <integer>7</integer>
 		<key>base dodge</key> <integer>7</integer>
-		<key>base special resistance</key> <integer>5</integer>
+		<key>base special resistance</key> <integer>2</integer>
 		<key>base health bonus</key> <integer>10</integer>
 	</dict>
 	<key>fairy</key>
@@ -29,7 +29,7 @@
 		<key>shake immunity</key> <true/>
 		<key>base melee resistance</key> <integer>7</integer>
 		<key>base dodge</key> <integer>10</integer>
-		<key>base special resistance</key> <integer>7</integer>
+		<key>base special resistance</key> <integer>3</integer>
 		<key>base health bonus</key> <integer>5</integer>
 	</dict>
 	<key>undead</key>
@@ -37,7 +37,7 @@
 		<key>poison immunity</key> <true/>
 		<key>base melee resistance</key> <integer>10</integer>
 		<key>base dodge</key> <integer>5</integer>
-		<key>base special resistance</key> <integer>7</integer>
+		<key>base special resistance</key> <integer>3</integer>
 		<key>base health bonus</key> <integer>7</integer>
 	</dict>
 </dict>

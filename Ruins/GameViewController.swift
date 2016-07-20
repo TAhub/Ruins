@@ -12,7 +12,7 @@ enum TargetingMode:Int
 {
 	case Attack
 	case Examine
-	case Special //TODO: attach a reference to the special
+	case Special
 }
 
 class Target
@@ -78,6 +78,7 @@ class GameViewController: UIViewController, GameDelegate {
 		pot.number = 2
 		game.player.inventory.append(pot)
 		game.player.inventory.append(Item(usable: "bear trap"))
+		game.player.inventory.append(Item(usable: "wand of blasting"))
 		
 		//TODO: all sprite tiles and such should auto-scale so that differently-sized iphones all have the same screen size
 		
@@ -167,8 +168,6 @@ class GameViewController: UIViewController, GameDelegate {
 				{
 					if target.subject.x == x && target.subject.y == y
 					{
-						leaveTargetingMode()
-						
 						//if so, do something appropriate for the targeting mode
 						switch(targetingMode!)
 						{
@@ -176,6 +175,10 @@ class GameViewController: UIViewController, GameDelegate {
 							//attack them
 							input = false
 							game.attack(x: x, y: y)
+						case .Special:
+							//special them
+							input = false
+							game.special(x: x, y: y)
 						case .Examine:
 							//examine them
 							examineTarget = target.subject
@@ -185,6 +188,8 @@ class GameViewController: UIViewController, GameDelegate {
 							//TODO: use the special on them
 							input = false
 						}
+						
+						leaveTargetingMode()
 						
 						break
 					}
@@ -278,6 +283,8 @@ class GameViewController: UIViewController, GameDelegate {
 	{
 		if input
 		{
+			leaveTargetingMode()
+			
 			//open items menu
 			self.performSegueWithIdentifier("ShowInventory", sender: self)
 		}
@@ -311,6 +318,15 @@ class GameViewController: UIViewController, GameDelegate {
 		if let inv = segue.destinationViewController as? InventoryViewController
 		{
 			inv.game = self.game
+			inv.useSpecialClosure =
+			{ (special) in
+				self.game.targetSpecial = special
+				self.targetingMode = .Special
+				self.enterTargetingMode()
+				{ (creature) -> Bool in
+					return self.game.validTarget(creature)
+				}
+			}
 		}
 		else if let exm = segue.destinationViewController as? ExamineViewController
 		{
@@ -345,7 +361,7 @@ class GameViewController: UIViewController, GameDelegate {
 		}
 		if !activeNearby
 		{
-			//TODO: regain aura
+			game.player.aura = true
 			
 			if game.movePoints == 0
 			{
@@ -537,7 +553,8 @@ class GameViewController: UIViewController, GameDelegate {
 		}
 		shouldUIUpdate = false
 		
-		//TODO: switch healthBarAuraView's background color opacity between 0 and 1 depending on if the player has aura
+		//switch healthBarAuraView's background color opacity between 0 and 1 depending on if the player has aura
+		healthBarAuraView.backgroundColor = healthBarAuraView.backgroundColor?.colorWithAlphaComponent(game.player.aura ? 1 : 0)
 		
 		//update the health bar
 		makeBar(healthBarContainerView, color: UIColor.redColor(), percent: CGFloat(game.player.health) / CGFloat(game.player.maxHealth))
@@ -627,6 +644,7 @@ class GameViewController: UIViewController, GameDelegate {
 	
 	private func leaveTargetingMode()
 	{
+		game.targetSpecial = nil
 		if let targets = targets
 		{
 			for target in targets

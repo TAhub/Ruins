@@ -16,6 +16,7 @@ enum GamePhase:Int
 	case MakeDecision
 	case Move
 	case Attack
+	case Special
 	case Stun
 	case EndTurn
 }
@@ -48,6 +49,7 @@ class Game
 	var hasAction:Bool = false
 	var targetX:Int = 0
 	var targetY:Int = 0
+	var targetSpecial:String?
 	var map:Map
 	
 	init()
@@ -116,15 +118,49 @@ class Game
 			return false
 		}
 		
+		if cr.good == activeCreature.good
+		{
+			//they are on your side
+			return false
+		}
+		
+		if targetSpecial != nil
+		{
+			//specials have unlimited range
+			return true
+		}
+		
 		let distance = abs(cr.x - activeCreature.x) + abs(cr.y - activeCreature.y)
 		let range = activeCreature.weapon.range
 		let minRange = range == 1 ? 0 : 1
-		return cr.good != activeCreature.good && distance <= range && distance > minRange
+		return distance <= range && distance > minRange
 	}
 	
 	func executePhase()
 	{
 		var anim:Animation?
+		
+		func attackMisc(damages:(myDamage: Int, theirDamage: Int), target:Creature)
+		{
+			anim = Animation()
+			anim!.attackTarget = (targetX, targetY)
+			anim!.attackType = "whatever" //TODO: this value isn't used yet
+			anim!.damageNumbers.append((target, "\(damages.theirDamage)"))
+			if damages.myDamage > 0
+			{
+				anim!.damageNumbers.append((activeCreature, "\(damages.myDamage)"))
+			}
+			
+			if target === player || activeCreature === player
+			{
+				delegate?.uiUpdate()
+			}
+			
+			if target.dead
+			{
+				map.tileAt(x: target.x, y: target.y).creature = nil
+			}
+		}
 		
 		//execute the current phase
 		switch(phaseOn)
@@ -200,37 +236,16 @@ class Game
 				delegate?.uiUpdate()
 			}
 			
+		case .Special:
+			let target:Creature = map.tileAt(x: targetX, y: targetY).creature!
+			let damages = activeCreature.useSpecial(target, special: targetSpecial!)
+			attackMisc(damages, target: target)
+			targetSpecial = nil
+			
 		case .Attack:
-			//TODO: get the target based on the grid, rather than by going through the creature list
-			var target:Creature!
-			for creature in creatures
-			{
-				if creature.x == targetX && creature.y == targetY
-				{
-					target = creature
-					break
-				}
-			}
+			let target:Creature = map.tileAt(x: targetX, y: targetY).creature!
 			let damages = activeCreature.attack(target)
-			
-			anim = Animation()
-			anim!.attackTarget = (targetX, targetY)
-			anim!.attackType = "whatever" //TODO: this value isn't used yet
-			anim!.damageNumbers.append((target, "\(damages.theirDamage)"))
-			if damages.myDamage > 0
-			{
-				anim!.damageNumbers.append((activeCreature, "\(damages.myDamage)"))
-			}
-			
-			if target === player || activeCreature === player
-			{
-				delegate?.uiUpdate()
-			}
-			
-			if target.dead
-			{
-				map.tileAt(x: target.x, y: target.y).creature = nil
-			}
+			attackMisc(damages, target: target)
 			
 		case .PoisonDamage:
 			if let damage = activeCreature.poisonTick()
@@ -268,6 +283,15 @@ class Game
 	{
 		print("SKIP")
 		phaseOn = .EndTurn
+		executePhase()
+	}
+	
+	func special(x x:Int, y:Int)
+	{
+		print("SPECIAL")
+		phaseOn = .Special
+		targetX = x
+		targetY = y
 		executePhase()
 	}
 	
@@ -311,6 +335,7 @@ class Game
 			return
 		case .Move: phaseOn = hasAction ? .MakeDecision : .EndTurn
 		case .Attack: phaseOn = .EndTurn
+		case .Special: phaseOn = .EndTurn
 		case .Stun: phaseOn = .EndTurn
 		case .EndTurn: phaseOn = .PoisonDamage; nextCreature = true
 		}

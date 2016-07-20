@@ -589,7 +589,7 @@ class MapGenerator
 	
 	static func expValueForEnemyType(enemyType:String) -> Int
 	{
-		let hasMagic = false //TODO: DO they have magic?
+		let hasMagic = DataStore.getBool("EnemyTypes", enemyType, "special")
 		let hasArmor = DataStore.getBool("EnemyTypes", enemyType, "armor")
 		let movePoints = DataStore.getInt("EnemyTypes", enemyType, "move points")!
 		let ignoreTerrainCost = DataStore.getBool("EnemyTypes", enemyType, "ignore terrain cost")

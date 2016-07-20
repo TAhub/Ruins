@@ -162,4 +162,5 @@ class AITests: XCTestCase {
 	//TODO: more AI tests
 	//	test to make sure some AIs will avoid traps and some won't
 	//	test for AIs not "activating" until they become visible at least once
+	//	test to make sure AIs open with specials, but only use them once
 }

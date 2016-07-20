@@ -563,7 +563,7 @@ class MapTests: XCTestCase {
 		XCTAssertEqual(MapGenerator.expValueForEnemyType("pixie"), 26) //enemy who ignores terrain
 		XCTAssertEqual(MapGenerator.expValueForEnemyType("hoop snake"), 28) //enemy with extra movement
 		XCTAssertEqual(MapGenerator.expValueForEnemyType("shambler"), 4) //enemy with less movement
-		//TODO: enemy with magic
+		XCTAssertEqual(MapGenerator.expValueForEnemyType("scout"), 19) //enemy with magic
 	}
 	
 	//MARK: pathfinding tests

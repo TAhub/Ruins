@@ -403,6 +403,9 @@ class GameTests: XCTestCase, GameDelegate {
 		}
 	}
 	
+	//MARK: tests to add
+	//	test activating special (remember to set the targetSpecial first!)
+	
 	//MARK: delegate methods
 	
 	func inputDesired()

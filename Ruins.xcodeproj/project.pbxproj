@@ -25,6 +25,7 @@
 		E453FF6E1D3589CB002B749E /* MapThemes.plist in Resources */ = {isa = PBXBuildFile; fileRef = E453FF6D1D3589CB002B749E /* MapThemes.plist */; };
 		E453FF701D3589D2002B749E /* MapFlavors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E453FF6F1D3589D2002B749E /* MapFlavors.plist */; };
 		E453FF721D3593CE002B749E /* BalanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E453FF711D3593CE002B749E /* BalanceTests.swift */; };
+		E4EC41C81D3E9F8C003B781D /* Specials.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4EC41C71D3E9F8C003B781D /* Specials.plist */; };
 		E4F147AD1D2D712700F4C579 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F147AC1D2D712700F4C579 /* AppDelegate.swift */; };
 		E4F147B21D2D712700F4C579 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F147B01D2D712700F4C579 /* Main.storyboard */; };
 		E4F147B41D2D712700F4C579 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F147B31D2D712700F4C579 /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 		E453FF6D1D3589CB002B749E /* MapThemes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MapThemes.plist; sourceTree = "<group>"; };
 		E453FF6F1D3589D2002B749E /* MapFlavors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MapFlavors.plist; sourceTree = "<group>"; };
 		E453FF711D3593CE002B749E /* BalanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceTests.swift; sourceTree = "<group>"; };
+		E4EC41C71D3E9F8C003B781D /* Specials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Specials.plist; sourceTree = "<group>"; };
 		E4F147A91D2D712700F4C579 /* Ruins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ruins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F147AC1D2D712700F4C579 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4F147B11D2D712700F4C579 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 		E4F147CF1D2D717C00F4C579 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4EC41C71D3E9F8C003B781D /* Specials.plist */,
 				E43B70C81D3D9DEF00982AA3 /* MegaStructures.plist */,
 				E44254901D398659009E353A /* Tilesets.plist */,
 				E442548A1D39773B009E353A /* Tiles.plist */,
@@ -354,6 +357,7 @@
 				E4F147DD1D2D767800F4C579 /* Materials.plist in Resources */,
 				E4F147B71D2D712700F4C579 /* LaunchScreen.storyboard in Resources */,
 				E4F147D91D2D766B00F4C579 /* EnemyTypes.plist in Resources */,
+				E4EC41C81D3E9F8C003B781D /* Specials.plist in Resources */,
 				E453FF6E1D3589CB002B749E /* MapThemes.plist in Resources */,
 				E4F147B41D2D712700F4C579 /* Assets.xcassets in Resources */,
 				E4F147B21D2D712700F4C579 /* Main.storyboard in Resources */,

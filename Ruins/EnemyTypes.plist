@@ -24,6 +24,7 @@
 		<key>armor</key> <string>heavy armor</string>
 		<!-- MARK: special powers -->
 		<key>ignore terrain cost</key> <true/>
+		<key>special</key> <string>test special</string>
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>undead</string>
 		<key>appearance group</key> <string>zombie</string>
@@ -741,8 +742,7 @@
 		<key>weapon</key> <string>bash</string>
 		<key>weapon material</key> <string>neutral</string> <!-- TODO: vampiric material -->
 		<!-- MARK: special powers -->
-		<!-- TODO: special attack -->
-		<!-- TODO: special attack that inflicts shake, specifically -->
+		<key>special</key> <string>neuron overload</string>
 		<key>ignore terrain cost</key> <true/>
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>monster</string>
@@ -884,7 +884,7 @@
 		<key>weapon material</key> <string>steel</string>
 		<key>armor</key> <string>clothing</string>
 		<!-- MARK: special powers -->
-		<!-- TODO: special attack -->
+		<key>special</key> <string>flame blast</string>
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>fairy</string>
 		<key>appearance group</key> <string>elf</string>
@@ -939,8 +939,7 @@
 		<key>weapon material</key> <string>birch</string>
 		<key>armor</key> <string>clothing</string> <!-- TODO: magic robes I guess -->
 		<!-- MARK: special powers -->
-		<!-- TODO: special attack -->
-		<!-- TODO: specifically, it should be a special attack that stuns -->
+		<key>special</key> <string>limb lock</string>
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>fairy</string>
 		<key>appearance group</key> <string>elf</string>
@@ -968,7 +967,7 @@
 		<key>weapon material</key> <string>silver</string>
 		<key>armor</key> <string>heavy armor</string>
 		<!-- MARK: special powers -->
-		<!-- TODO: special attack -->
+		<key>special</key> <string>flame blast</string>
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>fairy</string>
 		<key>appearance group</key> <string>elf</string>
@@ -1157,7 +1156,7 @@
 		<key>weapon material</key> <string>elm</string>
 		<key>armor</key> <string>clothing</string> <!-- TODO: mummy wraps obviously -->
 		<!-- MARK: special powers -->
-		<!-- TODO: special attack -->
+		<key>special</key> <string>wither curse</string>
 		<!-- MARK: identity -->
 		<key>racial group</key> <string>undead</string>
 		<key>appearance group</key> <string>zombie</string>

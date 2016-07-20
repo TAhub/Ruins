@@ -128,6 +128,20 @@ class Item
 			{
 				stats.append("Cures")
 			}
+			if let special = special
+			{
+				let specialDamage = DataStore.getInt("Specials", special, "damage")!
+				var effectDesc = ""
+				if let vampire = DataStore.getInt("Specials", special, "vampire")
+				{
+					effectDesc += ", and heals the user for \(specialDamage * vampire / 100)"
+				}
+				if let status = DataStore.getString("Specials", special, "status")
+				{
+					effectDesc += ", and inflicts \(status)"
+				}
+				stats.append("Strikes a foe for \(specialDamage) damage\(effectDesc)")
+			}
 			if let trap = trap
 			{
 				let trapDamage = DataStore.getInt("Traps", trap, "damage")!
@@ -178,6 +192,15 @@ class Item
 			return DataStore.getBool("Usables", usable, "cures")
 		}
 		return false
+	}
+	
+	var special:String?
+	{
+		if let usable = usable
+		{
+			return DataStore.getString("Usables", usable, "special")
+		}
+		return nil
 	}
 	
 	var trap:String?
